@@ -133,14 +133,14 @@ void Graphics::drawFloor(){
     glPushMatrix();
         glTranslatef(THICK_THINGS, -FIELD_DEPTH/2.0, 0);
         glScalef(WALL_HEIGHT, THICK_THINGS, FIELD_WIDTH);
-        material(WHITE);
+        material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
     // WALL BOTTOM
     glPushMatrix();
         glTranslatef(THICK_THINGS, FIELD_DEPTH/2.0, 0);
         glScalef(WALL_HEIGHT, THICK_THINGS, FIELD_WIDTH);
-        material(WHITE);
+        material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
 
@@ -148,14 +148,21 @@ void Graphics::drawFloor(){
     glPushMatrix();
         glTranslatef(THICK_THINGS, 43.0, -FIELD_WIDTH/1.97);
         glScalef(WALL_HEIGHT, WALL_TOPS_B+1.25, THICK_THINGS);
-        material(WHITE);
+        material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
     // WALL LEFT/TOP
     glPushMatrix();
         glTranslatef(THICK_THINGS, -43.0, -FIELD_WIDTH/1.97);
         glScalef(WALL_HEIGHT, WALL_TOPS_B+1.25, THICK_THINGS);
-        material(WHITE);
+        material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
+    // WALL GOAL LEFT
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, 0, (-FIELD_WIDTH/1.98) - GOAL_DEPTH );
+        glScalef(WALL_HEIGHT, GOAL_WIDTH+1.25, THICK_THINGS);
+        material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
 
@@ -163,14 +170,21 @@ void Graphics::drawFloor(){
     glPushMatrix();
         glTranslatef(THICK_THINGS, 43.0, FIELD_WIDTH/1.97);
         glScalef(WALL_HEIGHT, WALL_TOPS_B+1.25, THICK_THINGS);
-        material(WHITE);
+        material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
     // WALL LEFT/TOP
     glPushMatrix();
         glTranslatef(THICK_THINGS, -43.0, FIELD_WIDTH/1.97);
         glScalef(WALL_HEIGHT, WALL_TOPS_B+1.25, THICK_THINGS);
-        material(WHITE);
+        material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
+    // WALL GOAL RIGHT
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, 0, FIELD_WIDTH/1.98 + GOAL_DEPTH );
+        glScalef(WALL_HEIGHT, GOAL_WIDTH+1.25, THICK_THINGS);
+        material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
 }
@@ -217,6 +231,12 @@ void Graphics::material(int color){
             diffuse[0] = 0.1;   diffuse[1] = 0.1;   diffuse[2] = 0.1;   diffuse[3] = 1.0;
             ambient[0] = 0.1;   ambient[1] = 0.1;   ambient[2] = 0.1;   ambient[3] = 1.0;
             specular[0] = 0.1;  specular[1] = 0.1;  specular[2] = 0.1;  specular[3] = 1.0;
+            shininess = 10.0;
+        }break;
+        case BLACK2:{
+            diffuse[0] = 0.07;   diffuse[1] = 0.07;   diffuse[2] = 0.07;   diffuse[3] = 1.0;
+            ambient[0] = 0.07;   ambient[1] = 0.07;   ambient[2] = 0.07;   ambient[3] = 1.0;
+            specular[0] = 0.07;  specular[1] = 0.07;  specular[2] = 0.07;  specular[3] = 1.0;
             shininess = 10.0;
         }break;
         case WHITE:{
