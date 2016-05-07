@@ -4,6 +4,10 @@
 #include <GL/glut.h>
 #include "math.h"
 
+#include "commons/commons.h"
+
+using namespace common;
+
 class Graphics{
 private:
     int argc;
@@ -13,13 +17,19 @@ private:
     
     static void drawWorld();
     static void initLight();
+    // trocar handler para event
     static void timerHandler(int v);
+    static void mouseHandler(int button, int state, int x, int y);
+    static void motionHandler(int x, int y);
     static void changeWindowSize(GLsizei w, GLsizei h);
 
-    static void defineMaterial();
+    static void material(int color = BLACK);
 
-    static void drawBall();
+    static void drawFloor();
     static void drawRobot();
+    static void drawBall();
+    
+
     
 public:
     Graphics();
