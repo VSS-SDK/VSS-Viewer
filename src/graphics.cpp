@@ -109,6 +109,7 @@ void Graphics::drawBall(){
 }
 
 void Graphics::drawFloor(){
+    /// BLOCKS
     // FIELD
     glPushMatrix();
         glScalef(1, FIELD_DEPTH, FIELD_WIDTH);
@@ -213,6 +214,59 @@ void Graphics::drawFloor(){
         glTranslatef(THICK_THINGS, 22, FIELD_WIDTH/1.85);
         glScalef(WALL_HEIGHT, THICK_THINGS, GOAL_DEPTH+1.35);
         material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
+
+    /// PAINTS
+    // LINER CENTER
+    glPushMatrix();
+        glTranslatef(0.05, 0, 0);
+        glScalef(1.0, FIELD_DEPTH, 1.0);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
+    // LINER GOAL LEFT
+    glPushMatrix();
+        glTranslatef(0.05, 0, (FIELD_WIDTH/2.0)-15.0);
+        glScalef(1.0, 70.0, 1.0);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+    // LINER GOAL LEFT/BOTTOM
+    glPushMatrix();
+        glTranslatef(0.05, 34.5, (FIELD_WIDTH/2.0)-7.5);
+        glScalef(1.0, 1.0, 15.0);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+    // LINER GOAL LEFT/TOP
+    glPushMatrix();
+        glTranslatef(0.05, -34.5, (FIELD_WIDTH/2.0)-7.5);
+        glScalef(1.0, 1.0, 15.0);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
+    // LINER GOAL RIGHT
+    glPushMatrix();
+        glTranslatef(0.05, 0, -(FIELD_WIDTH/2.0)+15.0);
+        glScalef(1.0, 70.0, 1.0);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+    // LINER GOAL RIGHT/BOTTOM
+    glPushMatrix();
+        glTranslatef(0.05, 34.5, -(FIELD_WIDTH/2.0)+7.5);
+        glScalef(1.0, 1.0, 15.0);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+    // LINER GOAL RIGHT/TOP
+    glPushMatrix();
+        glTranslatef(0.05, -34.5, -(FIELD_WIDTH/2.0)+7.5);
+        glScalef(1.0, 1.0, 15.0);
+        material(WHITE);
         glutSolidCube(1);
     glPopMatrix();
 }
