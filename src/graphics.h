@@ -3,10 +3,12 @@
 
 #include <GL/glut.h>
 #include "math.h"
+#include "iostream"
 
 #include "commons/commons.h"
 
 using namespace common;
+using namespace std;
 
 class Graphics{
 private:
@@ -19,8 +21,6 @@ private:
     static void initLight();
     // trocar handler para event
     static void timerHandler(int v);
-    static void mouseHandler(int button, int state, int x, int y);
-    static void motionHandler(int x, int y);
     static void changeWindowSize(GLsizei w, GLsizei h);
 
     static void material(int color = BLACK);

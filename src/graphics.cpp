@@ -1,15 +1,16 @@
 #include "graphics.h"
 
 float staticWidth, staticHeight;
+
 int x_ini = 0, y_ini = 0, z_ini = 0, but = -1;  //Glut - Initial x,y,z
 float aspect;                   //Glut - Reason between width and height
 float initAngle = 60.0f;        //Glut - Initial angle
 float dx, dy, dz;               //Glut - Delta distance
 float ex = 1, ey = 1, ez = 1;   //Glut - Scale
-GLfloat rotX = 90.0,rotY = 90.0, rotZ = 0.0;    //Glut - Delta Rotation
+GLfloat rotX = 150.0,rotY = 90.0, rotZ = 0.0;    //Glut - Delta Rotation
 GLfloat rotX_ini, rotY_ini, rotZ_ini;       //Glut - Init rotation
 GLfloat obsX_ini, obsY_ini, obsZ_ini;       //Glut - Initial perspective observation position
-GLfloat obsX = SIZE_WIDTH/2, obsY = 170.0, obsZ = SIZE_DEPTH/2;
+GLfloat obsX = 100.0, obsY = 75.0, obsZ = 0.0;
 float lookAt = 0;
 
 Graphics::Graphics(){
@@ -34,8 +35,6 @@ void Graphics::init(int argc, char** argv){
     glutDisplayFunc(drawWorld);
     glutReshapeFunc(changeWindowSize);
     glutTimerFunc(5, timerHandler, 0);
-    glutMouseFunc(mouseHandler);
-    glutMotionFunc(motionHandler);
     initLight();
 
     glutMainLoop();
@@ -85,34 +84,7 @@ void Graphics::changeWindowSize(GLsizei w, GLsizei h){
     glMatrixMode(GL_MODELVIEW);
 }
 
-void Graphics::mouseHandler(int button, int state, int x, int y){
-    if (state == GLUT_DOWN){
-        but = button;
-        x_ini = x;
-        y_ini = y;
-        rotX_ini = rotX;
-        rotY_ini = rotY;
-    }
-    else{
-        but = -1;
-    }
-}
-
-void Graphics::motionHandler(int x, int y){
-
-    if(but == GLUT_LEFT_BUTTON){
-        int diffx=x_ini - x; //check the difference between the current x and the last x position
-        int diffy=y_ini - y; //check the difference between the current y and the last y position
-
-        rotX = ((float)rotX_ini - (float)diffy); //set the xrot to xrot with the additionof the difference in the y position
-        rotY = ((float)rotY_ini - (float)diffx);    //set the xrot to yrot with the additionof the difference in the x position
-    }
-
-    glutPostRedisplay();
-}
-
 void Graphics::drawWorld(void){
-
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
   
@@ -137,10 +109,31 @@ void Graphics::drawBall(){
 }
 
 void Graphics::drawFloor(){
+    // FIELD
     glPushMatrix();
-        glTranslatef(0,0,0);
-        glScalef(1, 150, 130);
+        glScalef(1, FIELD_DEPTH, FIELD_WIDTH);
         material(BLACK);
+        glutSolidCube(1);
+    glPopMatrix();
+    // GOAL LEFT
+    glPushMatrix();
+        glTranslatef(0, 0, -FIELD_WIDTH/1.88);
+        glScalef(2.5, GOAL_WIDTH, GOAL_DEPTH);
+        material(BLUE);
+        glutSolidCube(1);
+    glPopMatrix();
+    // GOAL RIGHT
+    glPushMatrix();
+        glTranslatef(0, 0, FIELD_WIDTH/1.88);
+        glScalef(2.5, GOAL_WIDTH, GOAL_DEPTH);
+        material(YELLOW);
+        glutSolidCube(1);
+    glPopMatrix();
+    // GOAL RIGHT
+    glPushMatrix();
+        glTranslatef(0, 0, FIELD_WIDTH/1.88);
+        glScalef(2.5, GOAL_WIDTH, GOAL_DEPTH);
+        material(WHITE);
         glutSolidCube(1);
     glPopMatrix();
 }
@@ -157,10 +150,16 @@ void Graphics::material(int color){
 
         }break;
         case BLUE:{
-
+            diffuse[0] = 0.2;   diffuse[1] = 0.2;   diffuse[2] = 0.7;   diffuse[3] = 1.0;
+            ambient[0] = 0.2;   ambient[1] = 0.2;   ambient[2] = 0.7;   ambient[3] = 1.0;
+            specular[0] = 0.2;  specular[1] = 0.2;  specular[2] = 0.7;  specular[3] = 1.0;
+            shininess = 10.0;
         }break;
         case YELLOW:{
-
+            diffuse[0] = 0.8;   diffuse[1] = 0.6;   diffuse[2] = 0.2;   diffuse[3] = 1.0;
+            ambient[0] = 0.8;   ambient[1] = 0.6;   ambient[2] = 0.2;   ambient[3] = 1.0;
+            specular[0] = 0.8;  specular[1] = 0.6;  specular[2] = 0.2;  specular[3] = 1.0;
+            shininess = 10.0;
         }break;
         case RED:{
 
