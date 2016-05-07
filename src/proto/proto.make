@@ -1,3 +1,0 @@
-all:	
-	@echo Compiling Protos ...
-	#@protoc -I=. --cpp_out=. grSim_Commands.proto

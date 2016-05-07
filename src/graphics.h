@@ -4,7 +4,10 @@
 #include <GL/glut.h>
 #include "math.h"
 #include "iostream"
+#include "vector"
+#include "thread"
 
+#include "interface/interface.h"
 #include "commons/commons.h"
 
 using namespace common;
@@ -16,7 +19,13 @@ private:
     char** argv;
 
     float width, height;
+    thread *thread_draw;
+    thread *thread_receive;
     
+    void draw_thread();
+    void receive_thread();
+    void handlePosition();
+
     static void drawWorld();
     static void initLight();
     // trocar handler para event
@@ -26,11 +35,8 @@ private:
     static void material(int color = BLACK);
 
     static void drawFloor();
-    static void drawRobot();
-    static void drawBall();
-    
-
-    
+    static void drawRobot(int);
+    static void drawBall();  
 public:
     Graphics();
 

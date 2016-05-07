@@ -12,9 +12,34 @@ GLfloat rotX_ini, rotY_ini, rotZ_ini;       //Glut - Init rotation
 GLfloat obsX_ini, obsY_ini, obsZ_ini;       //Glut - Initial perspective observation position
 GLfloat obsX = 100.0, obsY = 75.0, obsZ = 0.0;
 float lookAt = 0;
+vector<Robot> robots;
 
 Graphics::Graphics(){
+    for(int i = 0 ; i < 3 ; i++){
+        Robot robot;
+        robot.id = i;
+        robot.team = BLUE;
+        robot.color = 3+i;
+        robot.team_label = SQUARE;
+        robot.color_label = SQUARE;
+        robot.radius = 1.0;
+        robot.pose = Pose(0, i*20, 0);
 
+        robots.push_back(robot);
+    }
+
+    for(int i = 0 ; i < 3 ; i++){
+        Robot robot;
+        robot.id = i;
+        robot.team = YELLOW;
+        robot.color = 6+i;
+        robot.team_label = SQUARE;
+        robot.color_label = SQUARE;
+        robot.radius = 1.0;
+        robot.pose = Pose(20, i*20, 0);
+
+        robots.push_back(robot);
+    }
 }
 
 void Graphics::init(int argc, char** argv){
@@ -27,6 +52,14 @@ void Graphics::init(int argc, char** argv){
     staticWidth = width;
     staticHeight = height;
 
+    thread_draw = new thread(bind(&Graphics::draw_thread, this));
+    thread_receive = new thread(bind(&Graphics::receive_thread, this));
+
+    thread_draw->join();
+    thread_receive->join();
+}
+
+void Graphics::draw_thread(){
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB | GLUT_MULTISAMPLE);
     glutInitWindowPosition(5,5); 
@@ -38,6 +71,27 @@ void Graphics::init(int argc, char** argv){
     initLight();
 
     glutMainLoop();
+}
+
+void Graphics::receive_thread(){
+    Interface interface;
+    vss_state::Global_State global_state;
+    interface.createSocketReceiveState(&global_state);
+
+    while(true){
+        interface.receiveState();
+        global_state.id();
+
+        for(int i = 0 ; i < 3 ; i++){
+            robots.at(i).pose.x = (int) global_state.robots_yellow(i).y() - (130/2.0);
+            robots.at(i).pose.y = (int) global_state.robots_yellow(i).x() - (130/2.0);
+            robots.at(i).pose.yaw = (int) global_state.robots_yellow(i).yaw();
+            robots.at(i+3).pose.x = (int) global_state.robots_blue(i).y() - (130/2.0);
+            robots.at(i+3).pose.y = (int) global_state.robots_blue(i).x() - (130/2.0);
+            robots.at(i+3).pose.yaw = (int) global_state.robots_blue(i).yaw();
+        }
+        
+    }
 }
 
 void Graphics::initLight(void){   
@@ -95,6 +149,9 @@ void Graphics::drawWorld(void){
     glTranslatef(-obsX, -obsY, -obsZ);
 
     drawFloor();
+    for(int i = 0 ; i < robots.size() ; i++){
+        drawRobot(i);
+    }
 
     glutSwapBuffers();
 }
@@ -106,6 +163,38 @@ void Graphics::timerHandler(int v){
 
 void Graphics::drawBall(){
 
+}
+
+void Graphics::drawRobot(int i){
+    glPushMatrix();
+        // ROBÔ
+        glTranslatef(THICK_THINGS*1.4, robots.at(i).pose.x, robots.at(i).pose.y);
+        glScalef(SIZE_ROBOT, SIZE_ROBOT, SIZE_ROBOT);
+        material(BLACK3);
+        glutSolidCube(1);
+
+        // TEAM_LABEL
+        glPushMatrix();
+            glTranslatef(0.33, 0.2, 0.2);
+            glScalef(SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
+            material(robots.at(i).team);
+            glutSolidCube(1);
+        glPopMatrix();
+
+        // TEAM_LABEL
+        glPushMatrix();
+            glTranslatef(0.33, -0.2, -0.2);
+            glScalef(SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
+            material(robots.at(i).color);
+            glutSolidCube(1);
+        glPopMatrix();
+
+        // TEAM_LABEL
+        // TODO: Fazer a rodinha
+        /*glPushMatrix();
+            gluCylinder(quadObj, wheelSteeringRd, wheelSteeringRd, wheelWidth, 15, 10);
+        glPopMatrix();*/
+    glPopMatrix();
 }
 
 void Graphics::drawFloor(){
@@ -289,25 +378,40 @@ void Graphics::material(int color){
             shininess = 10.0;
         }break;
         case YELLOW:{
-            diffuse[0] = 0.8;   diffuse[1] = 0.6;   diffuse[2] = 0.2;   diffuse[3] = 1.0;
-            ambient[0] = 0.8;   ambient[1] = 0.6;   ambient[2] = 0.2;   ambient[3] = 1.0;
-            specular[0] = 0.8;  specular[1] = 0.6;  specular[2] = 0.2;  specular[3] = 1.0;
+            diffuse[0] = 0.85;   diffuse[1] = 0.75;   diffuse[2] = 0.25;   diffuse[3] = 1.0;
+            ambient[0] = 0.85;   ambient[1] = 0.75;   ambient[2] = 0.25;   ambient[3] = 1.0;
+            specular[0] = 0.85;  specular[1] = 0.75;  specular[2] = 0.25;  specular[3] = 1.0;
             shininess = 10.0;
         }break;
         case RED:{
-
+            diffuse[0] = 0.7;   diffuse[1] = 0.2;   diffuse[2] = 0.2;   diffuse[3] = 1.0;
+            ambient[0] = 0.7;   ambient[1] = 0.2;   ambient[2] = 0.2;   ambient[3] = 1.0;
+            specular[0] = 0.7;  specular[1] = 0.2;  specular[2] = 0.2;  specular[3] = 1.0;
+            shininess = 10.0;
         }break;
         case GREEN:{
-
+            diffuse[0] = 0.2;   diffuse[1] = 0.7;   diffuse[2] = 0.2;   diffuse[3] = 1.0;
+            ambient[0] = 0.2;   ambient[1] = 0.7;   ambient[2] = 0.2;   ambient[3] = 1.0;
+            specular[0] = 0.2;  specular[1] = 0.7;  specular[2] = 0.2;  specular[3] = 1.0;
+            shininess = 10.0;
         }break;
         case PURPLE:{
-
+            diffuse[0] = 0.45;   diffuse[1] = 0.1;   diffuse[2] = 0.7;   diffuse[3] = 1.0;
+            ambient[0] = 0.45;   ambient[1] = 0.1;   ambient[2] = 0.7;   ambient[3] = 1.0;
+            specular[0] = 0.45;  specular[1] = 0.1;  specular[2] = 0.7;  specular[3] = 1.0;
+            shininess = 10.0;
         }break;
         case PINK:{
-
+            diffuse[0] = 0.8;   diffuse[1] = 0.5;   diffuse[2] = 0.5;   diffuse[3] = 1.0;
+            ambient[0] = 0.8;   ambient[1] = 0.5;   ambient[2] = 0.5;   ambient[3] = 1.0;
+            specular[0] = 0.8;  specular[1] = 0.5;  specular[2] = 0.5;  specular[3] = 1.0;
+            shininess = 10.0;
         }break;
         case BROWN:{
-
+            diffuse[0] = 0.4;   diffuse[1] = 0.2;   diffuse[2] = 0.1;   diffuse[3] = 1.0;
+            ambient[0] = 0.4;   ambient[1] = 0.2;   ambient[2] = 0.1;   ambient[3] = 1.0;
+            specular[0] = 0.4;  specular[1] = 0.2;  specular[2] = 0.1;  specular[3] = 1.0;
+            shininess = 10.0;
         }break;
         case BLACK:{
             diffuse[0] = 0.1;   diffuse[1] = 0.1;   diffuse[2] = 0.1;   diffuse[3] = 1.0;
@@ -319,6 +423,12 @@ void Graphics::material(int color){
             diffuse[0] = 0.07;   diffuse[1] = 0.07;   diffuse[2] = 0.07;   diffuse[3] = 1.0;
             ambient[0] = 0.07;   ambient[1] = 0.07;   ambient[2] = 0.07;   ambient[3] = 1.0;
             specular[0] = 0.07;  specular[1] = 0.07;  specular[2] = 0.07;  specular[3] = 1.0;
+            shininess = 10.0;
+        }break;
+        case BLACK3:{
+            diffuse[0] = 0.05;   diffuse[1] = 0.05;   diffuse[2] = 0.05;   diffuse[3] = 1.0;
+            ambient[0] = 0.05;   ambient[1] = 0.05;   ambient[2] = 0.05;   ambient[3] = 1.0;
+            specular[0] = 0.05;  specular[1] = 0.05;  specular[2] = 0.05;  specular[3] = 1.0;
             shininess = 10.0;
         }break;
         case WHITE:{

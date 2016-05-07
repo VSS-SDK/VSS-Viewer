@@ -2,8 +2,8 @@ CCX = g++ -std=c++11 -w
 
 
 
-INCLUDES = -Isrc -Isrc/proto
-LIBRARIES = `pkg-config --cflags --libs protobuf` -lpthread -lGLU -lglut -lGL -w
+INCLUDES = -Isrc -Isrc/proto -Isrc/interface
+LIBRARIES = `pkg-config --cflags --libs protobuf` -lzmq -lpthread -lGLU -lglut -lGL -w
 
 
 
@@ -45,5 +45,5 @@ clean:
 	rm $(EXEC) $(FILE_NAMES)
 
 proto:
-	cd proto/ && make -f protos.make
+	cd src/interface/protos && make -f protos.make
 
