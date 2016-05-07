@@ -118,21 +118,58 @@ void Graphics::drawFloor(){
     // GOAL LEFT
     glPushMatrix();
         glTranslatef(0, 0, -FIELD_WIDTH/1.88);
-        glScalef(2.5, GOAL_WIDTH, GOAL_DEPTH);
+        glScalef(THICK_THINGS, GOAL_WIDTH, GOAL_DEPTH);
         material(BLUE);
         glutSolidCube(1);
     glPopMatrix();
     // GOAL RIGHT
     glPushMatrix();
         glTranslatef(0, 0, FIELD_WIDTH/1.88);
-        glScalef(2.5, GOAL_WIDTH, GOAL_DEPTH);
+        glScalef(THICK_THINGS, GOAL_WIDTH, GOAL_DEPTH);
         material(YELLOW);
         glutSolidCube(1);
     glPopMatrix();
-    // GOAL RIGHT
+    // WALL TOP
     glPushMatrix();
-        glTranslatef(0, 0, FIELD_WIDTH/1.88);
-        glScalef(2.5, GOAL_WIDTH, GOAL_DEPTH);
+        glTranslatef(THICK_THINGS, -FIELD_DEPTH/2.0, 0);
+        glScalef(WALL_HEIGHT, THICK_THINGS, FIELD_WIDTH);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+    // WALL BOTTOM
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, FIELD_DEPTH/2.0, 0);
+        glScalef(WALL_HEIGHT, THICK_THINGS, FIELD_WIDTH);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
+    // WALL LEFT/BOTTOM
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, 43.0, -FIELD_WIDTH/1.97);
+        glScalef(WALL_HEIGHT, WALL_TOPS_B+1.25, THICK_THINGS);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+    // WALL LEFT/TOP
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -43.0, -FIELD_WIDTH/1.97);
+        glScalef(WALL_HEIGHT, WALL_TOPS_B+1.25, THICK_THINGS);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
+    // WALL LEFT/BOTTOM
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, 43.0, FIELD_WIDTH/1.97);
+        glScalef(WALL_HEIGHT, WALL_TOPS_B+1.25, THICK_THINGS);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+    // WALL LEFT/TOP
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -43.0, FIELD_WIDTH/1.97);
+        glScalef(WALL_HEIGHT, WALL_TOPS_B+1.25, THICK_THINGS);
         material(WHITE);
         glutSolidCube(1);
     glPopMatrix();
@@ -183,7 +220,10 @@ void Graphics::material(int color){
             shininess = 10.0;
         }break;
         case WHITE:{
-  
+            diffuse[0] = 0.9;   diffuse[1] = 0.9;   diffuse[2] = 0.9;   diffuse[3] = 1.0;
+            ambient[0] = 0.9;   ambient[1] = 0.9;   ambient[2] = 0.9;   ambient[3] = 1.0;
+            specular[0] = 0.9;  specular[1] = 0.9;  specular[2] = 0.9;  specular[3] = 1.0;
+            shininess = 10.0;
         }break;
         case GRAY:{
 
