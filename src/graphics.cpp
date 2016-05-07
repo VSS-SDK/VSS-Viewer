@@ -56,7 +56,7 @@ void Graphics::initLight(void){
     glEnable(GL_LINE_SMOOTH);
     glShadeModel(GL_SMOOTH);
 
-    glClearColor(0.05f, 0.35f, 0.05f, 1.0f);
+    glClearColor(0.1f, 0.1f, 0.2f, 1.0f);
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_NORMALIZE);
@@ -147,14 +147,14 @@ void Graphics::drawFloor(){
     // WALL LEFT/BOTTOM
     glPushMatrix();
         glTranslatef(THICK_THINGS, 43.0, -FIELD_WIDTH/1.97);
-        glScalef(WALL_HEIGHT, WALL_TOPS_B+1.25, THICK_THINGS);
+        glScalef(WALL_HEIGHT, WALL_TOPS_B, THICK_THINGS);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
     // WALL LEFT/TOP
     glPushMatrix();
         glTranslatef(THICK_THINGS, -43.0, -FIELD_WIDTH/1.97);
-        glScalef(WALL_HEIGHT, WALL_TOPS_B+1.25, THICK_THINGS);
+        glScalef(WALL_HEIGHT, WALL_TOPS_B, THICK_THINGS);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
@@ -165,18 +165,32 @@ void Graphics::drawFloor(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+    // WALL GOAL TOP
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -22, -FIELD_WIDTH/1.85);
+        glScalef(WALL_HEIGHT, THICK_THINGS, GOAL_DEPTH+1.35);
+        material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
+    // WALL GOAL BOTTOM
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, 22, -FIELD_WIDTH/1.85);
+        glScalef(WALL_HEIGHT, THICK_THINGS, GOAL_DEPTH+1.35);
+        material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
 
     // WALL LEFT/BOTTOM
     glPushMatrix();
         glTranslatef(THICK_THINGS, 43.0, FIELD_WIDTH/1.97);
-        glScalef(WALL_HEIGHT, WALL_TOPS_B+1.25, THICK_THINGS);
+        glScalef(WALL_HEIGHT, WALL_TOPS_B, THICK_THINGS);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
     // WALL LEFT/TOP
     glPushMatrix();
         glTranslatef(THICK_THINGS, -43.0, FIELD_WIDTH/1.97);
-        glScalef(WALL_HEIGHT, WALL_TOPS_B+1.25, THICK_THINGS);
+        glScalef(WALL_HEIGHT, WALL_TOPS_B, THICK_THINGS);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
@@ -184,6 +198,20 @@ void Graphics::drawFloor(){
     glPushMatrix();
         glTranslatef(THICK_THINGS, 0, FIELD_WIDTH/1.98 + GOAL_DEPTH );
         glScalef(WALL_HEIGHT, GOAL_WIDTH+1.25, THICK_THINGS);
+        material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
+    // WALL GOAL TOP
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -22, FIELD_WIDTH/1.85);
+        glScalef(WALL_HEIGHT, THICK_THINGS, GOAL_DEPTH+1.35);
+        material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
+    // WALL GOAL BOTTOM
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, 22, FIELD_WIDTH/1.85);
+        glScalef(WALL_HEIGHT, THICK_THINGS, GOAL_DEPTH+1.35);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
