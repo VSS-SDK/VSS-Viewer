@@ -33,6 +33,7 @@ private:
     static void changeWindowSize(GLsizei w, GLsizei h);
 
     static void material(int color = BLACK);
+    static void material(Pixel);
 
     static void drawFloor();
     static void drawRobot(int);

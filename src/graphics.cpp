@@ -20,6 +20,7 @@ Graphics::Graphics(){
         robot.id = i;
         robot.team = BLUE;
         robot.color = 3+i;
+        robot.rgb_color = Pixel(0, 0, 0);
         robot.team_label = SQUARE;
         robot.color_label = SQUARE;
         robot.radius = 1.0;
@@ -32,7 +33,8 @@ Graphics::Graphics(){
         Robot robot;
         robot.id = i;
         robot.team = YELLOW;
-        robot.color = 6+i;
+        robot.color = 5+i;
+        robot.rgb_color = Pixel(0, 0, 0);
         robot.team_label = SQUARE;
         robot.color_label = SQUARE;
         robot.radius = 1.0;
@@ -82,15 +84,38 @@ void Graphics::receive_thread(){
         interface.receiveState();
         global_state.id();
 
-        for(int i = 0 ; i < 3 ; i++){
-            robots.at(i).pose.x = (int) global_state.robots_yellow(i).y() - (130/2.0);
-            robots.at(i).pose.y = (int) global_state.robots_yellow(i).x() - (130/2.0);
-            robots.at(i).pose.yaw = (int) global_state.robots_yellow(i).yaw();
-            robots.at(i+3).pose.x = (int) global_state.robots_blue(i).y() - (130/2.0);
-            robots.at(i+3).pose.y = (int) global_state.robots_blue(i).x() - (130/2.0);
-            robots.at(i+3).pose.yaw = (int) global_state.robots_blue(i).yaw();
+        if(!global_state.origin()){ // VSS-SIMULATOR
+            for(int i = 0 ; i < 3 ; i++){
+                robots.at(i).team = YELLOW;
+                robots.at(i).pose.x = global_state.robots_yellow(i).y() - (150/2.0);
+                robots.at(i).pose.y = global_state.robots_yellow(i).x() - (130/2.0);
+                //robots.at(i).pose.yaw = global_state.robots_yellow(i).yaw();
+                robots.at(i).team = BLUE;
+                robots.at(i+3).pose.x = global_state.robots_blue(i).y() - (150/2.0);
+                robots.at(i+3).pose.y = global_state.robots_blue(i).x() - (130/2.0);
+                //robots.at(i+3).pose.yaw = global_state.robots_blue(i).yaw();
+            }
+        }else{  // VSS-VISION
+            for(int i = 0 ; i < 3 ; i++){
+                robots.at(i).team = YELLOW;
+                robots.at(i).pose.x = global_state.robots_yellow(i).y()/4.26 - (150/2.0) + 20;
+                robots.at(i).pose.y = global_state.robots_yellow(i).x()/3.69 - (130/2.0) - 20;
+                //robots.at(i).pose.yaw = global_state.robots_yellow(i).yaw();
+                robots.at(i).rgb_color.rgb[0] = global_state.robots_yellow(i).color().r();
+                robots.at(i).rgb_color.rgb[1] = global_state.robots_yellow(i).color().g();
+                robots.at(i).rgb_color.rgb[2] = global_state.robots_yellow(i).color().b();
+                
+
+                robots.at(i+3).team = BLUE;
+                robots.at(i+3).pose.x = global_state.robots_blue(i).y()/4.26 - (150/2.0) + 20;
+                robots.at(i+3).pose.y = global_state.robots_blue(i).x()/3.69 - (130/2.0) - 20;
+                //robots.at(i+3).pose.yaw = global_state.robots_blue(i).yaw();
+                robots.at(i+3).rgb_color.rgb[0] = global_state.robots_blue(i).color().r();
+                robots.at(i+3).rgb_color.rgb[1] = global_state.robots_blue(i).color().g();
+                robots.at(i+3).rgb_color.rgb[2] = global_state.robots_blue(i).color().b();
+               
+            }
         }
-        
     }
 }
 
@@ -185,7 +210,11 @@ void Graphics::drawRobot(int i){
         glPushMatrix();
             glTranslatef(0.33, -0.2, -0.2);
             glScalef(SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
-            material(robots.at(i).color);
+            if(robots.at(i).rgb_color.rgb[0] == 0){
+                material(robots.at(i).color);
+            }else{
+                material(robots.at(i).rgb_color);
+            }
             glutSolidCube(1);
         glPopMatrix();
 
@@ -360,6 +389,23 @@ void Graphics::drawFloor(){
     glPopMatrix();
 }
 
+void Graphics::material(Pixel p){
+    GLfloat diffuse[4];
+    GLfloat ambient[4];
+    GLfloat specular[4];
+    GLfloat shininess;
+
+    diffuse[0] = p.rgb[0]/255.0;   diffuse[1] = p.rgb[1]/255.0;   diffuse[2] = p.rgb[2]/255.0;   diffuse[3] = 1.0;
+    ambient[0] = p.rgb[0]/255.0;   ambient[1] = p.rgb[1]/255.0;   ambient[2] = p.rgb[2]/255.0;   ambient[3] = 1.0;
+    specular[0] = p.rgb[0]/255.0;  specular[1] = p.rgb[1]/255.0;  specular[2] = p.rgb[2]/255.0;  specular[3] = 1.0;
+    shininess = 10.0;
+
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
+
+}
 
 void Graphics::material(int color){
     GLfloat diffuse[4];
