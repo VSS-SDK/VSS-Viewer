@@ -100,7 +100,7 @@ void Graphics::receive_thread(){
                 robots.at(i).team = YELLOW;
                 robots.at(i).pose.x = global_state.robots_yellow(i).y()/4.26 - (150/2.0) + 20;
                 robots.at(i).pose.y = global_state.robots_yellow(i).x()/3.69 - (130/2.0) - 20;
-                //robots.at(i).pose.yaw = global_state.robots_yellow(i).yaw();
+                robots.at(i).pose.yaw = global_state.robots_yellow(i).yaw();
                 robots.at(i).rgb_color.rgb[0] = global_state.robots_yellow(i).color().r();
                 robots.at(i).rgb_color.rgb[1] = global_state.robots_yellow(i).color().g();
                 robots.at(i).rgb_color.rgb[2] = global_state.robots_yellow(i).color().b();
@@ -109,7 +109,7 @@ void Graphics::receive_thread(){
                 robots.at(i+3).team = BLUE;
                 robots.at(i+3).pose.x = global_state.robots_blue(i).y()/4.26 - (150/2.0) + 20;
                 robots.at(i+3).pose.y = global_state.robots_blue(i).x()/3.69 - (130/2.0) - 20;
-                //robots.at(i+3).pose.yaw = global_state.robots_blue(i).yaw();
+                robots.at(i+3).pose.yaw = global_state.robots_blue(i).yaw();
                 robots.at(i+3).rgb_color.rgb[0] = global_state.robots_blue(i).color().r();
                 robots.at(i+3).rgb_color.rgb[1] = global_state.robots_blue(i).color().g();
                 robots.at(i+3).rgb_color.rgb[2] = global_state.robots_blue(i).color().b();
@@ -194,6 +194,7 @@ void Graphics::drawRobot(int i){
     glPushMatrix();
         // ROBÔ
         glTranslatef(THICK_THINGS*1.4, robots.at(i).pose.x, robots.at(i).pose.y);
+        glRotatef(robots.at(i).pose.yaw, 1, 0, 0);
         glScalef(SIZE_ROBOT, SIZE_ROBOT, SIZE_ROBOT);
         material(BLACK3);
         glutSolidCube(1);
