@@ -1,6 +1,10 @@
 #ifndef _COMMONS_H_
 #define _COMMONS_H_
 
+#include "iostream"
+
+using namespace std;
+
 namespace common{
 	enum{ ORANGE = 0, BLUE = 1, YELLOW = 2, RED = 3, GREEN = 4, PURPLE = 5, PINK = 6, BROWN = 7, WHITE = 8, GRAY = 9, BLACK = 10, BLACK2 = 11, BLACK3 = 12 };
 	enum{ SQUARE = 0, CIRCLE = 1 };
@@ -51,6 +55,9 @@ namespace common{
 			y = p->y;
 			yaw = p->yaw;
 		};
+		void show(){
+			cout << "(" << x << ", " << y << ", " << yaw << ")" << endl;
+		}
 	};
 
 	struct Robot{

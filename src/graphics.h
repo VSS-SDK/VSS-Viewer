@@ -19,6 +19,7 @@ private:
     char** argv;
 
     float width, height;
+
     thread *thread_draw;
     thread *thread_receive;
     

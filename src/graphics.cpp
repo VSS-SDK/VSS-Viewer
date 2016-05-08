@@ -13,6 +13,8 @@ GLfloat obsX_ini, obsY_ini, obsZ_ini;       //Glut - Initial perspective observa
 GLfloat obsX = 100.0, obsY = 75.0, obsZ = 0.0;
 float lookAt = 0;
 vector<Robot> robots;
+Pose ball;
+GLUquadric* qobj;
 
 Graphics::Graphics(){
     for(int i = 0 ; i < 3 ; i++){
@@ -70,7 +72,11 @@ void Graphics::draw_thread(){
     glutDisplayFunc(drawWorld);
     glutReshapeFunc(changeWindowSize);
     glutTimerFunc(5, timerHandler, 0);
+    
     initLight();
+
+    qobj = gluNewQuadric();
+    gluQuadricNormals(qobj, GLU_SMOOTH);
 
     glutMainLoop();
 }
@@ -85,6 +91,10 @@ void Graphics::receive_thread(){
         global_state.id();
 
         if(!global_state.origin()){ // VSS-SIMULATOR
+            ball.x = global_state.balls(0).y() - (150/2.0) + 9;
+            ball.y = global_state.balls(0).x() - (130/2.0) - 11;
+            ball.show();
+
             for(int i = 0 ; i < 3 ; i++){
                 robots.at(i).team = YELLOW;
                 robots.at(i).pose.x = global_state.robots_yellow(i).y() - (150/2.0) + 9;
@@ -183,6 +193,7 @@ void Graphics::drawWorld(void){
     glTranslatef(-obsX, -obsY, -obsZ);
 
     drawFloor();
+    drawBall();
     for(int i = 0 ; i < robots.size() ; i++){
         drawRobot(i);
     }
@@ -196,7 +207,11 @@ void Graphics::timerHandler(int v){
 }
 
 void Graphics::drawBall(){
-
+     glPushMatrix();
+        glTranslatef(THICK_THINGS*1.4, ball.x, ball.y);
+        material(ORANGE);
+        glutSolidSphere(2.0, 8.0, 8.0);
+     glPopMatrix();
 }
 
 void Graphics::drawRobot(int i){
@@ -228,11 +243,13 @@ void Graphics::drawRobot(int i){
             glutSolidCube(1);
         glPopMatrix();
 
-        // TEAM_LABEL
-        // TODO: Fazer a rodinha
-        /*glPushMatrix();
-            gluCylinder(quadObj, wheelSteeringRd, wheelSteeringRd, wheelWidth, 15, 10);
-        glPopMatrix();*/
+        glPushMatrix();
+            glRotatef(90.0, 1, 0, 0);
+            glTranslatef(-0.10, 0.0, -0.61);
+            material(WHITE);
+            gluCylinder(qobj, 0.2f, 0.2f, 1.2f, 16.0, 16.0); // Radius 1, Radius 2, Lenght, Precision1, Precision2
+        glPopMatrix();
+
     glPopMatrix();
 }
 
@@ -425,7 +442,10 @@ void Graphics::material(int color){
 
     switch(color){
         case ORANGE:{
-
+            diffuse[0] = 1.0;   diffuse[1] = 0.4;   diffuse[2] = 0.2;   diffuse[3] = 1.0;
+            ambient[0] = 1.0;   ambient[1] = 0.4;   ambient[2] = 0.2;   ambient[3] = 1.0;
+            specular[0] = 1.0;  specular[1] = 0.4;  specular[2] = 0.2;  specular[3] = 1.0;
+            shininess = 10.0;
         }break;
         case BLUE:{
             diffuse[0] = 0.2;   diffuse[1] = 0.2;   diffuse[2] = 0.7;   diffuse[3] = 1.0;
