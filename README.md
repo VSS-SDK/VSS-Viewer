@@ -5,7 +5,6 @@ VSS-Viewer
 
 Installation
 ------------
-[INSTALL][install]
 
 
 Development and Use
