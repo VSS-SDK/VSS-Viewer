@@ -1,4 +1,4 @@
-VSS-Vision 
+VSS-Viewer
 ==========
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)][gpl3]
 
