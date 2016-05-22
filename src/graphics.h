@@ -22,6 +22,7 @@
 using namespace common;
 using namespace std;
 
+//! This draw things
 class Graphics{
 private:
     int argc;
@@ -34,11 +35,11 @@ private:
     
     void draw_thread();
     void receive_thread();
+
     void handlePosition();
 
     static void drawWorld();
     static void initLight();
-    // trocar handler para event
     static void timerHandler(int v);
     static void changeWindowSize(GLsizei w, GLsizei h);
 
@@ -51,6 +52,7 @@ private:
 public:
     Graphics();
 
+    //! init
     void init(int argc, char** argv);
 };
 

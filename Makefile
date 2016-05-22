@@ -56,3 +56,6 @@ clean:
 proto:
 	cd src/interface/protos && make -f protos.make
 
+docm:
+	cd doc && doxygen
+

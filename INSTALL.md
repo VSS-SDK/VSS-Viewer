@@ -2,7 +2,7 @@ VSS-Viewer
 ==========
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)][gpl3]
 
-**Install** Ubuntu (14.04 LTS)
+**Install** Ubuntu (14.04 LTS 3)
 ------------------------------
 **Install Standard Packages:**
 ```
@@ -10,6 +10,16 @@ $ sudo apt-get update && apt-get upgrade
 $ sudo apt-get install pkg-config
 $ sudo apt-get install g++ cmake git libzmq3 libzmq3-dev protobuf-compiler libprotobuf-dev freeglut3 freeglut3-dev
 ```
+
+**Install** Ubuntu (16.04 LTS)
+------------------------------
+**Install Standard Packages:**
+```
+$ sudo apt-get update && apt-get upgrade
+$ sudo apt-get install pkg-config
+$ sudo apt-get install g++ cmake git libzmq3 libzmq3-dev protobuf-compiler libprotobuf-dev freeglut3 freeglut3-dev doxygen
+```
+
 **Install** Debian (8)
 ------------------------------
 **Install Standard Packages:**
