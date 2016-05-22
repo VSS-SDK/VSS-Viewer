@@ -10,7 +10,7 @@ $ sudo apt-get update && apt-get upgrade
 $ sudo apt-get install pkg-config
 $ sudo apt-get install g++ cmake git libzmq3 libzmq3-dev protobuf-compiler libprotobuf-dev freeglut3 freeglut3-dev
 ```
-**Install** Ubuntu (14.04 LTS)
+**Install** Debian (8)
 ------------------------------
 **Install Standard Packages:**
 ```
