@@ -2,19 +2,20 @@ VSS-Viewer
 ==========
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)][gpl3]
 
-
-Installation
-------------
-[INSTALL][install]
-
-
-Development and Use
--------------------
+**Install** Ubuntu (14.04 LTS)
+------------------------------
+**Install Standard Packages:**
 ```
-$ make && make run
+$ sudo apt-get update && apt-get upgrade
+$ sudo apt-get install pkg-config
+$ sudo apt-get install g++ cmake git libzmq3 libzmq3-dev protobuf-compiler libprotobuf-dev freeglut3 freeglut3-dev
 ```
-
-
+**Install** Ubuntu (14.04 LTS)
+------------------------------
+**Install Standard Packages:**
+```
+$ TODO
+```
 
 License
 -------
@@ -35,7 +36,6 @@ You are allowed and encouraged to use this software on the IEEE Very Small Size 
 [imgui]: https://github.com/ocornut/imgui/
 [travis]: https://travis-ci.org/SIRLab/VSS-Vision
 [samplestrategy]: https://github.com/SIRLab/VSS-SampleStrategy
-[install]: https://github.com/SIRLab/VSS-Viewer/blob/master/INSTALL.md
 
 
 
