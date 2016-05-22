@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="../../index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="../../annotated.html"><span>Classes</span></a></li>
       <li><a href="../../files.html"><span>Files</span></a></li>
       <li>
@@ -83,26 +84,82 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="../../d7/d39/classGraphics-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Graphics Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>This draw things.  
+<p>This class is responsible for draw the 3D World and receive data from VSS-Simulator and VSS-Vision.  
  <a href="../../d5/d5a/classGraphics.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d7/d04/graphics_8h_source.html">graphics.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:af2e8fe67fd31ec263c843a6e28b29d3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2e8fe67fd31ec263c843a6e28b29d3c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5a/classGraphics.html#af2e8fe67fd31ec263c843a6e28b29d3c">Graphics</a> ()</td></tr>
+<tr class="memdesc:af2e8fe67fd31ec263c843a6e28b29d3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates a vector of robots, in the software stream we only update the values. <br /></td></tr>
+<tr class="separator:af2e8fe67fd31ec263c843a6e28b29d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a956812b9773f48f47ff946d538095da7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a956812b9773f48f47ff946d538095da7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5a/classGraphics.html#a956812b9773f48f47ff946d538095da7">init</a> (int argc, char **argv)</td></tr>
-<tr class="memdesc:a956812b9773f48f47ff946d538095da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">init <br /></td></tr>
+<tr class="memdesc:a956812b9773f48f47ff946d538095da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method responsible for initialize the software: control variables and threads. <br /></td></tr>
 <tr class="separator:a956812b9773f48f47ff946d538095da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c2dc0d8c33e87def636d4edce50f4a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c2dc0d8c33e87def636d4edce50f4a5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5a/classGraphics.html#a5c2dc0d8c33e87def636d4edce50f4a5">draw_thread</a> ()</td></tr>
+<tr class="memdesc:a5c2dc0d8c33e87def636d4edce50f4a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method responsible for handle a thread to draw the 3D world with Freeglut, it's unreachable (has a "infite" loop). <br /></td></tr>
+<tr class="separator:a5c2dc0d8c33e87def636d4edce50f4a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5224963dcb43304a7d37825f1aade9e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5224963dcb43304a7d37825f1aade9e6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5a/classGraphics.html#a5224963dcb43304a7d37825f1aade9e6">receive_thread</a> ()</td></tr>
+<tr class="memdesc:a5224963dcb43304a7d37825f1aade9e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method responsible for handle a thread to receive the data from VSS-Simulator or VSS-Vision. <br /></td></tr>
+<tr class="separator:a5224963dcb43304a7d37825f1aade9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60bac80cfd3b0fc45b35deaa44fea63d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60bac80cfd3b0fc45b35deaa44fea63d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5a/classGraphics.html#a60bac80cfd3b0fc45b35deaa44fea63d">handlePosition</a> ()</td></tr>
+<tr class="memdesc:a60bac80cfd3b0fc45b35deaa44fea63d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method responsible for transform the coordenates from OpenCV (VSS-Vision) and Bullet-Physics (VSS-Simulator) to Freeglut. <br /></td></tr>
+<tr class="separator:a60bac80cfd3b0fc45b35deaa44fea63d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ab65394158d2a2fa6a613fcb074ac808e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab65394158d2a2fa6a613fcb074ac808e"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5a/classGraphics.html#ab65394158d2a2fa6a613fcb074ac808e">drawWorld</a> ()</td></tr>
+<tr class="memdesc:ab65394158d2a2fa6a613fcb074ac808e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method responsible for handle all 3D draws, like: Field, Robots and Ball. <br /></td></tr>
+<tr class="separator:ab65394158d2a2fa6a613fcb074ac808e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3549ba0484b18d43c6602fb0b57a29a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3549ba0484b18d43c6602fb0b57a29a6"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5a/classGraphics.html#a3549ba0484b18d43c6602fb0b57a29a6">initLight</a> ()</td></tr>
+<tr class="memdesc:a3549ba0484b18d43c6602fb0b57a29a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method responsible for set the light Ambience, Diffuse, Speculate and the position. <br /></td></tr>
+<tr class="separator:a3549ba0484b18d43c6602fb0b57a29a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2795786eef8c99a7232a195992a9c82"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2795786eef8c99a7232a195992a9c82"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5a/classGraphics.html#aa2795786eef8c99a7232a195992a9c82">timerHandler</a> (int v)</td></tr>
+<tr class="memdesc:aa2795786eef8c99a7232a195992a9c82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method (Callback) responsible for redraw the 3D World keeping at least 30 Fps. <br /></td></tr>
+<tr class="separator:aa2795786eef8c99a7232a195992a9c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78ef6a0b1f6c142c9d650ffddfbaa2ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78ef6a0b1f6c142c9d650ffddfbaa2ed"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5a/classGraphics.html#a78ef6a0b1f6c142c9d650ffddfbaa2ed">changeWindowSize</a> (GLsizei w, GLsizei h)</td></tr>
+<tr class="memdesc:a78ef6a0b1f6c142c9d650ffddfbaa2ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method (Callback) responsible for update the control variables if the user resize manually the window. <br /></td></tr>
+<tr class="separator:a78ef6a0b1f6c142c9d650ffddfbaa2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3134b5ca29b658f4ac5cc12fa4b4705"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab3134b5ca29b658f4ac5cc12fa4b4705"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5a/classGraphics.html#ab3134b5ca29b658f4ac5cc12fa4b4705">material</a> (int color=BLACK)</td></tr>
+<tr class="memdesc:ab3134b5ca29b658f4ac5cc12fa4b4705"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method responsible for set the color of material: ORANGE, BLUE, YELLOW, RED, GREEN, PURPLE, PINK, BROWN, WHITE, GRAY, BLACK, BLACK2, BLACK3. <br /></td></tr>
+<tr class="separator:ab3134b5ca29b658f4ac5cc12fa4b4705"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fccb7730e87ee29133bc0fa6171059e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fccb7730e87ee29133bc0fa6171059e"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5a/classGraphics.html#a7fccb7730e87ee29133bc0fa6171059e">material</a> (<a class="el" href="../../d7/ded/structcommon_1_1Pixel.html">Pixel</a>)</td></tr>
+<tr class="memdesc:a7fccb7730e87ee29133bc0fa6171059e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method responsible for set the color of material, receiving a RGB Color. <br /></td></tr>
+<tr class="separator:a7fccb7730e87ee29133bc0fa6171059e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc5dbcd8d8d999d48dbdf241fde77603"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc5dbcd8d8d999d48dbdf241fde77603"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5a/classGraphics.html#adc5dbcd8d8d999d48dbdf241fde77603">drawField</a> ()</td></tr>
+<tr class="memdesc:adc5dbcd8d8d999d48dbdf241fde77603"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method responsible for draw the field: floor and sidewalls. <br /></td></tr>
+<tr class="separator:adc5dbcd8d8d999d48dbdf241fde77603"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea303675636309a511de1b2158cb1105"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aea303675636309a511de1b2158cb1105"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5a/classGraphics.html#aea303675636309a511de1b2158cb1105">drawRobot</a> (int)</td></tr>
+<tr class="memdesc:aea303675636309a511de1b2158cb1105"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method responsible for draw one robot: Body and wheels. <br /></td></tr>
+<tr class="separator:aea303675636309a511de1b2158cb1105"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e0114e205ef00c6284ed40f14cea84a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e0114e205ef00c6284ed40f14cea84a"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5a/classGraphics.html#a8e0114e205ef00c6284ed40f14cea84a">drawBall</a> ()</td></tr>
+<tr class="memdesc:a8e0114e205ef00c6284ed40f14cea84a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method responsible for draw the ball. <br /></td></tr>
+<tr class="separator:a8e0114e205ef00c6284ed40f14cea84a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This draw things. </p>
+<div class="textblock"><p>This class is responsible for draw the 3D World and receive data from VSS-Simulator and VSS-Vision. </p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/johnathan/Repositories/VSS/VSS-Viewer/src/<a class="el" href="../../d7/d04/graphics_8h_source.html">graphics.h</a></li>
 <li>/home/johnathan/Repositories/VSS/VSS-Viewer/src/graphics.cpp</li>

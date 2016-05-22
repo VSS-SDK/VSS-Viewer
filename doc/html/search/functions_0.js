@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['init',['init',['../d5/d5a/classGraphics.html#a956812b9773f48f47ff946d538095da7',1,'Graphics']]]
+  ['changewindowsize',['changeWindowSize',['../d5/d5a/classGraphics.html#a78ef6a0b1f6c142c9d650ffddfbaa2ed',1,'Graphics']]]
 ];

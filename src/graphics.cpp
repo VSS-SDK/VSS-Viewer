@@ -201,7 +201,7 @@ void Graphics::drawWorld(void){
     glRotatef(rotY, 0, 1, 0);
     glTranslatef(-obsX, -obsY, -obsZ);
 
-    drawFloor();
+    drawField();
     drawBall();
     for(int i = 0 ; i < robots.size() ; i++){
         drawRobot(i);
@@ -262,8 +262,8 @@ void Graphics::drawRobot(int i){
     glPopMatrix();
 }
 
-void Graphics::drawFloor(){
-    /// BLOCKS
+void Graphics::drawField(){
+    // BLOCKS
     // FIELD
     glPushMatrix();
         glScalef(1, FIELD_DEPTH, FIELD_WIDTH);
@@ -371,7 +371,7 @@ void Graphics::drawFloor(){
         glutSolidCube(1);
     glPopMatrix();
 
-    /// PAINTS
+    // PAINTS
     // LINER CENTER
     glPushMatrix();
         glTranslatef(0.05, 0, 0);

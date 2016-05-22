@@ -14,10 +14,12 @@
 
 using namespace std;
 
+//! This namespace contains all custom datatypes used on the software, like: Pixel, Pose and Robot
 namespace common{
 	enum{ ORANGE = 0, BLUE = 1, YELLOW = 2, RED = 3, GREEN = 4, PURPLE = 5, PINK = 6, BROWN = 7, WHITE = 8, GRAY = 9, BLACK = 10, BLACK2 = 11, BLACK3 = 12 };
 	enum{ SQUARE = 0, CIRCLE = 1 };
 
+	//! This is a simple structure responsible for represent a color: RGB
 	struct Pixel{
 	    float rgb[3];  
 	    Pixel(){
@@ -45,6 +47,7 @@ namespace common{
 	    };
 	};
 
+	//! This is a simple structure responsible for represent a pose: X, Y and Orientation "Rotation". 
 	struct Pose{
 		float x;
 		float y;
@@ -69,6 +72,7 @@ namespace common{
 		}
 	};
 
+	//! This is a simple structure responsible for represente a robot: id, pose, team, color and etc.
 	struct Robot{
 		int id;
 		Pose pose;
