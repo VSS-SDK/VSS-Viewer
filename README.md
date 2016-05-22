@@ -36,7 +36,7 @@ You are allowed and encouraged to use this software on the IEEE Very Small Size 
 [travis]: https://travis-ci.org/SIRLab/VSS-Vision
 [samplestrategy]: https://github.com/SIRLab/VSS-SampleStrategy
 [install]: https://github.com/SIRLab/VSS-Viewer/blob/master/INSTALL.md
-[youtube]: https://img.shields.io/badge/Link-Youtube-red.svg
+[youtube]: https://www.youtube.com/watch?v=uyFlXV-0NnU
 
 
 
