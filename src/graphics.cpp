@@ -25,7 +25,13 @@ vector<Robot> robots;
 Pose ball;
 GLUquadric* qobj;
 
+//! Addendum
+//! --------
+//! 
+//! > Initializes the vector of robots with default values.
+//! > The software have the concept of teams  
 Graphics::Graphics(){
+    //! > Initializes the team 1
     for(int i = 0 ; i < 3 ; i++){
         Robot robot;
         robot.id = i;
@@ -40,6 +46,7 @@ Graphics::Graphics(){
         robots.push_back(robot);
     }
 
+    //! > Initializes the team 2
     for(int i = 0 ; i < 3 ; i++){
         Robot robot;
         robot.id = i;
@@ -55,7 +62,12 @@ Graphics::Graphics(){
     }
 }
 
+//! Addendum
+//! --------
+//! 
+//! > Initializes control variables, the Draw thread and Interface of receiving thread.
 void Graphics::init(int argc, char** argv){
+    //! > Receives argc and argv of main function because of glutInit. See: [freeglut](http://freeglut.sourceforge.net/).
     this->argc = argc;
     this->argv = argv;
 
@@ -72,6 +84,10 @@ void Graphics::init(int argc, char** argv){
     thread_receive->join();
 }
 
+//! Addendum
+//! --------
+//! 
+//! > Set all callbacks and control variables
 void Graphics::draw_thread(){
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB | GLUT_MULTISAMPLE);
@@ -84,12 +100,21 @@ void Graphics::draw_thread(){
     
     initLight();
 
+    //! qobj it's used on the draw of wheels
     qobj = gluNewQuadric();
     gluQuadricNormals(qobj, GLU_SMOOTH);
 
     glutMainLoop();
 }
 
+//! Addendum
+//! --------
+//! 
+//! > The data vss_state::Global_State states carry all states "Poses" of robots and ball.
+//! 
+//! > It's a data of Interface that allows the communication between VSS-SampleStrategy, VSS-Vision, VSS-Simulator and VSS-Viewer.
+//! 
+//! Was created by a compilation of proto file.  See: [Protobuf](https://developers.google.com/protocol-buffers/).
 void Graphics::receive_thread(){
     Interface interface;
     vss_state::Global_State global_state;
@@ -147,6 +172,10 @@ void Graphics::receive_thread(){
     }
 }
 
+//! Addendum
+//! --------
+//! 
+//! > Create and positioning the light 
 void Graphics::initLight(void){   
     GLfloat luzAmbiente[4] = { 0.35, 0.35, 0.35, 1.0 };
     GLfloat luzDifusa[4] = { 0.0, 0.0, 0.0, 1.0 };
@@ -175,6 +204,10 @@ void Graphics::initLight(void){
     glEnable(GL_LIGHT0);
 }
 
+//! Addendum
+//! --------
+//! 
+//! > Callback responsible for resize the window
 void Graphics::changeWindowSize(GLsizei w, GLsizei h){
     if (h == 0)
         h = 1;
@@ -191,6 +224,10 @@ void Graphics::changeWindowSize(GLsizei w, GLsizei h){
     glMatrixMode(GL_MODELVIEW);
 }
 
+//! Addendum
+//! --------
+//! 
+//! > Callback responsble for positioning the "camera" and draw the 3D World.
 void Graphics::drawWorld(void){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
@@ -210,10 +247,16 @@ void Graphics::drawWorld(void){
     glutSwapBuffers();
 }
 
+//! Addendum
+//! --------
+//! 
+//! > Callback responsible for update the screen
 void Graphics::timerHandler(int v){
     glutPostRedisplay();
+    //! > Must define the frequency of update
     glutTimerFunc(5, timerHandler, 0);
 }
+
 
 void Graphics::drawBall(){
      glPushMatrix();
@@ -223,16 +266,20 @@ void Graphics::drawBall(){
      glPopMatrix();
 }
 
+//! Addendum
+//! --------
+//! 
+//! > Draw the robot i
 void Graphics::drawRobot(int i){
     glPushMatrix();
-        // ROBÔ
+        //! > Draw the body of the robot
         glTranslatef(THICK_THINGS*1.4, robots.at(i).pose.x, robots.at(i).pose.y);
         glRotatef(-robots.at(i).pose.yaw, 1, 0, 0);
         glScalef(SIZE_ROBOT, SIZE_ROBOT, SIZE_ROBOT);
         material(BLACK3);
         glutSolidCube(1);
 
-        // TEAM_LABEL
+        //! > Draw the team label "blue or yellow"
         glPushMatrix();
             glTranslatef(0.33, -0.2, -0.2);
             glScalef(SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
@@ -240,18 +287,21 @@ void Graphics::drawRobot(int i){
             glutSolidCube(1);
         glPopMatrix();
 
-        // ROBOT_LABEL
+        //! > Draw the second "robot" label
         glPushMatrix();
             glTranslatef(0.33, 0.2, 0.2);
             glScalef(SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
             if(robots.at(i).rgb_color.rgb[0] == 0){
+                //! > When the VSS-Viewer run side by side with the VSS-Simulator, ins't important the label colors, so twe use default colors.
                 material(robots.at(i).color);
             }else{
+                //! > When the VSS-Viewer run side by side with the VSS-Vision, it's important the labels have the same color and the real world, so we used the RGB color calibrated on VSS-Vision
                 material(robots.at(i).rgb_color);
             }
             glutSolidCube(1);
         glPopMatrix();
 
+        //! > Draw the wheels of the robot
         glPushMatrix();
             glRotatef(90.0, 1, 0, 0);
             glTranslatef(-0.10, 0.0, -0.61);
@@ -262,58 +312,61 @@ void Graphics::drawRobot(int i){
     glPopMatrix();
 }
 
+//! Addendum
+//! --------
+//! 
+//! 
 void Graphics::drawField(){
-    // BLOCKS
-    // FIELD
+    //! > **Draw the blocks of wood**
+    //! > Draw the floor
     glPushMatrix();
         glScalef(1, FIELD_DEPTH, FIELD_WIDTH);
         material(BLACK);
         glutSolidCube(1);
     glPopMatrix();
-    // GOAL LEFT
+    //! > Draw the left goal
     glPushMatrix();
         glTranslatef(0, 0, -FIELD_WIDTH/1.88);
         glScalef(THICK_THINGS, GOAL_WIDTH, GOAL_DEPTH);
         material(BLUE);
         glutSolidCube(1);
     glPopMatrix();
-    // GOAL RIGHT
+    //! > Draw the right goal
     glPushMatrix();
         glTranslatef(0, 0, FIELD_WIDTH/1.88);
         glScalef(THICK_THINGS, GOAL_WIDTH, GOAL_DEPTH);
         material(YELLOW);
         glutSolidCube(1);
     glPopMatrix();
-    // WALL TOP
+    //! > Draw the top wall in perspective
     glPushMatrix();
         glTranslatef(THICK_THINGS, -FIELD_DEPTH/2.0, 0);
         glScalef(WALL_HEIGHT, THICK_THINGS, FIELD_WIDTH);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
-    // WALL BOTTOM
+    //! > Draw the bottom wall in perspective
     glPushMatrix();
         glTranslatef(THICK_THINGS, FIELD_DEPTH/2.0, 0);
         glScalef(WALL_HEIGHT, THICK_THINGS, FIELD_WIDTH);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
-
-    // WALL LEFT/BOTTOM
+    //! > Draw the left-bottom wall in perspective
     glPushMatrix();
         glTranslatef(THICK_THINGS, 43.0, -FIELD_WIDTH/1.97);
         glScalef(WALL_HEIGHT, WALL_TOPS_B, THICK_THINGS);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
-    // WALL LEFT/TOP
+    //! > Draw the left-top wall in perspective
     glPushMatrix();
         glTranslatef(THICK_THINGS, -43.0, -FIELD_WIDTH/1.97);
         glScalef(WALL_HEIGHT, WALL_TOPS_B, THICK_THINGS);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
-    // WALL GOAL LEFT
+    //! > Draw the wall of left goal
     glPushMatrix();
         glTranslatef(THICK_THINGS, 0, (-FIELD_WIDTH/1.98) - GOAL_DEPTH );
         glScalef(WALL_HEIGHT, GOAL_WIDTH+1.25, THICK_THINGS);
@@ -425,12 +478,17 @@ void Graphics::drawField(){
     glPopMatrix();
 }
 
+//! Addendum
+//! --------
+//! 
+//! Sets the material with base in the RGB of VSS-Vision
 void Graphics::material(Pixel p){
     GLfloat diffuse[4];
     GLfloat ambient[4];
     GLfloat specular[4];
     GLfloat shininess;
 
+    //! Converts RGB (0-255) to RGB (0-1) 
     diffuse[0] = p.rgb[0]/255.0;   diffuse[1] = p.rgb[1]/255.0;   diffuse[2] = p.rgb[2]/255.0;   diffuse[3] = 1.0;
     ambient[0] = p.rgb[0]/255.0;   ambient[1] = p.rgb[1]/255.0;   ambient[2] = p.rgb[2]/255.0;   ambient[3] = 1.0;
     specular[0] = p.rgb[0]/255.0;  specular[1] = p.rgb[1]/255.0;  specular[2] = p.rgb[2]/255.0;  specular[3] = 1.0;
@@ -498,6 +556,7 @@ void Graphics::material(int color){
             specular[0] = 0.4;  specular[1] = 0.2;  specular[2] = 0.1;  specular[3] = 1.0;
             shininess = 10.0;
         }break;
+        //! > There are more than one BLACK to differentiate: robot, wall and floor
         case BLACK:{
             diffuse[0] = 0.1;   diffuse[1] = 0.1;   diffuse[2] = 0.1;   diffuse[3] = 1.0;
             ambient[0] = 0.1;   ambient[1] = 0.1;   ambient[2] = 0.1;   ambient[3] = 1.0;
