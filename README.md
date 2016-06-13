@@ -3,6 +3,8 @@ VSS-Viewer
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)][gpl3]
 [![Link: Youtube](https://img.shields.io/badge/Link-Youtube-red.svg)][youtube]
 
+[Documentation][documentation]
+
 This software is a simple 3D viewer for the category of robot soccer [IEEE Very Small Size (VSS)][vss], it works with the [VSS-Vision][vss-vision] getting real states and with the [VSS-Simulator][vss-simulator] getting virtual states.
 
 Installation
@@ -29,6 +31,7 @@ You are allowed and encouraged to use this software on the IEEE Very Small Size 
 [youtube]: https://www.youtube.com/watch?v=uyFlXV-0NnU
 [vss-vision]: https://github.com/SIRLab/VSS-Vision
 [vss-simulator]: https://github.com/SIRLab/VSS-Simulator
+[documentation]: http://sirlab.github.io/assets/docs/doc_viewer/html/index.html
 
 
 
