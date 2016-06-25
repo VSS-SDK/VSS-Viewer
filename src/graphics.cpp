@@ -125,11 +125,10 @@ void Graphics::receive_thread(){
         global_state.id();
 
         if(!global_state.origin()){ // VSS-SIMULATOR
-            ball.x = global_state.balls(0).y() - (150/2.0) + 9;
-            ball.y = global_state.balls(0).x() - (130/2.0) - 11;
-            ball.show();
-
             for(int i = 0 ; i < 3 ; i++){
+                ball.x = global_state.balls(0).y() - (150/2.0) + 9;
+                ball.y = global_state.balls(0).x() - (130/2.0) - 11;
+                //ball.show();
                 robots.at(i).team = YELLOW;
                 robots.at(i).pose.x = global_state.robots_yellow(i).y() - (150/2.0) + 9;
                 robots.at(i).pose.y = global_state.robots_yellow(i).x() - (130/2.0) - 11;
@@ -151,8 +150,11 @@ void Graphics::receive_thread(){
             }
         }else{  // VSS-VISION
             for(int i = 0 ; i < 3 ; i++){
+                ball.x = global_state.balls(0).y()/4.26 - (150/2.0) + 19;
+                ball.y = global_state.balls(0).x()/3.69 - (130/2.0) - 25;
+
                 robots.at(i).team = YELLOW;
-                robots.at(i).pose.x = global_state.robots_yellow(i).y()/4.26 - (150/2.0) + 18;
+                robots.at(i).pose.x = global_state.robots_yellow(i).y()/4.26 - (150/2.0) + 19;
                 robots.at(i).pose.y = global_state.robots_yellow(i).x()/3.69 - (130/2.0) - 25;
                 robots.at(i).pose.yaw = global_state.robots_yellow(i).yaw();
                 robots.at(i).rgb_color.rgb[0] = global_state.robots_yellow(i).color().r();
@@ -161,7 +163,7 @@ void Graphics::receive_thread(){
                 
 
                 robots.at(i+3).team = BLUE;
-                robots.at(i+3).pose.x = global_state.robots_blue(i).y()/4.26 - (150/2.0) + 18;
+                robots.at(i+3).pose.x = global_state.robots_blue(i).y()/4.26 - (150/2.0) + 19;
                 robots.at(i+3).pose.y = global_state.robots_blue(i).x()/3.69 - (130/2.0) - 25;
                 robots.at(i+3).pose.yaw = global_state.robots_blue(i).yaw();
                 robots.at(i+3).rgb_color.rgb[0] = global_state.robots_blue(i).color().r();
