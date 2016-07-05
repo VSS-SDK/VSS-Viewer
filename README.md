@@ -3,9 +3,17 @@ VSS-Viewer
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)][gpl3]
 [![Link: Youtube](https://img.shields.io/badge/Link-Youtube-red.svg)][youtube]
 
-[Documentation][documentation]
+O VSS-Viewer é uma das partes de um framework que está sendo desenvolvido para a categoria de futebol de robôs [IEEE Very Small Size Soccer (VSSS)][vss], que consiste em:
 
-This software is a simple 3D viewer for the category of robot soccer [IEEE Very Small Size (VSS)][vss], it works with the [VSS-Vision][vss-vision] getting real states and with the [VSS-Simulator][vss-simulator] getting virtual states.
+> Um programa de Visão Computacional global para a categoria, o [VSS-Vision][vss-vision];
+
+> Um simulador para a categoria, o [VSS-Simulator][vss-simulator];
+
+> Um visualizador de estados em 3D para categoria, o [VSS-Viewer][vss-viewer];
+
+> Uma base de estratégia que pode ser utilizada para obter e enviar dados dos três projetos citados, o [VSS-SampleStrategy][vss-sample].
+
+Mais informações podem ser encontradas em [sirlab.github.io][sirlab_site].
 
 Installation
 ------------
@@ -31,6 +39,11 @@ You are allowed and encouraged to use this software on the IEEE Very Small Size 
 [youtube]: https://www.youtube.com/watch?v=uyFlXV-0NnU
 [vss-vision]: https://github.com/SIRLab/VSS-Vision
 [vss-simulator]: https://github.com/SIRLab/VSS-Simulator
+[vss-viewer]: https://github.com/SIRLab/VSS-Viewer
+[vss-sample]: https://github.com/SIRLab/VSS-SampleStrategy
+[vss]: http://www.cbrobotica.org/
+[sirlab_site]: http://sirlab.github.io/vss.html
+
 [documentation]: http://sirlab.github.io/assets/docs/doc_viewer/html/index.html
 
 
