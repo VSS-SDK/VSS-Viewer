@@ -1,0 +1,4 @@
+<map id="common::Robot" name="common::Robot">
+<area shape="rect" id="node2" href="$d7/ded/structcommon_1_1Pixel.html" title="This is a simple structure responsible for represent a color: RGB. " alt="" coords="5,5,115,32"/>
+<area shape="rect" id="node3" href="$de/d75/structcommon_1_1Pose.html" title="This is a simple structure responsible for represent a pose: X, Y and Orientation &quot;Rotation&quot;..." alt="" coords="139,5,250,32"/>
+</map>
