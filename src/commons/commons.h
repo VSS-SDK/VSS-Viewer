@@ -76,6 +76,9 @@ namespace common{
 	struct Robot{
 		int id;
 		Pose pose;
+		Pose v_pose;
+		Pose k_pose;
+		Pose k_v_pose;
 		int team;
 		int color;
 		Pixel rgb_color;
@@ -84,7 +87,7 @@ namespace common{
 		float radius;
 		Robot(){
 			id = 0;
-			pose = Pose(0, 0, 0);
+			pose = v_pose = k_pose = k_v_pose = Pose(0, 0, 0);
 			team = BLUE;
 			color = WHITE;
 			rgb_color = Pixel(0, 0, 0);
@@ -95,6 +98,9 @@ namespace common{
 		Robot(Robot *r){
 			id = r->id;
 			pose = r->pose;
+			v_pose = r->v_pose;
+			k_pose = r->k_pose;
+			k_v_pose = r->k_v_pose;
 			team = r->team;
 			color = r->color;
 			rgb_color = r->rgb_color;
