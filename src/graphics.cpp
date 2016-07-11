@@ -125,7 +125,7 @@ void Graphics::receive_thread(){
         global_state.id();
 
         if(!global_state.origin()){ // VSS-SIMULATOR
-            for(int i = 0 ; i < 3 ; i++){
+            /*for(int i = 0 ; i < 3 ; i++){
                 ball.x = global_state.balls(0).y() - (150/2.0) + 9;
                 ball.y = global_state.balls(0).x() - (130/2.0) - 11;
                 //ball.show();
@@ -147,25 +147,25 @@ void Graphics::receive_thread(){
                 robots.at(i+3).rgb_color.rgb[1] = 0;
                 robots.at(i+3).rgb_color.rgb[2] = 0;
 
-            }
+            }*/
         }else{  // VSS-VISION
-            for(int i = 0 ; i < 3 ; i++){
-                ball.x = global_state.balls(0).y()/4.26 - (150/2.0) + 19;
-                ball.y = global_state.balls(0).x()/3.69 - (130/2.0) - 25;
+            ball.x = global_state.balls(0).y()/4.26 - (150/2.0) + 19;
+            ball.y = global_state.balls(0).x()/3.69 - (130/2.0) - 25;
 
+            for(int i = 0 ; i < 3 ; i++){
                 robots.at(i).team = YELLOW;
-                robots.at(i).pose.x = global_state.robots_yellow(i).y()/4.26 - (150/2.0) + 19;
-                robots.at(i).pose.y = global_state.robots_yellow(i).x()/3.69 - (130/2.0) - 25;
-                robots.at(i).pose.yaw = global_state.robots_yellow(i).yaw();
+                robots.at(i).pose.x = global_state.robots_yellow(i).pose().y()/4.26 - (150/2.0) + 19;
+                robots.at(i).pose.y = global_state.robots_yellow(i).pose().x()/3.69 - (130/2.0) - 25;
+                robots.at(i).pose.yaw = global_state.robots_yellow(i).pose().yaw();
                 robots.at(i).rgb_color.rgb[0] = global_state.robots_yellow(i).color().r();
                 robots.at(i).rgb_color.rgb[1] = global_state.robots_yellow(i).color().g();
                 robots.at(i).rgb_color.rgb[2] = global_state.robots_yellow(i).color().b();
                 
 
                 robots.at(i+3).team = BLUE;
-                robots.at(i+3).pose.x = global_state.robots_blue(i).y()/4.26 - (150/2.0) + 19;
-                robots.at(i+3).pose.y = global_state.robots_blue(i).x()/3.69 - (130/2.0) - 25;
-                robots.at(i+3).pose.yaw = global_state.robots_blue(i).yaw();
+                robots.at(i+3).pose.x = global_state.robots_blue(i).pose().y()/4.26 - (150/2.0) + 19;
+                robots.at(i+3).pose.y = global_state.robots_blue(i).pose().x()/3.69 - (130/2.0) - 25;
+                robots.at(i+3).pose.yaw = global_state.robots_blue(i).pose().yaw();
                 robots.at(i+3).rgb_color.rgb[0] = global_state.robots_blue(i).color().r();
                 robots.at(i+3).rgb_color.rgb[1] = global_state.robots_blue(i).color().g();
                 robots.at(i+3).rgb_color.rgb[2] = global_state.robots_blue(i).color().b();
@@ -293,7 +293,7 @@ void Graphics::drawRobot(int i){
         glPushMatrix();
             glTranslatef(0.33, 0.2, 0.2);
             glScalef(SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
-            if(robots.at(i).rgb_color.rgb[0] == 0){
+            if(robots.at(i).rgb_color.rgb[0] == 0 && robots.at(i).rgb_color.rgb[1] == 0 && robots.at(i).rgb_color.rgb[2] == 0){
                 //! > When the VSS-Viewer run side by side with the VSS-Simulator, ins't important the label colors, so twe use default colors.
                 material(robots.at(i).color);
             }else{
