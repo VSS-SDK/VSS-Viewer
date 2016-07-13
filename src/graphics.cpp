@@ -149,8 +149,8 @@ void Graphics::receive_thread(){
 
             }*/
         }else{  // VSS-VISION
-            ball.x = global_state.balls(0).y()/4.26 - (150/2.0) + 19;
-            ball.y = global_state.balls(0).x()/3.69 - (130/2.0) - 25;
+            ball.x = global_state.balls(0).pose().y()/4.26 - (150/2.0) + 19;
+            ball.y = global_state.balls(0).pose().x()/3.69 - (130/2.0) - 25;
 
             for(int i = 0 ; i < 3 ; i++){
                 robots.at(i).team = YELLOW;
