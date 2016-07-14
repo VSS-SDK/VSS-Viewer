@@ -27,7 +27,7 @@ class Graphics{
 private:
     int argc;
     char** argv;
-
+    
     float width, height;
 
     thread *thread_draw;
