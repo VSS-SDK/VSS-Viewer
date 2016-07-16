@@ -1,6 +1,7 @@
 VSS-Viewer
 ==========
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)][gpl3]
+[![Build Status](https://travis-ci.org/SIRLab/VSS-Viewer.svg?branch=master)][travis]
 [![Link: Youtube](https://img.shields.io/badge/Link-Youtube-red.svg)][youtube]
 
 O VSS-Viewer é uma das partes de um framework que está sendo desenvolvido para a categoria de futebol de robôs [IEEE Very Small Size Soccer (VSSS)][vss], que consiste em:
@@ -51,6 +52,7 @@ You are allowed and encouraged to use this software on the IEEE Very Small Size 
 [sirlab_site]: http://sirlab.github.io/vss.html
 
 [documentation]: http://sirlab.github.io/assets/docs/doc_viewer/html/index.html
+[travis]: https://travis-ci.org/SIRLab/VSS-Viewer
 
 
 
