@@ -683,6 +683,39 @@ public final class Command {
      */
     vss_command.Command.Robot_CommandOrBuilder getRobotCommandsOrBuilder(
         int index);
+
+    /**
+     * <pre>
+     * SITUATIONS
+     *0 = Normal Game
+     *1 = Re-organize (GOAL_TEAM1)
+     *2 = Re-organize (GOAL_TEAM2)
+     *3 = Re-organize (FAULT_TEAM1)
+     *4 = Re-organize (FAULT_TEAM2)
+     *5 = Re-organize (PENALTY_TEAM1)
+     *6 = Re-organize (PENALITY_TEAM2)
+     *99 = Finish
+     * </pre>
+     *
+     * <code>required uint32 situation = 4;</code>
+     */
+    boolean hasSituation();
+    /**
+     * <pre>
+     * SITUATIONS
+     *0 = Normal Game
+     *1 = Re-organize (GOAL_TEAM1)
+     *2 = Re-organize (GOAL_TEAM2)
+     *3 = Re-organize (FAULT_TEAM1)
+     *4 = Re-organize (FAULT_TEAM2)
+     *5 = Re-organize (PENALTY_TEAM1)
+     *6 = Re-organize (PENALITY_TEAM2)
+     *99 = Finish
+     * </pre>
+     *
+     * <code>required uint32 situation = 4;</code>
+     */
+    int getSituation();
   }
   /**
    * Protobuf type {@code vss_command.Global_Commands}
@@ -699,6 +732,7 @@ public final class Command {
       id_ = 0;
       isTeamYellow_ = false;
       robotCommands_ = java.util.Collections.emptyList();
+      situation_ = 0;
     }
 
     @java.lang.Override
@@ -746,6 +780,11 @@ public final class Command {
               }
               robotCommands_.add(
                   input.readMessage(vss_command.Command.Robot_Command.PARSER, extensionRegistry));
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000004;
+              situation_ = input.readUInt32();
               break;
             }
           }
@@ -841,6 +880,45 @@ public final class Command {
       return robotCommands_.get(index);
     }
 
+    public static final int SITUATION_FIELD_NUMBER = 4;
+    private int situation_;
+    /**
+     * <pre>
+     * SITUATIONS
+     *0 = Normal Game
+     *1 = Re-organize (GOAL_TEAM1)
+     *2 = Re-organize (GOAL_TEAM2)
+     *3 = Re-organize (FAULT_TEAM1)
+     *4 = Re-organize (FAULT_TEAM2)
+     *5 = Re-organize (PENALTY_TEAM1)
+     *6 = Re-organize (PENALITY_TEAM2)
+     *99 = Finish
+     * </pre>
+     *
+     * <code>required uint32 situation = 4;</code>
+     */
+    public boolean hasSituation() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <pre>
+     * SITUATIONS
+     *0 = Normal Game
+     *1 = Re-organize (GOAL_TEAM1)
+     *2 = Re-organize (GOAL_TEAM2)
+     *3 = Re-organize (FAULT_TEAM1)
+     *4 = Re-organize (FAULT_TEAM2)
+     *5 = Re-organize (PENALTY_TEAM1)
+     *6 = Re-organize (PENALITY_TEAM2)
+     *99 = Finish
+     * </pre>
+     *
+     * <code>required uint32 situation = 4;</code>
+     */
+    public int getSituation() {
+      return situation_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -848,6 +926,10 @@ public final class Command {
       if (isInitialized == 0) return false;
 
       if (!hasIsTeamYellow()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasSituation()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -872,6 +954,9 @@ public final class Command {
       for (int i = 0; i < robotCommands_.size(); i++) {
         output.writeMessage(3, robotCommands_.get(i));
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeUInt32(4, situation_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -891,6 +976,10 @@ public final class Command {
       for (int i = 0; i < robotCommands_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, robotCommands_.get(i));
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, situation_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -921,6 +1010,11 @@ public final class Command {
       }
       result = result && getRobotCommandsList()
           .equals(other.getRobotCommandsList());
+      result = result && (hasSituation() == other.hasSituation());
+      if (hasSituation()) {
+        result = result && (getSituation()
+            == other.getSituation());
+      }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -944,6 +1038,10 @@ public final class Command {
       if (getRobotCommandsCount() > 0) {
         hash = (37 * hash) + ROBOT_COMMANDS_FIELD_NUMBER;
         hash = (53 * hash) + getRobotCommandsList().hashCode();
+      }
+      if (hasSituation()) {
+        hash = (37 * hash) + SITUATION_FIELD_NUMBER;
+        hash = (53 * hash) + getSituation();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -1073,6 +1171,8 @@ public final class Command {
         } else {
           robotCommandsBuilder_.clear();
         }
+        situation_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -1114,6 +1214,10 @@ public final class Command {
         } else {
           result.robotCommands_ = robotCommandsBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.situation_ = situation_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1162,6 +1266,9 @@ public final class Command {
             }
           }
         }
+        if (other.hasSituation()) {
+          setSituation(other.getSituation());
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -1169,6 +1276,9 @@ public final class Command {
 
       public final boolean isInitialized() {
         if (!hasIsTeamYellow()) {
+          return false;
+        }
+        if (!hasSituation()) {
           return false;
         }
         for (int i = 0; i < getRobotCommandsCount(); i++) {
@@ -1502,6 +1612,86 @@ public final class Command {
         return robotCommandsBuilder_;
       }
 
+      private int situation_ ;
+      /**
+       * <pre>
+       * SITUATIONS
+       *0 = Normal Game
+       *1 = Re-organize (GOAL_TEAM1)
+       *2 = Re-organize (GOAL_TEAM2)
+       *3 = Re-organize (FAULT_TEAM1)
+       *4 = Re-organize (FAULT_TEAM2)
+       *5 = Re-organize (PENALTY_TEAM1)
+       *6 = Re-organize (PENALITY_TEAM2)
+       *99 = Finish
+       * </pre>
+       *
+       * <code>required uint32 situation = 4;</code>
+       */
+      public boolean hasSituation() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <pre>
+       * SITUATIONS
+       *0 = Normal Game
+       *1 = Re-organize (GOAL_TEAM1)
+       *2 = Re-organize (GOAL_TEAM2)
+       *3 = Re-organize (FAULT_TEAM1)
+       *4 = Re-organize (FAULT_TEAM2)
+       *5 = Re-organize (PENALTY_TEAM1)
+       *6 = Re-organize (PENALITY_TEAM2)
+       *99 = Finish
+       * </pre>
+       *
+       * <code>required uint32 situation = 4;</code>
+       */
+      public int getSituation() {
+        return situation_;
+      }
+      /**
+       * <pre>
+       * SITUATIONS
+       *0 = Normal Game
+       *1 = Re-organize (GOAL_TEAM1)
+       *2 = Re-organize (GOAL_TEAM2)
+       *3 = Re-organize (FAULT_TEAM1)
+       *4 = Re-organize (FAULT_TEAM2)
+       *5 = Re-organize (PENALTY_TEAM1)
+       *6 = Re-organize (PENALITY_TEAM2)
+       *99 = Finish
+       * </pre>
+       *
+       * <code>required uint32 situation = 4;</code>
+       */
+      public Builder setSituation(int value) {
+        bitField0_ |= 0x00000008;
+        situation_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * SITUATIONS
+       *0 = Normal Game
+       *1 = Re-organize (GOAL_TEAM1)
+       *2 = Re-organize (GOAL_TEAM2)
+       *3 = Re-organize (FAULT_TEAM1)
+       *4 = Re-organize (FAULT_TEAM2)
+       *5 = Re-organize (PENALTY_TEAM1)
+       *6 = Re-organize (PENALITY_TEAM2)
+       *99 = Finish
+       * </pre>
+       *
+       * <code>required uint32 situation = 4;</code>
+       */
+      public Builder clearSituation() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        situation_ = 0;
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:vss_command.Global_Commands)
     }
 
@@ -1561,10 +1751,10 @@ public final class Command {
     java.lang.String[] descriptorData = {
       "\n\rcommand.proto\022\013vss_command\"@\n\rRobot_Co" +
       "mmand\022\n\n\002id\030\001 \002(\r\022\020\n\010left_vel\030\002 \002(\002\022\021\n\tr" +
-      "ight_vel\030\003 \002(\002\"i\n\017Global_Commands\022\n\n\002id\030" +
+      "ight_vel\030\003 \002(\002\"|\n\017Global_Commands\022\n\n\002id\030" +
       "\001 \001(\r\022\026\n\016is_team_yellow\030\002 \002(\010\0222\n\016robot_c" +
       "ommands\030\003 \003(\0132\032.vss_command.Robot_Comman" +
-      "d"
+      "d\022\021\n\tsituation\030\004 \002(\r"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1589,7 +1779,7 @@ public final class Command {
     internal_static_vss_command_Global_Commands_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_vss_command_Global_Commands_descriptor,
-        new java.lang.String[] { "Id", "IsTeamYellow", "RobotCommands", });
+        new java.lang.String[] { "Id", "IsTeamYellow", "RobotCommands", "Situation", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

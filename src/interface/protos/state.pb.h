@@ -668,12 +668,24 @@ class Global_State : public ::google::protobuf::Message /* @@protoc_insertion_po
   const ::google::protobuf::RepeatedPtrField< ::vss_state::Robot_State >&
       robots_blue() const;
 
+  // required uint32 situation = 6;
+  bool has_situation() const;
+  void clear_situation();
+  static const int kSituationFieldNumber = 6;
+  ::google::protobuf::uint32 situation() const;
+  void set_situation(::google::protobuf::uint32 value);
+
   // @@protoc_insertion_point(class_scope:vss_state.Global_State)
  private:
   inline void set_has_id();
   inline void clear_has_id();
   inline void set_has_origin();
   inline void clear_has_origin();
+  inline void set_has_situation();
+  inline void clear_has_situation();
+
+  // helper for ByteSize()
+  int RequiredFieldsByteSizeFallback() const;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::uint32 _has_bits_[1];
@@ -683,6 +695,7 @@ class Global_State : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::google::protobuf::RepeatedPtrField< ::vss_state::Ball_State > balls_;
   ::google::protobuf::RepeatedPtrField< ::vss_state::Robot_State > robots_yellow_;
   ::google::protobuf::RepeatedPtrField< ::vss_state::Robot_State > robots_blue_;
+  ::google::protobuf::uint32 situation_;
   friend void  protobuf_AddDesc_state_2eproto();
   friend void protobuf_AssignDesc_state_2eproto();
   friend void protobuf_ShutdownFile_state_2eproto();
@@ -1390,6 +1403,30 @@ inline const ::google::protobuf::RepeatedPtrField< ::vss_state::Robot_State >&
 Global_State::robots_blue() const {
   // @@protoc_insertion_point(field_list:vss_state.Global_State.robots_blue)
   return robots_blue_;
+}
+
+// required uint32 situation = 6;
+inline bool Global_State::has_situation() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void Global_State::set_has_situation() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void Global_State::clear_has_situation() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void Global_State::clear_situation() {
+  situation_ = 0u;
+  clear_has_situation();
+}
+inline ::google::protobuf::uint32 Global_State::situation() const {
+  // @@protoc_insertion_point(field_get:vss_state.Global_State.situation)
+  return situation_;
+}
+inline void Global_State::set_situation(::google::protobuf::uint32 value) {
+  set_has_situation();
+  situation_ = value;
+  // @@protoc_insertion_point(field_set:vss_state.Global_State.situation)
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS

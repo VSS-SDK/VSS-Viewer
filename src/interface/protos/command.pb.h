@@ -251,12 +251,24 @@ class Global_Commands : public ::google::protobuf::Message /* @@protoc_insertion
   const ::google::protobuf::RepeatedPtrField< ::vss_command::Robot_Command >&
       robot_commands() const;
 
+  // required uint32 situation = 4;
+  bool has_situation() const;
+  void clear_situation();
+  static const int kSituationFieldNumber = 4;
+  ::google::protobuf::uint32 situation() const;
+  void set_situation(::google::protobuf::uint32 value);
+
   // @@protoc_insertion_point(class_scope:vss_command.Global_Commands)
  private:
   inline void set_has_id();
   inline void clear_has_id();
   inline void set_has_is_team_yellow();
   inline void clear_has_is_team_yellow();
+  inline void set_has_situation();
+  inline void clear_has_situation();
+
+  // helper for ByteSize()
+  int RequiredFieldsByteSizeFallback() const;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::uint32 _has_bits_[1];
@@ -264,6 +276,7 @@ class Global_Commands : public ::google::protobuf::Message /* @@protoc_insertion
   ::google::protobuf::uint32 id_;
   bool is_team_yellow_;
   ::google::protobuf::RepeatedPtrField< ::vss_command::Robot_Command > robot_commands_;
+  ::google::protobuf::uint32 situation_;
   friend void  protobuf_AddDesc_command_2eproto();
   friend void protobuf_AssignDesc_command_2eproto();
   friend void protobuf_ShutdownFile_command_2eproto();
@@ -431,6 +444,30 @@ inline const ::google::protobuf::RepeatedPtrField< ::vss_command::Robot_Command 
 Global_Commands::robot_commands() const {
   // @@protoc_insertion_point(field_list:vss_command.Global_Commands.robot_commands)
   return robot_commands_;
+}
+
+// required uint32 situation = 4;
+inline bool Global_Commands::has_situation() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void Global_Commands::set_has_situation() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void Global_Commands::clear_has_situation() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void Global_Commands::clear_situation() {
+  situation_ = 0u;
+  clear_has_situation();
+}
+inline ::google::protobuf::uint32 Global_Commands::situation() const {
+  // @@protoc_insertion_point(field_get:vss_command.Global_Commands.situation)
+  return situation_;
+}
+inline void Global_Commands::set_situation(::google::protobuf::uint32 value) {
+  set_has_situation();
+  situation_ = value;
+  // @@protoc_insertion_point(field_set:vss_command.Global_Commands.situation)
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS

@@ -55,10 +55,11 @@ void protobuf_AssignDesc_command_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Robot_Command, _internal_metadata_),
       -1);
   Global_Commands_descriptor_ = file->message_type(1);
-  static const int Global_Commands_offsets_[3] = {
+  static const int Global_Commands_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Global_Commands, id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Global_Commands, is_team_yellow_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Global_Commands, robot_commands_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Global_Commands, situation_),
   };
   Global_Commands_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -107,10 +108,10 @@ void protobuf_AddDesc_command_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\rcommand.proto\022\013vss_command\"@\n\rRobot_Co"
     "mmand\022\n\n\002id\030\001 \002(\r\022\020\n\010left_vel\030\002 \002(\002\022\021\n\tr"
-    "ight_vel\030\003 \002(\002\"i\n\017Global_Commands\022\n\n\002id\030"
+    "ight_vel\030\003 \002(\002\"|\n\017Global_Commands\022\n\n\002id\030"
     "\001 \001(\r\022\026\n\016is_team_yellow\030\002 \002(\010\0222\n\016robot_c"
     "ommands\030\003 \003(\0132\032.vss_command.Robot_Comman"
-    "d", 201);
+    "d\022\021\n\tsituation\030\004 \002(\r", 220);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "command.proto", &protobuf_RegisterTypes);
   Robot_Command::default_instance_ = new Robot_Command();
@@ -572,6 +573,7 @@ void Robot_Command::clear_right_vel() {
 const int Global_Commands::kIdFieldNumber;
 const int Global_Commands::kIsTeamYellowFieldNumber;
 const int Global_Commands::kRobotCommandsFieldNumber;
+const int Global_Commands::kSituationFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Global_Commands::Global_Commands()
@@ -595,6 +597,7 @@ void Global_Commands::SharedCtor() {
   _cached_size_ = 0;
   id_ = 0u;
   is_team_yellow_ = false;
+  situation_ = 0u;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -651,7 +654,10 @@ void Global_Commands::Clear() {
            ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
 } while (0)
 
-  ZR_(id_, is_team_yellow_);
+  if (_has_bits_[0 / 32] & 11u) {
+    ZR_(id_, is_team_yellow_);
+    situation_ = 0u;
+  }
 
 #undef ZR_HELPER_
 #undef ZR_
@@ -715,6 +721,21 @@ bool Global_Commands::MergePartialFromCodedStream(
         }
         if (input->ExpectTag(26)) goto parse_loop_robot_commands;
         input->UnsafeDecrementRecursionDepth();
+        if (input->ExpectTag(32)) goto parse_situation;
+        break;
+      }
+
+      // required uint32 situation = 4;
+      case 4: {
+        if (tag == 32) {
+         parse_situation:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &situation_)));
+          set_has_situation();
+        } else {
+          goto handle_unusual;
+        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -760,6 +781,11 @@ void Global_Commands::SerializeWithCachedSizes(
       3, this->robot_commands(i), output);
   }
 
+  // required uint32 situation = 4;
+  if (has_situation()) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(4, this->situation(), output);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -787,6 +813,11 @@ void Global_Commands::SerializeWithCachedSizes(
         3, this->robot_commands(i), false, target);
   }
 
+  // required uint32 situation = 4;
+  if (has_situation()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(4, this->situation(), target);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -795,13 +826,39 @@ void Global_Commands::SerializeWithCachedSizes(
   return target;
 }
 
+int Global_Commands::RequiredFieldsByteSizeFallback() const {
+// @@protoc_insertion_point(required_fields_byte_size_fallback_start:vss_command.Global_Commands)
+  int total_size = 0;
+
+  if (has_is_team_yellow()) {
+    // required bool is_team_yellow = 2;
+    total_size += 1 + 1;
+  }
+
+  if (has_situation()) {
+    // required uint32 situation = 4;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->situation());
+  }
+
+  return total_size;
+}
 int Global_Commands::ByteSize() const {
 // @@protoc_insertion_point(message_byte_size_start:vss_command.Global_Commands)
   int total_size = 0;
 
-  // required bool is_team_yellow = 2;
-  if (has_is_team_yellow()) {
+  if (((_has_bits_[0] & 0x0000000a) ^ 0x0000000a) == 0) {  // All required fields are present.
+    // required bool is_team_yellow = 2;
     total_size += 1 + 1;
+
+    // required uint32 situation = 4;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->situation());
+
+  } else {
+    total_size += RequiredFieldsByteSizeFallback();
   }
   // optional uint32 id = 1;
   if (has_id()) {
@@ -855,6 +912,9 @@ void Global_Commands::MergeFrom(const Global_Commands& from) {
     if (from.has_is_team_yellow()) {
       set_is_team_yellow(from.is_team_yellow());
     }
+    if (from.has_situation()) {
+      set_situation(from.situation());
+    }
   }
   if (from._internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -876,7 +936,7 @@ void Global_Commands::CopyFrom(const Global_Commands& from) {
 }
 
 bool Global_Commands::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000002) != 0x00000002) return false;
+  if ((_has_bits_[0] & 0x0000000a) != 0x0000000a) return false;
 
   if (!::google::protobuf::internal::AllAreInitialized(this->robot_commands())) return false;
   return true;
@@ -890,6 +950,7 @@ void Global_Commands::InternalSwap(Global_Commands* other) {
   std::swap(id_, other->id_);
   std::swap(is_team_yellow_, other->is_team_yellow_);
   robot_commands_.UnsafeArenaSwap(&other->robot_commands_);
+  std::swap(situation_, other->situation_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -982,6 +1043,30 @@ const ::google::protobuf::RepeatedPtrField< ::vss_command::Robot_Command >&
 Global_Commands::robot_commands() const {
   // @@protoc_insertion_point(field_list:vss_command.Global_Commands.robot_commands)
   return robot_commands_;
+}
+
+// required uint32 situation = 4;
+bool Global_Commands::has_situation() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+void Global_Commands::set_has_situation() {
+  _has_bits_[0] |= 0x00000008u;
+}
+void Global_Commands::clear_has_situation() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+void Global_Commands::clear_situation() {
+  situation_ = 0u;
+  clear_has_situation();
+}
+ ::google::protobuf::uint32 Global_Commands::situation() const {
+  // @@protoc_insertion_point(field_get:vss_command.Global_Commands.situation)
+  return situation_;
+}
+ void Global_Commands::set_situation(::google::protobuf::uint32 value) {
+  set_has_situation();
+  situation_ = value;
+  // @@protoc_insertion_point(field_set:vss_command.Global_Commands.situation)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

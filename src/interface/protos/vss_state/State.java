@@ -3999,6 +3999,39 @@ public final class State {
      */
     vss_state.State.Robot_StateOrBuilder getRobotsBlueOrBuilder(
         int index);
+
+    /**
+     * <pre>
+     * SITUATIONS
+     *0 = Normal Game
+     *1 = Re-organize (GOAL_TEAM1)
+     *2 = Re-organize (GOAL_TEAM2)
+     *3 = Re-organize (FAULT_TEAM1)
+     *4 = Re-organize (FAULT_TEAM2)
+     *5 = Re-organize (PENALTY_TEAM1)
+     *6 = Re-organize (PENALITY_TEAM2)
+     *99 = Finish
+     * </pre>
+     *
+     * <code>required uint32 situation = 6;</code>
+     */
+    boolean hasSituation();
+    /**
+     * <pre>
+     * SITUATIONS
+     *0 = Normal Game
+     *1 = Re-organize (GOAL_TEAM1)
+     *2 = Re-organize (GOAL_TEAM2)
+     *3 = Re-organize (FAULT_TEAM1)
+     *4 = Re-organize (FAULT_TEAM2)
+     *5 = Re-organize (PENALTY_TEAM1)
+     *6 = Re-organize (PENALITY_TEAM2)
+     *99 = Finish
+     * </pre>
+     *
+     * <code>required uint32 situation = 6;</code>
+     */
+    int getSituation();
   }
   /**
    * Protobuf type {@code vss_state.Global_State}
@@ -4017,6 +4050,7 @@ public final class State {
       balls_ = java.util.Collections.emptyList();
       robotsYellow_ = java.util.Collections.emptyList();
       robotsBlue_ = java.util.Collections.emptyList();
+      situation_ = 0;
     }
 
     @java.lang.Override
@@ -4082,6 +4116,11 @@ public final class State {
               }
               robotsBlue_.add(
                   input.readMessage(vss_state.State.Robot_State.PARSER, extensionRegistry));
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000004;
+              situation_ = input.readUInt32();
               break;
             }
           }
@@ -4261,6 +4300,45 @@ public final class State {
       return robotsBlue_.get(index);
     }
 
+    public static final int SITUATION_FIELD_NUMBER = 6;
+    private int situation_;
+    /**
+     * <pre>
+     * SITUATIONS
+     *0 = Normal Game
+     *1 = Re-organize (GOAL_TEAM1)
+     *2 = Re-organize (GOAL_TEAM2)
+     *3 = Re-organize (FAULT_TEAM1)
+     *4 = Re-organize (FAULT_TEAM2)
+     *5 = Re-organize (PENALTY_TEAM1)
+     *6 = Re-organize (PENALITY_TEAM2)
+     *99 = Finish
+     * </pre>
+     *
+     * <code>required uint32 situation = 6;</code>
+     */
+    public boolean hasSituation() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <pre>
+     * SITUATIONS
+     *0 = Normal Game
+     *1 = Re-organize (GOAL_TEAM1)
+     *2 = Re-organize (GOAL_TEAM2)
+     *3 = Re-organize (FAULT_TEAM1)
+     *4 = Re-organize (FAULT_TEAM2)
+     *5 = Re-organize (PENALTY_TEAM1)
+     *6 = Re-organize (PENALITY_TEAM2)
+     *99 = Finish
+     * </pre>
+     *
+     * <code>required uint32 situation = 6;</code>
+     */
+    public int getSituation() {
+      return situation_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -4268,6 +4346,10 @@ public final class State {
       if (isInitialized == 0) return false;
 
       if (!hasOrigin()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasSituation()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -4310,6 +4392,9 @@ public final class State {
       for (int i = 0; i < robotsBlue_.size(); i++) {
         output.writeMessage(5, robotsBlue_.get(i));
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeUInt32(6, situation_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -4337,6 +4422,10 @@ public final class State {
       for (int i = 0; i < robotsBlue_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, robotsBlue_.get(i));
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(6, situation_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4371,6 +4460,11 @@ public final class State {
           .equals(other.getRobotsYellowList());
       result = result && getRobotsBlueList()
           .equals(other.getRobotsBlueList());
+      result = result && (hasSituation() == other.hasSituation());
+      if (hasSituation()) {
+        result = result && (getSituation()
+            == other.getSituation());
+      }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -4402,6 +4496,10 @@ public final class State {
       if (getRobotsBlueCount() > 0) {
         hash = (37 * hash) + ROBOTS_BLUE_FIELD_NUMBER;
         hash = (53 * hash) + getRobotsBlueList().hashCode();
+      }
+      if (hasSituation()) {
+        hash = (37 * hash) + SITUATION_FIELD_NUMBER;
+        hash = (53 * hash) + getSituation();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -4545,6 +4643,8 @@ public final class State {
         } else {
           robotsBlueBuilder_.clear();
         }
+        situation_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -4604,6 +4704,10 @@ public final class State {
         } else {
           result.robotsBlue_ = robotsBlueBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.situation_ = situation_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -4704,6 +4808,9 @@ public final class State {
             }
           }
         }
+        if (other.hasSituation()) {
+          setSituation(other.getSituation());
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -4711,6 +4818,9 @@ public final class State {
 
       public final boolean isInitialized() {
         if (!hasOrigin()) {
+          return false;
+        }
+        if (!hasSituation()) {
           return false;
         }
         for (int i = 0; i < getBallsCount(); i++) {
@@ -5550,6 +5660,86 @@ public final class State {
         return robotsBlueBuilder_;
       }
 
+      private int situation_ ;
+      /**
+       * <pre>
+       * SITUATIONS
+       *0 = Normal Game
+       *1 = Re-organize (GOAL_TEAM1)
+       *2 = Re-organize (GOAL_TEAM2)
+       *3 = Re-organize (FAULT_TEAM1)
+       *4 = Re-organize (FAULT_TEAM2)
+       *5 = Re-organize (PENALTY_TEAM1)
+       *6 = Re-organize (PENALITY_TEAM2)
+       *99 = Finish
+       * </pre>
+       *
+       * <code>required uint32 situation = 6;</code>
+       */
+      public boolean hasSituation() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <pre>
+       * SITUATIONS
+       *0 = Normal Game
+       *1 = Re-organize (GOAL_TEAM1)
+       *2 = Re-organize (GOAL_TEAM2)
+       *3 = Re-organize (FAULT_TEAM1)
+       *4 = Re-organize (FAULT_TEAM2)
+       *5 = Re-organize (PENALTY_TEAM1)
+       *6 = Re-organize (PENALITY_TEAM2)
+       *99 = Finish
+       * </pre>
+       *
+       * <code>required uint32 situation = 6;</code>
+       */
+      public int getSituation() {
+        return situation_;
+      }
+      /**
+       * <pre>
+       * SITUATIONS
+       *0 = Normal Game
+       *1 = Re-organize (GOAL_TEAM1)
+       *2 = Re-organize (GOAL_TEAM2)
+       *3 = Re-organize (FAULT_TEAM1)
+       *4 = Re-organize (FAULT_TEAM2)
+       *5 = Re-organize (PENALTY_TEAM1)
+       *6 = Re-organize (PENALITY_TEAM2)
+       *99 = Finish
+       * </pre>
+       *
+       * <code>required uint32 situation = 6;</code>
+       */
+      public Builder setSituation(int value) {
+        bitField0_ |= 0x00000020;
+        situation_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * SITUATIONS
+       *0 = Normal Game
+       *1 = Re-organize (GOAL_TEAM1)
+       *2 = Re-organize (GOAL_TEAM2)
+       *3 = Re-organize (FAULT_TEAM1)
+       *4 = Re-organize (FAULT_TEAM2)
+       *5 = Re-organize (PENALTY_TEAM1)
+       *6 = Re-organize (PENALITY_TEAM2)
+       *99 = Finish
+       * </pre>
+       *
+       * <code>required uint32 situation = 6;</code>
+       */
+      public Builder clearSituation() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        situation_ = 0;
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:vss_state.Global_State)
     }
 
@@ -5632,12 +5822,12 @@ public final class State {
       " \002(\0132\017.vss_state.Pose\022\037\n\006v_pose\030\002 \001(\0132\017." +
       "vss_state.Pose\022\037\n\006k_pose\030\003 \001(\0132\017.vss_sta" +
       "te.Pose\022!\n\010k_v_pose\030\004 \001(\0132\017.vss_state.Po",
-      "se\022\035\n\005color\030\005 \001(\0132\016.vss_state.RGB\"\254\001\n\014Gl" +
+      "se\022\035\n\005color\030\005 \001(\0132\016.vss_state.RGB\"\277\001\n\014Gl" +
       "obal_State\022\n\n\002id\030\001 \001(\r\022\016\n\006origin\030\002 \002(\010\022$" +
       "\n\005balls\030\003 \003(\0132\025.vss_state.Ball_State\022-\n\r" +
       "robots_yellow\030\004 \003(\0132\026.vss_state.Robot_St" +
       "ate\022+\n\013robots_blue\030\005 \003(\0132\026.vss_state.Rob" +
-      "ot_State"
+      "ot_State\022\021\n\tsituation\030\006 \002(\r"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -5680,7 +5870,7 @@ public final class State {
     internal_static_vss_state_Global_State_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_vss_state_Global_State_descriptor,
-        new java.lang.String[] { "Id", "Origin", "Balls", "RobotsYellow", "RobotsBlue", });
+        new java.lang.String[] { "Id", "Origin", "Balls", "RobotsYellow", "RobotsBlue", "Situation", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -118,12 +118,13 @@ void protobuf_AssignDesc_state_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Robot_State, _internal_metadata_),
       -1);
   Global_State_descriptor_ = file->message_type(4);
-  static const int Global_State_offsets_[5] = {
+  static const int Global_State_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Global_State, id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Global_State, origin_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Global_State, balls_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Global_State, robots_yellow_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Global_State, robots_blue_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Global_State, situation_),
   };
   Global_State_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -192,12 +193,12 @@ void protobuf_AddDesc_state_2eproto() {
     " \002(\0132\017.vss_state.Pose\022\037\n\006v_pose\030\002 \001(\0132\017."
     "vss_state.Pose\022\037\n\006k_pose\030\003 \001(\0132\017.vss_sta"
     "te.Pose\022!\n\010k_v_pose\030\004 \001(\0132\017.vss_state.Po"
-    "se\022\035\n\005color\030\005 \001(\0132\016.vss_state.RGB\"\254\001\n\014Gl"
+    "se\022\035\n\005color\030\005 \001(\0132\016.vss_state.RGB\"\277\001\n\014Gl"
     "obal_State\022\n\n\002id\030\001 \001(\r\022\016\n\006origin\030\002 \002(\010\022$"
     "\n\005balls\030\003 \003(\0132\025.vss_state.Ball_State\022-\n\r"
     "robots_yellow\030\004 \003(\0132\026.vss_state.Robot_St"
     "ate\022+\n\013robots_blue\030\005 \003(\0132\026.vss_state.Rob"
-    "ot_State", 608);
+    "ot_State\022\021\n\tsituation\030\006 \002(\r", 627);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "state.proto", &protobuf_RegisterTypes);
   RGB::default_instance_ = new RGB();
@@ -2332,6 +2333,7 @@ const int Global_State::kOriginFieldNumber;
 const int Global_State::kBallsFieldNumber;
 const int Global_State::kRobotsYellowFieldNumber;
 const int Global_State::kRobotsBlueFieldNumber;
+const int Global_State::kSituationFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Global_State::Global_State()
@@ -2355,6 +2357,7 @@ void Global_State::SharedCtor() {
   _cached_size_ = 0;
   id_ = 0u;
   origin_ = false;
+  situation_ = 0u;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -2411,7 +2414,10 @@ void Global_State::Clear() {
            ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
 } while (0)
 
-  ZR_(id_, origin_);
+  if (_has_bits_[0 / 32] & 35u) {
+    ZR_(id_, origin_);
+    situation_ = 0u;
+  }
 
 #undef ZR_HELPER_
 #undef ZR_
@@ -2509,6 +2515,21 @@ bool Global_State::MergePartialFromCodedStream(
         }
         if (input->ExpectTag(42)) goto parse_loop_robots_blue;
         input->UnsafeDecrementRecursionDepth();
+        if (input->ExpectTag(48)) goto parse_situation;
+        break;
+      }
+
+      // required uint32 situation = 6;
+      case 6: {
+        if (tag == 48) {
+         parse_situation:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &situation_)));
+          set_has_situation();
+        } else {
+          goto handle_unusual;
+        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -2566,6 +2587,11 @@ void Global_State::SerializeWithCachedSizes(
       5, this->robots_blue(i), output);
   }
 
+  // required uint32 situation = 6;
+  if (has_situation()) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(6, this->situation(), output);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -2607,6 +2633,11 @@ void Global_State::SerializeWithCachedSizes(
         5, this->robots_blue(i), false, target);
   }
 
+  // required uint32 situation = 6;
+  if (has_situation()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(6, this->situation(), target);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -2615,13 +2646,39 @@ void Global_State::SerializeWithCachedSizes(
   return target;
 }
 
+int Global_State::RequiredFieldsByteSizeFallback() const {
+// @@protoc_insertion_point(required_fields_byte_size_fallback_start:vss_state.Global_State)
+  int total_size = 0;
+
+  if (has_origin()) {
+    // required bool origin = 2;
+    total_size += 1 + 1;
+  }
+
+  if (has_situation()) {
+    // required uint32 situation = 6;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->situation());
+  }
+
+  return total_size;
+}
 int Global_State::ByteSize() const {
 // @@protoc_insertion_point(message_byte_size_start:vss_state.Global_State)
   int total_size = 0;
 
-  // required bool origin = 2;
-  if (has_origin()) {
+  if (((_has_bits_[0] & 0x00000022) ^ 0x00000022) == 0) {  // All required fields are present.
+    // required bool origin = 2;
     total_size += 1 + 1;
+
+    // required uint32 situation = 6;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->situation());
+
+  } else {
+    total_size += RequiredFieldsByteSizeFallback();
   }
   // optional uint32 id = 1;
   if (has_id()) {
@@ -2693,6 +2750,9 @@ void Global_State::MergeFrom(const Global_State& from) {
     if (from.has_origin()) {
       set_origin(from.origin());
     }
+    if (from.has_situation()) {
+      set_situation(from.situation());
+    }
   }
   if (from._internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -2714,7 +2774,7 @@ void Global_State::CopyFrom(const Global_State& from) {
 }
 
 bool Global_State::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000002) != 0x00000002) return false;
+  if ((_has_bits_[0] & 0x00000022) != 0x00000022) return false;
 
   if (!::google::protobuf::internal::AllAreInitialized(this->balls())) return false;
   if (!::google::protobuf::internal::AllAreInitialized(this->robots_yellow())) return false;
@@ -2732,6 +2792,7 @@ void Global_State::InternalSwap(Global_State* other) {
   balls_.UnsafeArenaSwap(&other->balls_);
   robots_yellow_.UnsafeArenaSwap(&other->robots_yellow_);
   robots_blue_.UnsafeArenaSwap(&other->robots_blue_);
+  std::swap(situation_, other->situation_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -2884,6 +2945,30 @@ const ::google::protobuf::RepeatedPtrField< ::vss_state::Robot_State >&
 Global_State::robots_blue() const {
   // @@protoc_insertion_point(field_list:vss_state.Global_State.robots_blue)
   return robots_blue_;
+}
+
+// required uint32 situation = 6;
+bool Global_State::has_situation() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+void Global_State::set_has_situation() {
+  _has_bits_[0] |= 0x00000020u;
+}
+void Global_State::clear_has_situation() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+void Global_State::clear_situation() {
+  situation_ = 0u;
+  clear_has_situation();
+}
+ ::google::protobuf::uint32 Global_State::situation() const {
+  // @@protoc_insertion_point(field_get:vss_state.Global_State.situation)
+  return situation_;
+}
+ void Global_State::set_situation(::google::protobuf::uint32 value) {
+  set_has_situation();
+  situation_ = value;
+  // @@protoc_insertion_point(field_set:vss_state.Global_State.situation)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
