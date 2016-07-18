@@ -178,9 +178,9 @@ void Graphics::receive_thread(){
 //! > Create and positioning the light 
 void Graphics::initLight(void){   
     GLfloat luzAmbiente[4] = { 0.35, 0.35, 0.35, 1.0 };
-    GLfloat luzDifusa[4] = { 0.0, 0.0, 0.0, 1.0 };
+    GLfloat luzDifusa[4] = { 0.05, 0.05, 0.05, 1.0 };
     GLfloat luzEspecular[4] = { 0.5, 0.5, 0.5, 1.0 };
-    GLfloat posLuz[4] = { 200, 200, 200, 1.0 };
+    GLfloat posLuz[4] = { 0, 100, 0, 1.0 };
 
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
 
@@ -192,7 +192,7 @@ void Graphics::initLight(void){
     glEnable(GL_LINE_SMOOTH);
     glShadeModel(GL_SMOOTH);
 
-    glClearColor(0.1f, 0.1f, 0.2f, 1.0f);
+    glClearColor(0.2f, 0.2f, 0.6f, 1.0f);
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_NORMALIZE);
@@ -259,11 +259,11 @@ void Graphics::timerHandler(int v){
 
 
 void Graphics::drawBall(){
-     glPushMatrix();
+    glPushMatrix();
         glTranslatef(THICK_THINGS*1.4, ball.x, ball.y);
         material(ORANGE);
         glutSolidSphere(2.0, 8.0, 8.0);
-     glPopMatrix();
+    glPopMatrix();
 }
 
 //! Addendum
@@ -328,14 +328,14 @@ void Graphics::drawField(){
     glPushMatrix();
         glTranslatef(0, 0, -FIELD_WIDTH/1.88);
         glScalef(THICK_THINGS, GOAL_WIDTH, GOAL_DEPTH);
-        material(BLUE);
+        material(BLACK);
         glutSolidCube(1);
     glPopMatrix();
     //! > Draw the right goal
     glPushMatrix();
         glTranslatef(0, 0, FIELD_WIDTH/1.88);
         glScalef(THICK_THINGS, GOAL_WIDTH, GOAL_DEPTH);
-        material(YELLOW);
+        material(BLACK);
         glutSolidCube(1);
     glPopMatrix();
     //! > Draw the top wall in perspective
@@ -558,21 +558,21 @@ void Graphics::material(int color){
         }break;
         //! > There are more than one BLACK to differentiate: robot, wall and floor
         case BLACK:{
-            diffuse[0] = 0.1;   diffuse[1] = 0.1;   diffuse[2] = 0.1;   diffuse[3] = 1.0;
+            diffuse[0] = 0.4;   diffuse[1] = 0.4;   diffuse[2] = 0.4;   diffuse[3] = 1.0;
             ambient[0] = 0.1;   ambient[1] = 0.1;   ambient[2] = 0.1;   ambient[3] = 1.0;
             specular[0] = 0.1;  specular[1] = 0.1;  specular[2] = 0.1;  specular[3] = 1.0;
             shininess = 10.0;
         }break;
         case BLACK2:{
-            diffuse[0] = 0.07;   diffuse[1] = 0.07;   diffuse[2] = 0.07;   diffuse[3] = 1.0;
-            ambient[0] = 0.07;   ambient[1] = 0.07;   ambient[2] = 0.07;   ambient[3] = 1.0;
-            specular[0] = 0.07;  specular[1] = 0.07;  specular[2] = 0.07;  specular[3] = 1.0;
+            diffuse[0] = 0.4;   diffuse[1] = 0.4;   diffuse[2] = 0.4;   diffuse[3] = 1.0;
+            ambient[0] = 0.1;   ambient[1] = 0.1;   ambient[2] = 0.1;   ambient[3] = 1.0;
+            specular[0] = 0.1;  specular[1] = 0.1;  specular[2] = 0.1;  specular[3] = 1.0;
             shininess = 10.0;
         }break;
         case BLACK3:{
-            diffuse[0] = 0.05;   diffuse[1] = 0.05;   diffuse[2] = 0.05;   diffuse[3] = 1.0;
-            ambient[0] = 0.05;   ambient[1] = 0.05;   ambient[2] = 0.05;   ambient[3] = 1.0;
-            specular[0] = 0.05;  specular[1] = 0.05;  specular[2] = 0.05;  specular[3] = 1.0;
+            diffuse[0] = 0.4;   diffuse[1] = 0.4;   diffuse[2] = 0.4;   diffuse[3] = 1.0;
+            ambient[0] = 0.0;   ambient[1] = 0.0;   ambient[2] = 0.0;   ambient[3] = 1.0;
+            specular[0] = 0.1;  specular[1] = 0.1;  specular[2] = 0.1;  specular[3] = 1.0;
             shininess = 10.0;
         }break;
         case WHITE:{
