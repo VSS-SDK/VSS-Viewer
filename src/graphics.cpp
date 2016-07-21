@@ -240,7 +240,7 @@ void Graphics::drawWorld(void){
 
     drawField();
     drawBall();
-    for(int i = 0 ; i < robots.size() ; i++){
+    for(unsigned int i = 0 ; i < robots.size() ; i++){
         drawRobot(i);
     }
 

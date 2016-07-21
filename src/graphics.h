@@ -16,8 +16,8 @@
 #include "vector"
 #include "thread"
 
-#include "interface/interface.h"
-#include "commons/commons.h"
+#include "interface.h"
+#include "commons.h"
 
 using namespace common;
 using namespace std;

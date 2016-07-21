@@ -25,6 +25,9 @@
 # Junk Files
 .vscode/.browse.VC.*
 
+# CMAKE BUILD
+build/*
+
 # Executables
 *.exe
 *.out
