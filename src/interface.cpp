@@ -146,8 +146,6 @@ void Interface::createReceiveCommandsTeam2(vss_command::Global_Commands* global_
 	std::cout << "Connecting Server Receiver Team 2: " << addr_server_simulator_team2 << std::endl;
 	socket.bind(addr_server_simulator_team2);
 
-
-	int request_nbr;
 	while(true){
 		zmq::message_t request;
         socket.recv(&request);
