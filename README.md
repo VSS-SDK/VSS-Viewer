@@ -24,7 +24,10 @@ Installation
 Development and Use
 -------------------
 ```
-$ make && make run
+$ mkdir build && cd build
+$ cmake ..
+$ make
+$ ./VSS-Viewer
 ```
 
 Gallery

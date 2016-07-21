@@ -25,16 +25,10 @@ addons:
       - build-essential
       - git
       - cmake
-      - gcc-4.8
-      - g++-4.8
-      - freeglut3
-      - freeglut3-dev
-      - protobuf-compiler
-      - libprotobuf-dev
-      - libopencv-dev
       - libzmq3
       - libzmq3-dev
 script:
-
-  - make proto
+  - mkdir build
+  - cd build
+  - cmake ..
   - make
