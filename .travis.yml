@@ -32,9 +32,10 @@ addons:
       - libprotobuf-dev
       - libzmq3
       - libzmq3-dev
+      - libxmu-dev
+      - libxi-dev
 script:
   - mkdir build
   - cd build
   - cmake ..
   - make
-  
