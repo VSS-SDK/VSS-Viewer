@@ -14,6 +14,9 @@ SET(CMAKE_CXX_FLAGS "-g -Wall -Werror -std=c++11 -pthread")
 # PROTO
 ADD_SUBDIRECTORY(protos)
 
+# DOC
+ADD_SUBDIRECTORY(doc)
+
 # GLUT
 find_package(GLUT REQUIRED)
 include_directories(${GLUT_INCLUDE_DIRS})

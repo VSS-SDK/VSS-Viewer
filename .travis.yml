@@ -34,6 +34,7 @@ addons:
       - libzmq3-dev
       - libxmu-dev
       - libxi-dev
+      - doxygen
 script:
   - mkdir build
   - cd build
