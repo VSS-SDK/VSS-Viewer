@@ -20,6 +20,11 @@ Installation
 ------------
 [INSTALL][install]
 
+Cloning
+-------
+```
+$ git clone --recursive https://github.com/SIRLab/VSS-Viewer.git
+```
 
 Development and Use
 -------------------
