@@ -36,7 +36,5 @@ addons:
       - libxi-dev
       - doxygen
 script:
-  - mkdir build
-  - cd build
-  - cmake ..
+  - make proto
   - make

@@ -16,7 +16,7 @@
 #include "vector"
 #include "thread"
 
-#include "interface.h"
+#include "VSS-Interface/interface.h"
 #include "commons.h"
 
 using namespace common;
