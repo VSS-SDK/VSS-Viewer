@@ -24,6 +24,8 @@
 
 # Junk Files
 .vscode/.browse.VC.*
+*.pb.cc
+*.pb.h
 
 # CMAKE BUILD
 build/*
