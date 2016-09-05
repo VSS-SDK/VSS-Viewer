@@ -42,6 +42,7 @@ Graphics::Graphics(){
         robot.color_label = SQUARE;
         robot.radius = 1.0;
         robot.pose = Pose(0, i*20, 0);
+        robot.path.poses.push_back(Pose(0, 0, 0));
 
         robots.push_back(robot);
     }
@@ -57,6 +58,7 @@ Graphics::Graphics(){
         robot.color_label = SQUARE;
         robot.radius = 1.0;
         robot.pose = Pose(20, i*20, 0);
+        robot.path.poses.push_back(Pose(0, 0, 0));
 
         robots.push_back(robot);
     }
@@ -116,11 +118,11 @@ void Graphics::draw_thread(){
 
 void Graphics::debug_thread(){
     interface_debug.createReceiveDebugTeam1(&global_debug);
-    cout << "oi" << endl;
+
     while(true){
         interface_debug.receiveDebugTeam1();
 
-        for(int i = 0 ; i < 3 && global_debug.step_poses_size() ; i++){
+        for(int i = 0 ; global_debug.step_poses_size() ; i++){
             robots.at(i).step_pose.x = global_debug.step_poses(i).y() - (150/2.0) + 9;
             robots.at(i).step_pose.y = global_debug.step_poses(i).x() - (130/2.0) - 11;   
             robots.at(i).step_pose.yaw = global_debug.step_poses(i).yaw()*180.0/M_PI;    
@@ -132,19 +134,24 @@ void Graphics::debug_thread(){
             robots.at(i).step_pose.yaw = global_debug.final_poses(i).yaw()*180.0/M_PI;    
         }
 
-        for(int i = 0 ; i < 3 && global_debug.paths_size() ; i++){
-            vector<Pose> poses;
-            for(int j = 0 ; i < global_debug.paths(i).poses_size() ; j++){
+        for(int i = 0 ; i < global_debug.paths_size() ; i++){
+            Path path;
+            for(int j = 0 ; j < global_debug.paths(i).poses_size() ; j++){
                 Pose pose;
                 pose.x = global_debug.paths(i).poses(j).y() - (150/2.0) + 9;
                 pose.y = global_debug.paths(i).poses(j).x() - (130/2.0) - 11;
                 pose.yaw = global_debug.paths(i).poses(j).yaw()*180.0/M_PI;
-                poses.push_back(pose);
+
+                //pose.show();
+                path.poses.push_back(pose);
             }
-            robots.at(i).path.poses = poses;
+            cout << "i: " << i << endl;
+            path.show();
+            //robots.at(i).path = path;
         }
         
-        robots.at(0).show();
+        //robots.at(0).show();
+        //cout << "receive" << endl;
     }
 
 }
