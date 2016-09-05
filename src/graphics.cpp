@@ -60,28 +60,35 @@ Graphics::Graphics(){
 
         robots.push_back(robot);
     }
+
+    debug = false;
 }
 
 //! Addendum
 //! --------
 //! 
 //! > Initializes control variables, the Draw thread and Interface of receiving thread.
-void Graphics::init(int argc, char** argv){
+void Graphics::init(int argc, char** argv, bool debug){
     //! > Receives argc and argv of main function because of glutInit. See: [freeglut](http://freeglut.sourceforge.net/).
     this->argc = argc;
     this->argv = argv;
+    this->debug = debug;
 
-    width = 1280;
-    height = 720;
+    width = 920;
+    height = 576;
 
     staticWidth = width;
     staticHeight = height;
 
     thread_draw = new thread(bind(&Graphics::draw_thread, this));
-    thread_receive = new thread(bind(&Graphics::receive_thread, this));
+    thread_state = new thread(bind(&Graphics::state_thread, this));
+    if(debug)
+        thread_debug = new thread(bind(&Graphics::debug_thread, this));
 
     thread_draw->join();
-    thread_receive->join();
+    thread_state->join();
+    if(debug)
+        thread_debug->join();
 }
 
 //! Addendum
@@ -107,6 +114,41 @@ void Graphics::draw_thread(){
     glutMainLoop();
 }
 
+void Graphics::debug_thread(){
+    interface_debug.createReceiveDebugTeam1(&global_debug);
+    cout << "oi" << endl;
+    while(true){
+        interface_debug.receiveDebugTeam1();
+
+        for(int i = 0 ; i < 3 && global_debug.step_poses_size() ; i++){
+            robots.at(i).step_pose.x = global_debug.step_poses(i).y() - (150/2.0) + 9;
+            robots.at(i).step_pose.y = global_debug.step_poses(i).x() - (130/2.0) - 11;   
+            robots.at(i).step_pose.yaw = global_debug.step_poses(i).yaw()*180.0/M_PI;    
+        }
+
+        for(int i = 0 ; i < 3 && global_debug.final_poses_size() ; i++){
+            robots.at(i).step_pose.x = global_debug.final_poses(i).y() - (150/2.0) + 9;
+            robots.at(i).step_pose.y = global_debug.final_poses(i).x() - (130/2.0) - 11;   
+            robots.at(i).step_pose.yaw = global_debug.final_poses(i).yaw()*180.0/M_PI;    
+        }
+
+        for(int i = 0 ; i < 3 && global_debug.paths_size() ; i++){
+            vector<Pose> poses;
+            for(int j = 0 ; i < global_debug.paths(i).poses_size() ; j++){
+                Pose pose;
+                pose.x = global_debug.paths(i).poses(j).y() - (150/2.0) + 9;
+                pose.y = global_debug.paths(i).poses(j).x() - (130/2.0) - 11;
+                pose.yaw = global_debug.paths(i).poses(j).yaw()*180.0/M_PI;
+                poses.push_back(pose);
+            }
+            robots.at(i).path.poses = poses;
+        }
+        
+        robots.at(0).show();
+    }
+
+}
+
 //! Addendum
 //! --------
 //! 
@@ -115,59 +157,32 @@ void Graphics::draw_thread(){
 //! > It's a data of Interface that allows the communication between VSS-SampleStrategy, VSS-Vision, VSS-Simulator and VSS-Viewer.
 //! 
 //! Was created by a compilation of proto file.  See: [Protobuf](https://developers.google.com/protocol-buffers/).
-void Graphics::receive_thread(){
-    Interface interface;
-    vss_state::Global_State global_state;
-    interface.createSocketReceiveState(&global_state);
+void Graphics::state_thread(){
+    interface_state.createSocketReceiveState(&global_state);
 
     while(true){
-        interface.receiveState();
+        interface_state.receiveState();
         global_state.id();
 
-        if(!global_state.origin()){ // VSS-SIMULATOR
-            ball.x = global_state.balls(0).pose().y() - (150/2.0) + 9;
-            ball.y = global_state.balls(0).pose().x() - (130/2.0) - 11;
-            
-            for(int i = 0 ; i < 3 ; i++){
-                robots.at(i).team = YELLOW;
-                robots.at(i).pose.x = global_state.robots_yellow(i).pose().y() - (150/2.0) + 9;
-                robots.at(i).pose.y = global_state.robots_yellow(i).pose().x() - (130/2.0) - 11;
-                robots.at(i).pose.yaw = global_state.robots_yellow(i).pose().yaw()*180.0/M_PI;
-                robots.at(i).rgb_color.rgb[0] = 0;
-                robots.at(i).rgb_color.rgb[1] = 0;
-                robots.at(i).rgb_color.rgb[2] = 0;
+        ball.x = global_state.balls(0).pose().y() - (150/2.0) + 9;
+        ball.y = global_state.balls(0).pose().x() - (130/2.0) - 11;
+        
+        for(int i = 0 ; i < 3 ; i++){
+            robots.at(i).team = YELLOW;
+            robots.at(i).pose.x = global_state.robots_yellow(i).pose().y() - (150/2.0) + 9;
+            robots.at(i).pose.y = global_state.robots_yellow(i).pose().x() - (130/2.0) - 11;
+            robots.at(i).pose.yaw = global_state.robots_yellow(i).pose().yaw()*180.0/M_PI;
+            robots.at(i).rgb_color.rgb[0] = 0;
+            robots.at(i).rgb_color.rgb[1] = 0;
+            robots.at(i).rgb_color.rgb[2] = 0;
 
-                robots.at(i+3).team = BLUE;
-                robots.at(i+3).pose.x = global_state.robots_blue(i).pose().y() - (150/2.0) + 9;
-                robots.at(i+3).pose.y = global_state.robots_blue(i).pose().x() - (130/2.0) - 11;
-                robots.at(i+3).pose.yaw = global_state.robots_blue(i).pose().yaw()*180.0/M_PI;
-                robots.at(i+3).rgb_color.rgb[0] = 0;
-                robots.at(i+3).rgb_color.rgb[1] = 0;
-                robots.at(i+3).rgb_color.rgb[2] = 0;
-
-            }
-        }else{  // VSS-VISION
-            ball.x = global_state.balls(0).pose().y()/4.26 - (150/2.0) + 19;
-            ball.y = global_state.balls(0).pose().x()/3.69 - (130/2.0) - 25;
-
-            for(int i = 0 ; i < 3 ; i++){
-                robots.at(i).team = YELLOW;
-                robots.at(i).pose.x = global_state.robots_yellow(i).pose().y()/4.26 - (150/2.0) + 19;
-                robots.at(i).pose.y = global_state.robots_yellow(i).pose().x()/3.69 - (130/2.0) - 25;
-                robots.at(i).pose.yaw = global_state.robots_yellow(i).pose().yaw();
-                robots.at(i).rgb_color.rgb[0] = global_state.robots_yellow(i).color().r();
-                robots.at(i).rgb_color.rgb[1] = global_state.robots_yellow(i).color().g();
-                robots.at(i).rgb_color.rgb[2] = global_state.robots_yellow(i).color().b();
-                
-
-                robots.at(i+3).team = BLUE;
-                robots.at(i+3).pose.x = global_state.robots_blue(i).pose().y()/4.26 - (150/2.0) + 19;
-                robots.at(i+3).pose.y = global_state.robots_blue(i).pose().x()/3.69 - (130/2.0) - 25;
-                robots.at(i+3).pose.yaw = global_state.robots_blue(i).pose().yaw();
-                robots.at(i+3).rgb_color.rgb[0] = global_state.robots_blue(i).color().r();
-                robots.at(i+3).rgb_color.rgb[1] = global_state.robots_blue(i).color().g();
-                robots.at(i+3).rgb_color.rgb[2] = global_state.robots_blue(i).color().b();
-            }
+            robots.at(i+3).team = BLUE;
+            robots.at(i+3).pose.x = global_state.robots_blue(i).pose().y() - (150/2.0) + 9;
+            robots.at(i+3).pose.y = global_state.robots_blue(i).pose().x() - (130/2.0) - 11;
+            robots.at(i+3).pose.yaw = global_state.robots_blue(i).pose().yaw()*180.0/M_PI;
+            robots.at(i+3).rgb_color.rgb[0] = 0;
+            robots.at(i+3).rgb_color.rgb[1] = 0;
+            robots.at(i+3).rgb_color.rgb[2] = 0;
         }
     }
 }

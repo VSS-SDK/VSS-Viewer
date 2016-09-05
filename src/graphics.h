@@ -27,23 +27,32 @@ class Graphics{
 private:
     int argc;
     char** argv;
+    bool debug;
     
     float width, height;
 
     thread *thread_draw;
-    thread *thread_receive;
+    thread *thread_state;
+    thread *thread_debug;
+
+    Interface interface_state, interface_debug;
+    vss_state::Global_State global_state;
+    vss_debug::Global_Debug global_debug;
 public:
     //! Allocates a vector of robots, in the software stream we only update the values.
     Graphics();
 
     //! Method responsible for initialize the software: control variables and threads.
-    void init(int argc, char** argv);
+    void init(int argc, char** argv, bool debug);
 
     //! Method responsible for handle a thread to draw the 3D world with Freeglut, it's unreachable (has a "infite" loop).
     void draw_thread();
 
-    //! Method responsible for handle a thread to receive the data from VSS-Simulator or VSS-Vision.
-    void receive_thread();
+    //! Method responsible for handle a thread to receive the state of game from VSS-Simulator or VSS-Vision.
+    void state_thread();
+
+    //! Method responsible for handle a thread to receive the debug data from VSS-Simulator or VSS-Vision.
+    void debug_thread();
 
     //! Method responsible for transform the coordenates from OpenCV (VSS-Vision) and Bullet-Physics (VSS-Simulator) to Freeglut.
     void handlePosition();

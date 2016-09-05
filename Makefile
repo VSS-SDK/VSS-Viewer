@@ -12,7 +12,11 @@ CCX = g++ -std=c++11 -w
 
 
 INCLUDES = -Isrc -Isrc/proto -Isrc/interface
-LIBRARIES = `pkg-config --cflags --libs protobuf` -lzmq -lpthread -lGLU -lglut -lGL -w
+
+LIBRARIES_PROTO = `pkg-config --cflags --libs protobuf`
+LIBRARIES_BOOST = -lboost_system -lboost_filesystem -lboost_program_options -lboost_thread
+
+LIBRARIES = $(LIBRARIES_PROTO) $(LIBRARIES_BOOST) -lzmq -pthread -lm -lGLU -lglut -lGL -w
 
 
 
@@ -46,6 +50,9 @@ message:
 
 run:
 	./VSS-Viewer
+
+debug:
+	./VSS-Viewer -d
 
 $(EXEC): $(FILE_NAMES)
 	@$(CCX) -o $(EXEC) $(FILE_NAMES) $(LIBRARIES) $(INCLUDES)

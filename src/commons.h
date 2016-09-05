@@ -72,6 +72,19 @@ namespace common{
 		}
 	};
 
+	//! This is a simple structure responsible for represent a path: vector of poses. 
+	struct Path{
+		vector<Pose> poses;
+		Path(){};
+		Path(Path *path){
+			poses = path->poses;
+		};
+		void show(){
+			for(int i = 0 ; i < poses.size() ; i++)
+			cout << "(" << poses.at(i).x << ", " << poses.at(i).y << ", " << poses.at(i).yaw << ")" << endl;
+		}
+	};
+
 	//! This is a simple structure responsible for represente a robot: id, pose, team, color and etc.
 	struct Robot{
 		int id;
@@ -79,6 +92,8 @@ namespace common{
 		Pose v_pose;
 		Pose k_pose;
 		Pose k_v_pose;
+		Pose step_pose, final_pose;
+		Path path;
 		int team;
 		int color;
 		Pixel rgb_color;
@@ -87,7 +102,7 @@ namespace common{
 		float radius;
 		Robot(){
 			id = 0;
-			pose = v_pose = k_pose = k_v_pose = Pose(0, 0, 0);
+			pose = v_pose = k_pose = k_v_pose = step_pose = final_pose = Pose(0, 0, 0);
 			team = BLUE;
 			color = WHITE;
 			rgb_color = Pixel(0, 0, 0);
@@ -101,6 +116,9 @@ namespace common{
 			v_pose = r->v_pose;
 			k_pose = r->k_pose;
 			k_v_pose = r->k_v_pose;
+			step_pose = r->step_pose;
+			final_pose = r->final_pose;
+			path = r->path;
 			team = r->team;
 			color = r->color;
 			rgb_color = r->rgb_color;
@@ -108,6 +126,21 @@ namespace common{
 			color_label = r->color_label;
 			radius = r->radius;
 		};
+		void show(){
+			cout << "-- Robot --" << endl;
+			cout << "id: " << id << endl;
+			cout << "team: " << team << endl;
+			cout << "color: " << color << endl;
+			cout << "team_label: " << team_label << endl;
+			cout << "color_label: " << color_label << endl;
+			cout << "radius: " << radius << endl;
+			cout << "Pose" << endl;
+			pose.show();
+			cout << "Step" << endl;
+			step_pose.show();
+			cout << "Final" << endl;
+			final_pose.show();
+		}
 	};
 }
 
