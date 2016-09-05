@@ -35,6 +35,7 @@ addons:
       - libxmu-dev
       - libxi-dev
       - doxygen
+      - libboost-all-dev
 script:
   - make proto
   - make
