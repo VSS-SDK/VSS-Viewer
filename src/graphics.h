@@ -75,11 +75,26 @@ public:
     //! Method responsible for set the color of material, receiving a RGB Color.
     static void material(Pixel);
 
+    //! Method responsible for set the color of material: ORANGE, BLUE, YELLOW, RED, GREEN, PURPLE, PINK, BROWN, WHITE, GRAY, BLACK, BLACK2, BLACK3.
+    static void material3f(int color = BLACK);
+
+    //! Method responsible for set the color of material, receiving a RGB Color.
+    static void material3f(Pixel);
+
     //! Method responsible for draw the field: floor and sidewalls.
     static void drawField();
 
     //! Method responsible for draw one robot: Body and wheels.
     static void drawRobot(int);
+
+    //! Method responsible for draw the final debug from one robot.
+    static void drawDebugFinalRobot(int);
+
+    //! Method responsible for draw the step debug from one robot.
+    static void drawDebugStepRobot(int);
+
+    //! Method responsible for draw path debug from one robot.
+    static void drawDebugPath(int);
 
     //! Method responsible for draw the ball.
     static void drawBall();  
