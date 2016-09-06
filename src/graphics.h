@@ -33,11 +33,11 @@ private:
 
     thread *thread_draw;
     thread *thread_state;
-    thread *thread_debug;
+    thread *thread_debug_team1, *thread_debug_team2;
 
-    Interface interface_state, interface_debug;
+    Interface interface_state, interface_debug_team1, interface_debug_team2;
     vss_state::Global_State global_state;
-    vss_debug::Global_Debug global_debug;
+    vss_debug::Global_Debug global_debug_team1, global_debug_team2;
 public:
     //! Allocates a vector of robots, in the software stream we only update the values.
     Graphics();
@@ -51,8 +51,11 @@ public:
     //! Method responsible for handle a thread to receive the state of game from VSS-Simulator or VSS-Vision.
     void state_thread();
 
-    //! Method responsible for handle a thread to receive the debug data from VSS-Simulator or VSS-Vision.
-    void debug_thread();
+    //! Method responsible for handle a thread to receive the debug data from team1 of VSS-Simulator or VSS-Vision.
+    void debug_thread_team1();
+
+    //! Method responsible for handle a thread to receive the debug data from team2 of VSS-Simulator or VSS-Vision.
+    void debug_thread_team2();
 
     //! Method responsible for transform the coordenates from OpenCV (VSS-Vision) and Bullet-Physics (VSS-Simulator) to Freeglut.
     void handlePosition();

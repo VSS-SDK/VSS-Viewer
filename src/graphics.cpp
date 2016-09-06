@@ -89,13 +89,17 @@ void Graphics::init(int argc, char** argv, bool debug){
 
     thread_draw = new thread(bind(&Graphics::draw_thread, this));
     thread_state = new thread(bind(&Graphics::state_thread, this));
-    if(debug)
-        thread_debug = new thread(bind(&Graphics::debug_thread, this));
+    if(debug){
+        thread_debug_team1 = new thread(bind(&Graphics::debug_thread_team1, this));
+        thread_debug_team2 = new thread(bind(&Graphics::debug_thread_team2, this));
+    }
 
     thread_draw->join();
     thread_state->join();
-    if(debug)
-        thread_debug->join();
+    if(debug){
+        thread_debug_team1->join();
+        thread_debug_team2->join();
+    }
 }
 
 //! Addendum
@@ -121,43 +125,70 @@ void Graphics::draw_thread(){
     glutMainLoop();
 }
 
-void Graphics::debug_thread(){
-    interface_debug.createReceiveDebugTeam1(&global_debug);
+void Graphics::debug_thread_team1(){
+    interface_debug_team1.createReceiveDebugTeam1(&global_debug_team1);
 
     while(true){
-        interface_debug.receiveDebugTeam1();
+        interface_debug_team1.receiveDebugTeam1();
 
-        for(int i = 0 ; global_debug.step_poses_size() ; i++){
-            robots.at(i).step_pose.x = global_debug.step_poses(i).y() - (150/2.0) + 9;
-            robots.at(i).step_pose.y = global_debug.step_poses(i).x() - (130/2.0) - 11;   
-            robots.at(i).step_pose.yaw = global_debug.step_poses(i).yaw()*180.0/M_PI;    
+        for(int i = 0 ; global_debug_team1.step_poses_size() ; i++){
+            robots.at(i).step_pose.x = global_debug_team1.step_poses(i).y() - (150/2.0) + 9;
+            robots.at(i).step_pose.y = global_debug_team1.step_poses(i).x() - (130/2.0) - 11;   
+            robots.at(i).step_pose.yaw = global_debug_team1.step_poses(i).yaw()*180.0/M_PI;    
         }
 
-        for(int i = 0 ; i < 3 && global_debug.final_poses_size() ; i++){
-            robots.at(i).step_pose.x = global_debug.final_poses(i).y() - (150/2.0) + 9;
-            robots.at(i).step_pose.y = global_debug.final_poses(i).x() - (130/2.0) - 11;   
-            robots.at(i).step_pose.yaw = global_debug.final_poses(i).yaw()*180.0/M_PI;    
+        for(int i = 0 ; i < 3 && global_debug_team1.final_poses_size() ; i++){
+            robots.at(i).step_pose.x = global_debug_team1.final_poses(i).y() - (150/2.0) + 9;
+            robots.at(i).step_pose.y = global_debug_team1.final_poses(i).x() - (130/2.0) - 11;   
+            robots.at(i).step_pose.yaw = global_debug_team1.final_poses(i).yaw()*180.0/M_PI;    
         }
 
-        for(int i = 0 ; i < global_debug.paths_size() ; i++){
+        for(int i = 0 ; i < global_debug_team1.paths_size() ; i++){
             Path path;
-            for(int j = 0 ; j < global_debug.paths(i).poses_size() ; j++){
+            for(int j = 0 ; j < global_debug_team1.paths(i).poses_size() ; j++){
                 Pose pose;
-                pose.x = global_debug.paths(i).poses(j).y() - (150/2.0) + 9;
-                pose.y = global_debug.paths(i).poses(j).x() - (130/2.0) - 11;
-                pose.yaw = global_debug.paths(i).poses(j).yaw()*180.0/M_PI;
+                pose.x = global_debug_team1.paths(i).poses(j).y() - (150/2.0) + 9;
+                pose.y = global_debug_team1.paths(i).poses(j).x() - (130/2.0) - 11;
+                pose.yaw = global_debug_team1.paths(i).poses(j).yaw()*180.0/M_PI;
 
                 //pose.show();
                 path.poses.push_back(pose);
             }
         }
-
-        robots.at(0).final_pose = ball;
-        robots.at(0).path.poses.clear();
-        robots.at(0).path.poses.push_back(robots.at(0).pose);
-        robots.at(0).path.poses.push_back(ball);
     }
+}
 
+void Graphics::debug_thread_team2(){
+    interface_debug_team2.createReceiveDebugTeam2(&global_debug_team2);
+
+    while(true){
+        interface_debug_team2.receiveDebugTeam2();
+
+        for(int i = 0 ; global_debug_team2.step_poses_size() ; i++){
+            robots.at(i+3).step_pose.x = global_debug_team2.step_poses(i).y() - (150/2.0) + 9;
+            robots.at(i+3).step_pose.y = global_debug_team2.step_poses(i).x() - (130/2.0) - 11;   
+            robots.at(i+3).step_pose.yaw = global_debug_team2.step_poses(i).yaw()*180.0/M_PI;    
+        }
+
+        for(int i = 0 ; i < 3 && global_debug_team2.final_poses_size() ; i++){
+            robots.at(i+3).step_pose.x = global_debug_team2.final_poses(i).y() - (150/2.0) + 9;
+            robots.at(i+3).step_pose.y = global_debug_team2.final_poses(i).x() - (130/2.0) - 11;   
+            robots.at(i+3).step_pose.yaw = global_debug_team2.final_poses(i).yaw()*180.0/M_PI;    
+        }
+
+        for(int i = 0 ; i < global_debug_team2.paths_size() ; i++){
+            Path path;
+            for(int j = 0 ; j < global_debug_team2.paths(i).poses_size() ; j++){
+                Pose pose;
+                pose.x = global_debug_team2.paths(i).poses(j).y() - (150/2.0) + 9;
+                pose.y = global_debug_team2.paths(i).poses(j).x() - (130/2.0) - 11;
+                pose.yaw = global_debug_team2.paths(i).poses(j).yaw()*180.0/M_PI;
+
+                //pose.show();
+                path.poses.push_back(pose);
+            }
+        }
+    }
 }
 
 //! Addendum
