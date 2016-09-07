@@ -143,36 +143,18 @@ void Graphics::debug_thread_team1(){
             robots.at(i).final_pose.yaw = global_debug_team1.final_poses(i).yaw()*180.0/M_PI;
         }
 
-        /*for(int i = 0 ; i < 3 ; i++){
-            robots.at(i).path.poses.clear();
-        }*/
+        for(int i = 0 ; i < global_debug_team1.paths_size() ; i++){
+            Path path;
+            for(int j = 0 ; j < global_debug_team1.paths(i).poses_size() ; j++){
+                Pose pose;
+                pose.x = global_debug_team1.paths(i).poses(j).y() - (150/2.0) + 9;
+                pose.y = global_debug_team1.paths(i).poses(j).x() - (130/2.0) - 11;
+                pose.yaw = global_debug_team1.paths(i).poses(j).yaw()*180.0/M_PI;
 
-        /*for(int j = 0 ; j < global_debug_team1.path_robot_1().poses_size() ; j++){
-            Pose pose;
-            pose.x = global_debug_team1.path_robot_1().poses(j).y() - (150/2.0) + 9;
-            pose.y = global_debug_team1.path_robot_1().poses(j).x() - (130/2.0) - 11;
-            pose.yaw = global_debug_team1.path_robot_1().poses(j).yaw()*180.0/M_PI;
-
-            robots.at(0).path.poses.push_back(pose);
+                path.poses.push_back(pose);
+            }
+            robots.at(i).path = path;
         }
-
-        for(int j = 0 ; j < global_debug_team1.path_robot_2().poses_size() ; j++){
-            Pose pose;
-            pose.x = global_debug_team1.path_robot_2().poses(j).y() - (150/2.0) + 9;
-            pose.y = global_debug_team1.path_robot_2().poses(j).x() - (130/2.0) - 11;
-            pose.yaw = global_debug_team1.path_robot_2().poses(j).yaw()*180.0/M_PI;
-
-            robots.at(1).path.poses.push_back(pose);
-        }
-
-        for(int j = 0 ; j < global_debug_team1.path_robot_3().poses_size() ; j++){
-            Pose pose;
-            pose.x = global_debug_team1.path_robot_3().poses(j).y() - (150/2.0) + 9;
-            pose.y = global_debug_team1.path_robot_3().poses(j).x() - (130/2.0) - 11;
-            pose.yaw = global_debug_team1.path_robot_3().poses(j).yaw()*180.0/M_PI;
-
-            robots.at(2).path.poses.push_back(pose);
-        }*/
     }
 }
 
@@ -194,7 +176,7 @@ void Graphics::debug_thread_team2(){
             robots.at(i+3).final_pose.yaw = global_debug_team2.final_poses(i).yaw()*180.0/M_PI;    
         }
 
-        /*for(int i = 0 ; i < global_debug_team2.paths_size() ; i++){
+        for(int i = 0 ; i < global_debug_team2.paths_size() ; i++){
             Path path;
             for(int j = 0 ; j < global_debug_team2.paths(i).poses_size() ; j++){
                 Pose pose;
@@ -205,7 +187,7 @@ void Graphics::debug_thread_team2(){
                 path.poses.push_back(pose);
             }
             robots.at(i+3).path = path;
-        }*/
+        }
     }
 }
 
@@ -319,6 +301,7 @@ void Graphics::drawWorld(void){
         drawRobot(i);
         if(staticDebug){
             drawDebugFinalRobot(i);
+            drawDebugPath(i);
         }
     }
 
@@ -475,11 +458,13 @@ void Graphics::drawDebugPath(int i){
         }else{
             material3f(robots.at(i).rgb_color);
         }
-        for(unsigned int j = 0 ; j < robots.at(i).path.poses.size()-1 ; j++){
-            glBegin(GL_LINES);
-                glVertex3f(1, robots.at(i).path.poses.at(j).x, robots.at(i).path.poses.at(j).y);
-                glVertex3f(1, robots.at(i).path.poses.at(j+1).x, robots.at(i).path.poses.at(j+1).y);
-            glEnd();
+        if(robots.at(i).path.poses.size() >= 2){
+            for(unsigned int j = 0 ; j < robots.at(i).path.poses.size()-1 ; j++){
+                glBegin(GL_LINES);
+                    glVertex3f(1, robots.at(i).path.poses.at(j).x, robots.at(i).path.poses.at(j).y);
+                    glVertex3f(1, robots.at(i).path.poses.at(j+1).x, robots.at(i).path.poses.at(j+1).y);
+                glEnd();
+            }
         }
     glPopMatrix();
 }
