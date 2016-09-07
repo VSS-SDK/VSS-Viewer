@@ -32,8 +32,8 @@ FILE_NAMES = $(FILE_NAMES_SRC) $(FILE_NAMES_PROTOS)
 
 
 
-EXEC = VSS-Viewer
-
+RELEASE = VSS-Viewer
+DEBUG = VSS-Viewer-Debug
 
 
 .cpp.o:
@@ -42,7 +42,7 @@ EXEC = VSS-Viewer
 .cc.o:
 	@$(CCX) $(INCLUDES) $(LIBRARIES) -Wall -Wformat -c -o $@ $< -w
 
-all: message $(EXEC)
+all: message $(RELEASE)
 	@echo Done .
 	
 message:
@@ -54,11 +54,14 @@ run:
 debug:
 	./VSS-Viewer -d
 
-$(EXEC): $(FILE_NAMES)
-	@$(CCX) -o $(EXEC) $(FILE_NAMES) $(LIBRARIES) $(INCLUDES)
+$(RELEASE): $(FILE_NAMES)
+	@$(CCX) -o $(RELEASE) $(FILE_NAMES) $(LIBRARIES) $(INCLUDES)
+
+build_debug: 
+	$(CCX) -g $(shell find -name '*.cpp') $(shell find -name '*.cc') $(LIBRARIES) $(INCLUDES) -o $(DEBUG)
 
 clean:
-	rm $(EXEC) $(FILE_NAMES)
+	rm $(RELEASE) $(FILE_NAMES)
 
 proto:
 	cd src/VSS-Interface/protos && make -f protos.make
