@@ -91,14 +91,14 @@ void Graphics::init(int argc, char** argv, bool debug){
     thread_state = new thread(bind(&Graphics::state_thread, this));
     if(debug){
         thread_debug_team1 = new thread(bind(&Graphics::debug_thread_team1, this));
-        thread_debug_team2 = new thread(bind(&Graphics::debug_thread_team2, this));
+        //thread_debug_team2 = new thread(bind(&Graphics::debug_thread_team2, this));
     }
 
     thread_draw->join();
     thread_state->join();
     if(debug){
         thread_debug_team1->join();
-        thread_debug_team2->join();
+        //thread_debug_team2->join();
     }
 }
 
@@ -131,30 +131,48 @@ void Graphics::debug_thread_team1(){
     while(true){
         interface_debug_team1.receiveDebugTeam1();
 
-        for(int i = 0 ; global_debug_team1.step_poses_size() ; i++){
+        for(int i = 0 ; i < global_debug_team1.step_poses_size() ; i++){
             robots.at(i).step_pose.x = global_debug_team1.step_poses(i).y() - (150/2.0) + 9;
             robots.at(i).step_pose.y = global_debug_team1.step_poses(i).x() - (130/2.0) - 11;   
             robots.at(i).step_pose.yaw = global_debug_team1.step_poses(i).yaw()*180.0/M_PI;    
         }
 
-        for(int i = 0 ; i < 3 && global_debug_team1.final_poses_size() ; i++){
-            robots.at(i).step_pose.x = global_debug_team1.final_poses(i).y() - (150/2.0) + 9;
-            robots.at(i).step_pose.y = global_debug_team1.final_poses(i).x() - (130/2.0) - 11;   
-            robots.at(i).step_pose.yaw = global_debug_team1.final_poses(i).yaw()*180.0/M_PI;    
+        for(int i = 0 ; i < global_debug_team1.final_poses_size() ; i++){
+            robots.at(i).final_pose.x = global_debug_team1.final_poses(i).y() - (150/2.0) + 9;
+            robots.at(i).final_pose.y = global_debug_team1.final_poses(i).x() - (130/2.0) - 11;   
+            robots.at(i).final_pose.yaw = global_debug_team1.final_poses(i).yaw()*180.0/M_PI;
         }
 
-        for(int i = 0 ; i < global_debug_team1.paths_size() ; i++){
-            Path path;
-            for(int j = 0 ; j < global_debug_team1.paths(i).poses_size() ; j++){
-                Pose pose;
-                pose.x = global_debug_team1.paths(i).poses(j).y() - (150/2.0) + 9;
-                pose.y = global_debug_team1.paths(i).poses(j).x() - (130/2.0) - 11;
-                pose.yaw = global_debug_team1.paths(i).poses(j).yaw()*180.0/M_PI;
+        /*for(int i = 0 ; i < 3 ; i++){
+            robots.at(i).path.poses.clear();
+        }*/
 
-                //pose.show();
-                path.poses.push_back(pose);
-            }
+        /*for(int j = 0 ; j < global_debug_team1.path_robot_1().poses_size() ; j++){
+            Pose pose;
+            pose.x = global_debug_team1.path_robot_1().poses(j).y() - (150/2.0) + 9;
+            pose.y = global_debug_team1.path_robot_1().poses(j).x() - (130/2.0) - 11;
+            pose.yaw = global_debug_team1.path_robot_1().poses(j).yaw()*180.0/M_PI;
+
+            robots.at(0).path.poses.push_back(pose);
         }
+
+        for(int j = 0 ; j < global_debug_team1.path_robot_2().poses_size() ; j++){
+            Pose pose;
+            pose.x = global_debug_team1.path_robot_2().poses(j).y() - (150/2.0) + 9;
+            pose.y = global_debug_team1.path_robot_2().poses(j).x() - (130/2.0) - 11;
+            pose.yaw = global_debug_team1.path_robot_2().poses(j).yaw()*180.0/M_PI;
+
+            robots.at(1).path.poses.push_back(pose);
+        }
+
+        for(int j = 0 ; j < global_debug_team1.path_robot_3().poses_size() ; j++){
+            Pose pose;
+            pose.x = global_debug_team1.path_robot_3().poses(j).y() - (150/2.0) + 9;
+            pose.y = global_debug_team1.path_robot_3().poses(j).x() - (130/2.0) - 11;
+            pose.yaw = global_debug_team1.path_robot_3().poses(j).yaw()*180.0/M_PI;
+
+            robots.at(2).path.poses.push_back(pose);
+        }*/
     }
 }
 
@@ -164,19 +182,19 @@ void Graphics::debug_thread_team2(){
     while(true){
         interface_debug_team2.receiveDebugTeam2();
 
-        for(int i = 0 ; global_debug_team2.step_poses_size() ; i++){
+        for(int i = 0 ; i < global_debug_team2.step_poses_size() ; i++){
             robots.at(i+3).step_pose.x = global_debug_team2.step_poses(i).y() - (150/2.0) + 9;
             robots.at(i+3).step_pose.y = global_debug_team2.step_poses(i).x() - (130/2.0) - 11;   
             robots.at(i+3).step_pose.yaw = global_debug_team2.step_poses(i).yaw()*180.0/M_PI;    
         }
 
-        for(int i = 0 ; i < 3 && global_debug_team2.final_poses_size() ; i++){
-            robots.at(i+3).step_pose.x = global_debug_team2.final_poses(i).y() - (150/2.0) + 9;
-            robots.at(i+3).step_pose.y = global_debug_team2.final_poses(i).x() - (130/2.0) - 11;   
-            robots.at(i+3).step_pose.yaw = global_debug_team2.final_poses(i).yaw()*180.0/M_PI;    
+        for(int i = 0 ; i < global_debug_team2.final_poses_size() ; i++){
+            robots.at(i+3).final_pose.x = global_debug_team2.final_poses(i).y() - (150/2.0) + 9;
+            robots.at(i+3).final_pose.y = global_debug_team2.final_poses(i).x() - (130/2.0) - 11;   
+            robots.at(i+3).final_pose.yaw = global_debug_team2.final_poses(i).yaw()*180.0/M_PI;    
         }
 
-        for(int i = 0 ; i < global_debug_team2.paths_size() ; i++){
+        /*for(int i = 0 ; i < global_debug_team2.paths_size() ; i++){
             Path path;
             for(int j = 0 ; j < global_debug_team2.paths(i).poses_size() ; j++){
                 Pose pose;
@@ -184,10 +202,10 @@ void Graphics::debug_thread_team2(){
                 pose.y = global_debug_team2.paths(i).poses(j).x() - (130/2.0) - 11;
                 pose.yaw = global_debug_team2.paths(i).poses(j).yaw()*180.0/M_PI;
 
-                //pose.show();
                 path.poses.push_back(pose);
             }
-        }
+            robots.at(i+3).path = path;
+        }*/
     }
 }
 
@@ -300,10 +318,7 @@ void Graphics::drawWorld(void){
     for(unsigned int i = 0 ; i < robots.size() ; i++){
         drawRobot(i);
         if(staticDebug){
-            //if(i == 0){
-                drawDebugFinalRobot(i);
-                drawDebugPath(i);
-            //}
+            drawDebugFinalRobot(i);
         }
     }
 
