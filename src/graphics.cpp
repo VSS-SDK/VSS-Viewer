@@ -134,7 +134,7 @@ void Graphics::debug_thread_team1(){
         for(int i = 0 ; i < global_debug_team1.step_poses_size() ; i++){
             robots.at(i).step_pose.x = global_debug_team1.step_poses(i).y() - (150/2.0) + 9;
             robots.at(i).step_pose.y = global_debug_team1.step_poses(i).x() - (130/2.0) - 11;   
-            robots.at(i).step_pose.yaw = global_debug_team1.step_poses(i).yaw()*180.0/M_PI;    
+            robots.at(i).step_pose.yaw = global_debug_team1.step_poses(i).yaw()*180.0/M_PI; 
         }
 
         for(int i = 0 ; i < global_debug_team1.final_poses_size() ; i++){
@@ -301,6 +301,7 @@ void Graphics::drawWorld(void){
         drawRobot(i);
         if(staticDebug){
             drawDebugFinalRobot(i);
+            drawDebugStepRobot(i);
             drawDebugPath(i);
         }
     }
