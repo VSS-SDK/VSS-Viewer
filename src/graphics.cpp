@@ -91,14 +91,14 @@ void Graphics::init(int argc, char** argv, bool debug){
     thread_state = new thread(bind(&Graphics::state_thread, this));
     if(debug){
         thread_debug_team1 = new thread(bind(&Graphics::debug_thread_team1, this));
-        //thread_debug_team2 = new thread(bind(&Graphics::debug_thread_team2, this));
+        thread_debug_team2 = new thread(bind(&Graphics::debug_thread_team2, this));
     }
 
     thread_draw->join();
     thread_state->join();
     if(debug){
         thread_debug_team1->join();
-        //thread_debug_team2->join();
+        thread_debug_team2->join();
     }
 }
 
