@@ -214,17 +214,17 @@ void Graphics::state_thread(){
             robots.at(i).pose.x = global_state.robots_yellow(i).pose().y() - (150/2.0) + 9;
             robots.at(i).pose.y = global_state.robots_yellow(i).pose().x() - (130/2.0) - 11;
             robots.at(i).pose.yaw = global_state.robots_yellow(i).pose().yaw()*180.0/M_PI;
-            robots.at(i).rgb_color.rgb[0] = 0;
-            robots.at(i).rgb_color.rgb[1] = 0;
-            robots.at(i).rgb_color.rgb[2] = 0;
+            robots.at(i).rgb_color.rgb[0] = global_state.robots_yellow(i).color().r();
+            robots.at(i).rgb_color.rgb[1] = global_state.robots_yellow(i).color().g();
+            robots.at(i).rgb_color.rgb[2] = global_state.robots_yellow(i).color().b();
 
             robots.at(i+3).team = BLUE;
             robots.at(i+3).pose.x = global_state.robots_blue(i).pose().y() - (150/2.0) + 9;
             robots.at(i+3).pose.y = global_state.robots_blue(i).pose().x() - (130/2.0) - 11;
             robots.at(i+3).pose.yaw = global_state.robots_blue(i).pose().yaw()*180.0/M_PI;
-            robots.at(i+3).rgb_color.rgb[0] = 0;
-            robots.at(i+3).rgb_color.rgb[1] = 0;
-            robots.at(i+3).rgb_color.rgb[2] = 0;
+            robots.at(i+3).rgb_color.rgb[0] = global_state.robots_blue(i).color().r();
+            robots.at(i+3).rgb_color.rgb[1] = global_state.robots_blue(i).color().g();
+            robots.at(i+3).rgb_color.rgb[2] = global_state.robots_blue(i).color().b();
         }
     }
 }
@@ -454,12 +454,12 @@ void Graphics::drawDebugStepRobot(int i){
 
 void Graphics::drawDebugPath(int i){
     glPushMatrix();
-        if(robots.at(i).rgb_color.rgb[0] == 0 && robots.at(i).rgb_color.rgb[1] == 0 && robots.at(i).rgb_color.rgb[2] == 0){
-            material3f(robots.at(i).color);     
-        }else{
-            material3f(robots.at(i).rgb_color);
-        }
         if(robots.at(i).path.poses.size() >= 2){
+            if(robots.at(i).rgb_color.rgb[0] == 0 && robots.at(i).rgb_color.rgb[1] == 0 && robots.at(i).rgb_color.rgb[2] == 0){
+                material3f(robots.at(i).color);     
+            }else{
+                material3f(robots.at(i).rgb_color);
+            }
             for(unsigned int j = 0 ; j < robots.at(i).path.poses.size()-1 ; j++){
                 glBegin(GL_LINES);
                     glVertex3f(1, robots.at(i).path.poses.at(j).x, robots.at(i).path.poses.at(j).y);
