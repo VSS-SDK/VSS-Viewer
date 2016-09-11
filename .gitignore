@@ -34,3 +34,5 @@ build/*
 *.exe
 *.out
 *.app
+VSS-Viewer
+VSS-Viewer-Debug
