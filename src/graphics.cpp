@@ -466,6 +466,7 @@ void Graphics::drawDebugPath(int i){
                     glVertex3f(1, robots.at(i).path.poses.at(j+1).x, robots.at(i).path.poses.at(j+1).y);
                 glEnd();
             }
+            material3f(BLACK); 
         }
     glPopMatrix();
 }
