@@ -419,36 +419,20 @@ void Graphics::drawDebugFinalRobot(int i){
 //! > Draw the debug step position
 void Graphics::drawDebugStepRobot(int i){
     glPushMatrix();
-        //! > Draw the body of the robot
-        glTranslatef(1.5, robots.at(i).final_pose.x, robots.at(i).final_pose.y);
-        glRotatef(-robots.at(i).final_pose.yaw, 1, 0, 0);
-        glScalef(0.1f, SIZE_ROBOT, SIZE_ROBOT);
-        material(GRAY2);
-        glLineWidth(4.0f);
-        glutWireCube(1);
-
-        //! > Draw the team label "blue or yellow"
-        glPushMatrix();
-            glTranslatef(0.1, -0.2, -0.2);
-            glScalef(0.1f, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
-            material(robots.at(i).team);
-            glutSolidCube(1);
-        glPopMatrix();
-
-        //! > Draw the second "robot" label
-        glPushMatrix();
-            glTranslatef(0.1, 0.2, 0.2);
-            glScalef(0.1f, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
+        if(robots.at(i).path.poses.size() >= 2){
             if(robots.at(i).rgb_color.rgb[0] == 0 && robots.at(i).rgb_color.rgb[1] == 0 && robots.at(i).rgb_color.rgb[2] == 0){
-                //! > When the VSS-Viewer run side by side with the VSS-Simulator, ins't important the label colors, so twe use default colors.
-                material(robots.at(i).color);
+                material3f(robots.at(i).color);     
             }else{
-                //! > When the VSS-Viewer run side by side with the VSS-Vision, it's important the labels have the same color and the real world, so we used the RGB color calibrated on VSS-Vision
-                material(robots.at(i).rgb_color);
+                material3f(robots.at(i).rgb_color);
             }
-            glutSolidCube(1);
-        glPopMatrix();
+            
+            glBegin(GL_LINES);
+                glVertex3f(2, robots.at(i).pose.x, robots.at(i).pose.y);
+                glVertex3f(2, robots.at(i).step_pose.x, robots.at(i).step_pose.y);
+            glEnd();
 
+            material3f(Pixel(0.6, 0.6, 0.6)); 
+        }
     glPopMatrix();
 }
 
