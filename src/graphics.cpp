@@ -21,6 +21,7 @@ GLfloat rotX_ini, rotY_ini, rotZ_ini;       //Glut - Init rotation
 GLfloat obsX_ini, obsY_ini, obsZ_ini;       //Glut - Initial perspective observation position
 GLfloat obsX = 100.0, obsY = 75.0, obsZ = 0.0;
 float lookAt = 0;
+string cameraStatic = "top";
 vector<Robot> robots;
 Pose ball;
 bool staticDebug = false;
@@ -74,11 +75,13 @@ Graphics::Graphics(){
 //! --------
 //! 
 //! > Initializes control variables, the Draw thread and Interface of receiving thread.
-void Graphics::init(int argc, char** argv, bool debug){
+void Graphics::init(int argc, char** argv, bool debug, string camera){
     //! > Receives argc and argv of main function because of glutInit. See: [freeglut](http://freeglut.sourceforge.net/).
     this->argc = argc;
     this->argv = argv;
     this->debug = debug;
+    this->camera = camera;
+    cameraStatic = camera;
     staticDebug = this->debug;
 
     width = 920;
@@ -206,21 +209,21 @@ void Graphics::state_thread(){
         interface_state.receiveState();
         global_state.id();
 
-        ball.x = global_state.balls(0).pose().y() - (150/2.0) + 9;
-        ball.y = global_state.balls(0).pose().x() - (130/2.0) - 11;
+        ball.x = global_state.balls(0).pose().y() - (130/2.0);
+        ball.y = global_state.balls(0).pose().x() - (170/2.0);
         
         for(int i = 0 ; i < 3 ; i++){
             robots.at(i).team = YELLOW;
-            robots.at(i).pose.x = global_state.robots_yellow(i).pose().y() - (150/2.0) + 9;
-            robots.at(i).pose.y = global_state.robots_yellow(i).pose().x() - (130/2.0) - 11;
+            robots.at(i).pose.x = global_state.robots_yellow(i).pose().y() - (130/2.0);
+            robots.at(i).pose.y = global_state.robots_yellow(i).pose().x() - (170/2.0);
             robots.at(i).pose.yaw = global_state.robots_yellow(i).pose().yaw()*180.0/M_PI;
             robots.at(i).rgb_color.rgb[0] = global_state.robots_yellow(i).color().r();
             robots.at(i).rgb_color.rgb[1] = global_state.robots_yellow(i).color().g();
             robots.at(i).rgb_color.rgb[2] = global_state.robots_yellow(i).color().b();
 
             robots.at(i+3).team = BLUE;
-            robots.at(i+3).pose.x = global_state.robots_blue(i).pose().y() - (150/2.0) + 9;
-            robots.at(i+3).pose.y = global_state.robots_blue(i).pose().x() - (130/2.0) - 11;
+            robots.at(i+3).pose.x = global_state.robots_blue(i).pose().y() - (130/2.0);
+            robots.at(i+3).pose.y = global_state.robots_blue(i).pose().x() - (170/2.0);
             robots.at(i+3).pose.yaw = global_state.robots_blue(i).pose().yaw()*180.0/M_PI;
             robots.at(i+3).rgb_color.rgb[0] = global_state.robots_blue(i).color().r();
             robots.at(i+3).rgb_color.rgb[1] = global_state.robots_blue(i).color().g();
@@ -289,11 +292,19 @@ void Graphics::drawWorld(void){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
   
-    glTranslatef(0.0f, 0.0f, -lookAt);
-    glRotatef(rotX, 1, 0, 0);
+    if(cameraStatic == "tv"){
+        glTranslatef(0.0f, 0.0f, -lookAt);
+        glRotatef(rotX, 1, 0, 0);
 
-    glRotatef(rotY, 0, 1, 0);
-    glTranslatef(-obsX, -obsY, -obsZ);
+        glRotatef(rotY, 0, 1, 0);
+        glTranslatef(-obsX, -obsY, -obsZ);
+    }else{
+        glTranslatef(0.0f, 0.0f, 0);
+        glRotatef(180.0, 1, 0, 0);
+
+        glRotatef(90.0, 0, 1, 0);
+        glTranslatef(-130.0, 0.0, - 0.0);
+    }
 
     drawField();
     drawBall();
@@ -470,14 +481,14 @@ void Graphics::drawField(){
     //! > Draw the left goal
     glPushMatrix();
         glTranslatef(0, 0, -FIELD_WIDTH/1.88);
-        glScalef(1, GOAL_WIDTH+0.6, GOAL_DEPTH+0.6);
+        glScalef(1, GOAL_WIDTH+2.0, GOAL_DEPTH+2.0);
         material(BLACK);
         glutSolidCube(1);
     glPopMatrix();
     //! > Draw the right goal
     glPushMatrix();
         glTranslatef(0, 0, FIELD_WIDTH/1.88);
-        glScalef(1, GOAL_WIDTH+0.6, GOAL_DEPTH+0.6);
+        glScalef(1, GOAL_WIDTH+2.0, GOAL_DEPTH+2.0);
         material(BLACK);
         glutSolidCube(1);
     glPopMatrix();

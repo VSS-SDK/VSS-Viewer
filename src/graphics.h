@@ -28,6 +28,7 @@ private:
     int argc;
     char** argv;
     bool debug;
+    string camera;
     
     float width, height;
 
@@ -43,7 +44,7 @@ public:
     Graphics();
 
     //! Method responsible for initialize the software: control variables and threads.
-    void init(int argc, char** argv, bool debug);
+    void init(int argc, char** argv, bool debug, string camera);
 
     //! Method responsible for handle a thread to draw the 3D world with Freeglut, it's unreachable (has a "infite" loop).
     void draw_thread();

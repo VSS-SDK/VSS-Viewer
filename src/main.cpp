@@ -10,26 +10,28 @@
 #include "graphics.h"
 #include "boost.h"
 
-bool argParse(int argc, char** argv, bool *debug);
+bool argParse(int argc, char** argv, bool *debug, string *camera);
 
 int main(int argc, char** argv){
 	bool debug;
+    string camera;
 
-	argParse(argc, argv, &debug);
+	argParse(argc, argv, &debug, &camera);
 
 	Graphics graphics;
-	graphics.init(argc, argv, debug);
+	graphics.init(argc, argv, debug, camera);
 
 	return 0;
 }
 
-bool argParse(int argc, char** argv, bool *debug){
+bool argParse(int argc, char** argv, bool *debug, string *camera){
     namespace bpo = boost::program_options;
 
     // Declare the supported options.
     bpo::options_description desc("Allowed options");
     desc.add_options()
         ("help,h", "(Optional) produce help message")
+        ("camera,c", bpo::value<std::string>()->default_value("top"), "(Optional) Specify the camera that you want, may be <tv> or <top>.")
         ("debug,d", "(Optional) open the debug rotine");
     bpo::variables_map vm;
     bpo::store(bpo::parse_command_line(argc, argv, desc), vm);
@@ -43,6 +45,8 @@ bool argParse(int argc, char** argv, bool *debug){
     if (vm.count("debug")){
         *debug = true;
     }
+
+    *camera = vm["camera"].as<string>();
 
     return true;
 }
