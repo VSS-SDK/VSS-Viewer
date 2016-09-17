@@ -478,6 +478,7 @@ void Graphics::drawField(){
         material(BLACK);
         glutSolidCube(1);
     glPopMatrix();
+
     //! > Draw the left goal
     glPushMatrix();
         glTranslatef(0, 0, -FIELD_WIDTH/1.88);
@@ -485,6 +486,29 @@ void Graphics::drawField(){
         material(BLACK);
         glutSolidCube(1);
     glPopMatrix();
+
+    //! > Draw the left goal paint inside
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, 0.0, (-FIELD_WIDTH/1.88)-(THICK_THINGS)*1.9);
+        glScalef(WALL_HEIGHT, GOAL_WIDTH+2.0, 0.1);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, 38, (-FIELD_WIDTH/2.0)+0.1);
+        glScalef(WALL_HEIGHT, 34, 0.1);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -37.7, (-FIELD_WIDTH/2.0)+0.1);
+        glScalef(WALL_HEIGHT, 34.2, 0.1);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
     //! > Draw the right goal
     glPushMatrix();
         glTranslatef(0, 0, FIELD_WIDTH/1.88);
@@ -492,6 +516,30 @@ void Graphics::drawField(){
         material(BLACK);
         glutSolidCube(1);
     glPopMatrix();
+
+    //! > Draw the right goal paint inside
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, 0.0, (FIELD_WIDTH/1.88)+(THICK_THINGS)*1.9);
+        glScalef(WALL_HEIGHT, GOAL_WIDTH+2.0, 0.1);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, 38, (FIELD_WIDTH/2.0)-0.1);
+        glScalef(WALL_HEIGHT, 34, 0.1);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -38, (FIELD_WIDTH/2.0)-0.1);
+        glScalef(WALL_HEIGHT, 34, 0.1);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+    
+
     //! > Draw the top wall in perspective
     glPushMatrix();
         glTranslatef(THICK_THINGS, -FIELD_DEPTH/2.0, 0);
@@ -499,6 +547,15 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+    
+    //! > Draw the white paint top wall in perspective
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -FIELD_DEPTH/2.0+(THICK_THINGS/2.0), 0);
+        glScalef(WALL_HEIGHT, 0.1, FIELD_WIDTH-(9.0*2.0));
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
     //! > Draw the bottom wall in perspective
     glPushMatrix();
         glTranslatef(THICK_THINGS, FIELD_DEPTH/2.0, 0);
@@ -506,16 +563,26 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+
+    //! > Draw the white paint bottom wall in perspective
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, FIELD_DEPTH/2.0-(THICK_THINGS/2.0), 0);
+        glScalef(WALL_HEIGHT, 0.1, FIELD_WIDTH-(9.0*2.0));
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
     //! > Draw the left-bottom wall in perspective
     glPushMatrix();
-        glTranslatef(THICK_THINGS, 43.0, -FIELD_WIDTH/1.97);
+        glTranslatef(THICK_THINGS, 43.2, -FIELD_WIDTH/1.97);
         glScalef(WALL_HEIGHT, WALL_TOPS_B, THICK_THINGS);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+    
     //! > Draw the left-top wall in perspective
     glPushMatrix();
-        glTranslatef(THICK_THINGS, -43.0, -FIELD_WIDTH/1.97);
+        glTranslatef(THICK_THINGS, -43.2, -FIELD_WIDTH/1.97);
         glScalef(WALL_HEIGHT, WALL_TOPS_B, THICK_THINGS);
         material(BLACK2);
         glutSolidCube(1);
@@ -527,6 +594,7 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+
     // WALL GOAL TOP
     glPushMatrix();
         glTranslatef(THICK_THINGS, -22, -FIELD_WIDTH/1.85);
@@ -534,6 +602,15 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+
+    // WALL GOAL TOP WHITE
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -20.6, -FIELD_WIDTH/1.85);
+        glScalef(WALL_HEIGHT, 0.1, GOAL_DEPTH+1.35);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
     // WALL GOAL BOTTOM
     glPushMatrix();
         glTranslatef(THICK_THINGS, 22, -FIELD_WIDTH/1.85);
@@ -542,20 +619,46 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
+    // WALL GOAL BOTTOM WHITE
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, 20.6, -FIELD_WIDTH/1.875);
+        glScalef(WALL_HEIGHT, 0.1, GOAL_DEPTH+0.5);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
+
+    // WALL GOAL BOTTOM WHITE
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, 20.6, FIELD_WIDTH/1.875);
+        glScalef(WALL_HEIGHT, 0.1, GOAL_DEPTH+0.5);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -20.6, FIELD_WIDTH/1.875);
+        glScalef(WALL_HEIGHT, 0.1, GOAL_DEPTH+0.5);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+
     // WALL LEFT/BOTTOM
     glPushMatrix();
-        glTranslatef(THICK_THINGS, 43.0, FIELD_WIDTH/1.97);
+        glTranslatef(THICK_THINGS, 44.0, FIELD_WIDTH/1.97);
         glScalef(WALL_HEIGHT, WALL_TOPS_B, THICK_THINGS);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+    
     // WALL LEFT/TOP
     glPushMatrix();
-        glTranslatef(THICK_THINGS, -43.0, FIELD_WIDTH/1.97);
+        glTranslatef(THICK_THINGS, -44.0, FIELD_WIDTH/1.97);
         glScalef(WALL_HEIGHT, WALL_TOPS_B, THICK_THINGS);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+
     // WALL GOAL RIGHT
     glPushMatrix();
         glTranslatef(THICK_THINGS, 0, FIELD_WIDTH/1.98 + GOAL_DEPTH );
@@ -563,6 +666,7 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+    
     // WALL GOAL TOP
     glPushMatrix();
         glTranslatef(THICK_THINGS, -22, FIELD_WIDTH/1.85);
@@ -570,6 +674,7 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+
     // WALL GOAL BOTTOM
     glPushMatrix();
         glTranslatef(THICK_THINGS, 22, FIELD_WIDTH/1.85);
@@ -577,35 +682,125 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+
     // TRIANGLE RIGHT BOTTOM
     glPushMatrix();
         glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-4.5, (FIELD_WIDTH/2.0)-4.5);
         glRotatef(45.0, 1, 0, 0);
-        glScalef(WALL_HEIGHT, THICK_THINGS, 14.0);
+        glScalef(WALL_HEIGHT, THICK_THINGS, 14.1);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-5.5, (FIELD_WIDTH/2.0)-5.5);
+        glRotatef(45.0, 1, 0, 0);
+        glScalef(WALL_HEIGHT, 0.1, 14.5);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-3.0, (FIELD_WIDTH/2.0)-3.0);
+        glRotatef(45.0, 1, 0, 0);
+        glScalef(WALL_HEIGHT, THICK_THINGS, 9.5);
+        material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-1.5, (FIELD_WIDTH/2.0)-1.5);
+        glRotatef(45.0, 1, 0, 0);
+        glScalef(WALL_HEIGHT, THICK_THINGS, 5.5);
+        material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
+
     // TRIANGLE LEFT TOP
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+5.5, -(FIELD_WIDTH/2.0)+5.5);
+        glRotatef(45.0, 1, 0, 0);
+        glScalef(WALL_HEIGHT, 0.1, 14.5);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
     glPushMatrix();
         glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+4.5, -(FIELD_WIDTH/2.0)+4.5);
         glRotatef(45.0, 1, 0, 0);
-        glScalef(WALL_HEIGHT, THICK_THINGS, 14.0);
+        glScalef(WALL_HEIGHT, THICK_THINGS, 14.1);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+3.0, -(FIELD_WIDTH/2.0)+3.0);
+        glRotatef(45.0, 1, 0, 0);
+        glScalef(WALL_HEIGHT, THICK_THINGS, 9.5);
+        material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+1.5, -(FIELD_WIDTH/2.0)+1.5);
+        glRotatef(45.0, 1, 0, 0);
+        glScalef(WALL_HEIGHT, THICK_THINGS, 5.5);
+        material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
+
+
     // TRIANGLE RIGHT BOTTOM
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+5.5, (FIELD_WIDTH/2.0)-5.5);
+        glRotatef(-45.0, 1, 0, 0);
+        glScalef(WALL_HEIGHT, 0.1, 14.5);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
     glPushMatrix();
         glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+4.5, (FIELD_WIDTH/2.0)-4.5);
         glRotatef(-45.0, 1, 0, 0);
-        glScalef(WALL_HEIGHT, THICK_THINGS, 14.0);
+        glScalef(WALL_HEIGHT, THICK_THINGS, 14.1);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+3.0, (FIELD_WIDTH/2.0)-3.0);
+        glRotatef(-45.0, 1, 0, 0);
+        glScalef(WALL_HEIGHT, THICK_THINGS, 9.5);
+        material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+1.5, (FIELD_WIDTH/2.0)-1.5);
+        glRotatef(-45.0, 1, 0, 0);
+        glScalef(WALL_HEIGHT, THICK_THINGS, 5.5);
+        material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
+
+
     // TRIANGLE LEFT TOP
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-5.5, -(FIELD_WIDTH/2.0)+5.5);
+        glRotatef(-45.0, 1, 0, 0);
+        glScalef(WALL_HEIGHT, 0.1, 14.5);
+        material(WHITE);
+        glutSolidCube(1);
+    glPopMatrix();
     glPushMatrix();
         glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-4.5, -(FIELD_WIDTH/2.0)+4.5);
         glRotatef(-45.0, 1, 0, 0);
-        glScalef(WALL_HEIGHT, THICK_THINGS, 14.0);
+        glScalef(WALL_HEIGHT, THICK_THINGS, 14.1);
+        material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-3.0, -(FIELD_WIDTH/2.0)+3.0);
+        glRotatef(-45.0, 1, 0, 0);
+        glScalef(WALL_HEIGHT, THICK_THINGS, 9.5);
+        material(BLACK2);
+        glutSolidCube(1);
+    glPopMatrix();
+    glPushMatrix();
+        glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-1.5, -(FIELD_WIDTH/2.0)+1.5);
+        glRotatef(-45.0, 1, 0, 0);
+        glScalef(WALL_HEIGHT, THICK_THINGS, 5.5);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
