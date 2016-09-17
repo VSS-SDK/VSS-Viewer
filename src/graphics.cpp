@@ -613,149 +613,148 @@ void Graphics::drawField(){
     // PAINTS
     // LINE CENTER
     glPushMatrix();
-        glTranslatef(0.05, 0, 0);
-        glScalef(1.0, FIELD_DEPTH, 1.0);
+        glLineWidth(5.0f);
         material(WHITE);
-        glutSolidCube(1);
-    glPopMatrix();
+        glBegin(GL_LINES);
+            glVertex3f(0.7, -FIELD_DEPTH/2.0, 0);
+            glVertex3f(0.7, FIELD_DEPTH/2.0, 0);
+        glEnd();
 
-    // LINE GOAL GOAL LEFT
-    glPushMatrix();
-        glTranslatef(0.05, 0, (FIELD_WIDTH/2.0)+0.4);
-        glScalef(1.0, 40.0, 1.0);
-        material(WHITE);
-        glutSolidCube(1);
-    glPopMatrix();
-    // LINE GOAL LEFT
-    glPushMatrix();
-        glTranslatef(0.05, 0, (FIELD_WIDTH/2.0)-15.0);
-        glScalef(1.0, 70.0, 1.0);
-        material(WHITE);
-        glutSolidCube(1);
-    glPopMatrix();
-    // LINE GOAL LEFT/BOTTOM
-    glPushMatrix();
-        glTranslatef(0.05, 34.5, (FIELD_WIDTH/2.0)-7.5);
-        glScalef(1.0, 1.0, 15.0);
-        material(WHITE);
-        glutSolidCube(1);
-    glPopMatrix();
-    // LINE GOAL LEFT/TOP
-    glPushMatrix();
-        glTranslatef(0.05, -34.5, (FIELD_WIDTH/2.0)-7.5);
-        glScalef(1.0, 1.0, 15.0);
-        material(WHITE);
-        glutSolidCube(1);
-    glPopMatrix();
+        // CIRCLE CENTER
+        float radius = 20.0;
+        for(float arco = 0 ; arco < 2*M_PI ; arco += 0.05){
+            glBegin(GL_LINES);
+                glVertex3f(1, radius*cos(arco), radius*sin(arco));
+                glVertex3f(1, radius*cos((arco+0.1)), radius*sin((arco+0.1)) );
+            glEnd();
+        }
 
-    // LINE GOAL GOAL RIGHT
-    glPushMatrix();
-        glTranslatef(0.05, 0, -(FIELD_WIDTH/2.0)-0.4);
-        glScalef(1.0, 40.0, 1.0);
-        material(WHITE);
-        glutSolidCube(1);
-    glPopMatrix();
-    // LINE GOAL RIGHT
-    glPushMatrix();
-        glTranslatef(0.05, 0, -(FIELD_WIDTH/2.0)+15.0);
-        glScalef(1.0, 70.0, 1.0);
-        material(WHITE);
-        glutSolidCube(1);
-    glPopMatrix();
-    // LINE GOAL RIGHT/BOTTOM
-    glPushMatrix();
-        glTranslatef(0.05, 34.5, -(FIELD_WIDTH/2.0)+7.5);
-        glScalef(1.0, 1.0, 15.0);
-        material(WHITE);
-        glutSolidCube(1);
-    glPopMatrix();
-    // LINE GOAL RIGHT/TOP
-    glPushMatrix();
-        glTranslatef(0.05, -34.5, -(FIELD_WIDTH/2.0)+7.5);
-        glScalef(1.0, 1.0, 15.0);
-        material(WHITE);
-        glutSolidCube(1);
-    glPopMatrix();
+        // CIRCLE GOAL
+        radius = 10.0;
+        for(float arco = M_PI*1.15 ; arco < 1.85*M_PI ; arco += 0.05){
+            glBegin(GL_LINES);
+                glVertex3f(1, radius*cos(arco), 64.5 + radius*sin(arco));
+                glVertex3f(1, radius*cos((arco+0.1)), 64.5 + radius*sin((arco+0.1)) );
+            glEnd();
+        }
 
-    /* CROSS MIDDLE-LEFT
-    glPushMatrix();
-        glTranslatef(0.05, 0, 37.5);
-        material(WHITE);
-        glPushMatrix();
-            glScalef(1.0, 1.0, 5.0);
-            glutSolidCube(1);
-        glPopMatrix();
-        glPushMatrix();
-            glScalef(1.0, 5.0, 1.0);
-            glutSolidCube(1);
-        glPopMatrix();
-    glPopMatrix();
-    // CROSS BOTTOM-LEFT
-    glPushMatrix();
-        glTranslatef(0.05, 37.5, 37.5);
-        material(WHITE);
-        glPushMatrix();
-            glScalef(1.0, 1.0, 5.0);
-            glutSolidCube(1);
-        glPopMatrix();
-        glPushMatrix();
-            glScalef(1.0, 5.0, 1.0);
-            glutSolidCube(1);
-        glPopMatrix();
-    glPopMatrix();
-    // CROSS TOP-LEFT
-    glPushMatrix();
-        glTranslatef(0.05, -37.5, 37.5);
-        material(WHITE);
-        glPushMatrix();
-            glScalef(1.0, 1.0, 5.0);
-            glutSolidCube(1);
-        glPopMatrix();
-        glPushMatrix();
-            glScalef(1.0, 5.0, 1.0);
-            glutSolidCube(1);
-        glPopMatrix();
-    glPopMatrix();
+        // CIRCLE GOAL
+        radius = 10.0;
+        for(float arco = 0.4 ; arco < M_PI*0.85 ; arco += 0.05){
+            glBegin(GL_LINES);
+                glVertex3f(1, radius*cos(arco), -64.5 + radius*sin(arco));
+                glVertex3f(1, radius*cos((arco+0.1)), -64.5 + radius*sin((arco+0.1)) );
+            glEnd();
+        }
 
-    // CROSS MIDDLE-RIGHT
-    glPushMatrix();
-        glTranslatef(0.05, 0, -37.5);
-        material(WHITE);
-        glPushMatrix();
-            glScalef(1.0, 1.0, 5.0);
-            glutSolidCube(1);
-        glPopMatrix();
-        glPushMatrix();
-            glScalef(1.0, 5.0, 1.0);
-            glutSolidCube(1);
-        glPopMatrix();
+        // GOAL LINE
+        glBegin(GL_LINES);
+            glVertex3f(0.7, -20, 75.5);
+            glVertex3f(0.7, 20, 75.5);
+        glEnd();
+
+        // AREA LINE
+        glBegin(GL_LINES);
+            glVertex3f(0.7, -35, 60.5);
+            glVertex3f(0.7, 35, 60.5);
+        glEnd();
+
+        // AREA BOTTOM LINE
+        glBegin(GL_LINES);
+            glVertex3f(0.7, 35, 60.5);
+            glVertex3f(0.7, 35, 75);
+        glEnd();
+
+        // AREA TOP LINE
+        glBegin(GL_LINES);
+            glVertex3f(0.7, -35, 60.5);
+            glVertex3f(0.7, -35, 75);
+        glEnd();
+
+        // GOAL LINE
+        glBegin(GL_LINES);
+            glVertex3f(0.7, -20, -75.5);
+            glVertex3f(0.7, 20, -75.5);
+        glEnd();
+
+        // AREA BOTTOM LINE
+        glBegin(GL_LINES);
+            glVertex3f(0.7, 35, -60.5);
+            glVertex3f(0.7, 35, -75);
+        glEnd();
+
+        // AREA TOP LINE
+        glBegin(GL_LINES);
+            glVertex3f(0.7, -35, -60.5);
+            glVertex3f(0.7, -35, -75);
+        glEnd();
+
+        // AREA LINE
+        glBegin(GL_LINES);
+            glVertex3f(0.7, -35, -60.5);
+            glVertex3f(0.7, 35, -60.5);
+        glEnd();
+
+        // CROSS MIDDLE RIGHT
+        glBegin(GL_LINES);
+            glVertex3f(0.7, 0, 37.5-2.5);
+            glVertex3f(0.7, 0, 37.5+2.5);
+        glEnd();
+        glBegin(GL_LINES);
+            glVertex3f(0.7, -2.5, 37.5);
+            glVertex3f(0.7, 2.5, 37.5);
+        glEnd();
+
+        // CROSS DOWN RIGHT
+        glBegin(GL_LINES);
+            glVertex3f(0.7, (FIELD_DEPTH/2.0)-25, 37.5-2.5);
+            glVertex3f(0.7, (FIELD_DEPTH/2.0)-25, 37.5+2.5);
+        glEnd();
+        glBegin(GL_LINES);
+            glVertex3f(0.7, (FIELD_DEPTH/2.0)-25-2.5, 37.5);
+            glVertex3f(0.7, (FIELD_DEPTH/2.0)-25+2.5, 37.5);
+        glEnd();
+
+        // CROSS UP RIGHT
+        glBegin(GL_LINES);
+            glVertex3f(0.7, -(FIELD_DEPTH/2.0)+25, 37.5-2.5);
+            glVertex3f(0.7, -(FIELD_DEPTH/2.0)+25, 37.5+2.5);
+        glEnd();
+        glBegin(GL_LINES);
+            glVertex3f(0.7, -(FIELD_DEPTH/2.0)+25-2.5, 37.5);
+            glVertex3f(0.7, -(FIELD_DEPTH/2.0)+25+2.5, 37.5);
+        glEnd();
+
+        // CROSS MIDDLE LEFT
+        glBegin(GL_LINES);
+            glVertex3f(0.7, 0, -37.5-2.5);
+            glVertex3f(0.7, 0, -37.5+2.5);
+        glEnd();
+        glBegin(GL_LINES);
+            glVertex3f(0.7, -2.5, -37.5);
+            glVertex3f(0.7, 2.5, -37.5);
+        glEnd();
+
+        // CROSS DOWN LEFT
+        glBegin(GL_LINES);
+            glVertex3f(0.7, (FIELD_DEPTH/2.0)-25, -37.5-2.5);
+            glVertex3f(0.7, (FIELD_DEPTH/2.0)-25, -37.5+2.5);
+        glEnd();
+        glBegin(GL_LINES);
+            glVertex3f(0.7, (FIELD_DEPTH/2.0)-25-2.5, -37.5);
+            glVertex3f(0.7, (FIELD_DEPTH/2.0)-25+2.5, -37.5);
+        glEnd();
+
+        // CROSS UP LEFT
+        glBegin(GL_LINES);
+            glVertex3f(0.7, -(FIELD_DEPTH/2.0)+25, -37.5-2.5);
+            glVertex3f(0.7, -(FIELD_DEPTH/2.0)+25, -37.5+2.5);
+        glEnd();
+        glBegin(GL_LINES);
+            glVertex3f(0.7, -(FIELD_DEPTH/2.0)+25-2.5, -37.5);
+            glVertex3f(0.7, -(FIELD_DEPTH/2.0)+25+2.5, -37.5);
+        glEnd();
     glPopMatrix();
-    // CROSS BOTTOM-RIGHT
-    glPushMatrix();
-        glTranslatef(0.05, 37.5, -37.5);
-        material(WHITE);
-        glPushMatrix();
-            glScalef(1.0, 1.0, 5.0);
-            glutSolidCube(1);
-        glPopMatrix();
-        glPushMatrix();
-            glScalef(1.0, 5.0, 1.0);
-            glutSolidCube(1);
-        glPopMatrix();
-    glPopMatrix();
-    // CROSS TOP-RIGHT
-    glPushMatrix();
-        glTranslatef(0.05, -37.5, -37.5);
-        material(WHITE);
-        glPushMatrix();
-            glScalef(1.0, 1.0, 5.0);
-            glutSolidCube(1);
-        glPopMatrix();
-        glPushMatrix();
-            glScalef(1.0, 5.0, 1.0);
-            glutSolidCube(1);
-        glPopMatrix();
-    glPopMatrix();*/
 }
 
 //! Addendum
@@ -855,9 +854,9 @@ void Graphics::material(int color){
             shininess = 10.0;
         }break;
         case WHITE:{
-            diffuse[0] = 0.9;   diffuse[1] = 0.9;   diffuse[2] = 0.9;   diffuse[3] = 1.0;
-            ambient[0] = 0.9;   ambient[1] = 0.9;   ambient[2] = 0.9;   ambient[3] = 1.0;
-            specular[0] = 0.9;  specular[1] = 0.9;  specular[2] = 0.9;  specular[3] = 1.0;
+            diffuse[0] = 1.0;   diffuse[1] = 1.0;   diffuse[2] = 1.0;   diffuse[3] = 1.0;
+            ambient[0] = 1.0;   ambient[1] = 1.0;   ambient[2] = 1.0;   ambient[3] = 1.0;
+            specular[0] = 1.0;  specular[1] = 1.0;  specular[2] = 1.0;  specular[3] = 1.0;
             shininess = 10.0;
         }break;
         case GRAY:{
