@@ -31,7 +31,7 @@ bool argParse(int argc, char** argv, bool *debug, string *camera){
     bpo::options_description desc("Allowed options");
     desc.add_options()
         ("help,h", "(Optional) produce help message")
-        ("camera,c", bpo::value<std::string>()->default_value("top"), "(Optional) Specify the camera that you want, may be <tv> or <top>.")
+        ("camera,c", bpo::value<std::string>()->default_value("tv"), "(Optional) Specify the camera that you want, may be <tv> or <top>.")
         ("debug,d", "(Optional) open the debug rotine");
     bpo::variables_map vm;
     bpo::store(bpo::parse_command_line(argc, argv, desc), vm);

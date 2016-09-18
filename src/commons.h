@@ -100,6 +100,8 @@ namespace common{
 		int team_label;
 		int color_label;
 		float radius;
+		bool has_step;
+		bool has_final;
 		Robot(){
 			id = 0;
 			pose = v_pose = k_pose = k_v_pose = step_pose = final_pose = Pose(0, 0, 0);
@@ -109,6 +111,7 @@ namespace common{
 			team_label = SQUARE;
 			color_label = SQUARE;
 			radius = 1.0;
+			has_step = has_final = false;
 		};
 		Robot(Robot *r){
 			id = r->id;
@@ -125,6 +128,8 @@ namespace common{
 			team_label = r->team_label;
 			color_label = r->color_label;
 			radius = r->radius;
+			has_step = r->has_step;
+			has_final = r->has_final;
 		};
 		void show(){
 			cout << "-- Robot --" << endl;

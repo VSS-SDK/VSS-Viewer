@@ -135,23 +135,33 @@ void Graphics::debug_thread_team1(){
         interface_debug_team1.receiveDebugTeam1();
 
         for(int i = 0 ; i < global_debug_team1.step_poses_size() ; i++){
-            robots.at(i).step_pose.x = global_debug_team1.step_poses(i).y() - (150/2.0) + 9;
-            robots.at(i).step_pose.y = global_debug_team1.step_poses(i).x() - (130/2.0) - 11;   
-            robots.at(i).step_pose.yaw = global_debug_team1.step_poses(i).yaw()*180.0/M_PI; 
+            if(global_debug_team1.step_poses(i).y() != 0 && global_debug_team1.step_poses(i).y() != 0){
+                robots.at(i).has_step = true;
+                robots.at(i).step_pose.x = global_debug_team1.step_poses(i).y() - (130/2.0);
+                robots.at(i).step_pose.y = global_debug_team1.step_poses(i).x() - (170/2.0);   
+                robots.at(i).step_pose.yaw = global_debug_team1.step_poses(i).yaw()*180.0/M_PI;
+            }else{
+                robots.at(i).has_step = false;
+            }
         }
 
         for(int i = 0 ; i < global_debug_team1.final_poses_size() ; i++){
-            robots.at(i).final_pose.x = global_debug_team1.final_poses(i).y() - (150/2.0) + 9;
-            robots.at(i).final_pose.y = global_debug_team1.final_poses(i).x() - (130/2.0) - 11;   
-            robots.at(i).final_pose.yaw = global_debug_team1.final_poses(i).yaw()*180.0/M_PI;
+            if(global_debug_team1.final_poses(i).y() != 0 && global_debug_team1.final_poses(i).y() != 0){
+                robots.at(i).has_final = true;
+                robots.at(i).final_pose.x = global_debug_team1.final_poses(i).y() - (130/2.0);
+                robots.at(i).final_pose.y = global_debug_team1.final_poses(i).x() - (170/2.0);   
+                robots.at(i).final_pose.yaw = global_debug_team1.final_poses(i).yaw()*180.0/M_PI;
+            }else{
+                robots.at(i).has_final = false;
+            }
         }
 
         for(int i = 0 ; i < global_debug_team1.paths_size() ; i++){
             Path path;
             for(int j = 0 ; j < global_debug_team1.paths(i).poses_size() ; j++){
                 Pose pose;
-                pose.x = global_debug_team1.paths(i).poses(j).y() - (150/2.0) + 9;
-                pose.y = global_debug_team1.paths(i).poses(j).x() - (130/2.0) - 11;
+                pose.x = global_debug_team1.paths(i).poses(j).y() - (130/2.0);
+                pose.y = global_debug_team1.paths(i).poses(j).x() - (170/2.0);
                 pose.yaw = global_debug_team1.paths(i).poses(j).yaw()*180.0/M_PI;
 
                 path.poses.push_back(pose);
@@ -168,23 +178,33 @@ void Graphics::debug_thread_team2(){
         interface_debug_team2.receiveDebugTeam2();
 
         for(int i = 0 ; i < global_debug_team2.step_poses_size() ; i++){
-            robots.at(i+3).step_pose.x = global_debug_team2.step_poses(i).y() - (150/2.0) + 9;
-            robots.at(i+3).step_pose.y = global_debug_team2.step_poses(i).x() - (130/2.0) - 11;   
-            robots.at(i+3).step_pose.yaw = global_debug_team2.step_poses(i).yaw()*180.0/M_PI;    
+            if(global_debug_team2.step_poses(i).y() != 0 && global_debug_team2.step_poses(i).y() != 0){
+                robots.at(i+3).has_step = true;
+                robots.at(i+3).step_pose.x = global_debug_team2.step_poses(i).y() - (130/2.0);
+                robots.at(i+3).step_pose.y = global_debug_team2.step_poses(i).x() - (170/2.0);   
+                robots.at(i+3).step_pose.yaw = global_debug_team2.step_poses(i).yaw()*180.0/M_PI;    
+            }else{
+                robots.at(i+3).has_step = false; 
+            }
         }
 
         for(int i = 0 ; i < global_debug_team2.final_poses_size() ; i++){
-            robots.at(i+3).final_pose.x = global_debug_team2.final_poses(i).y() - (150/2.0) + 9;
-            robots.at(i+3).final_pose.y = global_debug_team2.final_poses(i).x() - (130/2.0) - 11;   
-            robots.at(i+3).final_pose.yaw = global_debug_team2.final_poses(i).yaw()*180.0/M_PI;    
+            if(global_debug_team2.final_poses(i).y() != 0 && global_debug_team2.final_poses(i).y() != 0){
+                robots.at(i+3).has_final = true;
+                robots.at(i+3).final_pose.x = global_debug_team2.final_poses(i).y() - (130/2.0);
+                robots.at(i+3).final_pose.y = global_debug_team2.final_poses(i).x() - (170/2.0);   
+                robots.at(i+3).final_pose.yaw = global_debug_team2.final_poses(i).yaw()*180.0/M_PI;
+            }else{
+                robots.at(i+3).has_final = false;
+            }   
         }
 
         for(int i = 0 ; i < global_debug_team2.paths_size() ; i++){
             Path path;
             for(int j = 0 ; j < global_debug_team2.paths(i).poses_size() ; j++){
                 Pose pose;
-                pose.x = global_debug_team2.paths(i).poses(j).y() - (150/2.0) + 9;
-                pose.y = global_debug_team2.paths(i).poses(j).x() - (130/2.0) - 11;
+                pose.x = global_debug_team2.paths(i).poses(j).y() - (130/2.0);
+                pose.y = global_debug_team2.paths(i).poses(j).x() - (170/2.0);
                 pose.yaw = global_debug_team2.paths(i).poses(j).yaw()*180.0/M_PI;
 
                 path.poses.push_back(pose);
@@ -390,38 +410,40 @@ void Graphics::drawRobot(int i){
 //! 
 //! > Draw the debug final position
 void Graphics::drawDebugFinalRobot(int i){
-    glPushMatrix();
-        //! > Draw the body of the robot
-        glTranslatef(1.5, robots.at(i).final_pose.x, robots.at(i).final_pose.y);
-        glRotatef(-robots.at(i).final_pose.yaw, 1, 0, 0);
-        glScalef(0.1f, SIZE_ROBOT, SIZE_ROBOT);
-        material(GRAY);
-        glLineWidth(4.0f);
-        glutWireCube(1);
-
-        //! > Draw the team label "blue or yellow"
+    if(robots.at(i).has_final){
         glPushMatrix();
-            glTranslatef(0.1, -0.2, -0.2);
-            glScalef(0.1f, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
-            material(robots.at(i).team);
-            glutSolidCube(1);
-        glPopMatrix();
+            //! > Draw the body of the robot
+            glTranslatef(1.5, robots.at(i).final_pose.x, robots.at(i).final_pose.y);
+            glRotatef(-robots.at(i).final_pose.yaw, 1, 0, 0);
+            glScalef(0.1f, SIZE_ROBOT, SIZE_ROBOT);
+            material(GRAY);
+            glLineWidth(4.0f);
+            glutWireCube(1);
 
-        //! > Draw the second "robot" label
-        glPushMatrix();
-            glTranslatef(0.1, 0.2, 0.2);
-            glScalef(0.1f, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
-            if(robots.at(i).rgb_color.rgb[0] == 0 && robots.at(i).rgb_color.rgb[1] == 0 && robots.at(i).rgb_color.rgb[2] == 0){
-                //! > When the VSS-Viewer run side by side with the VSS-Simulator, ins't important the label colors, so twe use default colors.
-                material(robots.at(i).color);
-            }else{
-                //! > When the VSS-Viewer run side by side with the VSS-Vision, it's important the labels have the same color and the real world, so we used the RGB color calibrated on VSS-Vision
-                material(robots.at(i).rgb_color);
-            }
-            glutSolidCube(1);
-        glPopMatrix();
+            //! > Draw the team label "blue or yellow"
+            glPushMatrix();
+                glTranslatef(0.1, -0.2, -0.2);
+                glScalef(0.1f, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
+                material(robots.at(i).team);
+                glutSolidCube(1);
+            glPopMatrix();
 
-    glPopMatrix();
+            //! > Draw the second "robot" label
+            glPushMatrix();
+                glTranslatef(0.1, 0.2, 0.2);
+                glScalef(0.1f, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
+                if(robots.at(i).rgb_color.rgb[0] == 0 && robots.at(i).rgb_color.rgb[1] == 0 && robots.at(i).rgb_color.rgb[2] == 0){
+                    //! > When the VSS-Viewer run side by side with the VSS-Simulator, ins't important the label colors, so twe use default colors.
+                    material(robots.at(i).color);
+                }else{
+                    //! > When the VSS-Viewer run side by side with the VSS-Vision, it's important the labels have the same color and the real world, so we used the RGB color calibrated on VSS-Vision
+                    material(robots.at(i).rgb_color);
+                }
+                glutSolidCube(1);
+            glPopMatrix();
+
+        glPopMatrix();
+    }
 }
 
 //! Addendum
@@ -429,22 +451,22 @@ void Graphics::drawDebugFinalRobot(int i){
 //! 
 //! > Draw the debug step position
 void Graphics::drawDebugStepRobot(int i){
-    glPushMatrix();
-        if(robots.at(i).path.poses.size() >= 2){
+    if(robots.at(i).has_step){
+        glPushMatrix();
             if(robots.at(i).rgb_color.rgb[0] == 0 && robots.at(i).rgb_color.rgb[1] == 0 && robots.at(i).rgb_color.rgb[2] == 0){
                 material3f(robots.at(i).color);     
             }else{
                 material3f(robots.at(i).rgb_color);
             }
-            
+        
             glBegin(GL_LINES);
                 glVertex3f(2, robots.at(i).pose.x, robots.at(i).pose.y);
                 glVertex3f(2, robots.at(i).step_pose.x, robots.at(i).step_pose.y);
             glEnd();
 
             material3f(Pixel(0.6, 0.6, 0.6)); 
-        }
-    glPopMatrix();
+        glPopMatrix();
+    }
 }
 
 void Graphics::drawDebugPath(int i){
