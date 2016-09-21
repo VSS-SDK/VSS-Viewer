@@ -23,7 +23,7 @@ GLfloat obsX = 100.0, obsY = 75.0, obsZ = 0.0;
 float lookAt = 0;
 string cameraStatic = "top";
 vector<Robot> robots;
-Pose ball;
+Pose ball, v_ball;
 bool staticDebug = false;
 GLUquadric* qobj;
 
@@ -231,6 +231,9 @@ void Graphics::state_thread(){
 
         ball.x = global_state.balls(0).pose().y() - (130/2.0);
         ball.y = global_state.balls(0).pose().x() - (170/2.0);
+
+        v_ball.x = global_state.balls(0).v_pose().y();
+        v_ball.y = global_state.balls(0).v_pose().x();
         
         for(int i = 0 ; i < 3 ; i++){
             robots.at(i).team = YELLOW;
@@ -328,6 +331,7 @@ void Graphics::drawWorld(void){
 
     drawField();
     drawBall();
+
     for(unsigned int i = 0 ; i < robots.size() ; i++){
         drawRobot(i);
         if(staticDebug){
@@ -335,6 +339,10 @@ void Graphics::drawWorld(void){
             drawDebugStepRobot(i);
             drawDebugPath(i);
         }
+    }
+
+    if(staticDebug){
+        drawDebugFutureBall();
     }
 
     glutSwapBuffers();
@@ -356,6 +364,25 @@ void Graphics::drawBall(){
         glTranslatef(THICK_THINGS*1.4, ball.x, ball.y);
         material(ORANGE);
         glutSolidSphere(2.0, 8.0, 8.0);
+    glPopMatrix();
+}
+
+void Graphics::drawDebugFutureBall(){
+    Pose half_second, one_second;
+
+    half_second.x = ball.x + (v_ball.x*0.5);
+    half_second.y = ball.y + (v_ball.y*0.5);
+
+    float radius = 2.3;
+    glPushMatrix();
+        glLineWidth(2.0f);
+        material(ORANGE); 
+        for(float arco = 0 ; arco < 2*M_PI ; arco += 0.05){
+            glBegin(GL_LINES);
+                glVertex3f(1, radius*cos(arco) + half_second.x, radius*sin(arco) + half_second.y);
+                glVertex3f(1, radius*cos((arco+0.1)) + half_second.x, radius*sin((arco+0.1)) + half_second.y );
+            glEnd();
+        }
     glPopMatrix();
 }
 

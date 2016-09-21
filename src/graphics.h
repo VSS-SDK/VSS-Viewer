@@ -101,7 +101,10 @@ public:
     static void drawDebugPath(int);
 
     //! Method responsible for draw the ball.
-    static void drawBall();  
+    static void drawBall();
+
+    //! Method responsible for draw the future ball.
+    static void drawDebugFutureBall(); 
 };
 
 #endif  // _GRAPHICS_H_
