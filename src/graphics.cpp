@@ -75,12 +75,14 @@ Graphics::Graphics(){
 //! --------
 //! 
 //! > Initializes control variables, the Draw thread and Interface of receiving thread.
-void Graphics::init(int argc, char** argv, bool debug, string camera){
+void Graphics::init(int argc, char** argv, bool debug, string camera, string ip){
     //! > Receives argc and argv of main function because of glutInit. See: [freeglut](http://freeglut.sourceforge.net/).
     this->argc = argc;
     this->argv = argv;
     this->debug = debug;
     this->camera = camera;
+    this->ip = "tcp://" + ip + ":5555";
+
     cameraStatic = camera;
     staticDebug = this->debug;
 
@@ -223,7 +225,7 @@ void Graphics::debug_thread_team2(){
 //! 
 //! Was created by a compilation of proto file.  See: [Protobuf](https://developers.google.com/protocol-buffers/).
 void Graphics::state_thread(){
-    interface_state.createSocketReceiveState(&global_state);
+    interface_state.createSocketReceiveState(&global_state, ip);
 
     while(true){
         interface_state.receiveState();
