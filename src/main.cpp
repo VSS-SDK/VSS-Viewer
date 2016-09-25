@@ -18,11 +18,10 @@ int main(int argc, char** argv){
     string camera;
     string ip;
 
-	argParse(argc, argv, &debug, &camera, &ip);
-
-	Graphics graphics;
-	graphics.init(argc, argv, debug, camera, ip);
-
+	if(argParse(argc, argv, &debug, &camera, &ip)){
+	    Graphics graphics;
+	    graphics.init(argc, argv, debug, camera, ip);
+    }
 	return 0;
 }
 
