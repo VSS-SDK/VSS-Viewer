@@ -39,7 +39,7 @@ Gallery
 -------
 ![screenshot 1](https://raw.githubusercontent.com/SIRLab/VSS-Viewer/master/images/top.png)
 
-
+![screenshot 2](https://raw.githubusercontent.com/SIRLab/VSS-Viewer/master/images/top2.png)
 
 License
 -------
