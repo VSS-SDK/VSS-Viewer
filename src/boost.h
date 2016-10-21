@@ -5,6 +5,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/make_shared.hpp>
 
+//! Simplifica a chamada da boost
 namespace bpo = boost::program_options;
 
 #endif

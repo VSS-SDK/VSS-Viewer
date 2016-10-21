@@ -67,4 +67,4 @@ proto:
 	cd src/VSS-Interface/protos && make -f protos.make
 
 docm:
-	cd doc && doxygen
+	cd doc && doxygen Doxygen

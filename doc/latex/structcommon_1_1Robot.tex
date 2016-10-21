@@ -1,0 +1,91 @@
+\hypertarget{structcommon_1_1Robot}{}\section{Referência da Estrutura common\+:\+:Robot}
+\label{structcommon_1_1Robot}\index{common\+::\+Robot@{common\+::\+Robot}}
+
+
+Essa struct é responsável por representar um robô  
+
+
+
+
+{\ttfamily \#include $<$commons.\+h$>$}
+
+
+
+Diagrama de colaboração para common\+:\+:Robot\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structcommon_1_1Robot__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Métodos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structcommon_1_1Robot_a41ba088fd67d929808e381126f7b6c2e}{Robot} ()\hypertarget{structcommon_1_1Robot_a41ba088fd67d929808e381126f7b6c2e}{}\label{structcommon_1_1Robot_a41ba088fd67d929808e381126f7b6c2e}
+
+\begin{DoxyCompactList}\small\item\em Construtor D\+E\+F\+A\+U\+LT. \end{DoxyCompactList}\item 
+\hyperlink{structcommon_1_1Robot_a3df83e11a40060ea9d3553384dcdaaa3}{Robot} (\hyperlink{structcommon_1_1Robot}{Robot} $\ast$r)\hypertarget{structcommon_1_1Robot_a3df83e11a40060ea9d3553384dcdaaa3}{}\label{structcommon_1_1Robot_a3df83e11a40060ea9d3553384dcdaaa3}
+
+\begin{DoxyCompactList}\small\item\em Construtor cópia. \end{DoxyCompactList}\item 
+void \hyperlink{structcommon_1_1Robot_a224e3f9997e44c5edf67fd0989aee5cf}{show} ()\hypertarget{structcommon_1_1Robot_a224e3f9997e44c5edf67fd0989aee5cf}{}\label{structcommon_1_1Robot_a224e3f9997e44c5edf67fd0989aee5cf}
+
+\begin{DoxyCompactList}\small\item\em Método de debug no terminal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Atributos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{structcommon_1_1Robot_a59c0c9960153de3d38d4bbcc479015e3}{id}\hypertarget{structcommon_1_1Robot_a59c0c9960153de3d38d4bbcc479015e3}{}\label{structcommon_1_1Robot_a59c0c9960153de3d38d4bbcc479015e3}
+
+\begin{DoxyCompactList}\small\item\em Id do robô \end{DoxyCompactList}\item 
+\hyperlink{structcommon_1_1Pose}{Pose} \hyperlink{structcommon_1_1Robot_a9b7add6f5e5486d5d9bab91ab1800225}{pose}\hypertarget{structcommon_1_1Robot_a9b7add6f5e5486d5d9bab91ab1800225}{}\label{structcommon_1_1Robot_a9b7add6f5e5486d5d9bab91ab1800225}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{structcommon_1_1Pose}{Pose} de um robô no campo. \end{DoxyCompactList}\item 
+\hyperlink{structcommon_1_1Pose}{Pose} \hyperlink{structcommon_1_1Robot_a76821833979c7bca183906c74d383d7d}{v\+\_\+pose}\hypertarget{structcommon_1_1Robot_a76821833979c7bca183906c74d383d7d}{}\label{structcommon_1_1Robot_a76821833979c7bca183906c74d383d7d}
+
+\begin{DoxyCompactList}\small\item\em Velocidades linear, tangencial e angular de um robô no campo. \end{DoxyCompactList}\item 
+\hyperlink{structcommon_1_1Pose}{Pose} \hyperlink{structcommon_1_1Robot_a33dcdc52395edee9f7e27fa609eedeb2}{k\+\_\+pose}\hypertarget{structcommon_1_1Robot_a33dcdc52395edee9f7e27fa609eedeb2}{}\label{structcommon_1_1Robot_a33dcdc52395edee9f7e27fa609eedeb2}
+
+\begin{DoxyCompactList}\small\item\em Estimação da pose do robô pelo filtro de kalman. Utilizado somente com pacote vindo do V\+S\+S-\/\+Vision. \end{DoxyCompactList}\item 
+\hyperlink{structcommon_1_1Pose}{Pose} \hyperlink{structcommon_1_1Robot_a1f76a8c236dbaa91e16f1d02c0340be9}{k\+\_\+v\+\_\+pose}\hypertarget{structcommon_1_1Robot_a1f76a8c236dbaa91e16f1d02c0340be9}{}\label{structcommon_1_1Robot_a1f76a8c236dbaa91e16f1d02c0340be9}
+
+\begin{DoxyCompactList}\small\item\em Estimação das velocidades linear, tangencial e angular pelo filtro de kalman. Utilizado somente com pacote vindo do V\+S\+S-\/\+Vision. \end{DoxyCompactList}\item 
+\hyperlink{structcommon_1_1Pose}{Pose} \hyperlink{structcommon_1_1Robot_a5331036a164340832f703b81e834711e}{step\+\_\+pose}\hypertarget{structcommon_1_1Robot_a5331036a164340832f703b81e834711e}{}\label{structcommon_1_1Robot_a5331036a164340832f703b81e834711e}
+
+\begin{DoxyCompactList}\small\item\em Vetor de movimentação, isto é, para onde o robô irá \end{DoxyCompactList}\item 
+\hyperlink{structcommon_1_1Pose}{Pose} \hyperlink{structcommon_1_1Robot_a5b2cbd0f64426838b76365fee4f2cd7f}{final\+\_\+pose}\hypertarget{structcommon_1_1Robot_a5b2cbd0f64426838b76365fee4f2cd7f}{}\label{structcommon_1_1Robot_a5b2cbd0f64426838b76365fee4f2cd7f}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{structcommon_1_1Pose}{Pose} final do robô \end{DoxyCompactList}\item 
+\hyperlink{structcommon_1_1Path}{Path} \hyperlink{structcommon_1_1Robot_a7c07b8d76466e74162a77cb4245e7051}{path}\hypertarget{structcommon_1_1Robot_a7c07b8d76466e74162a77cb4245e7051}{}\label{structcommon_1_1Robot_a7c07b8d76466e74162a77cb4245e7051}
+
+\begin{DoxyCompactList}\small\item\em Caminho que um robô irá executar. \end{DoxyCompactList}\item 
+int \hyperlink{structcommon_1_1Robot_a4f69dbd752e60a34b7f87d779e31ae74}{team}\hypertarget{structcommon_1_1Robot_a4f69dbd752e60a34b7f87d779e31ae74}{}\label{structcommon_1_1Robot_a4f69dbd752e60a34b7f87d779e31ae74}
+
+\begin{DoxyCompactList}\small\item\em Id do time\+: 0 = amarelo, 1 = azul. \end{DoxyCompactList}\item 
+int \hyperlink{structcommon_1_1Robot_a1fc861b50fde0ea004276db69be5026d}{color}\hypertarget{structcommon_1_1Robot_a1fc861b50fde0ea004276db69be5026d}{}\label{structcommon_1_1Robot_a1fc861b50fde0ea004276db69be5026d}
+
+\begin{DoxyCompactList}\small\item\em Cor do robô, com base no enum de cores. Utilizado com o V\+S\+S-\/\+Simulator. \end{DoxyCompactList}\item 
+\hyperlink{structcommon_1_1Pixel}{Pixel} \hyperlink{structcommon_1_1Robot_af2c38313d74d1b710b260e5ac903fab9}{rgb\+\_\+color}\hypertarget{structcommon_1_1Robot_af2c38313d74d1b710b260e5ac903fab9}{}\label{structcommon_1_1Robot_af2c38313d74d1b710b260e5ac903fab9}
+
+\begin{DoxyCompactList}\small\item\em Cor do robô, com base no valor R\+GB. Utilizado com o V\+S\+S-\/\+Vision. \end{DoxyCompactList}\item 
+int \hyperlink{structcommon_1_1Robot_a5f8ee844a4dc4a86d30a41c2a4100bfa}{team\+\_\+label}\hypertarget{structcommon_1_1Robot_a5f8ee844a4dc4a86d30a41c2a4100bfa}{}\label{structcommon_1_1Robot_a5f8ee844a4dc4a86d30a41c2a4100bfa}
+
+\begin{DoxyCompactList}\small\item\em T\+O\+DO. \end{DoxyCompactList}\item 
+int \hyperlink{structcommon_1_1Robot_a26877803f1772bb5cd5b0fabe8a9ee99}{color\+\_\+label}\hypertarget{structcommon_1_1Robot_a26877803f1772bb5cd5b0fabe8a9ee99}{}\label{structcommon_1_1Robot_a26877803f1772bb5cd5b0fabe8a9ee99}
+
+\begin{DoxyCompactList}\small\item\em T\+O\+DO. \end{DoxyCompactList}\item 
+float \hyperlink{structcommon_1_1Robot_a45485c8807aa375d14b7808ffef4adde}{radius}\hypertarget{structcommon_1_1Robot_a45485c8807aa375d14b7808ffef4adde}{}\label{structcommon_1_1Robot_a45485c8807aa375d14b7808ffef4adde}
+
+\begin{DoxyCompactList}\small\item\em Raio do robô \end{DoxyCompactList}\item 
+bool \hyperlink{structcommon_1_1Robot_a791ca826eed1f0ef29d5df539fdb2dad}{has\+\_\+step}\hypertarget{structcommon_1_1Robot_a791ca826eed1f0ef29d5df539fdb2dad}{}\label{structcommon_1_1Robot_a791ca826eed1f0ef29d5df539fdb2dad}
+
+\begin{DoxyCompactList}\small\item\em Booleano que define se o pacote de debug possui um vetor de movimentação. \end{DoxyCompactList}\item 
+bool \hyperlink{structcommon_1_1Robot_a53ef950d28fe6fb46c21af2c0bf5eba0}{has\+\_\+final}\hypertarget{structcommon_1_1Robot_a53ef950d28fe6fb46c21af2c0bf5eba0}{}\label{structcommon_1_1Robot_a53ef950d28fe6fb46c21af2c0bf5eba0}
+
+\begin{DoxyCompactList}\small\item\em Booleano que define se o pacote de debug possui uma pose final. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição Detalhada}
+Essa struct é responsável por representar um robô 
+
+A documentação para esta estrutura foi gerada a partir do seguinte arquivo\+:\begin{DoxyCompactItemize}
+\item 
+/home/johnathan/\+Repositories/\+S\+I\+R\+Lab/\+Projects/\+V\+S\+S-\/\+Viewer/src/commons.\+h\end{DoxyCompactItemize}

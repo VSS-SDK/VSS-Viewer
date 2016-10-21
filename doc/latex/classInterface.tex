@@ -1,0 +1,383 @@
+\hypertarget{classInterface}{}\section{Referência da Classe Interface}
+\label{classInterface}\index{Interface@{Interface}}
+
+
+Essa classe define as interfaces utilizadas em todos os projetos do V\+S\+S-\/\+S\+DK, em outras palavras, todos os sockets abertos em todos os projetos estão aqui.  
+
+
+
+
+{\ttfamily \#include $<$interface.\+h$>$}
+
+
+
+Diagrama de colaboração para Interface\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInterface__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Métodos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classInterface_a4406d74c75bdfe150bf72be1f1cda8b1}{Interface} ()\hypertarget{classInterface_a4406d74c75bdfe150bf72be1f1cda8b1}{}\label{classInterface_a4406d74c75bdfe150bf72be1f1cda8b1}
+
+\begin{DoxyCompactList}\small\item\em Construtor D\+E\+F\+A\+U\+LT. \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_ac040c88e9847d23f6270a4932527e4d7}{create\+Socket\+Send\+State} (\hyperlink{classvss__state_1_1Global__State}{vss\+\_\+state\+::\+Global\+\_\+\+State} $\ast$, string \hyperlink{classInterface_ae3d7d6a6e2a04ab421b78ebeca7a92c6}{addr\+\_\+server\+\_\+multicast}=\char`\"{}tcp\+://$\ast$\+:5555\char`\"{})
+\begin{DoxyCompactList}\small\item\em Método responsável por criar o socket de envio de estados no V\+S\+S-\/\+Vision e V\+S\+S-\/\+Simulator. \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_a9de875408d6ec60ef952d167ab244819}{send\+State} ()
+\begin{DoxyCompactList}\small\item\em Método respontável por enviar um novo estado pelo V\+S\+S-\/\+Vision e V\+S\+S-\/\+Simulator. \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_ac494123d07a83b6e45702f0bfe465acf}{create\+Socket\+Receive\+State} (\hyperlink{classvss__state_1_1Global__State}{vss\+\_\+state\+::\+Global\+\_\+\+State} $\ast$, string \hyperlink{classInterface_af7ac56d5815f432e4b0ba1ae0e55087e}{addr\+\_\+client\+\_\+multicast}=\char`\"{}tcp\+://localhost\+:5555\char`\"{})
+\begin{DoxyCompactList}\small\item\em Método responsável por criar o socket de recebimento de estados em V\+S\+S-\/\+Sample\+Strategys. \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_abba50a9d10639aa5b2f4a45be31b4062}{receive\+State} ()
+\begin{DoxyCompactList}\small\item\em Método responsável por receber um novo estado em V\+S\+S-\/\+Sample\+Strategys. \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_af17ffaf827d0090bdbfca933dcb1318a}{create\+Send\+Commands\+Team1} (\hyperlink{classvss__command_1_1Global__Commands}{vss\+\_\+command\+::\+Global\+\_\+\+Commands} $\ast$, string \hyperlink{classInterface_a5fd23546358caf45c28aab623783aa74}{addr\+\_\+client\+\_\+simulator\+\_\+team1}=\char`\"{}tcp\+://localhost\+:5556\char`\"{})
+\begin{DoxyCompactList}\small\item\em Método responsável por criar o socket de envio de comandos em V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Amarelo) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_af4e4676f7bb5d14c3f1606a9b4ab01e1}{send\+Command\+Team1} ()
+\begin{DoxyCompactList}\small\item\em Método responsável por enviar um novo comando por V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Amarelo) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_ada4efcce0e1b10c89cea6f24891490ba}{create\+Receive\+Commands\+Team1} (\hyperlink{classvss__command_1_1Global__Commands}{vss\+\_\+command\+::\+Global\+\_\+\+Commands} $\ast$, string \hyperlink{classInterface_afe824e3c6a845f60ef4e95592d6aea8c}{addr\+\_\+server\+\_\+simulator\+\_\+team1}=\char`\"{}tcp\+://$\ast$\+:5556\char`\"{})
+\begin{DoxyCompactList}\small\item\em Método responsável por criar o socket de recebimento de comandos no V\+S\+S-\/\+Simulator (Time Amarelo) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_a1e553942adde8b27c3df9dcc1e8cfaa6}{receive\+Command\+Team1} ()
+\begin{DoxyCompactList}\small\item\em Método repsonsável por receber um novo comando (Time Amarelo) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_a95658bd3b45221e76f354583b619b9e2}{create\+Send\+Commands\+Team2} (\hyperlink{classvss__command_1_1Global__Commands}{vss\+\_\+command\+::\+Global\+\_\+\+Commands} $\ast$, string \hyperlink{classInterface_a3350d92b68427e361d42e403cd0402ea}{addr\+\_\+client\+\_\+simulator\+\_\+team2}=\char`\"{}tcp\+://localhost\+:5557\char`\"{})
+\begin{DoxyCompactList}\small\item\em Método responsável por criar o socket de envio de comandos em V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Azul) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_a1c08d024eac24958a1a26d7045288895}{send\+Command\+Team2} ()
+\begin{DoxyCompactList}\small\item\em Método responsável por enviar um novo comando por V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Azul) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_aac93c76a735e5bacc531472c09c72f07}{create\+Receive\+Commands\+Team2} (\hyperlink{classvss__command_1_1Global__Commands}{vss\+\_\+command\+::\+Global\+\_\+\+Commands} $\ast$, string \hyperlink{classInterface_a5bf42480628d97126c4ccf79dab80608}{addr\+\_\+server\+\_\+simulator\+\_\+team2}=\char`\"{}tcp\+://$\ast$\+:5557\char`\"{})
+\begin{DoxyCompactList}\small\item\em Método responsável por criar o socket de recebimento de comandos no V\+S\+S-\/\+Simulator (Time Azul) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_a47c447c89b29ab7e5a9eedc214e2e9cf}{receive\+Command\+Team2} ()
+\begin{DoxyCompactList}\small\item\em Método repsonsável por receber um novo comando (Time Azul) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_acf42608b368670e5f8015e343f093934}{create\+Send\+Debug\+Team1} (\hyperlink{classvss__debug_1_1Global__Debug}{vss\+\_\+debug\+::\+Global\+\_\+\+Debug} $\ast$, string \hyperlink{classInterface_a89e46fcba4c30138064e7dfa66520620}{addr\+\_\+client\+\_\+debug\+\_\+team1}=\char`\"{}tcp\+://localhost\+:5558\char`\"{})
+\begin{DoxyCompactList}\small\item\em Método responsável por criar o socket de envio de informações de debug em V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Amarelo) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_ad3ca9b710198e8f152ceecba608f3ea1}{send\+Debug\+Team1} ()
+\begin{DoxyCompactList}\small\item\em Método responsável por enviar uma nova informação de debug por V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Amarelo) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_a4b07f8e387443775616852835c78c46d}{create\+Receive\+Debug\+Team1} (\hyperlink{classvss__debug_1_1Global__Debug}{vss\+\_\+debug\+::\+Global\+\_\+\+Debug} $\ast$, string \hyperlink{classInterface_a5e15dc6d237ba5658b621a9267834058}{addr\+\_\+server\+\_\+debug\+\_\+team1}=\char`\"{}tcp\+://$\ast$\+:5558\char`\"{})
+\begin{DoxyCompactList}\small\item\em Método responsável por criar o socket de recebimento de informações de debug no V\+S\+S-\/\+Simulator (Time Amarelo) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_a1eaedc1aeabb71b4d7277e7588fdba1b}{receive\+Debug\+Team1} ()
+\begin{DoxyCompactList}\small\item\em Método repsonsável por receber uma nova informação de debug (Time Amarelo) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_aef81f08baa4c895699209a4ac884c7c3}{create\+Send\+Debug\+Team2} (\hyperlink{classvss__debug_1_1Global__Debug}{vss\+\_\+debug\+::\+Global\+\_\+\+Debug} $\ast$, string \hyperlink{classInterface_a7c52d0df38af915072bfa3d25539dd74}{addr\+\_\+client\+\_\+debug\+\_\+team2}=\char`\"{}tcp\+://localhost\+:5559\char`\"{})
+\begin{DoxyCompactList}\small\item\em Método responsável por criar o socket de envio de informações de debug em V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Azul) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_a37b63efacc3c2c0dbaef26cc56c72fd8}{send\+Debug\+Team2} ()
+\begin{DoxyCompactList}\small\item\em Método responsável por enviar uma nova informação de debug por V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Azul) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_afa3f9885ad6f4ca7f1958d0c578c84b9}{create\+Receive\+Debug\+Team2} (\hyperlink{classvss__debug_1_1Global__Debug}{vss\+\_\+debug\+::\+Global\+\_\+\+Debug} $\ast$, string \hyperlink{classInterface_a4c71300b21d6f2e9cbfdef12cbf01c71}{addr\+\_\+server\+\_\+debug\+\_\+team2}=\char`\"{}tcp\+://$\ast$\+:5559\char`\"{})
+\begin{DoxyCompactList}\small\item\em Método responsável por criar o socket de recebimento de informações de debug no V\+S\+S-\/\+Simulator (Time Azul) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_a0e26d81e0b2ace89ac5b9f48481282c6}{receive\+Debug\+Team2} ()
+\begin{DoxyCompactList}\small\item\em Método repsonsável por receber uma nova informação de debug (Time Azul) \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_ab8f9122465d78b9e41bfde9ea560a657}{print\+State} ()\hypertarget{classInterface_ab8f9122465d78b9e41bfde9ea560a657}{}\label{classInterface_ab8f9122465d78b9e41bfde9ea560a657}
+
+\begin{DoxyCompactList}\small\item\em Método que pode ser utilizado para imprimir o pacote de estado recebido/enviado no terminal. \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_aaa4e713b2b72649d5253c83bf9e2416a}{print\+Command} ()\hypertarget{classInterface_aaa4e713b2b72649d5253c83bf9e2416a}{}\label{classInterface_aaa4e713b2b72649d5253c83bf9e2416a}
+
+\begin{DoxyCompactList}\small\item\em Método que pode ser utilizado para imprimir o pacote de comando recebido/enviado no terminal. \end{DoxyCompactList}\item 
+void \hyperlink{classInterface_ab7e5653bace447fe9836e8b26ae30247}{print\+Debug} ()\hypertarget{classInterface_ab7e5653bace447fe9836e8b26ae30247}{}\label{classInterface_ab7e5653bace447fe9836e8b26ae30247}
+
+\begin{DoxyCompactList}\small\item\em Método que pode ser utilizado para imprimir o pacote de debug recebido/enviado no terminal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Atributos Protegidos}
+\begin{DoxyCompactItemize}
+\item 
+zmq\+::context\+\_\+t $\ast$ \hyperlink{classInterface_a7a2bda6046550893e9454930636e76d5}{context}\hypertarget{classInterface_a7a2bda6046550893e9454930636e76d5}{}\label{classInterface_a7a2bda6046550893e9454930636e76d5}
+
+\begin{DoxyCompactList}\small\item\em Contexto do socket de envio de estados pelo V\+S\+S-\/\+Vision. E contexto do socket de recebimento de estados pelos V\+S\+S-\/\+Sample\+Strategys. \end{DoxyCompactList}\item 
+zmq\+::socket\+\_\+t $\ast$ \hyperlink{classInterface_af38139f534f08df8b3dc9f29001e9584}{socket}\hypertarget{classInterface_af38139f534f08df8b3dc9f29001e9584}{}\label{classInterface_af38139f534f08df8b3dc9f29001e9584}
+
+\begin{DoxyCompactList}\small\item\em Socket de envio de estados pelo V\+S\+S-\/\+Vision. E socket de recebimento de estados pelos V\+S\+S-\/\+Sample\+Strategys. \end{DoxyCompactList}\item 
+zmq\+::context\+\_\+t $\ast$ \hyperlink{classInterface_abb1e6fcc090f58ed9f8883584d7bed26}{context\+\_\+command\+\_\+yellow}\hypertarget{classInterface_abb1e6fcc090f58ed9f8883584d7bed26}{}\label{classInterface_abb1e6fcc090f58ed9f8883584d7bed26}
+
+\begin{DoxyCompactList}\small\item\em (Time Amarelo) Contexto do socket de envio de comandos por um V\+S\+S-\/\+Sample\+Strategy ou V\+S\+S-\/\+Joystick. E contexto do socket de recebimento de comandos pelo V\+S\+S-\/\+Simulator \end{DoxyCompactList}\item 
+zmq\+::socket\+\_\+t $\ast$ \hyperlink{classInterface_a630819943a79e9f0ce39b7a8147828b5}{socket\+\_\+command\+\_\+yellow}\hypertarget{classInterface_a630819943a79e9f0ce39b7a8147828b5}{}\label{classInterface_a630819943a79e9f0ce39b7a8147828b5}
+
+\begin{DoxyCompactList}\small\item\em (Time Amarelo) Socket de envio de comandos por um V\+S\+S-\/\+Sample\+Strategy ou V\+S\+S-\/\+Joystick. E socket de recebimento de comandos pelo V\+S\+S-\/\+Simulator \end{DoxyCompactList}\item 
+zmq\+::context\+\_\+t $\ast$ \hyperlink{classInterface_a3beb279c04dc743f55939597efd85668}{context\+\_\+command\+\_\+blue}\hypertarget{classInterface_a3beb279c04dc743f55939597efd85668}{}\label{classInterface_a3beb279c04dc743f55939597efd85668}
+
+\begin{DoxyCompactList}\small\item\em (Time Azul) Contexto do socket de envio de comandos por um V\+S\+S-\/\+Sample\+Strategy ou V\+S\+S-\/\+Joystick. E contexto do socket de recebimento de comandos pelo V\+S\+S-\/\+Simulator \end{DoxyCompactList}\item 
+zmq\+::socket\+\_\+t $\ast$ \hyperlink{classInterface_a2853bd703e1eb4f7ebdb88a21537005f}{socket\+\_\+command\+\_\+blue}\hypertarget{classInterface_a2853bd703e1eb4f7ebdb88a21537005f}{}\label{classInterface_a2853bd703e1eb4f7ebdb88a21537005f}
+
+\begin{DoxyCompactList}\small\item\em (Time Azul) Socket de envio de comandos por um V\+S\+S-\/\+Sample\+Strategy ou V\+S\+S-\/\+Joystick. E socket de recebimento de comandos pelo V\+S\+S-\/\+Simulator \end{DoxyCompactList}\item 
+zmq\+::context\+\_\+t $\ast$ \hyperlink{classInterface_ae7b29a3a106e879f2fe60f0176088082}{context\+\_\+debug}\hypertarget{classInterface_ae7b29a3a106e879f2fe60f0176088082}{}\label{classInterface_ae7b29a3a106e879f2fe60f0176088082}
+
+\begin{DoxyCompactList}\small\item\em Contexto do socket de envio de informações de debug por um V\+S\+S-\/\+Sample\+Strategy. E contexto do socket de recebimento de informações de debug pelo V\+S\+S-\/\+Viewer. \end{DoxyCompactList}\item 
+zmq\+::socket\+\_\+t $\ast$ \hyperlink{classInterface_a1d7a633715bcdd79ede3ef42e251fcfd}{socket\+\_\+debug}\hypertarget{classInterface_a1d7a633715bcdd79ede3ef42e251fcfd}{}\label{classInterface_a1d7a633715bcdd79ede3ef42e251fcfd}
+
+\begin{DoxyCompactList}\small\item\em Socket de envio de informações de debug por um V\+S\+S-\/\+Sample\+Strategy. E socket de recebimento de informações de debug pelo V\+S\+S-\/\+Viewer. \end{DoxyCompactList}\item 
+\hyperlink{classvss__state_1_1Global__State}{vss\+\_\+state\+::\+Global\+\_\+\+State} $\ast$ \hyperlink{classInterface_ac488bcc6708103cb36d132c895efa7a0}{global\+\_\+state}\hypertarget{classInterface_ac488bcc6708103cb36d132c895efa7a0}{}\label{classInterface_ac488bcc6708103cb36d132c895efa7a0}
+
+\begin{DoxyCompactList}\small\item\em Pacote de estados (Utilizado pelo V\+S\+S-\/\+Simulator e V\+S\+S-\/\+Vision, para enviar informações do campo) (Utilizado também pelo V\+S\+S-\/\+Viewer, para desenhar a estado do jogo e pelo V\+S\+S-\/\+Sample\+Strategy para construir-\/se uma estratégia) \end{DoxyCompactList}\item 
+\hyperlink{classvss__command_1_1Global__Commands}{vss\+\_\+command\+::\+Global\+\_\+\+Commands} $\ast$ \hyperlink{classInterface_a0109a54da68b3e7cd0c652f6cdd75abe}{global\+\_\+commands}\hypertarget{classInterface_a0109a54da68b3e7cd0c652f6cdd75abe}{}\label{classInterface_a0109a54da68b3e7cd0c652f6cdd75abe}
+
+\begin{DoxyCompactList}\small\item\em Pacote de comandos (Utilizado por V\+S\+S-\/\+Sample\+Strategys e V\+S\+S-\/\+Joysticks, para enviar comandos para robôs virtuais) (Utilizado também pelo V\+S\+S-\/\+Simulator, para receber os comandos de cada robô) \end{DoxyCompactList}\item 
+\hyperlink{classvss__debug_1_1Global__Debug}{vss\+\_\+debug\+::\+Global\+\_\+\+Debug} $\ast$ \hyperlink{classInterface_a2601489a867659e158bbff1bd2470411}{global\+\_\+debug}\hypertarget{classInterface_a2601489a867659e158bbff1bd2470411}{}\label{classInterface_a2601489a867659e158bbff1bd2470411}
+
+\begin{DoxyCompactList}\small\item\em Pacote de debug visual (Utilizado por V\+S\+S-\/\+Sample\+Strategys, para enviar informações da estratégia para o V\+S\+S-\/\+Viewer desenhar) \end{DoxyCompactList}\item 
+string \hyperlink{classInterface_ae3d7d6a6e2a04ab421b78ebeca7a92c6}{addr\+\_\+server\+\_\+multicast}\hypertarget{classInterface_ae3d7d6a6e2a04ab421b78ebeca7a92c6}{}\label{classInterface_ae3d7d6a6e2a04ab421b78ebeca7a92c6}
+
+\begin{DoxyCompactList}\small\item\em Endereço multicast do envio de estados por parte do V\+S\+S-\/\+Simulator e V\+S\+S-\/\+Vision (V\+S\+S-\/\+Vision e V\+S\+S-\/\+Simulator não podem ser abertos ao mesmo tempo) \end{DoxyCompactList}\item 
+string \hyperlink{classInterface_af7ac56d5815f432e4b0ba1ae0e55087e}{addr\+\_\+client\+\_\+multicast}\hypertarget{classInterface_af7ac56d5815f432e4b0ba1ae0e55087e}{}\label{classInterface_af7ac56d5815f432e4b0ba1ae0e55087e}
+
+\begin{DoxyCompactList}\small\item\em Endereço mulsticast do recebimento dos estados por parte do V\+S\+S-\/\+Viewer e V\+S\+S-\/\+Sample\+Strategys. \end{DoxyCompactList}\item 
+string \hyperlink{classInterface_afe824e3c6a845f60ef4e95592d6aea8c}{addr\+\_\+server\+\_\+simulator\+\_\+team1}\hypertarget{classInterface_afe824e3c6a845f60ef4e95592d6aea8c}{}\label{classInterface_afe824e3c6a845f60ef4e95592d6aea8c}
+
+\begin{DoxyCompactList}\small\item\em (Time Amarelo) Endereço unicast para recebimento dessas informações pelo V\+S\+S-\/\+Simulator \end{DoxyCompactList}\item 
+string \hyperlink{classInterface_a5fd23546358caf45c28aab623783aa74}{addr\+\_\+client\+\_\+simulator\+\_\+team1}\hypertarget{classInterface_a5fd23546358caf45c28aab623783aa74}{}\label{classInterface_a5fd23546358caf45c28aab623783aa74}
+
+\begin{DoxyCompactList}\small\item\em (Time Amarelo) Endereço unicast para envio de comandos por V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks \end{DoxyCompactList}\item 
+string \hyperlink{classInterface_a5bf42480628d97126c4ccf79dab80608}{addr\+\_\+server\+\_\+simulator\+\_\+team2}\hypertarget{classInterface_a5bf42480628d97126c4ccf79dab80608}{}\label{classInterface_a5bf42480628d97126c4ccf79dab80608}
+
+\begin{DoxyCompactList}\small\item\em (Time Azul) Endereços unicast para recebimento dessas informações pelo V\+S\+S-\/\+Simulator \end{DoxyCompactList}\item 
+string \hyperlink{classInterface_a3350d92b68427e361d42e403cd0402ea}{addr\+\_\+client\+\_\+simulator\+\_\+team2}\hypertarget{classInterface_a3350d92b68427e361d42e403cd0402ea}{}\label{classInterface_a3350d92b68427e361d42e403cd0402ea}
+
+\begin{DoxyCompactList}\small\item\em (Time Azul) Endereços unicast para envio de comandos por V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks \end{DoxyCompactList}\item 
+string \hyperlink{classInterface_a5e15dc6d237ba5658b621a9267834058}{addr\+\_\+server\+\_\+debug\+\_\+team1}\hypertarget{classInterface_a5e15dc6d237ba5658b621a9267834058}{}\label{classInterface_a5e15dc6d237ba5658b621a9267834058}
+
+\begin{DoxyCompactList}\small\item\em (Time Amarelo) Endereço unicast para recebimento de informações de debug pelo V\+S\+S-\/\+Viewer \end{DoxyCompactList}\item 
+string \hyperlink{classInterface_a89e46fcba4c30138064e7dfa66520620}{addr\+\_\+client\+\_\+debug\+\_\+team1}\hypertarget{classInterface_a89e46fcba4c30138064e7dfa66520620}{}\label{classInterface_a89e46fcba4c30138064e7dfa66520620}
+
+\begin{DoxyCompactList}\small\item\em (Time Amarelo) Endereço unicast para envio de informações de debug por V\+S\+S-\/\+Sample\+Strategys \end{DoxyCompactList}\item 
+string \hyperlink{classInterface_a4c71300b21d6f2e9cbfdef12cbf01c71}{addr\+\_\+server\+\_\+debug\+\_\+team2}\hypertarget{classInterface_a4c71300b21d6f2e9cbfdef12cbf01c71}{}\label{classInterface_a4c71300b21d6f2e9cbfdef12cbf01c71}
+
+\begin{DoxyCompactList}\small\item\em (Time Azul) Endereço unicast para recebimento de informações de debug pelo V\+S\+S-\/\+Viewer \end{DoxyCompactList}\item 
+string \hyperlink{classInterface_a7c52d0df38af915072bfa3d25539dd74}{addr\+\_\+client\+\_\+debug\+\_\+team2}\hypertarget{classInterface_a7c52d0df38af915072bfa3d25539dd74}{}\label{classInterface_a7c52d0df38af915072bfa3d25539dd74}
+
+\begin{DoxyCompactList}\small\item\em (Time Azul) Endereço unicast para envio de informações de debug por V\+S\+S-\/\+Sample\+Strategys \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição Detalhada}
+Essa classe define as interfaces utilizadas em todos os projetos do V\+S\+S-\/\+S\+DK, em outras palavras, todos os sockets abertos em todos os projetos estão aqui. 
+
+\subsection{Métodos}
+\index{Interface@{Interface}!create\+Receive\+Commands\+Team1@{create\+Receive\+Commands\+Team1}}
+\index{create\+Receive\+Commands\+Team1@{create\+Receive\+Commands\+Team1}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{create\+Receive\+Commands\+Team1(vss\+\_\+command\+::\+Global\+\_\+\+Commands $\ast$, string addr\+\_\+server\+\_\+simulator\+\_\+team1=""tcp\+://$\ast$\+:5556"")}{createReceiveCommandsTeam1(vss_command::Global_Commands *, string addr_server_simulator_team1="tcp://*:5556")}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::create\+Receive\+Commands\+Team1 (
+\begin{DoxyParamCaption}
+\item[{{\bf vss\+\_\+command\+::\+Global\+\_\+\+Commands} $\ast$}]{global\+\_\+commands, }
+\item[{string}]{addr\+\_\+server\+\_\+simulator\+\_\+team1 = {\ttfamily \char`\"{}tcp\+://$\ast$\+:5556\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_ada4efcce0e1b10c89cea6f24891490ba}{}\label{classInterface_ada4efcce0e1b10c89cea6f24891490ba}
+
+
+Método responsável por criar o socket de recebimento de comandos no V\+S\+S-\/\+Simulator (Time Amarelo) 
+
+Esse método deve ser chamado apenas uma vez. Global\+\_\+\+Commands é recebido como ponteiro, assim facilitando o recebimento de novos comandos \index{Interface@{Interface}!create\+Receive\+Commands\+Team2@{create\+Receive\+Commands\+Team2}}
+\index{create\+Receive\+Commands\+Team2@{create\+Receive\+Commands\+Team2}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{create\+Receive\+Commands\+Team2(vss\+\_\+command\+::\+Global\+\_\+\+Commands $\ast$, string addr\+\_\+server\+\_\+simulator\+\_\+team2=""tcp\+://$\ast$\+:5557"")}{createReceiveCommandsTeam2(vss_command::Global_Commands *, string addr_server_simulator_team2="tcp://*:5557")}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::create\+Receive\+Commands\+Team2 (
+\begin{DoxyParamCaption}
+\item[{{\bf vss\+\_\+command\+::\+Global\+\_\+\+Commands} $\ast$}]{global\+\_\+commands, }
+\item[{string}]{addr\+\_\+server\+\_\+simulator\+\_\+team2 = {\ttfamily \char`\"{}tcp\+://$\ast$\+:5557\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_aac93c76a735e5bacc531472c09c72f07}{}\label{classInterface_aac93c76a735e5bacc531472c09c72f07}
+
+
+Método responsável por criar o socket de recebimento de comandos no V\+S\+S-\/\+Simulator (Time Azul) 
+
+Esse método deve ser chamado apenas uma vez. Global\+\_\+\+Commands é recebido como ponteiro, assim facilitando o envio de novos comandos \index{Interface@{Interface}!create\+Receive\+Debug\+Team1@{create\+Receive\+Debug\+Team1}}
+\index{create\+Receive\+Debug\+Team1@{create\+Receive\+Debug\+Team1}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{create\+Receive\+Debug\+Team1(vss\+\_\+debug\+::\+Global\+\_\+\+Debug $\ast$, string addr\+\_\+server\+\_\+debug\+\_\+team1=""tcp\+://$\ast$\+:5558"")}{createReceiveDebugTeam1(vss_debug::Global_Debug *, string addr_server_debug_team1="tcp://*:5558")}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::create\+Receive\+Debug\+Team1 (
+\begin{DoxyParamCaption}
+\item[{{\bf vss\+\_\+debug\+::\+Global\+\_\+\+Debug} $\ast$}]{global\+\_\+debug, }
+\item[{string}]{addr\+\_\+server\+\_\+debug\+\_\+team1 = {\ttfamily \char`\"{}tcp\+://$\ast$\+:5558\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_a4b07f8e387443775616852835c78c46d}{}\label{classInterface_a4b07f8e387443775616852835c78c46d}
+
+
+Método responsável por criar o socket de recebimento de informações de debug no V\+S\+S-\/\+Simulator (Time Amarelo) 
+
+Esse método deve ser chamado apenas uma vez. Global\+\_\+\+Debug é recebido como ponteiro, assim facilitando o recebimento de novas informações de debug \index{Interface@{Interface}!create\+Receive\+Debug\+Team2@{create\+Receive\+Debug\+Team2}}
+\index{create\+Receive\+Debug\+Team2@{create\+Receive\+Debug\+Team2}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{create\+Receive\+Debug\+Team2(vss\+\_\+debug\+::\+Global\+\_\+\+Debug $\ast$, string addr\+\_\+server\+\_\+debug\+\_\+team2=""tcp\+://$\ast$\+:5559"")}{createReceiveDebugTeam2(vss_debug::Global_Debug *, string addr_server_debug_team2="tcp://*:5559")}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::create\+Receive\+Debug\+Team2 (
+\begin{DoxyParamCaption}
+\item[{{\bf vss\+\_\+debug\+::\+Global\+\_\+\+Debug} $\ast$}]{global\+\_\+debug, }
+\item[{string}]{addr\+\_\+server\+\_\+debug\+\_\+team2 = {\ttfamily \char`\"{}tcp\+://$\ast$\+:5559\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_afa3f9885ad6f4ca7f1958d0c578c84b9}{}\label{classInterface_afa3f9885ad6f4ca7f1958d0c578c84b9}
+
+
+Método responsável por criar o socket de recebimento de informações de debug no V\+S\+S-\/\+Simulator (Time Azul) 
+
+Esse método deve ser chamado apenas uma vez. Global\+\_\+\+Debug é recebido como ponteiro, assim facilitando o recebimento de novas informações de debug \index{Interface@{Interface}!create\+Send\+Commands\+Team1@{create\+Send\+Commands\+Team1}}
+\index{create\+Send\+Commands\+Team1@{create\+Send\+Commands\+Team1}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{create\+Send\+Commands\+Team1(vss\+\_\+command\+::\+Global\+\_\+\+Commands $\ast$, string addr\+\_\+client\+\_\+simulator\+\_\+team1=""tcp\+://localhost\+:5556"")}{createSendCommandsTeam1(vss_command::Global_Commands *, string addr_client_simulator_team1="tcp://localhost:5556")}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::create\+Send\+Commands\+Team1 (
+\begin{DoxyParamCaption}
+\item[{{\bf vss\+\_\+command\+::\+Global\+\_\+\+Commands} $\ast$}]{global\+\_\+commands, }
+\item[{string}]{addr\+\_\+client\+\_\+simulator\+\_\+team1 = {\ttfamily \char`\"{}tcp\+://localhost\+:5556\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_af17ffaf827d0090bdbfca933dcb1318a}{}\label{classInterface_af17ffaf827d0090bdbfca933dcb1318a}
+
+
+Método responsável por criar o socket de envio de comandos em V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Amarelo) 
+
+Esse método deve ser chamado apenas uma vez. Global\+\_\+\+Commands é recebido como ponteiro, assim facilitando o envio de novos comandos \index{Interface@{Interface}!create\+Send\+Commands\+Team2@{create\+Send\+Commands\+Team2}}
+\index{create\+Send\+Commands\+Team2@{create\+Send\+Commands\+Team2}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{create\+Send\+Commands\+Team2(vss\+\_\+command\+::\+Global\+\_\+\+Commands $\ast$, string addr\+\_\+client\+\_\+simulator\+\_\+team2=""tcp\+://localhost\+:5557"")}{createSendCommandsTeam2(vss_command::Global_Commands *, string addr_client_simulator_team2="tcp://localhost:5557")}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::create\+Send\+Commands\+Team2 (
+\begin{DoxyParamCaption}
+\item[{{\bf vss\+\_\+command\+::\+Global\+\_\+\+Commands} $\ast$}]{global\+\_\+commands, }
+\item[{string}]{addr\+\_\+client\+\_\+simulator\+\_\+team2 = {\ttfamily \char`\"{}tcp\+://localhost\+:5557\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_a95658bd3b45221e76f354583b619b9e2}{}\label{classInterface_a95658bd3b45221e76f354583b619b9e2}
+
+
+Método responsável por criar o socket de envio de comandos em V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Azul) 
+
+Esse método deve ser chamado apenas uma vez. Global\+\_\+\+Commands é recebido como ponteiro, assim facilitando o envio de novos comandos \index{Interface@{Interface}!create\+Send\+Debug\+Team1@{create\+Send\+Debug\+Team1}}
+\index{create\+Send\+Debug\+Team1@{create\+Send\+Debug\+Team1}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{create\+Send\+Debug\+Team1(vss\+\_\+debug\+::\+Global\+\_\+\+Debug $\ast$, string addr\+\_\+client\+\_\+debug\+\_\+team1=""tcp\+://localhost\+:5558"")}{createSendDebugTeam1(vss_debug::Global_Debug *, string addr_client_debug_team1="tcp://localhost:5558")}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::create\+Send\+Debug\+Team1 (
+\begin{DoxyParamCaption}
+\item[{{\bf vss\+\_\+debug\+::\+Global\+\_\+\+Debug} $\ast$}]{global\+\_\+debug, }
+\item[{string}]{addr\+\_\+client\+\_\+debug\+\_\+team1 = {\ttfamily \char`\"{}tcp\+://localhost\+:5558\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_acf42608b368670e5f8015e343f093934}{}\label{classInterface_acf42608b368670e5f8015e343f093934}
+
+
+Método responsável por criar o socket de envio de informações de debug em V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Amarelo) 
+
+Esse método deve ser chamado apenas uma vez. Global\+\_\+\+Debug é recebido como ponteiro, assim facilitando o envio de novas informações de debug \index{Interface@{Interface}!create\+Send\+Debug\+Team2@{create\+Send\+Debug\+Team2}}
+\index{create\+Send\+Debug\+Team2@{create\+Send\+Debug\+Team2}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{create\+Send\+Debug\+Team2(vss\+\_\+debug\+::\+Global\+\_\+\+Debug $\ast$, string addr\+\_\+client\+\_\+debug\+\_\+team2=""tcp\+://localhost\+:5559"")}{createSendDebugTeam2(vss_debug::Global_Debug *, string addr_client_debug_team2="tcp://localhost:5559")}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::create\+Send\+Debug\+Team2 (
+\begin{DoxyParamCaption}
+\item[{{\bf vss\+\_\+debug\+::\+Global\+\_\+\+Debug} $\ast$}]{global\+\_\+debug, }
+\item[{string}]{addr\+\_\+client\+\_\+debug\+\_\+team2 = {\ttfamily \char`\"{}tcp\+://localhost\+:5559\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_aef81f08baa4c895699209a4ac884c7c3}{}\label{classInterface_aef81f08baa4c895699209a4ac884c7c3}
+
+
+Método responsável por criar o socket de envio de informações de debug em V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Azul) 
+
+Esse método deve ser chamado apenas uma vez. Global\+\_\+\+Debug é recebido como ponteiro, assim facilitando o envio de novas informações de debug \index{Interface@{Interface}!create\+Socket\+Receive\+State@{create\+Socket\+Receive\+State}}
+\index{create\+Socket\+Receive\+State@{create\+Socket\+Receive\+State}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{create\+Socket\+Receive\+State(vss\+\_\+state\+::\+Global\+\_\+\+State $\ast$, string addr\+\_\+client\+\_\+multicast=""tcp\+://localhost\+:5555"")}{createSocketReceiveState(vss_state::Global_State *, string addr_client_multicast="tcp://localhost:5555")}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::create\+Socket\+Receive\+State (
+\begin{DoxyParamCaption}
+\item[{{\bf vss\+\_\+state\+::\+Global\+\_\+\+State} $\ast$}]{global\+\_\+state, }
+\item[{string}]{addr\+\_\+client\+\_\+multicast = {\ttfamily \char`\"{}tcp\+://localhost\+:5555\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_ac494123d07a83b6e45702f0bfe465acf}{}\label{classInterface_ac494123d07a83b6e45702f0bfe465acf}
+
+
+Método responsável por criar o socket de recebimento de estados em V\+S\+S-\/\+Sample\+Strategys. 
+
+Esse método deve ser chamado apenas uma vez. Global\+\_\+\+State é recebido como ponteiro, assim facilitando o recebimento de novos estados \index{Interface@{Interface}!create\+Socket\+Send\+State@{create\+Socket\+Send\+State}}
+\index{create\+Socket\+Send\+State@{create\+Socket\+Send\+State}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{create\+Socket\+Send\+State(vss\+\_\+state\+::\+Global\+\_\+\+State $\ast$, string addr\+\_\+server\+\_\+multicast=""tcp\+://$\ast$\+:5555"")}{createSocketSendState(vss_state::Global_State *, string addr_server_multicast="tcp://*:5555")}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::create\+Socket\+Send\+State (
+\begin{DoxyParamCaption}
+\item[{{\bf vss\+\_\+state\+::\+Global\+\_\+\+State} $\ast$}]{global\+\_\+state, }
+\item[{string}]{addr\+\_\+server\+\_\+multicast = {\ttfamily \char`\"{}tcp\+://$\ast$\+:5555\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_ac040c88e9847d23f6270a4932527e4d7}{}\label{classInterface_ac040c88e9847d23f6270a4932527e4d7}
+
+
+Método responsável por criar o socket de envio de estados no V\+S\+S-\/\+Vision e V\+S\+S-\/\+Simulator. 
+
+Esse método deve ser chamado apenas uma vez. Global\+\_\+\+State é recebido como ponteiro, assim facilitando o envio de novos estados \index{Interface@{Interface}!receive\+Command\+Team1@{receive\+Command\+Team1}}
+\index{receive\+Command\+Team1@{receive\+Command\+Team1}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{receive\+Command\+Team1()}{receiveCommandTeam1()}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::receive\+Command\+Team1 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_a1e553942adde8b27c3df9dcc1e8cfaa6}{}\label{classInterface_a1e553942adde8b27c3df9dcc1e8cfaa6}
+
+
+Método repsonsável por receber um novo comando (Time Amarelo) 
+
+Esse método deve ser chamado em um loop infinito controlado. O recebimento tratado aqui é bloqueante Chamando esse método, o Global\+\_\+\+Commands passado por ponteiro na construção do socket automaticamente é atualizado \index{Interface@{Interface}!receive\+Command\+Team2@{receive\+Command\+Team2}}
+\index{receive\+Command\+Team2@{receive\+Command\+Team2}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{receive\+Command\+Team2()}{receiveCommandTeam2()}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::receive\+Command\+Team2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_a47c447c89b29ab7e5a9eedc214e2e9cf}{}\label{classInterface_a47c447c89b29ab7e5a9eedc214e2e9cf}
+
+
+Método repsonsável por receber um novo comando (Time Azul) 
+
+Esse método deve ser chamado em um loop infinito controlado. O recebimento tratado aqui é bloqueante Chamando esse método, o Global\+\_\+\+Commands passado por ponteiro na construção do socket automaticamente é atualizado \index{Interface@{Interface}!receive\+Debug\+Team1@{receive\+Debug\+Team1}}
+\index{receive\+Debug\+Team1@{receive\+Debug\+Team1}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{receive\+Debug\+Team1()}{receiveDebugTeam1()}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::receive\+Debug\+Team1 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_a1eaedc1aeabb71b4d7277e7588fdba1b}{}\label{classInterface_a1eaedc1aeabb71b4d7277e7588fdba1b}
+
+
+Método repsonsável por receber uma nova informação de debug (Time Amarelo) 
+
+Esse método deve ser chamado em um loop infinito controlado. O recebimento tratado aqui é bloqueante Chamando esse método, o Global\+\_\+\+Debug passado por ponteiro na construção do socket automaticamente é atualizado \index{Interface@{Interface}!receive\+Debug\+Team2@{receive\+Debug\+Team2}}
+\index{receive\+Debug\+Team2@{receive\+Debug\+Team2}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{receive\+Debug\+Team2()}{receiveDebugTeam2()}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::receive\+Debug\+Team2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_a0e26d81e0b2ace89ac5b9f48481282c6}{}\label{classInterface_a0e26d81e0b2ace89ac5b9f48481282c6}
+
+
+Método repsonsável por receber uma nova informação de debug (Time Azul) 
+
+Esse método deve ser chamado em um loop infinito controlado. O recebimento tratado aqui é bloqueante Chamando esse método, o Global\+\_\+\+Debug passado por ponteiro na construção do socket automaticamente é atualizado \index{Interface@{Interface}!receive\+State@{receive\+State}}
+\index{receive\+State@{receive\+State}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{receive\+State()}{receiveState()}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::receive\+State (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_abba50a9d10639aa5b2f4a45be31b4062}{}\label{classInterface_abba50a9d10639aa5b2f4a45be31b4062}
+
+
+Método responsável por receber um novo estado em V\+S\+S-\/\+Sample\+Strategys. 
+
+Esse método deve ser chamado em um loop infinito controlado. O recebimento tratado aqui é não bloqueante Chamando esse método, o Global\+\_\+\+State passado por ponteiro na construção do socket automaticamente é atualizado \index{Interface@{Interface}!send\+Command\+Team1@{send\+Command\+Team1}}
+\index{send\+Command\+Team1@{send\+Command\+Team1}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{send\+Command\+Team1()}{sendCommandTeam1()}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::send\+Command\+Team1 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_af4e4676f7bb5d14c3f1606a9b4ab01e1}{}\label{classInterface_af4e4676f7bb5d14c3f1606a9b4ab01e1}
+
+
+Método responsável por enviar um novo comando por V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Amarelo) 
+
+Esse método deve ser chamado em um loop infinito controlado. O envio tratado aqui é bloqueante Chamando esse método, o Global\+\_\+\+Commands passado por ponteiro na construção do socket automaticamente é atualizado \index{Interface@{Interface}!send\+Command\+Team2@{send\+Command\+Team2}}
+\index{send\+Command\+Team2@{send\+Command\+Team2}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{send\+Command\+Team2()}{sendCommandTeam2()}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::send\+Command\+Team2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_a1c08d024eac24958a1a26d7045288895}{}\label{classInterface_a1c08d024eac24958a1a26d7045288895}
+
+
+Método responsável por enviar um novo comando por V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Azul) 
+
+Esse método deve ser chamado em um loop infinito controlado. O envio tratado aqui é bloqueante Chamando esse método, o Global\+\_\+\+Commands passado por ponteiro na construção do socket automaticamente é atualizado \index{Interface@{Interface}!send\+Debug\+Team1@{send\+Debug\+Team1}}
+\index{send\+Debug\+Team1@{send\+Debug\+Team1}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{send\+Debug\+Team1()}{sendDebugTeam1()}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::send\+Debug\+Team1 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_ad3ca9b710198e8f152ceecba608f3ea1}{}\label{classInterface_ad3ca9b710198e8f152ceecba608f3ea1}
+
+
+Método responsável por enviar uma nova informação de debug por V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Amarelo) 
+
+Esse método deve ser chamado em um loop infinito controlado. O envio tratado aqui é bloqueante Chamando esse método, o Global\+\_\+\+Debug passado por ponteiro na construção do socket automaticamente é atualizado \index{Interface@{Interface}!send\+Debug\+Team2@{send\+Debug\+Team2}}
+\index{send\+Debug\+Team2@{send\+Debug\+Team2}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{send\+Debug\+Team2()}{sendDebugTeam2()}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::send\+Debug\+Team2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_a37b63efacc3c2c0dbaef26cc56c72fd8}{}\label{classInterface_a37b63efacc3c2c0dbaef26cc56c72fd8}
+
+
+Método responsável por enviar uma nova informação de debug por V\+S\+S-\/\+Sample\+Strategys ou V\+S\+S-\/\+Joysticks (Time Azul) 
+
+Esse método deve ser chamado em um loop infinito controlado. O envio tratado aqui é bloqueante Chamando esse método, o Global\+\_\+\+Debug passado por ponteiro na construção do socket automaticamente é atualizado \index{Interface@{Interface}!send\+State@{send\+State}}
+\index{send\+State@{send\+State}!Interface@{Interface}}
+\subsubsection[{\texorpdfstring{send\+State()}{sendState()}}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+::send\+State (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classInterface_a9de875408d6ec60ef952d167ab244819}{}\label{classInterface_a9de875408d6ec60ef952d167ab244819}
+
+
+Método respontável por enviar um novo estado pelo V\+S\+S-\/\+Vision e V\+S\+S-\/\+Simulator. 
+
+Esse método deve ser chamado em um loop infinito controlado. O envio tratado aqui é não bloqueante Chamando esse método, o Global\+\_\+\+State passado por ponteiro na construção do socket automaticamente é atualizado 
+
+A documentação para esta classe foi gerada a partir dos seguintes arquivos\+:\begin{DoxyCompactItemize}
+\item 
+/home/johnathan/\+Repositories/\+S\+I\+R\+Lab/\+Projects/\+V\+S\+S-\/\+Viewer/src/\+V\+S\+S-\/\+Interface/interface.\+h\item 
+/home/johnathan/\+Repositories/\+S\+I\+R\+Lab/\+Projects/\+V\+S\+S-\/\+Viewer/src/\+V\+S\+S-\/\+Interface/interface.\+cpp\end{DoxyCompactItemize}

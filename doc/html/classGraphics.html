@@ -1,0 +1,686 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>VSS-Viewer: Referência da Classe Graphics</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">VSS-Viewer
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;Principal</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Arquivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Lista&#160;de&#160;Componentes</span></a></li>
+      <li><a href="classes.html"><span>Índice&#160;dos&#160;Componentes</span></a></li>
+      <li><a href="inherits.html"><span>Hierarquia&#160;de&#160;Classes</span></a></li>
+      <li><a href="functions.html"><span>Componentes&#160;Membros</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Métodos Públicos</a> &#124;
+<a href="#pub-static-methods">Métodos Públicos Estáticos</a> &#124;
+<a href="#pro-attribs">Atributos Protegidos</a> &#124;
+<a href="classGraphics-members.html">Lista de todos os Membros</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência da Classe Graphics</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Essa classe é responsável por desenhar o mundo 3D e receber os estados do VSS-Simulator e VSS-Vision.  
+ <a href="classGraphics.html#details">Mais...</a></p>
+
+<p><code>#include &lt;<a class="el" href="graphics_8h_source.html">graphics.h</a>&gt;</code></p>
+<div class="dynheader">
+Diagrama de colaboração para Graphics:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGraphics__coll__graph.png" border="0" usemap="#Graphics_coll__map" alt="Collaboration graph"/></div>
+<map name="Graphics_coll__map" id="Graphics_coll__map">
+<area shape="rect" id="node2" href="classvss__debug_1_1Global__Debug.html" title="vss_debug::Global_Debug" alt="" coords="5,89,180,115"/>
+<area shape="rect" id="node5" href="classInterface.html" title="Essa classe define as interfaces utilizadas em todos os projetos do VSS&#45;SDK, em outras palavras..." alt="" coords="241,187,315,213"/>
+<area shape="rect" id="node4" href="classvss__state_1_1Global__State.html" title="vss_state::Global_State" alt="" coords="381,89,543,115"/>
+<area shape="rect" id="node6" href="classvss__command_1_1Global__Commands.html" title="vss_command::Global\l_Commands" alt="" coords="205,81,357,123"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legenda</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Métodos Públicos</h2></td></tr>
+<tr class="memitem:af2e8fe67fd31ec263c843a6e28b29d3c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#af2e8fe67fd31ec263c843a6e28b29d3c">Graphics</a> ()</td></tr>
+<tr class="memdesc:af2e8fe67fd31ec263c843a6e28b29d3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construtor DEFAULT.  <a href="#af2e8fe67fd31ec263c843a6e28b29d3c">Mais...</a><br /></td></tr>
+<tr class="separator:af2e8fe67fd31ec263c843a6e28b29d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1cd9918be0133bb6cf59de07ee211f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#aa1cd9918be0133bb6cf59de07ee211f8">init</a> (int <a class="el" href="classGraphics.html#a1b1e8eba7ed4e60d78d785e70765fef6">argc</a>, char **<a class="el" href="classGraphics.html#aca7bf0128e62af000265c0e66ed5e7e1">argv</a>, bool <a class="el" href="classGraphics.html#a16b588a2b580e104d18c347f8318e3bd">debug</a>, string <a class="el" href="classGraphics.html#acb397e43edd9c7d6de193bbb9ff55b94">camera</a>, string <a class="el" href="classGraphics.html#ad5daf3bff501ac78b1507a8df1534423">ip</a>)</td></tr>
+<tr class="memdesc:aa1cd9918be0133bb6cf59de07ee211f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por inicializar o software.  <a href="#aa1cd9918be0133bb6cf59de07ee211f8">Mais...</a><br /></td></tr>
+<tr class="separator:aa1cd9918be0133bb6cf59de07ee211f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c2dc0d8c33e87def636d4edce50f4a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a5c2dc0d8c33e87def636d4edce50f4a5">draw_thread</a> ()</td></tr>
+<tr class="memdesc:a5c2dc0d8c33e87def636d4edce50f4a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por carregar a thread de desenho.  <a href="#a5c2dc0d8c33e87def636d4edce50f4a5">Mais...</a><br /></td></tr>
+<tr class="separator:a5c2dc0d8c33e87def636d4edce50f4a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6429fd2fc5fa7a3c5a56b9987e13afdb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a6429fd2fc5fa7a3c5a56b9987e13afdb">state_thread</a> ()</td></tr>
+<tr class="memdesc:a6429fd2fc5fa7a3c5a56b9987e13afdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo responsável por carregar a thread de recebimento de estados do VSS-Vision e VSS-Simulator.  <a href="#a6429fd2fc5fa7a3c5a56b9987e13afdb">Mais...</a><br /></td></tr>
+<tr class="separator:a6429fd2fc5fa7a3c5a56b9987e13afdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5bddf0e5aecdf97e779efa677b2179b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#af5bddf0e5aecdf97e779efa677b2179b">debug_thread_team1</a> ()</td></tr>
+<tr class="memdesc:af5bddf0e5aecdf97e779efa677b2179b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por carregar a thread de recebimento de informações de debug do time1.  <a href="#af5bddf0e5aecdf97e779efa677b2179b">Mais...</a><br /></td></tr>
+<tr class="separator:af5bddf0e5aecdf97e779efa677b2179b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee35712f5483009df689c313df804f52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#aee35712f5483009df689c313df804f52">debug_thread_team2</a> ()</td></tr>
+<tr class="memdesc:aee35712f5483009df689c313df804f52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por carregar a thread de recebimento de informações de debug do time2.  <a href="#aee35712f5483009df689c313df804f52">Mais...</a><br /></td></tr>
+<tr class="separator:aee35712f5483009df689c313df804f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Métodos Públicos Estáticos</h2></td></tr>
+<tr class="memitem:ab65394158d2a2fa6a613fcb074ac808e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#ab65394158d2a2fa6a613fcb074ac808e">drawWorld</a> ()</td></tr>
+<tr class="memdesc:ab65394158d2a2fa6a613fcb074ac808e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por desenhar o ambiente 3D.  <a href="#ab65394158d2a2fa6a613fcb074ac808e">Mais...</a><br /></td></tr>
+<tr class="separator:ab65394158d2a2fa6a613fcb074ac808e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3549ba0484b18d43c6602fb0b57a29a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3549ba0484b18d43c6602fb0b57a29a6"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a3549ba0484b18d43c6602fb0b57a29a6">initLight</a> ()</td></tr>
+<tr class="memdesc:a3549ba0484b18d43c6602fb0b57a29a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por definir a luz ambiente, difusa, especular e a posição. <br /></td></tr>
+<tr class="separator:a3549ba0484b18d43c6602fb0b57a29a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2795786eef8c99a7232a195992a9c82"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#aa2795786eef8c99a7232a195992a9c82">timerHandler</a> (int v)</td></tr>
+<tr class="memdesc:aa2795786eef8c99a7232a195992a9c82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método (Callback) responsável por redesenhar o mundo 3D mantendo ao menos 30 Fps.  <a href="#aa2795786eef8c99a7232a195992a9c82">Mais...</a><br /></td></tr>
+<tr class="separator:aa2795786eef8c99a7232a195992a9c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78ef6a0b1f6c142c9d650ffddfbaa2ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78ef6a0b1f6c142c9d650ffddfbaa2ed"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a78ef6a0b1f6c142c9d650ffddfbaa2ed">changeWindowSize</a> (GLsizei w, GLsizei h)</td></tr>
+<tr class="memdesc:a78ef6a0b1f6c142c9d650ffddfbaa2ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método (Callback) responsável por atualizar as váriaveis de controle se o usuário mudar o tamanho da janela. <br /></td></tr>
+<tr class="separator:a78ef6a0b1f6c142c9d650ffddfbaa2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3134b5ca29b658f4ac5cc12fa4b4705"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab3134b5ca29b658f4ac5cc12fa4b4705"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#ab3134b5ca29b658f4ac5cc12fa4b4705">material</a> (int color=BLACK)</td></tr>
+<tr class="memdesc:ab3134b5ca29b658f4ac5cc12fa4b4705"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável for definir a cor 3D do material: ORANGE, BLUE, YELLOW, RED, GREEN, PURPLE, PINK, BROWN, WHITE, GRAY, BLACK, BLACK2, BLACK3. <br /></td></tr>
+<tr class="separator:ab3134b5ca29b658f4ac5cc12fa4b4705"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fccb7730e87ee29133bc0fa6171059e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a7fccb7730e87ee29133bc0fa6171059e">material</a> (<a class="el" href="structcommon_1_1Pixel.html">Pixel</a>)</td></tr>
+<tr class="memdesc:a7fccb7730e87ee29133bc0fa6171059e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por definir a cor 3D do material, recebendo um valor RGB.  <a href="#a7fccb7730e87ee29133bc0fa6171059e">Mais...</a><br /></td></tr>
+<tr class="separator:a7fccb7730e87ee29133bc0fa6171059e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5d975a404218d57cd494b8897d7b046"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#ab5d975a404218d57cd494b8897d7b046">material3f</a> (int color=BLACK)</td></tr>
+<tr class="memdesc:ab5d975a404218d57cd494b8897d7b046"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por definir a cor 2D do material: ORANGE, BLUE, YELLOW, RED, GREEN, PURPLE, PINK, BROWN, WHITE, GRAY, BLACK, BLACK2, BLACK3.  <a href="#ab5d975a404218d57cd494b8897d7b046">Mais...</a><br /></td></tr>
+<tr class="separator:ab5d975a404218d57cd494b8897d7b046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23d042e2b5a049bb2369d9a1f6794e2d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23d042e2b5a049bb2369d9a1f6794e2d"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a23d042e2b5a049bb2369d9a1f6794e2d">material3f</a> (<a class="el" href="structcommon_1_1Pixel.html">Pixel</a>)</td></tr>
+<tr class="memdesc:a23d042e2b5a049bb2369d9a1f6794e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por definir a cor 2D do material, recebendo um valor RGB. <br /></td></tr>
+<tr class="separator:a23d042e2b5a049bb2369d9a1f6794e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc5dbcd8d8d999d48dbdf241fde77603"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc5dbcd8d8d999d48dbdf241fde77603"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#adc5dbcd8d8d999d48dbdf241fde77603">drawField</a> ()</td></tr>
+<tr class="memdesc:adc5dbcd8d8d999d48dbdf241fde77603"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por desenhar o campo: chão e paredes. <br /></td></tr>
+<tr class="separator:adc5dbcd8d8d999d48dbdf241fde77603"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea303675636309a511de1b2158cb1105"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#aea303675636309a511de1b2158cb1105">drawRobot</a> (int)</td></tr>
+<tr class="memdesc:aea303675636309a511de1b2158cb1105"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável desenhar um robô: corpo e rodas.  <a href="#aea303675636309a511de1b2158cb1105">Mais...</a><br /></td></tr>
+<tr class="separator:aea303675636309a511de1b2158cb1105"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cb884049d4318fd4f0ee57f293d5281"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a9cb884049d4318fd4f0ee57f293d5281">drawDebugFinalRobot</a> (int)</td></tr>
+<tr class="memdesc:a9cb884049d4318fd4f0ee57f293d5281"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por desenhar a pose final de um robô  <a href="#a9cb884049d4318fd4f0ee57f293d5281">Mais...</a><br /></td></tr>
+<tr class="separator:a9cb884049d4318fd4f0ee57f293d5281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9109b4c601fa113e416842d1fb98cc33"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a9109b4c601fa113e416842d1fb98cc33">drawDebugStepRobot</a> (int)</td></tr>
+<tr class="memdesc:a9109b4c601fa113e416842d1fb98cc33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por desenhar o vetor de movimento de um robô  <a href="#a9109b4c601fa113e416842d1fb98cc33">Mais...</a><br /></td></tr>
+<tr class="separator:a9109b4c601fa113e416842d1fb98cc33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19c836249f27f13ae686f33819699047"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a19c836249f27f13ae686f33819699047">drawDebugPath</a> (int)</td></tr>
+<tr class="memdesc:a19c836249f27f13ae686f33819699047"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por desennhar um caminho de um robô  <a href="#a19c836249f27f13ae686f33819699047">Mais...</a><br /></td></tr>
+<tr class="separator:a19c836249f27f13ae686f33819699047"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e0114e205ef00c6284ed40f14cea84a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e0114e205ef00c6284ed40f14cea84a"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a8e0114e205ef00c6284ed40f14cea84a">drawBall</a> ()</td></tr>
+<tr class="memdesc:a8e0114e205ef00c6284ed40f14cea84a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por desenhar a bola. <br /></td></tr>
+<tr class="separator:a8e0114e205ef00c6284ed40f14cea84a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a099efcc1425c088c977a405c5065fcd3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a099efcc1425c088c977a405c5065fcd3">drawDebugFutureBall</a> ()</td></tr>
+<tr class="memdesc:a099efcc1425c088c977a405c5065fcd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método responsável por desenhar a bola no futuro.  <a href="#a099efcc1425c088c977a405c5065fcd3">Mais...</a><br /></td></tr>
+<tr class="separator:a099efcc1425c088c977a405c5065fcd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Atributos Protegidos</h2></td></tr>
+<tr class="memitem:a1b1e8eba7ed4e60d78d785e70765fef6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1b1e8eba7ed4e60d78d785e70765fef6"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a1b1e8eba7ed4e60d78d785e70765fef6">argc</a></td></tr>
+<tr class="memdesc:a1b1e8eba7ed4e60d78d785e70765fef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parâmetro utilizado pela Glut. <br /></td></tr>
+<tr class="separator:a1b1e8eba7ed4e60d78d785e70765fef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7bf0128e62af000265c0e66ed5e7e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca7bf0128e62af000265c0e66ed5e7e1"></a>
+char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#aca7bf0128e62af000265c0e66ed5e7e1">argv</a></td></tr>
+<tr class="memdesc:aca7bf0128e62af000265c0e66ed5e7e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parâmetro utilizado pela Glut. <br /></td></tr>
+<tr class="separator:aca7bf0128e62af000265c0e66ed5e7e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16b588a2b580e104d18c347f8318e3bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16b588a2b580e104d18c347f8318e3bd"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a16b588a2b580e104d18c347f8318e3bd">debug</a></td></tr>
+<tr class="memdesc:a16b588a2b580e104d18c347f8318e3bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define se debug está ligado ou não. <br /></td></tr>
+<tr class="separator:a16b588a2b580e104d18c347f8318e3bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb397e43edd9c7d6de193bbb9ff55b94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb397e43edd9c7d6de193bbb9ff55b94"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#acb397e43edd9c7d6de193bbb9ff55b94">camera</a></td></tr>
+<tr class="memdesc:acb397e43edd9c7d6de193bbb9ff55b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Câmera utilizada: TV ou TOPO. <br /></td></tr>
+<tr class="separator:acb397e43edd9c7d6de193bbb9ff55b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5daf3bff501ac78b1507a8df1534423"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5daf3bff501ac78b1507a8df1534423"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#ad5daf3bff501ac78b1507a8df1534423">ip</a></td></tr>
+<tr class="memdesc:ad5daf3bff501ac78b1507a8df1534423"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ip do PC que esteja rodando o VSS-Vision ou VSS-Simulator. Por DEFAULT é localhost ou 127.0.0.1. <br /></td></tr>
+<tr class="separator:ad5daf3bff501ac78b1507a8df1534423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b0018455ff1e2ab3d43d1446cfdfe4d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b0018455ff1e2ab3d43d1446cfdfe4d"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a5b0018455ff1e2ab3d43d1446cfdfe4d">width</a></td></tr>
+<tr class="memdesc:a5b0018455ff1e2ab3d43d1446cfdfe4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Largura da janela de desenho. <br /></td></tr>
+<tr class="separator:a5b0018455ff1e2ab3d43d1446cfdfe4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47cbc0011a0a10476fec75d62d7e0fcf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47cbc0011a0a10476fec75d62d7e0fcf"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a47cbc0011a0a10476fec75d62d7e0fcf">height</a></td></tr>
+<tr class="memdesc:a47cbc0011a0a10476fec75d62d7e0fcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Altura da janela de desenho. <br /></td></tr>
+<tr class="separator:a47cbc0011a0a10476fec75d62d7e0fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8094b0bd8b0962735f5fdebb7b70f53"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8094b0bd8b0962735f5fdebb7b70f53"></a>
+thread *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#ac8094b0bd8b0962735f5fdebb7b70f53">thread_draw</a></td></tr>
+<tr class="memdesc:ac8094b0bd8b0962735f5fdebb7b70f53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread responsável para desenhar o ambiente. <br /></td></tr>
+<tr class="separator:ac8094b0bd8b0962735f5fdebb7b70f53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a202be3ede52a05610cdd075e018e69ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a202be3ede52a05610cdd075e018e69ae"></a>
+thread *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a202be3ede52a05610cdd075e018e69ae">thread_state</a></td></tr>
+<tr class="memdesc:a202be3ede52a05610cdd075e018e69ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread responsável por receber os estados do VSS-Vision e VSS-Simulator. <br /></td></tr>
+<tr class="separator:a202be3ede52a05610cdd075e018e69ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a291d3fb993aaf96ffe574ce850ef147f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a291d3fb993aaf96ffe574ce850ef147f"></a>
+thread *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a291d3fb993aaf96ffe574ce850ef147f">thread_debug_team1</a></td></tr>
+<tr class="memdesc:a291d3fb993aaf96ffe574ce850ef147f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread responsável por receber os pacotes de debug do time amarelo. <br /></td></tr>
+<tr class="separator:a291d3fb993aaf96ffe574ce850ef147f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5011e9e4e9a8eddbf1d1a75156c8f7e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5011e9e4e9a8eddbf1d1a75156c8f7e"></a>
+thread *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#af5011e9e4e9a8eddbf1d1a75156c8f7e">thread_debug_team2</a></td></tr>
+<tr class="memdesc:af5011e9e4e9a8eddbf1d1a75156c8f7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread responsável por receber os pacotes de debug do time azul. <br /></td></tr>
+<tr class="separator:af5011e9e4e9a8eddbf1d1a75156c8f7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c5730bb3f5bda9d0727ab14fa3af068"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c5730bb3f5bda9d0727ab14fa3af068"></a>
+<a class="el" href="classInterface.html">Interface</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a3c5730bb3f5bda9d0727ab14fa3af068">interface_state</a></td></tr>
+<tr class="memdesc:a3c5730bb3f5bda9d0727ab14fa3af068"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classInterface.html" title="Essa classe define as interfaces utilizadas em todos os projetos do VSS-SDK, em outras palavras...">Interface</a> de comunicação responsável por receber estados do VSS-Vision e VSS-Simulator. <br /></td></tr>
+<tr class="separator:a3c5730bb3f5bda9d0727ab14fa3af068"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6580b42a3da603d5fc8a40939d518b34"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6580b42a3da603d5fc8a40939d518b34"></a>
+<a class="el" href="classInterface.html">Interface</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a6580b42a3da603d5fc8a40939d518b34">interface_debug_team1</a></td></tr>
+<tr class="memdesc:a6580b42a3da603d5fc8a40939d518b34"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classInterface.html" title="Essa classe define as interfaces utilizadas em todos os projetos do VSS-SDK, em outras palavras...">Interface</a> de comunicação responsável por receber os pacotes de debug do time amarelo. <br /></td></tr>
+<tr class="separator:a6580b42a3da603d5fc8a40939d518b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39fd7caa133ce1ad55c527b72812e338"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39fd7caa133ce1ad55c527b72812e338"></a>
+<a class="el" href="classInterface.html">Interface</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a39fd7caa133ce1ad55c527b72812e338">interface_debug_team2</a></td></tr>
+<tr class="memdesc:a39fd7caa133ce1ad55c527b72812e338"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classInterface.html" title="Essa classe define as interfaces utilizadas em todos os projetos do VSS-SDK, em outras palavras...">Interface</a> de comunicação responsável por receber os pacotes de debug do time azul. <br /></td></tr>
+<tr class="separator:a39fd7caa133ce1ad55c527b72812e338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a319be43d30ac19e414dbc1c3fdb336dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a319be43d30ac19e414dbc1c3fdb336dc"></a>
+<a class="el" href="classvss__state_1_1Global__State.html">vss_state::Global_State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a319be43d30ac19e414dbc1c3fdb336dc">global_state</a></td></tr>
+<tr class="memdesc:a319be43d30ac19e414dbc1c3fdb336dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pacote que carrega os estados do VSS-Vision e VSS-Simulator. <br /></td></tr>
+<tr class="separator:a319be43d30ac19e414dbc1c3fdb336dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc864f47fef1f3d4af3f7ee5099d20da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc864f47fef1f3d4af3f7ee5099d20da"></a>
+<a class="el" href="classvss__debug_1_1Global__Debug.html">vss_debug::Global_Debug</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#adc864f47fef1f3d4af3f7ee5099d20da">global_debug_team1</a></td></tr>
+<tr class="memdesc:adc864f47fef1f3d4af3f7ee5099d20da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pacote que carrega as informações de debug do time amarelo. <br /></td></tr>
+<tr class="separator:adc864f47fef1f3d4af3f7ee5099d20da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8844312f48a5062d0b86d5eb16aecd6e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8844312f48a5062d0b86d5eb16aecd6e"></a>
+<a class="el" href="classvss__debug_1_1Global__Debug.html">vss_debug::Global_Debug</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphics.html#a8844312f48a5062d0b86d5eb16aecd6e">global_debug_team2</a></td></tr>
+<tr class="memdesc:a8844312f48a5062d0b86d5eb16aecd6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pacote que carrega as informações de debug do time azul. <br /></td></tr>
+<tr class="separator:a8844312f48a5062d0b86d5eb16aecd6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição Detalhada</h2>
+<div class="textblock"><p>Essa classe é responsável por desenhar o mundo 3D e receber os estados do VSS-Simulator e VSS-Vision. </p>
+</div><h2 class="groupheader">Construtores &amp; Destrutores</h2>
+<a class="anchor" id="af2e8fe67fd31ec263c843a6e28b29d3c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Graphics::Graphics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construtor DEFAULT. </p>
+<p>Inicializa o vector de robôs com valores default. O software tem o conceito de times </p>
+<p>Inicializa o time 1</p>
+<p>Inicializa o time 2 </p>
+
+</div>
+</div>
+<h2 class="groupheader">Métodos</h2>
+<a class="anchor" id="af5bddf0e5aecdf97e779efa677b2179b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graphics::debug_thread_team1 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Método responsável por carregar a thread de recebimento de informações de debug do time1. </p>
+<p>Inicializa o recebimento de debug do time amarelo</p>
+<p>Recebe um pacote novo</p>
+<p>Recebe os vetores de movimento</p>
+<p>Recebe as poses finais</p>
+<p>Recebe os caminhos </p>
+
+</div>
+</div>
+<a class="anchor" id="aee35712f5483009df689c313df804f52"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graphics::debug_thread_team2 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Método responsável por carregar a thread de recebimento de informações de debug do time2. </p>
+<p>Inicializa o recebimento de debug do time azul</p>
+<p>Recebe um pacote novo</p>
+<p>Recebe os vetores de movimento</p>
+<p>Recebe as poses finais</p>
+<p>Recebe os caminhos </p>
+
+</div>
+</div>
+<a class="anchor" id="a5c2dc0d8c33e87def636d4edce50f4a5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graphics::draw_thread </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Método responsável por carregar a thread de desenho. </p>
+<p>Define todas as callbacks e variáveis de controle. </p>
+<p>qobj é utilizado para desenhar as rodas </p>
+
+</div>
+</div>
+<a class="anchor" id="a9cb884049d4318fd4f0ee57f293d5281"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graphics::drawDebugFinalRobot </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Método responsável por desenhar a pose final de um robô </p>
+<p>Desenha a pose final de um robô </p>
+<p>Desenha o corpo do robô transladado</p>
+<p>Desenha a etiqueta do time</p>
+<p>Desenha a etiqueta secundária do robô</p>
+<p>Utiliza cores pré-definidas. Utilizado se obtém dados do VSS-Simulator</p>
+<p>Utiliza cores RGB. Utilizado se obtém os dados do VSS-Vision </p>
+
+</div>
+</div>
+<a class="anchor" id="a099efcc1425c088c977a405c5065fcd3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graphics::drawDebugFutureBall </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Método responsável por desenhar a bola no futuro. </p>
+<p>Desenha a bola em uma origem </p>
+
+</div>
+</div>
+<a class="anchor" id="a19c836249f27f13ae686f33819699047"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graphics::drawDebugPath </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Método responsável por desennhar um caminho de um robô </p>
+<p>Desenha um caminho. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9109b4c601fa113e416842d1fb98cc33"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graphics::drawDebugStepRobot </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Método responsável por desenhar o vetor de movimento de um robô </p>
+<p>Desenha um vetor de movimento. </p>
+
+</div>
+</div>
+<a class="anchor" id="aea303675636309a511de1b2158cb1105"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graphics::drawRobot </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Método responsável desenhar um robô: corpo e rodas. </p>
+<p>Desenha o robô i. </p>
+<p>Desenha o corpo do robô</p>
+<p>Desenha a etiqueta do time. Azul ou Amarelo</p>
+<p>Desenha a segunda etiqueta do robô</p>
+<p>Utiliza cores pré-definidas. Utilizado se obtém dados do VSS-Simulator</p>
+<p>Utiliza cores RGB. Utilizado se obtém os dados do VSS-Vision</p>
+<p>Desenha as rodas de um robô </p>
+
+</div>
+</div>
+<a class="anchor" id="ab65394158d2a2fa6a613fcb074ac808e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graphics::drawWorld </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Método responsável por desenhar o ambiente 3D. </p>
+<p>Define a posição da camera como TV</p>
+<p>Define a posição da camera como TOPO</p>
+<p>Desenha campo</p>
+<p>Desenha a bola</p>
+<p>Desenha as informações de debug</p>
+<p>Desenha a posição futura da bola </p>
+
+</div>
+</div>
+<a class="anchor" id="aa1cd9918be0133bb6cf59de07ee211f8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graphics::init </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>debug</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>camera</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>ip</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Método responsável por inicializar o software. </p>
+<p>Inicializa as variaveis de controle, a thread de desenho e as threads de recebimento de informações. </p>
+<p>argc e argv da função main devido a glutInit. Veja: <a href="http://freeglut.sourceforge.net/">freeglut</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7fccb7730e87ee29133bc0fa6171059e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graphics::material </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcommon_1_1Pixel.html">Pixel</a>&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Método responsável por definir a cor 3D do material, recebendo um valor RGB. </p>
+<p>Converte RGB (0-255) para RGB (0-1) </p>
+
+</div>
+</div>
+<a class="anchor" id="ab5d975a404218d57cd494b8897d7b046"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graphics::material3f </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>color</em> = <code>BLACK</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Método responsável por definir a cor 2D do material: ORANGE, BLUE, YELLOW, RED, GREEN, PURPLE, PINK, BROWN, WHITE, GRAY, BLACK, BLACK2, BLACK3. </p>
+<blockquote class="doxtable">
+<p>There are more than one BLACK to differentiate: robot, wall and floor </p>
+</blockquote>
+
+</div>
+</div>
+<a class="anchor" id="a6429fd2fc5fa7a3c5a56b9987e13afdb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graphics::state_thread </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Metodo responsável por carregar a thread de recebimento de estados do VSS-Vision e VSS-Simulator. </p>
+<p>Inicializa o recebimento de estados do VSS-Vision e VSS-Simulator</p>
+<p>Recebe um novo pacote</p>
+<p>Atualiza a posição da bola</p>
+<p>Atualiza as posições dos robôs </p>
+
+</div>
+</div>
+<a class="anchor" id="aa2795786eef8c99a7232a195992a9c82"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graphics::timerHandler </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Método (Callback) responsável por redesenhar o mundo 3D mantendo ao menos 30 Fps. </p>
+<p>Define a frequência de atualização </p>
+
+</div>
+</div>
+<hr/>A documentação para esta classe foi gerada a partir dos seguintes arquivos:<ul>
+<li>/home/johnathan/Repositories/SIRLab/Projects/VSS-Viewer/src/<a class="el" href="graphics_8h_source.html">graphics.h</a></li>
+<li>/home/johnathan/Repositories/SIRLab/Projects/VSS-Viewer/src/graphics.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

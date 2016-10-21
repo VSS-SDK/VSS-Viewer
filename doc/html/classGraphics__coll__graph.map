@@ -1,0 +1,6 @@
+<map id="Graphics" name="Graphics">
+<area shape="rect" id="node2" href="$classvss__debug_1_1Global__Debug.html" title="vss_debug::Global_Debug" alt="" coords="5,89,180,115"/>
+<area shape="rect" id="node5" href="$classInterface.html" title="Essa classe define as interfaces utilizadas em todos os projetos do VSS&#45;SDK, em outras palavras..." alt="" coords="241,187,315,213"/>
+<area shape="rect" id="node4" href="$classvss__state_1_1Global__State.html" title="vss_state::Global_State" alt="" coords="381,89,543,115"/>
+<area shape="rect" id="node6" href="$classvss__command_1_1Global__Commands.html" title="vss_command::Global\l_Commands" alt="" coords="205,81,357,123"/>
+</map>

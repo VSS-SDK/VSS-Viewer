@@ -1,0 +1,5 @@
+<map id="common::Robot" name="common::Robot">
+<area shape="rect" id="node2" href="$structcommon_1_1Pixel.html" title="Essa struct é responsável por representar uma cor em RGB. " alt="" coords="5,5,115,32"/>
+<area shape="rect" id="node3" href="$structcommon_1_1Path.html" title="Essa struct é responsável por representar um caminho. " alt="" coords="139,5,245,32"/>
+<area shape="rect" id="node4" href="$structcommon_1_1Pose.html" title="Essa struct é responsável por representar uma Pose, isto é, Posição e Orientação de um corpo rígido d..." alt="" coords="270,5,381,32"/>
+</map>

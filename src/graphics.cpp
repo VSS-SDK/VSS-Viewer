@@ -27,13 +27,10 @@ Pose ball, v_ball;
 bool staticDebug = false;
 GLUquadric* qobj;
 
-//! Addendum
-//! --------
-//! 
-//! > Initializes the vector of robots with default values.
-//! > The software have the concept of teams  
+//! Inicializa o vector de robôs com valores default.
+//! O software tem o conceito de times  
 Graphics::Graphics(){
-    //! > Initializes the team 1
+    //! Inicializa o time 1
     for(int i = 0 ; i < 3 ; i++){
         Robot robot;
         robot.id = i;
@@ -51,7 +48,7 @@ Graphics::Graphics(){
     }
     
 
-    //! > Initializes the team 2
+    //! Inicializa o time 2
     for(int i = 0 ; i < 3 ; i++){
         Robot robot;
         robot.id = i;
@@ -71,12 +68,9 @@ Graphics::Graphics(){
     debug = false;
 }
 
-//! Addendum
-//! --------
-//! 
-//! > Initializes control variables, the Draw thread and Interface of receiving thread.
+//! Inicializa as variaveis de controle, a thread de desenho e as threads de recebimento de informações
 void Graphics::init(int argc, char** argv, bool debug, string camera, string ip){
-    //! > Receives argc and argv of main function because of glutInit. See: [freeglut](http://freeglut.sourceforge.net/).
+    //! argc e argv da função main devido a glutInit. Veja: [freeglut](http://freeglut.sourceforge.net/).
     this->argc = argc;
     this->argv = argv;
     this->debug = debug;
@@ -107,10 +101,7 @@ void Graphics::init(int argc, char** argv, bool debug, string camera, string ip)
     }
 }
 
-//! Addendum
-//! --------
-//! 
-//! > Set all callbacks and control variables
+//! Define todas as callbacks e variáveis de controle
 void Graphics::draw_thread(){
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB | GLUT_MULTISAMPLE);
@@ -123,7 +114,7 @@ void Graphics::draw_thread(){
     
     initLight();
 
-    //! qobj it's used on the draw of wheels
+    //! qobj é utilizado para desenhar as rodas
     qobj = gluNewQuadric();
     gluQuadricNormals(qobj, GLU_SMOOTH);
 
@@ -131,11 +122,14 @@ void Graphics::draw_thread(){
 }
 
 void Graphics::debug_thread_team1(){
+    //! Inicializa o recebimento de debug do time amarelo
     interface_debug_team1.createReceiveDebugTeam1(&global_debug_team1);
 
     while(true){
+        //! Recebe um pacote novo
         interface_debug_team1.receiveDebugTeam1();
 
+        //! Recebe os vetores de movimento
         for(int i = 0 ; i < global_debug_team1.step_poses_size() ; i++){
             if(global_debug_team1.step_poses(i).y() != 0 && global_debug_team1.step_poses(i).y() != 0){
                 robots.at(i).has_step = true;
@@ -147,6 +141,7 @@ void Graphics::debug_thread_team1(){
             }
         }
 
+        //! Recebe as poses finais
         for(int i = 0 ; i < global_debug_team1.final_poses_size() ; i++){
             if(global_debug_team1.final_poses(i).y() != 0 && global_debug_team1.final_poses(i).y() != 0){
                 robots.at(i).has_final = true;
@@ -158,6 +153,7 @@ void Graphics::debug_thread_team1(){
             }
         }
 
+        //! Recebe os caminhos
         for(int i = 0 ; i < global_debug_team1.paths_size() ; i++){
             Path path;
             for(int j = 0 ; j < global_debug_team1.paths(i).poses_size() ; j++){
@@ -174,11 +170,14 @@ void Graphics::debug_thread_team1(){
 }
 
 void Graphics::debug_thread_team2(){
+    //! Inicializa o recebimento de debug do time azul
     interface_debug_team2.createReceiveDebugTeam2(&global_debug_team2);
 
     while(true){
+        //! Recebe um pacote novo
         interface_debug_team2.receiveDebugTeam2();
 
+        //! Recebe os vetores de movimento
         for(int i = 0 ; i < global_debug_team2.step_poses_size() ; i++){
             if(global_debug_team2.step_poses(i).y() != 0 && global_debug_team2.step_poses(i).y() != 0){
                 robots.at(i+3).has_step = true;
@@ -190,6 +189,7 @@ void Graphics::debug_thread_team2(){
             }
         }
 
+        //! Recebe as poses finais
         for(int i = 0 ; i < global_debug_team2.final_poses_size() ; i++){
             if(global_debug_team2.final_poses(i).y() != 0 && global_debug_team2.final_poses(i).y() != 0){
                 robots.at(i+3).has_final = true;
@@ -201,6 +201,7 @@ void Graphics::debug_thread_team2(){
             }   
         }
 
+        //! Recebe os caminhos
         for(int i = 0 ; i < global_debug_team2.paths_size() ; i++){
             Path path;
             for(int j = 0 ; j < global_debug_team2.paths(i).poses_size() ; j++){
@@ -216,27 +217,23 @@ void Graphics::debug_thread_team2(){
     }
 }
 
-//! Addendum
-//! --------
-//! 
-//! > The data vss_state::Global_State states carry all states "Poses" of robots and ball.
-//! 
-//! > It's a data of Interface that allows the communication between VSS-SampleStrategy, VSS-Vision, VSS-Simulator and VSS-Viewer.
-//! 
-//! Was created by a compilation of proto file.  See: [Protobuf](https://developers.google.com/protocol-buffers/).
 void Graphics::state_thread(){
+    //! Inicializa o recebimento de estados do VSS-Vision e VSS-Simulator
     interface_state.createSocketReceiveState(&global_state, ip);
 
     while(true){
+        //! Recebe um novo pacote
         interface_state.receiveState();
         global_state.id();
 
+        //! Atualiza a posição da bola
         ball.x = global_state.balls(0).pose().y() - (130/2.0);
         ball.y = global_state.balls(0).pose().x() - (170/2.0);
 
         v_ball.x = global_state.balls(0).v_pose().y();
         v_ball.y = global_state.balls(0).v_pose().x();
         
+        //! Atualiza as posições dos robôs
         for(int i = 0 ; i < 3 ; i++){
             robots.at(i).team = YELLOW;
             robots.at(i).pose.x = global_state.robots_yellow(i).pose().y() - (130/2.0);
@@ -257,10 +254,6 @@ void Graphics::state_thread(){
     }
 }
 
-//! Addendum
-//! --------
-//! 
-//! > Create and positioning the light 
 void Graphics::initLight(void){   
     GLfloat luzAmbiente[4] = { 0.35, 0.35, 0.35, 1.0 };
     GLfloat luzDifusa[4] = { 0.05, 0.05, 0.05, 1.0 };
@@ -289,10 +282,6 @@ void Graphics::initLight(void){
     glEnable(GL_LIGHT0);
 }
 
-//! Addendum
-//! --------
-//! 
-//! > Callback responsible for resize the window
 void Graphics::changeWindowSize(GLsizei w, GLsizei h){
     if (h == 0)
         h = 1;
@@ -309,14 +298,12 @@ void Graphics::changeWindowSize(GLsizei w, GLsizei h){
     glMatrixMode(GL_MODELVIEW);
 }
 
-//! Addendum
-//! --------
-//! 
-//! > Callback responsble for positioning the "camera" and draw the 3D World.
+
 void Graphics::drawWorld(void){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-  
+
+    //! Define a posição da camera como TV
     if(cameraStatic == "tv"){
         glTranslatef(0.0f, 0.0f, -lookAt);
         glRotatef(rotX, 1, 0, 0);
@@ -324,6 +311,7 @@ void Graphics::drawWorld(void){
         glRotatef(rotY, 0, 1, 0);
         glTranslatef(-obsX, -obsY, -obsZ);
     }else{
+    //! Define a posição da camera como TOPO
         glTranslatef(0.0f, 0.0f, 0);
         glRotatef(180.0, 1, 0, 0);
 
@@ -331,9 +319,12 @@ void Graphics::drawWorld(void){
         glTranslatef(-130.0, 0.0, - 0.0);
     }
 
+    //! Desenha campo
     drawField();
+    //! Desenha a bola
     drawBall();
 
+    //! Desenha as informações de debug
     for(unsigned int i = 0 ; i < robots.size() ; i++){
         drawRobot(i);
         if(staticDebug){
@@ -343,6 +334,7 @@ void Graphics::drawWorld(void){
         }
     }
 
+    //! Desenha a posição futura da bola
     if(staticDebug){
         drawDebugFutureBall();
     }
@@ -350,13 +342,9 @@ void Graphics::drawWorld(void){
     glutSwapBuffers();
 }
 
-//! Addendum
-//! --------
-//! 
-//! > Callback responsible for update the screen
 void Graphics::timerHandler(int v){
     glutPostRedisplay();
-    //! > Must define the frequency of update
+    //! Define a frequência de atualização
     glutTimerFunc(5, timerHandler, 0);
 }
 
@@ -379,6 +367,7 @@ void Graphics::drawDebugFutureBall(){
     glPushMatrix();
         glLineWidth(2.0f);
         material(ORANGE); 
+        //! Desenha a bola em uma origem
         for(float arco = 0 ; arco < 2*M_PI ; arco += 0.05){
             glBegin(GL_LINES);
                 glVertex3f(1, radius*cos(arco) + half_second.x, radius*sin(arco) + half_second.y);
@@ -388,20 +377,18 @@ void Graphics::drawDebugFutureBall(){
     glPopMatrix();
 }
 
-//! Addendum
-//! --------
-//! 
-//! > Draw the robot i
+
+//! Desenha o robô i
 void Graphics::drawRobot(int i){
     glPushMatrix();
-        //! > Draw the body of the robot
+        //! Desenha o corpo do robô
         glTranslatef(THICK_THINGS*1.4, robots.at(i).pose.x, robots.at(i).pose.y);
         glRotatef(-robots.at(i).pose.yaw, 1, 0, 0);
         glScalef(SIZE_ROBOT, SIZE_ROBOT, SIZE_ROBOT);
         material(BLACK3);
         glutSolidCube(1);
 
-        //! > Draw the team label "blue or yellow"
+        //! Desenha a etiqueta do time. Azul ou Amarelo
         glPushMatrix();
             glTranslatef(0.5, -0.2, -0.2);
             glScalef(0.1f, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
@@ -409,21 +396,21 @@ void Graphics::drawRobot(int i){
             glutSolidCube(1);
         glPopMatrix();
 
-        //! > Draw the second "robot" label
+        //! Desenha a segunda etiqueta do robô
         glPushMatrix();
             glTranslatef(0.5, 0.2, 0.2);
             glScalef(0.1f, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
             if(robots.at(i).rgb_color.rgb[0] == 0 && robots.at(i).rgb_color.rgb[1] == 0 && robots.at(i).rgb_color.rgb[2] == 0){
-                //! > When the VSS-Viewer run side by side with the VSS-Simulator, ins't important the label colors, so twe use default colors.
+                //! Utiliza cores pré-definidas. Utilizado se obtém dados do VSS-Simulator
                 material(robots.at(i).color);
             }else{
-                //! > When the VSS-Viewer run side by side with the VSS-Vision, it's important the labels have the same color and the real world, so we used the RGB color calibrated on VSS-Vision
+                //! Utiliza cores RGB. Utilizado se obtém os dados do VSS-Vision
                 material(robots.at(i).rgb_color);
             }
             glutSolidCube(1);
         glPopMatrix();
 
-        //! > Draw the wheels of the robot
+        //! Desenha as rodas de um robô
         glPushMatrix();
             glRotatef(90.0, 1, 0, 0);
             glTranslatef(-0.10, 0.0, -0.61);
@@ -434,14 +421,11 @@ void Graphics::drawRobot(int i){
     glPopMatrix();
 }
 
-//! Addendum
-//! --------
-//! 
-//! > Draw the debug final position
+//! Desenha a pose final de um robô
 void Graphics::drawDebugFinalRobot(int i){
     if(robots.at(i).has_final){
         glPushMatrix();
-            //! > Draw the body of the robot
+            //! Desenha o corpo do robô transladado
             glTranslatef(1.5, robots.at(i).final_pose.x, robots.at(i).final_pose.y);
             glRotatef(-robots.at(i).final_pose.yaw, 1, 0, 0);
             glScalef(0.1f, SIZE_ROBOT, SIZE_ROBOT);
@@ -449,7 +433,7 @@ void Graphics::drawDebugFinalRobot(int i){
             glLineWidth(4.0f);
             glutWireCube(1);
 
-            //! > Draw the team label "blue or yellow"
+            //! Desenha a etiqueta do time
             glPushMatrix();
                 glTranslatef(0.1, -0.2, -0.2);
                 glScalef(0.1f, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
@@ -457,15 +441,15 @@ void Graphics::drawDebugFinalRobot(int i){
                 glutSolidCube(1);
             glPopMatrix();
 
-            //! > Draw the second "robot" label
+            //! Desenha a etiqueta secundária do robô
             glPushMatrix();
                 glTranslatef(0.1, 0.2, 0.2);
                 glScalef(0.1f, SIZE_SQUARE/SIZE_ROBOT, SIZE_SQUARE/SIZE_ROBOT);
                 if(robots.at(i).rgb_color.rgb[0] == 0 && robots.at(i).rgb_color.rgb[1] == 0 && robots.at(i).rgb_color.rgb[2] == 0){
-                    //! > When the VSS-Viewer run side by side with the VSS-Simulator, ins't important the label colors, so twe use default colors.
+                    //! Utiliza cores pré-definidas. Utilizado se obtém dados do VSS-Simulator
                     material(robots.at(i).color);
                 }else{
-                    //! > When the VSS-Viewer run side by side with the VSS-Vision, it's important the labels have the same color and the real world, so we used the RGB color calibrated on VSS-Vision
+                    //! Utiliza cores RGB. Utilizado se obtém os dados do VSS-Vision
                     material(robots.at(i).rgb_color);
                 }
                 glutSolidCube(1);
@@ -475,10 +459,7 @@ void Graphics::drawDebugFinalRobot(int i){
     }
 }
 
-//! Addendum
-//! --------
-//! 
-//! > Draw the debug step position
+//! Desenha um vetor de movimento
 void Graphics::drawDebugStepRobot(int i){
     if(robots.at(i).has_step){
         glPushMatrix();
@@ -498,6 +479,7 @@ void Graphics::drawDebugStepRobot(int i){
     }
 }
 
+//! Desenha um caminho
 void Graphics::drawDebugPath(int i){
     glPushMatrix();
         if(robots.at(i).path.poses.size() >= 2){
@@ -517,20 +499,13 @@ void Graphics::drawDebugPath(int i){
     glPopMatrix();
 }
 
-//! Addendum
-//! --------
-//! 
-//! 
 void Graphics::drawField(){
-    //! > **Draw the blocks of wood**
-    //! > Draw the floor
     glPushMatrix();
         glScalef(1, FIELD_DEPTH, FIELD_WIDTH);
         material(BLACK);
         glutSolidCube(1);
     glPopMatrix();
 
-    //! > Draw the left goal
     glPushMatrix();
         glTranslatef(0, 0, -FIELD_WIDTH/1.88);
         glScalef(1, GOAL_WIDTH+2.0, GOAL_DEPTH+2.0);
@@ -538,7 +513,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    //! > Draw the left goal paint inside
     glPushMatrix();
         glTranslatef(THICK_THINGS, 0.0, (-FIELD_WIDTH/1.88)-(THICK_THINGS)*1.9);
         glScalef(WALL_HEIGHT, GOAL_WIDTH+2.0, 0.1);
@@ -560,7 +534,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    //! > Draw the right goal
     glPushMatrix();
         glTranslatef(0, 0, FIELD_WIDTH/1.88);
         glScalef(1, GOAL_WIDTH+2.0, GOAL_DEPTH+2.0);
@@ -568,7 +541,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    //! > Draw the right goal paint inside
     glPushMatrix();
         glTranslatef(THICK_THINGS, 0.0, (FIELD_WIDTH/1.88)+(THICK_THINGS)*1.9);
         glScalef(WALL_HEIGHT, GOAL_WIDTH+2.0, 0.1);
@@ -590,8 +562,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
     
-
-    //! > Draw the top wall in perspective
     glPushMatrix();
         glTranslatef(THICK_THINGS, -FIELD_DEPTH/2.0, 0);
         glScalef(WALL_HEIGHT, THICK_THINGS, FIELD_WIDTH);
@@ -599,7 +569,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
     
-    //! > Draw the white paint top wall in perspective
     glPushMatrix();
         glTranslatef(THICK_THINGS, -FIELD_DEPTH/2.0+(THICK_THINGS/2.0), 0);
         glScalef(WALL_HEIGHT, 0.1, FIELD_WIDTH-(9.0*2.0));
@@ -607,7 +576,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    //! > Draw the bottom wall in perspective
     glPushMatrix();
         glTranslatef(THICK_THINGS, FIELD_DEPTH/2.0, 0);
         glScalef(WALL_HEIGHT, THICK_THINGS, FIELD_WIDTH);
@@ -615,7 +583,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    //! > Draw the white paint bottom wall in perspective
     glPushMatrix();
         glTranslatef(THICK_THINGS, FIELD_DEPTH/2.0-(THICK_THINGS/2.0), 0);
         glScalef(WALL_HEIGHT, 0.1, FIELD_WIDTH-(9.0*2.0));
@@ -623,7 +590,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    //! > Draw the left-bottom wall in perspective
     glPushMatrix();
         glTranslatef(THICK_THINGS, 43.2, -FIELD_WIDTH/1.97);
         glScalef(WALL_HEIGHT, WALL_TOPS_B, THICK_THINGS);
@@ -631,14 +597,13 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
     
-    //! > Draw the left-top wall in perspective
     glPushMatrix();
         glTranslatef(THICK_THINGS, -43.2, -FIELD_WIDTH/1.97);
         glScalef(WALL_HEIGHT, WALL_TOPS_B, THICK_THINGS);
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
-    //! > Draw the wall of left goal
+
     glPushMatrix();
         glTranslatef(THICK_THINGS, 0, (-FIELD_WIDTH/1.98) - GOAL_DEPTH );
         glScalef(WALL_HEIGHT, GOAL_WIDTH+1.25, THICK_THINGS);
@@ -646,7 +611,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    // WALL GOAL TOP
     glPushMatrix();
         glTranslatef(THICK_THINGS, -22, -FIELD_WIDTH/1.85);
         glScalef(WALL_HEIGHT, THICK_THINGS, GOAL_DEPTH+1.35);
@@ -654,7 +618,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    // WALL GOAL TOP WHITE
     glPushMatrix();
         glTranslatef(THICK_THINGS, -20.6, -FIELD_WIDTH/1.85);
         glScalef(WALL_HEIGHT, 0.1, GOAL_DEPTH+1.35);
@@ -662,7 +625,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    // WALL GOAL BOTTOM
     glPushMatrix();
         glTranslatef(THICK_THINGS, 22, -FIELD_WIDTH/1.85);
         glScalef(WALL_HEIGHT, THICK_THINGS, GOAL_DEPTH+1.35);
@@ -670,7 +632,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    // WALL GOAL BOTTOM WHITE
     glPushMatrix();
         glTranslatef(THICK_THINGS, 20.6, -FIELD_WIDTH/1.875);
         glScalef(WALL_HEIGHT, 0.1, GOAL_DEPTH+0.5);
@@ -678,8 +639,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-
-    // WALL GOAL BOTTOM WHITE
     glPushMatrix();
         glTranslatef(THICK_THINGS, 20.6, FIELD_WIDTH/1.875);
         glScalef(WALL_HEIGHT, 0.1, GOAL_DEPTH+0.5);
@@ -694,7 +653,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    // WALL LEFT/BOTTOM
     glPushMatrix();
         glTranslatef(THICK_THINGS, 44.0, FIELD_WIDTH/1.97);
         glScalef(WALL_HEIGHT, WALL_TOPS_B, THICK_THINGS);
@@ -702,7 +660,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
     
-    // WALL LEFT/TOP
     glPushMatrix();
         glTranslatef(THICK_THINGS, -44.0, FIELD_WIDTH/1.97);
         glScalef(WALL_HEIGHT, WALL_TOPS_B, THICK_THINGS);
@@ -710,7 +667,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    // WALL GOAL RIGHT
     glPushMatrix();
         glTranslatef(THICK_THINGS, 0, FIELD_WIDTH/1.98 + GOAL_DEPTH );
         glScalef(WALL_HEIGHT, GOAL_WIDTH+1.25, THICK_THINGS);
@@ -718,7 +674,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
     
-    // WALL GOAL TOP
     glPushMatrix();
         glTranslatef(THICK_THINGS, -22, FIELD_WIDTH/1.85);
         glScalef(WALL_HEIGHT, THICK_THINGS, GOAL_DEPTH+1.35);
@@ -726,7 +681,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    // WALL GOAL BOTTOM
     glPushMatrix();
         glTranslatef(THICK_THINGS, 22, FIELD_WIDTH/1.85);
         glScalef(WALL_HEIGHT, THICK_THINGS, GOAL_DEPTH+1.35);
@@ -734,7 +688,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    // TRIANGLE RIGHT BOTTOM
     glPushMatrix();
         glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-4.5, (FIELD_WIDTH/2.0)-4.5);
         glRotatef(45.0, 1, 0, 0);
@@ -742,6 +695,7 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+
     glPushMatrix();
         glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-5.5, (FIELD_WIDTH/2.0)-5.5);
         glRotatef(45.0, 1, 0, 0);
@@ -749,6 +703,7 @@ void Graphics::drawField(){
         material(WHITE);
         glutSolidCube(1);
     glPopMatrix();
+
     glPushMatrix();
         glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-3.0, (FIELD_WIDTH/2.0)-3.0);
         glRotatef(45.0, 1, 0, 0);
@@ -756,6 +711,7 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+
     glPushMatrix();
         glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-1.5, (FIELD_WIDTH/2.0)-1.5);
         glRotatef(45.0, 1, 0, 0);
@@ -764,7 +720,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    // TRIANGLE LEFT TOP
     glPushMatrix();
         glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+5.5, -(FIELD_WIDTH/2.0)+5.5);
         glRotatef(45.0, 1, 0, 0);
@@ -772,6 +727,7 @@ void Graphics::drawField(){
         material(WHITE);
         glutSolidCube(1);
     glPopMatrix();
+
     glPushMatrix();
         glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+4.5, -(FIELD_WIDTH/2.0)+4.5);
         glRotatef(45.0, 1, 0, 0);
@@ -779,6 +735,7 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+
     glPushMatrix();
         glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+3.0, -(FIELD_WIDTH/2.0)+3.0);
         glRotatef(45.0, 1, 0, 0);
@@ -786,6 +743,7 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+
     glPushMatrix();
         glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+1.5, -(FIELD_WIDTH/2.0)+1.5);
         glRotatef(45.0, 1, 0, 0);
@@ -794,8 +752,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-
-    // TRIANGLE RIGHT BOTTOM
     glPushMatrix();
         glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+5.5, (FIELD_WIDTH/2.0)-5.5);
         glRotatef(-45.0, 1, 0, 0);
@@ -803,6 +759,7 @@ void Graphics::drawField(){
         material(WHITE);
         glutSolidCube(1);
     glPopMatrix();
+
     glPushMatrix();
         glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+4.5, (FIELD_WIDTH/2.0)-4.5);
         glRotatef(-45.0, 1, 0, 0);
@@ -810,6 +767,7 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+
     glPushMatrix();
         glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+3.0, (FIELD_WIDTH/2.0)-3.0);
         glRotatef(-45.0, 1, 0, 0);
@@ -817,6 +775,7 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+
     glPushMatrix();
         glTranslatef(THICK_THINGS, -(FIELD_DEPTH/2.0)+1.5, (FIELD_WIDTH/2.0)-1.5);
         glRotatef(-45.0, 1, 0, 0);
@@ -825,8 +784,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-
-    // TRIANGLE LEFT TOP
     glPushMatrix();
         glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-5.5, -(FIELD_WIDTH/2.0)+5.5);
         glRotatef(-45.0, 1, 0, 0);
@@ -834,6 +791,7 @@ void Graphics::drawField(){
         material(WHITE);
         glutSolidCube(1);
     glPopMatrix();
+
     glPushMatrix();
         glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-4.5, -(FIELD_WIDTH/2.0)+4.5);
         glRotatef(-45.0, 1, 0, 0);
@@ -841,6 +799,7 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+
     glPushMatrix();
         glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-3.0, -(FIELD_WIDTH/2.0)+3.0);
         glRotatef(-45.0, 1, 0, 0);
@@ -848,6 +807,7 @@ void Graphics::drawField(){
         material(BLACK2);
         glutSolidCube(1);
     glPopMatrix();
+
     glPushMatrix();
         glTranslatef(THICK_THINGS, (FIELD_DEPTH/2.0)-1.5, -(FIELD_WIDTH/2.0)+1.5);
         glRotatef(-45.0, 1, 0, 0);
@@ -856,8 +816,6 @@ void Graphics::drawField(){
         glutSolidCube(1);
     glPopMatrix();
 
-    // PAINTS
-    // LINE CENTER
     glPushMatrix();
         glLineWidth(5.0f);
         material(WHITE);
@@ -1002,18 +960,13 @@ void Graphics::drawField(){
         glEnd();
     glPopMatrix();
 }
-
-//! Addendum
-//! --------
-//! 
-//! Sets the material with base in the RGB of VSS-Vision
 void Graphics::material(Pixel p){
     GLfloat diffuse[4];
     GLfloat ambient[4];
     GLfloat specular[4];
     GLfloat shininess;
 
-    //! Converts RGB (0-255) to RGB (0-1) 
+    //! Converte RGB (0-255) para RGB (0-1) 
     diffuse[0] = p.rgb[0]/255.0;   diffuse[1] = p.rgb[1]/255.0;   diffuse[2] = p.rgb[2]/255.0;   diffuse[3] = 1.0;
     ambient[0] = p.rgb[0]/255.0;   ambient[1] = p.rgb[1]/255.0;   ambient[2] = p.rgb[2]/255.0;   ambient[3] = 1.0;
     specular[0] = p.rgb[0]/255.0;  specular[1] = p.rgb[1]/255.0;  specular[2] = p.rgb[2]/255.0;  specular[3] = 1.0;
@@ -1080,7 +1033,6 @@ void Graphics::material(int color){
             specular[0] = 0.4;  specular[1] = 0.2;  specular[2] = 0.1;  specular[3] = 1.0;
             shininess = 10.0;
         }break;
-        //! > There are more than one BLACK to differentiate: robot, wall and floor
         case BLACK:{
             diffuse[0] = 0.4;   diffuse[1] = 0.4;   diffuse[2] = 0.4;   diffuse[3] = 1.0;
             ambient[0] = 0.1;   ambient[1] = 0.1;   ambient[2] = 0.1;   ambient[3] = 1.0;
@@ -1125,10 +1077,6 @@ void Graphics::material(int color){
     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
 }
 
-//! Addendum
-//! --------
-//! 
-//! Sets the material 2d in 3d with base in the RGB of VSS-Vision
 void Graphics::material3f(Pixel p){
     glColor3f(p.rgb[0], p.rgb[1], p.rgb[2]);
 }
