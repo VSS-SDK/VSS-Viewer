@@ -9,6 +9,7 @@ var searchData=
   ['drawdebugpath',['drawDebugPath',['../classGraphics.html#a19c836249f27f13ae686f33819699047',1,'Graphics']]],
   ['drawdebugsteprobot',['drawDebugStepRobot',['../classGraphics.html#a9109b4c601fa113e416842d1fb98cc33',1,'Graphics']]],
   ['drawfield',['drawField',['../classGraphics.html#adc5dbcd8d8d999d48dbdf241fde77603',1,'Graphics']]],
+  ['drawglobalreferential',['drawGlobalReferential',['../classGraphics.html#a5502c120c0c7db72f6c1d2c5d36900aa',1,'Graphics']]],
   ['drawrobot',['drawRobot',['../classGraphics.html#aea303675636309a511de1b2158cb1105',1,'Graphics']]],
   ['drawworld',['drawWorld',['../classGraphics.html#ab65394158d2a2fa6a613fcb074ac808e',1,'Graphics']]]
 ];

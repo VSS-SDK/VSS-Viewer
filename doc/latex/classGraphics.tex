@@ -46,6 +46,9 @@ static void \hyperlink{classGraphics_aa2795786eef8c99a7232a195992a9c82}{timer\+H
 static void \hyperlink{classGraphics_a78ef6a0b1f6c142c9d650ffddfbaa2ed}{change\+Window\+Size} (G\+Lsizei w, G\+Lsizei h)\hypertarget{classGraphics_a78ef6a0b1f6c142c9d650ffddfbaa2ed}{}\label{classGraphics_a78ef6a0b1f6c142c9d650ffddfbaa2ed}
 
 \begin{DoxyCompactList}\small\item\em Método (Callback) responsável por atualizar as váriaveis de controle se o usuário mudar o tamanho da janela. \end{DoxyCompactList}\item 
+static void \hyperlink{classGraphics_a39214c3e7aa370ae703ca4b2fc7b6054}{get\+Key\+Down} (unsigned char tecla, int x, int y)\hypertarget{classGraphics_a39214c3e7aa370ae703ca4b2fc7b6054}{}\label{classGraphics_a39214c3e7aa370ae703ca4b2fc7b6054}
+
+\begin{DoxyCompactList}\small\item\em Método (Callback) responsável por pela leitura do teclado. \end{DoxyCompactList}\item 
 static void \hyperlink{classGraphics_ab3134b5ca29b658f4ac5cc12fa4b4705}{material} (int color=B\+L\+A\+CK)\hypertarget{classGraphics_ab3134b5ca29b658f4ac5cc12fa4b4705}{}\label{classGraphics_ab3134b5ca29b658f4ac5cc12fa4b4705}
 
 \begin{DoxyCompactList}\small\item\em Método responsável for definir a cor 3D do material\+: O\+R\+A\+N\+GE, B\+L\+UE, Y\+E\+L\+L\+OW, R\+ED, G\+R\+E\+EN, P\+U\+R\+P\+LE, P\+I\+NK, B\+R\+O\+WN, W\+H\+I\+TE, G\+R\+AY, B\+L\+A\+CK, B\+L\+A\+C\+K2, B\+L\+A\+C\+K3. \end{DoxyCompactList}\item 
@@ -71,7 +74,9 @@ static void \hyperlink{classGraphics_a8e0114e205ef00c6284ed40f14cea84a}{draw\+Ba
 
 \begin{DoxyCompactList}\small\item\em Método responsável por desenhar a bola. \end{DoxyCompactList}\item 
 static void \hyperlink{classGraphics_a099efcc1425c088c977a405c5065fcd3}{draw\+Debug\+Future\+Ball} ()
-\begin{DoxyCompactList}\small\item\em Método responsável por desenhar a bola no futuro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Método responsável por desenhar a bola no futuro. \end{DoxyCompactList}\item 
+static void \hyperlink{classGraphics_a5502c120c0c7db72f6c1d2c5d36900aa}{draw\+Global\+Referential} ()
+\begin{DoxyCompactList}\small\item\em Método responsável por desenhar o referencial global Pose(0, 0, 0) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Atributos Protegidos}
 \begin{DoxyCompactItemize}
 \item 
@@ -90,6 +95,9 @@ string \hyperlink{classGraphics_acb397e43edd9c7d6de193bbb9ff55b94}{camera}\hyper
 string \hyperlink{classGraphics_ad5daf3bff501ac78b1507a8df1534423}{ip}\hypertarget{classGraphics_ad5daf3bff501ac78b1507a8df1534423}{}\label{classGraphics_ad5daf3bff501ac78b1507a8df1534423}
 
 \begin{DoxyCompactList}\small\item\em Ip do PC que esteja rodando o V\+S\+S-\/\+Vision ou V\+S\+S-\/\+Simulator. Por D\+E\+F\+A\+U\+LT é localhost ou 127.\+0.\+0.\+1. \end{DoxyCompactList}\item 
+bool \hyperlink{classGraphics_ade66c8f921643170d6e576987361ae31}{help}\hypertarget{classGraphics_ade66c8f921643170d6e576987361ae31}{}\label{classGraphics_ade66c8f921643170d6e576987361ae31}
+
+\begin{DoxyCompactList}\small\item\em Define se a tela de ajuda deve ser mostrada. \end{DoxyCompactList}\item 
 float \hyperlink{classGraphics_a5b0018455ff1e2ab3d43d1446cfdfe4d}{width}\hypertarget{classGraphics_a5b0018455ff1e2ab3d43d1446cfdfe4d}{}\label{classGraphics_a5b0018455ff1e2ab3d43d1446cfdfe4d}
 
 \begin{DoxyCompactList}\small\item\em Largura da janela de desenho. \end{DoxyCompactList}\item 
@@ -249,7 +257,22 @@ Desenha um caminho. \index{Graphics@{Graphics}!draw\+Debug\+Step\+Robot@{draw\+D
 
 Método responsável por desenhar o vetor de movimento de um robô 
 
-Desenha um vetor de movimento. \index{Graphics@{Graphics}!draw\+Robot@{draw\+Robot}}
+Desenha um vetor de movimento. \index{Graphics@{Graphics}!draw\+Global\+Referential@{draw\+Global\+Referential}}
+\index{draw\+Global\+Referential@{draw\+Global\+Referential}!Graphics@{Graphics}}
+\subsubsection[{\texorpdfstring{draw\+Global\+Referential()}{drawGlobalReferential()}}]{\setlength{\rightskip}{0pt plus 5cm}void Graphics\+::draw\+Global\+Referential (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classGraphics_a5502c120c0c7db72f6c1d2c5d36900aa}{}\label{classGraphics_a5502c120c0c7db72f6c1d2c5d36900aa}
+
+
+Método responsável por desenhar o referencial global Pose(0, 0, 0) 
+
+Desenha o referencial global X (R\+ED) no 0 da coordenada
+
+Desenha o referencial global Y (G\+R\+E\+EN) no 0 da coordenada
+
+Desenha o referencial global Z (Blue) no 0 da coordenada \index{Graphics@{Graphics}!draw\+Robot@{draw\+Robot}}
 \index{draw\+Robot@{draw\+Robot}!Graphics@{Graphics}}
 \subsubsection[{\texorpdfstring{draw\+Robot(int)}{drawRobot(int)}}]{\setlength{\rightskip}{0pt plus 5cm}void Graphics\+::draw\+Robot (
 \begin{DoxyParamCaption}
@@ -284,6 +307,8 @@ Método responsável por desenhar o ambiente 3D.
 Define a posição da camera como TV
 
 Define a posição da camera como T\+O\+PO
+
+Desenha o referencial global (No sistema de coordenadas da glut)
 
 Desenha campo
 
@@ -362,5 +387,5 @@ Define a frequência de atualização
 
 A documentação para esta classe foi gerada a partir dos seguintes arquivos\+:\begin{DoxyCompactItemize}
 \item 
-/home/johnathan/\+Repositories/\+S\+I\+R\+Lab/\+Projects/\+V\+S\+S-\/\+Viewer/src/graphics.\+h\item 
-/home/johnathan/\+Repositories/\+S\+I\+R\+Lab/\+Projects/\+V\+S\+S-\/\+Viewer/src/graphics.\+cpp\end{DoxyCompactItemize}
+/home/johnathan/\+Repositories/\+S\+I\+R\+Lab/\+Public/\+V\+S\+S-\/\+Viewer/src/graphics.\+h\item 
+/home/johnathan/\+Repositories/\+S\+I\+R\+Lab/\+Public/\+V\+S\+S-\/\+Viewer/src/graphics.\+cpp\end{DoxyCompactItemize}

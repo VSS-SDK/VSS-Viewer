@@ -110,6 +110,7 @@ void Graphics::draw_thread(){
     glutCreateWindow("VSS-Viewer");
     glutDisplayFunc(drawWorld);
     glutReshapeFunc(changeWindowSize);
+    glutKeyboardFunc(getKeyDown);
     glutTimerFunc(5, timerHandler, 0);
     
     initLight();
@@ -270,7 +271,7 @@ void Graphics::initLight(void){
     glEnable(GL_LINE_SMOOTH);
     glShadeModel(GL_SMOOTH);
 
-    glClearColor(0.2f, 0.2f, 0.6f, 1.0f);
+    glClearColor(0.05f, 0.05f, 0.3f, 1.0f);
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_NORMALIZE);
@@ -298,6 +299,16 @@ void Graphics::changeWindowSize(GLsizei w, GLsizei h){
     glMatrixMode(GL_MODELVIEW);
 }
 
+void Graphics::getKeyDown(unsigned char key, int x, int y){
+	switch (key){
+		case 27:
+			exit(0);
+		break;
+	}
+
+	glutPostRedisplay();
+}
+
 
 void Graphics::drawWorld(void){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -317,8 +328,10 @@ void Graphics::drawWorld(void){
 
         glRotatef(90.0, 0, 1, 0);
         glTranslatef(-130.0, 0.0, - 0.0);
-    }
+    }  
 
+    //! Desenha o referencial global (No sistema de coordenadas da glut)
+    drawGlobalReferential();
     //! Desenha campo
     drawField();
     //! Desenha a bola
@@ -334,8 +347,9 @@ void Graphics::drawWorld(void){
         }
     }
 
-    //! Desenha a posição futura da bola
+    
     if(staticDebug){
+        //! Desenha a posição futura da bola
         drawDebugFutureBall();
     }
 
@@ -496,6 +510,60 @@ void Graphics::drawDebugPath(int i){
             }
             material3f(Pixel(0.6, 0.6, 0.6)); 
         }
+    glPopMatrix();
+}
+
+void Graphics::drawGlobalReferential(){
+    Pose pose = Pose(-65, -85, 0);
+    glPushMatrix();
+        //! Desenha o referencial global X (RED) no 0 da coordenada
+        glPushMatrix();
+            glTranslatef(THICK_THINGS*1.4, pose.x, 2.1+pose.y);
+            //glRotatef(0, 1, 0, 0);
+            material(RED);
+            glPushMatrix();    
+                glScalef(0.6, 0.6, SIZE_ROBOT*0.6);
+                glutSolidCube(1);
+            glPopMatrix();
+
+            glPushMatrix();
+                glTranslatef(0, 0, 2);
+                glutSolidCone(1, 3, 10, 10);
+            glPopMatrix();
+        glPopMatrix();
+
+        //! Desenha o referencial global Y (GREEN) no 0 da coordenada
+        glPushMatrix();
+            glTranslatef(THICK_THINGS*1.4, 2.1+pose.x, pose.y);
+            glRotatef(-90, 1, 0, 0);
+            material(GREEN);
+            glPushMatrix();    
+                glScalef(0.6, 0.6, SIZE_ROBOT*0.6);
+                glutSolidCube(1);
+            glPopMatrix();
+
+            glPushMatrix();
+                glTranslatef(0, 0, 2);
+                glutSolidCone(1, 3, 10, 10);
+            glPopMatrix();
+        glPopMatrix();
+
+        //! Desenha o referencial global Z (Blue) no 0 da coordenada
+        glPushMatrix();
+            glTranslatef(2.1+(THICK_THINGS*1.4), pose.x, pose.y);
+            glRotatef(90, 0, 1, 0);
+            material(BLUE);
+            glPushMatrix();    
+                glScalef(0.6, 0.6, SIZE_ROBOT*0.6);
+                glutSolidCube(1);
+            glPopMatrix();
+
+            glPushMatrix();
+                glTranslatef(0, 0, 2);
+                glutSolidCone(1, 3, 10, 10);
+            glPopMatrix();
+        glPopMatrix();
+
     glPopMatrix();
 }
 

@@ -28,12 +28,14 @@ protected:
     int argc;
     //! Parâmetro utilizado pela Glut
     char** argv;
-    //! Define se  debug está ligado ou não
+    //! Define se debug está ligado ou não
     bool debug;
     //! Câmera utilizada: TV ou TOPO
     string camera;
     //! Ip do PC que esteja rodando o VSS-Vision ou VSS-Simulator. Por DEFAULT é localhost ou 127.0.0.1
     string ip;
+    //! Define se a tela de ajuda deve ser mostrada
+    bool help;
     
     //! Largura da janela de desenho
     float width;
@@ -93,6 +95,9 @@ public:
     //! Método (Callback) responsável por atualizar as váriaveis de controle se o usuário mudar o tamanho da janela
     static void changeWindowSize(GLsizei w, GLsizei h);
 
+    //! Método (Callback) responsável por pela leitura do teclado
+    static void getKeyDown(unsigned char tecla, int x, int y);
+
     //! Método responsável for definir a cor 3D do material: ORANGE, BLUE, YELLOW, RED, GREEN, PURPLE, PINK, BROWN, WHITE, GRAY, BLACK, BLACK2, BLACK3.
     static void material(int color = BLACK);
 
@@ -125,6 +130,9 @@ public:
 
     //! Método responsável por desenhar a bola no futuro
     static void drawDebugFutureBall(); 
+
+    //! Método responsável por desenhar o referencial global Pose(0, 0, 0)
+    static void drawGlobalReferential();
 };
 
 #endif  // _GRAPHICS_H_
