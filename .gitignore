@@ -36,3 +36,5 @@ build/*
 *.app
 VSS-Viewer
 VSS-Viewer-Debug
+doc/html/*
+doc/latex/*
