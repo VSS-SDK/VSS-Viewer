@@ -75,6 +75,7 @@ Graphics::Graphics(){
     static_name_team_2 = name_team_2 = "Blue";
 
     static_score_team_1 = static_score_team_1 = score_team_1 = score_team_2 = 0;
+    situation = 0;
 }
 
 //! Inicializa as variaveis de controle, a thread de desenho e as threads de recebimento de informações
@@ -260,6 +261,26 @@ void Graphics::state_thread(){
             robots.at(i+3).rgb_color.rgb[0] = global_state.robots_blue(i).color().r();
             robots.at(i+3).rgb_color.rgb[1] = global_state.robots_blue(i).color().g();
             robots.at(i+3).rgb_color.rgb[2] = global_state.robots_blue(i).color().b();
+        }
+
+        //! Se saiu um gol do time amarelo do VSS-Simulator, atualiza o placar do amarelo
+        if(global_state.has_goals_yellow()){
+            static_score_team_1 = global_state.goals_yellow();
+        }
+
+        //! Se saiu um gol do time azul do VSS-Simulator, atualiza o placar do azul
+        if(global_state.has_goals_blue()){
+            static_score_team_2 = global_state.goals_blue();
+        }
+
+        //! Se a estratégia possui um nome, atualiza o nome do amarelo
+        if(global_state.has_name_yellow()){
+            static_name_team_1 = global_state.name_yellow();
+        }
+
+        //! Se a estratégia possui um nome, atualiza o nome do azul
+        if(global_state.has_name_blue()){
+            static_name_team_2 = global_state.name_blue();
         }
     }
 }
@@ -1042,7 +1063,7 @@ void Graphics::drawField(){
 void Graphics::drawScoreboard(){
     glPushMatrix();
         stringstream ss;
-        ss << static_name_team_1 << " " << static_score_team_1 << " X " << static_score_team_2 << " " << static_name_team_2;
+        ss << static_name_team_1 << " " << static_score_team_1 << " - " << static_score_team_2 << " " << static_name_team_2;
         material(WHITE);
         glRasterPos3f(10, (staticHeight - staticHeight/2.0)/250.0 + 70, -70);
         glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char *)ss.str().c_str());

@@ -70,6 +70,8 @@ protected:
     string name_team_1, name_team_2;
     //! Placar
     int score_team_1, score_team_2;
+    //! Situação de jogo
+    int situation;
 public:
     //! Construtor DEFAULT
     Graphics();
