@@ -104,12 +104,6 @@ public:
     //! Método responsável por definir a cor 3D do material, recebendo um valor RGB
     static void material(Pixel);
 
-    //! Método responsável por definir a cor 2D do material: ORANGE, BLUE, YELLOW, RED, GREEN, PURPLE, PINK, BROWN, WHITE, GRAY, BLACK, BLACK2, BLACK3.
-    static void material3f(int color = BLACK);
-
-    //! Método responsável por definir a cor 2D do material, recebendo um valor RGB
-    static void material3f(Pixel);
-
     //! Método responsável por desenhar o campo: chão e paredes
     static void drawField();
 

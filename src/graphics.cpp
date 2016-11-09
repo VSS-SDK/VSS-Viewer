@@ -341,13 +341,12 @@ void Graphics::drawWorld(void){
     for(unsigned int i = 0 ; i < robots.size() ; i++){
         drawRobot(i);
         if(staticDebug){
+            drawDebugPath(i);
             drawDebugFinalRobot(i);
             drawDebugStepRobot(i);
-            drawDebugPath(i);
         }
     }
 
-    
     if(staticDebug){
         //! Desenha a posição futura da bola
         drawDebugFutureBall();
@@ -478,17 +477,15 @@ void Graphics::drawDebugStepRobot(int i){
     if(robots.at(i).has_step){
         glPushMatrix();
             if(robots.at(i).rgb_color.rgb[0] == 0 && robots.at(i).rgb_color.rgb[1] == 0 && robots.at(i).rgb_color.rgb[2] == 0){
-                material3f(robots.at(i).color);     
+                material(robots.at(i).color);     
             }else{
-                material3f(robots.at(i).rgb_color);
+                material(robots.at(i).rgb_color);
             }
         
             glBegin(GL_LINES);
                 glVertex3f(2, robots.at(i).pose.x, robots.at(i).pose.y);
                 glVertex3f(2, robots.at(i).step_pose.x, robots.at(i).step_pose.y);
             glEnd();
-
-            material3f(Pixel(0.6, 0.6, 0.6)); 
         glPopMatrix();
     }
 }
@@ -498,17 +495,16 @@ void Graphics::drawDebugPath(int i){
     glPushMatrix();
         if(robots.at(i).path.poses.size() >= 2){
             if(robots.at(i).rgb_color.rgb[0] == 0 && robots.at(i).rgb_color.rgb[1] == 0 && robots.at(i).rgb_color.rgb[2] == 0){
-                material3f(robots.at(i).color);     
+                material(robots.at(i).color);     
             }else{
-                material3f(robots.at(i).rgb_color);
+                material(robots.at(i).rgb_color);
             }
             for(unsigned int j = 0 ; j < robots.at(i).path.poses.size()-1 ; j++){
                 glBegin(GL_LINES);
                     glVertex3f(1, robots.at(i).path.poses.at(j).x, robots.at(i).path.poses.at(j).y);
                     glVertex3f(1, robots.at(i).path.poses.at(j+1).x, robots.at(i).path.poses.at(j+1).y);
                 glEnd();
-            }
-            material3f(Pixel(0.6, 0.6, 0.6)); 
+            } 
         }
     glPopMatrix();
 }
@@ -1143,56 +1139,4 @@ void Graphics::material(int color){
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient);
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
-}
-
-void Graphics::material3f(Pixel p){
-    glColor3f(p.rgb[0], p.rgb[1], p.rgb[2]);
-}
-
-void Graphics::material3f(int color){
-    switch(color){
-        case ORANGE:{
-            glColor3f(1.0, 0.4, 0.2);
-        }break;
-        case BLUE:{
-            glColor3f(0.2, 0.2, 0.7);
-        }break;
-        case YELLOW:{
-            glColor3f(0.85, 0.75, 0.25);
-        }break;
-        case RED:{
-            glColor3f(0.7, 0.2, 0.2);
-        }break;
-        case GREEN:{
-            glColor3f(0.2, 0.7, 0.2);
-        }break;
-        case PURPLE:{
-            glColor3f(0.45, 0.1, 0.7);
-        }break;
-        case PINK:{
-            glColor3f(0.8, 0.5, 0.5);
-        }break;
-        case BROWN:{
-            glColor3f(0.4, 0.2, 0.1);
-        }break;
-        //! > There are more than one BLACK to differentiate: robot, wall and floor
-        case BLACK:{
-            glColor3f(0.1, 0.1, 0.1);
-        }break;
-        case BLACK2:{
-            glColor3f(0.1, 0.1, 0.1);
-        }break;
-        case BLACK3:{
-            glColor3f(0.1, 0.1, 0.1);
-        }break;
-        case WHITE:{
-            glColor3f(0.9, 0.9, 0.9);
-        }break;
-        case GRAY:{
-            glColor3f(0.2, 0.2, 0.2);
-        }break;
-        case GRAY2:{
-            glColor3f(0.4, 0.4, 0.4);
-        }break;
-    }
 }
