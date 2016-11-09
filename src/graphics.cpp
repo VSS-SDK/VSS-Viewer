@@ -21,10 +21,14 @@ GLfloat rotX_ini, rotY_ini, rotZ_ini;       //Glut - Init rotation
 GLfloat obsX_ini, obsY_ini, obsZ_ini;       //Glut - Initial perspective observation position
 GLfloat obsX = 100.0, obsY = 75.0, obsZ = 0.0;
 float lookAt = 0;
+
 string cameraStatic = "top";
 vector<Robot> robots;
 Pose ball, v_ball;
 bool staticDebug = false;
+string static_name_team_1, static_name_team_2;
+int static_score_team_1, static_score_team_2;
+
 GLUquadric* qobj;
 
 //! Inicializa o vector de robôs com valores default.
@@ -66,6 +70,11 @@ Graphics::Graphics(){
     }
 
     debug = false;
+
+    static_name_team_1 = name_team_1 = "Yellow";
+    static_name_team_2 = name_team_2 = "Blue";
+
+    static_score_team_1 = static_score_team_1 = score_team_1 = score_team_2 = 0;
 }
 
 //! Inicializa as variaveis de controle, a thread de desenho e as threads de recebimento de informações
@@ -286,6 +295,9 @@ void Graphics::initLight(void){
 void Graphics::changeWindowSize(GLsizei w, GLsizei h){
     if (h == 0)
         h = 1;
+    
+    staticWidth = w;
+    staticHeight = h;
 
     glViewport(0, 0, w, h);
     float aspect = (float)w / h;
@@ -336,6 +348,8 @@ void Graphics::drawWorld(void){
     drawField();
     //! Desenha a bola
     drawBall();
+    //! Desenha placar
+    drawScoreboard();
 
     //! Desenha as informações de debug
     for(unsigned int i = 0 ; i < robots.size() ; i++){
@@ -1024,6 +1038,17 @@ void Graphics::drawField(){
         glEnd();
     glPopMatrix();
 }
+
+void Graphics::drawScoreboard(){
+    glPushMatrix();
+        stringstream ss;
+        ss << static_name_team_1 << " " << static_score_team_1 << " X " << static_score_team_2 << " " << static_name_team_2;
+        material(WHITE);
+        glRasterPos3f(10, (staticHeight - staticHeight/2.0)/250.0 + 70, -70);
+        glutBitmapString(GLUT_BITMAP_HELVETICA_18, (const unsigned char *)ss.str().c_str());
+    glPopMatrix();
+}
+
 void Graphics::material(Pixel p){
     GLfloat diffuse[4];
     GLfloat ambient[4];

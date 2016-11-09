@@ -10,6 +10,7 @@
 #define _GRAPHICS_H_
 
 #include <GL/glut.h>
+#include <GL/freeglut.h>
 #include "math.h"
 #include "iostream"
 #include "vector"
@@ -64,6 +65,11 @@ protected:
     vss_debug::Global_Debug global_debug_team1;
     //! Pacote que carrega as informações de debug do time azul
     vss_debug::Global_Debug global_debug_team2;
+
+    //! Nome dos times amarelo e azul
+    string name_team_1, name_team_2;
+    //! Placar
+    int score_team_1, score_team_2;
 public:
     //! Construtor DEFAULT
     Graphics();
@@ -127,6 +133,9 @@ public:
 
     //! Método responsável por desenhar o referencial global Pose(0, 0, 0)
     static void drawGlobalReferential();
+
+    //! Método responsável por desenhar o placar do jogo
+    static void drawScoreboard();
 };
 
 #endif  // _GRAPHICS_H_
