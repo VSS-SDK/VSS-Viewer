@@ -64,7 +64,7 @@ clean:
 	rm $(RELEASE) $(FILE_NAMES)
 
 proto:
-	cd src/VSS-Interface/protos && make -f protos.make
+	cd src/VSS-Interface && ./protos.sh
 
 docm:
 	cd doc && doxygen Doxygen
