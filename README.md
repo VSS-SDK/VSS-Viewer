@@ -40,7 +40,7 @@ You are allowed and encouraged to use this software on the IEEE Very Small Size 
 
 [gpl3]: http://www.gnu.org/licenses/gpl-3.0/
 [install]: https://github.com/SIRLab/VSS-Viewer/blob/master/INSTALL.md
-[vss-sdk]: http://sirlab.github.io/vss.html
+[vss-sdk]: http://sirlab.github.io/VSS-SDK
 [travis]: https://travis-ci.org/SIRLab/VSS-Viewer
 
 
