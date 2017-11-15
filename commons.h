@@ -26,7 +26,7 @@ namespace common{
 	//! Essa struct é responsável por representar uma cor em RGB
 	struct Pixel{
 		//! rgb[3]: rgb[r], rgb[g], rgb[b]
-	    float rgb[3]; 
+	    float rgb[3];
 		//! Construtor DEFAULT
 	    Pixel(){
 	    	rgb[0] = 0;
@@ -63,7 +63,7 @@ namespace common{
 		float x;
 		//! Posição em Y
 		float y;
-		//! Orientação em Z 
+		//! Orientação em Z
 		float yaw;
 		//! Construtor DEFAULT
 		Pose(){
@@ -101,7 +101,7 @@ namespace common{
 		};
 		//! Método de debug no terminal
 		void show(){
-			for(int i = 0 ; i < poses.size() ; i++)
+			for(unsigned int i = 0 ; i < poses.size() ; i++)
 			cout << "(" << poses.at(i).x << ", " << poses.at(i).y << ", " << poses.at(i).yaw << ")" << endl;
 		}
 	};
