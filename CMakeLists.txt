@@ -1,4 +1,4 @@
-PROJECT(VSS-Viewer)
+PROJECT(vss-viewer)
 CMAKE_MINIMUM_REQUIRED (VERSION 2.6)
 SET(CMAKE_CXX_FLAGS "-g -Wall -Werror -std=c++11")
 
@@ -22,10 +22,17 @@ find_library(ZeroMQ_LIBRARY
 
 include_directories(${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} ${Boost_INCLUDE_DIR})
 
-ADD_EXECUTABLE(VSS-Viewer main.cpp graphics.cpp interface.cpp)
+ADD_EXECUTABLE(vss-viewer main.cpp graphics.cpp interface.cpp)
 
-target_include_directories(VSS-Viewer PUBLIC ${ZeroMQ_INCLUDE_DIR})
-target_link_libraries(VSS-Viewer PUBLIC ${ZeroMQ_LIBRARY})
+target_include_directories(vss-viewer PUBLIC ${ZeroMQ_INCLUDE_DIR})
+target_link_libraries(vss-viewer PUBLIC ${ZeroMQ_LIBRARY})
 
-TARGET_LINK_LIBRARIES(VSS-Viewer proto ${PROTOBUF_LIBRARY} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
-TARGET_LINK_LIBRARIES(VSS-Viewer LINK_PUBLIC ${Boost_LIBRARIES})
+TARGET_LINK_LIBRARIES(vss-viewer proto ${PROTOBUF_LIBRARY} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
+TARGET_LINK_LIBRARIES(vss-viewer LINK_PUBLIC ${Boost_LIBRARIES})
+
+INSTALL(TARGETS vss-viewer DESTINATION bin)
+
+SET(CPACK_GENERATOR "DEB")
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Johnathan Fercher") #required
+
+INCLUDE(CPack)
