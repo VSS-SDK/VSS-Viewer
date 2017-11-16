@@ -33,6 +33,9 @@ TARGET_LINK_LIBRARIES(vss-viewer LINK_PUBLIC ${Boost_LIBRARIES})
 INSTALL(TARGETS vss-viewer DESTINATION bin)
 
 SET(CPACK_GENERATOR "DEB")
+SET(CPACK_DEBIAN_PACKAGE_NAME "vss-viewer")
+SET(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "all")
+SET(CPACK_DEBIAN_PACKAGE_DEPENDS "cmake, g++, libzmq5, libzmqpp4, libzmqpp-dev, protobuf-compiler, libprotobuf-dev, freeglut3, freeglut3-dev")
 SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Johnathan Fercher") #required
 
 INCLUDE(CPack)
