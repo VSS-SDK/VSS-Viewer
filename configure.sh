@@ -13,6 +13,26 @@ ARCHITECTURE=`uname -m`
 
 INSTALLED=0
 
+CMAKE_UBUNTU () {
+  sudo rm -R build
+  mkdir build
+  cd build
+  cmake ..
+  make package
+  sudo dpkg -i vss-viewer-0.1.1-Linux.deb
+  cd ..
+}
+
+CMAKE_DEBIAN () {
+  rm -R build
+  mkdir build
+  cd build
+  cmake ..
+  make package
+  dpkg -i vss-viewer-0.1.1-Linux.deb
+  cd ..
+}
+
 INSTALL_UBUNTU_14_04 () {
   sudo apt-get update && apt-get upgrade
   sudo apt-get install pkg-config
@@ -59,38 +79,42 @@ INSTALL () {
   # Ubuntu
   if [[ "$DISTRO" == "Ubuntu" ]] && [[ "$RELEASE" == "17.10" ]]; then
     INSTALL_UBUNTU_17_10;
+    if [ $INSTALLED == 1 ]; then
+      CMAKE_UBUNTU;
+    fi
   fi
   if [[ "$DISTRO" == "Ubuntu" ]] && [[ "$RELEASE" == "16.04" ]]; then
     INSTALL_UBUNTU_16_04;
+    if [ $INSTALLED == 1 ]; then
+      CMAKE_UBUNTU;
+    fi
   fi
   if [[ "$DISTRO" == "Ubuntu" ]] && [[ "$RELEASE" == "14.04" ]]; then
     INSTALL_UBUNTU_14_04;
+    if [ $INSTALLED == 1 ]; then
+      CMAKE_UBUNTU;
+    fi
   fi
 
   # Debian
   if [[ "$DISTRO" == "Debian" ]] && [[ "$RELEASE" == "9.2" ]]; then
     INSTALL_DEBIAN_9_2;
+    if [ $INSTALLED == 1 ]; then
+      CMAKE_DEBIAN;
+    fi
   fi
   if [[ "$DISTRO" == "Debian" ]] && [[ "$RELEASE" == "8.5" ]]; then
     INSTALL_DEBIAN_8_5;
+    if [ $INSTALLED == 1 ]; then
+      CMAKE_DEBIAN;
+    fi
   fi
   if [[ "$DISTRO" == "Debian" ]] && [[ "$RELEASE" == "8.2" ]]; then
     INSTALL_DEBIAN_8_2;
+    if [ $INSTALLED == 1 ]; then
+      CMAKE_DEBIAN;
+    fi
   fi
 }
 
-CMAKE () {
-  sudo rm -R build
-  mkdir build
-  cd build
-  cmake ..
-  make package
-  sudo dpkg -i vss-viewer-0.1.1-Linux.deb
-  cd ..
-}
-
 INSTALL;
-
-if [ $INSTALLED == 1 ]; then
-  CMAKE;
-fi
