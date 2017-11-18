@@ -16,7 +16,7 @@ INSTALLED=0
 INSTALL_UBUNTU_14_04 () {
   sudo apt-get update && apt-get upgrade
   sudo apt-get install pkg-config
-  sudo apt-get install g++ cmake libzmq3 libzmq3-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
+  sudo apt-get install g++ cmake libxmu-dev libxi-dev libzmq3 libzmq3-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
   INSTALLED=1
 }
 
