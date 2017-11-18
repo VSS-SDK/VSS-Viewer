@@ -23,7 +23,7 @@ INSTALL_UBUNTU_14_04 () {
 INSTALL_UBUNTU_16_04 () {
   sudo apt-get update && apt-get upgrade
   sudo apt-get install pkg-config
-  sudo apt-get install g++ cmake libzmqpp3 libzmqpp-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
+  sudo apt-get install g++ cmake libxmu-dev libxi-dev libzmqpp3 libzmqpp-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
   INSTALLED=1
 }
 
