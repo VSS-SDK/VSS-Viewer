@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+c2ff5ea38128542b687e76fac2a6f791 src/VSS-Interface/command.pb.cc
+881c3bfd067ea1ff42603db75b3a5e5d src/VSS-Interface/debug.pb.cc
+df26095eb0886cb96619b9bd69f89eec src/VSS-Interface/state.pb.cc
