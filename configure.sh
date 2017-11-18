@@ -48,6 +48,13 @@ INSTALL_DEBIAN_8_5 () {
   INSTALLED=1
 }
 
+INSTALL_DEBIAN_9_2 () {
+  sudo apt-get update && apt-get upgrade
+  sudo apt-get install pkgconf
+  sudo apt-get install g++ cmake libxmu-dev libxi-dev libzmq5 libzmq3-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
+  INSTALLED=1
+}
+
 INSTALL () {
   # Ubuntu
   if [[ "$DISTRO" == "Ubuntu" ]] && [[ "$RELEASE" == "17.10" ]]; then
@@ -61,6 +68,9 @@ INSTALL () {
   fi
 
   # Debian
+  if [[ "$DISTRO" == "Debian" ]] && [[ "$RELEASE" == "9.2" ]]; then
+    INSTALL_DEBIAN_9_2;
+  fi
   if [[ "$DISTRO" == "Debian" ]] && [[ "$RELEASE" == "8.5" ]]; then
     INSTALL_DEBIAN_8_5;
   fi
