@@ -1,1 +1,0 @@
-/usr/bin/c++  -g -Wall -Werror -std=c++11  -rdynamic CMakeFiles/vss-viewer.dir/main.cpp.o CMakeFiles/vss-viewer.dir/graphics.cpp.o CMakeFiles/vss-viewer.dir/VSS-Interface/interface.cpp.o  -o vss-viewer -lzmq VSS-Interface/libVSS-Interface.a -lGLU -lGL -lglut -lboost_program_options -lprotobuf -lpthread 
