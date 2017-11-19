@@ -1,0 +1,3 @@
+[submodule "VSS-Interface"]
+	path = VSS-Interface
+	url = git@github.com:SIRLab/VSS-Interface.git

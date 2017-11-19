@@ -2,7 +2,7 @@ PROJECT(vss-viewer)
 CMAKE_MINIMUM_REQUIRED (VERSION 2.6)
 SET(CMAKE_CXX_FLAGS "-g -Wall -Werror -std=c++11")
 
-ADD_SUBDIRECTORY(proto)
+ADD_SUBDIRECTORY(VSS-Interface)
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 find_package(PkgConfig)
@@ -22,12 +22,12 @@ find_library(ZeroMQ_LIBRARY
 
 include_directories(${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} ${Boost_INCLUDE_DIR})
 
-ADD_EXECUTABLE(vss-viewer main.cpp graphics.cpp interface.cpp)
+ADD_EXECUTABLE(vss-viewer src/main.cpp src/graphics.cpp VSS-Interface/interface.cpp)
 
 target_include_directories(vss-viewer PUBLIC ${ZeroMQ_INCLUDE_DIR})
 target_link_libraries(vss-viewer PUBLIC ${ZeroMQ_LIBRARY})
 
-TARGET_LINK_LIBRARIES(vss-viewer proto ${PROTOBUF_LIBRARY} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
+TARGET_LINK_LIBRARIES(vss-viewer VSS-Interface ${PROTOBUF_LIBRARY} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
 TARGET_LINK_LIBRARIES(vss-viewer LINK_PUBLIC ${Boost_LIBRARIES})
 
 INSTALL(TARGETS vss-viewer DESTINATION bin)
