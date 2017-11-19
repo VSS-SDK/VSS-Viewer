@@ -20,7 +20,7 @@ find_library(ZeroMQ_LIBRARY
         PATHS ${PC_ZeroMQ_LIBRARY_DIRS}
         )
 
-include_directories(${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} ${Boost_INCLUDE_DIR})
+include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} ${Boost_INCLUDE_DIR})
 
 ADD_EXECUTABLE(vss-viewer src/main.cpp src/graphics.cpp VSS-Interface/interface.cpp)
 
