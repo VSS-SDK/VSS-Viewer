@@ -13,50 +13,50 @@
 using namespace std;
 
 //! Efetua a leitura dos parâmetros de execução
-bool argParse(int argc, char** argv, bool *debug, string *camera, string *ip);
+bool argParse( int argc, char** argv, bool *debug, string *camera, string *ip );
 
-int main(int argc, char** argv){
+int main( int argc, char** argv ){
 	bool debug;
-    string camera;
-    string ip;
+	string camera;
+	string ip;
 
-	if(argParse(argc, argv, &debug, &camera, &ip)){
-	    Graphics graphics;
-	    graphics.init(argc, argv, debug, camera, ip);
-    }
+	if(argParse( argc, argv, &debug, &camera, &ip )) {
+		Graphics graphics;
+		graphics.init( argc, argv, debug, camera, ip );
+	}
 	return 0;
 }
 
-bool argParse(int argc, char** argv, bool *debug, string *camera, string *ip){
-    namespace bpo = boost::program_options;
+bool argParse( int argc, char** argv, bool *debug, string *camera, string *ip ){
+	namespace bpo = boost::program_options;
 
-    //! Declara as opções de inicialização
-    bpo::options_description desc("Allowed options");
-    desc.add_options()
-        ("help,h", "(Optional) produce help message")
-        ("camera,c", bpo::value<std::string>()->default_value("tv"), "(Optional) Specify the camera that you want, may be <tv> or <top>.")
-        ("ip_state,i", bpo::value<std::string>()->default_value("localhost"), "(Optional) Specify the IP from pc it's running VSS-Vision or VSS-Simulator.")
-        ("debug,d", "(Optional) open the debug rotine");
-    bpo::variables_map vm;
-    bpo::store(bpo::parse_command_line(argc, argv, desc), vm);
-    bpo::notify(vm);
+	//! Declara as opções de inicialização
+	bpo::options_description desc( "Allowed options" );
+	desc.add_options()
+	        ( "help,h", "(Optional) produce help message" )
+	        ( "camera,c", bpo::value<std::string>()->default_value( "tv" ), "(Optional) Specify the camera that you want, may be <tv> or <top>." )
+	        ( "ip_state,i", bpo::value<std::string>()->default_value( "localhost" ), "(Optional) Specify the IP from pc it's running VSS-Vision or VSS-Simulator." )
+	        ( "debug,d", "(Optional) open the debug rotine" );
+	bpo::variables_map vm;
+	bpo::store( bpo::parse_command_line( argc, argv, desc ), vm );
+	bpo::notify( vm );
 
-    //! Imprime os parâmetros de execução e fecha
-    if (vm.count("help")){
-        std::cout << desc << std::endl;
-        return false;
-    }
+	//! Imprime os parâmetros de execução e fecha
+	if (vm.count( "help" )) {
+		std::cout << desc << std::endl;
+		return false;
+	}
 
-    //! Ativa o modo de debug
-    if (vm.count("debug")){
-        *debug = true;
-    }
+	//! Ativa o modo de debug
+	if (vm.count( "debug" )) {
+		*debug = true;
+	}
 
-    //! Define a camera que será utilizada
-    *camera = vm["camera"].as<string>();
+	//! Define a camera que será utilizada
+	*camera = vm["camera"].as<string>();
 
-    //! Define o ip do VSS-Vision ou VSS-Simulator
-    *ip = vm["ip_state"].as<string>();
+	//! Define o ip do VSS-Vision ou VSS-Simulator
+	*ip = vm["ip_state"].as<string>();
 
-    return true;
+	return true;
 }
