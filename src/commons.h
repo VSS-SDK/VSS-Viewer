@@ -6,7 +6,6 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-
 #ifndef _COMMONS_H_
 #define _COMMONS_H_
 

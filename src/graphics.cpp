@@ -6,7 +6,6 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-
 #include "graphics.h"
 #include "functional"
 
@@ -51,7 +50,6 @@ Graphics::Graphics(){
 
 		robots.push_back( robot );
 	}
-
 
 	//! Inicializa o time 2
 	for(int i = 0; i < 3; i++) {
@@ -346,7 +344,6 @@ void Graphics::getKeyDown( unsigned char key, int x, int y ){
 	glutPostRedisplay();
 }
 
-
 void Graphics::drawWorld( void ){
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glLoadIdentity();
@@ -400,7 +397,6 @@ void Graphics::timerHandler( int v ){
 	glutTimerFunc( 5, timerHandler, 0 );
 }
 
-
 void Graphics::drawBall(){
 	glPushMatrix();
 	glTranslatef( THICK_THINGS * 1.4, ball.x, ball.y );
@@ -428,7 +424,6 @@ void Graphics::drawDebugFutureBall(){
 	}
 	glPopMatrix();
 }
-
 
 //! Desenha o robô i
 void Graphics::drawRobot( int i ){
