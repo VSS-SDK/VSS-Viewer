@@ -108,6 +108,15 @@ public:
 	//! Método (Callback) responsável por pela leitura do teclado
 	static void getKeyDown( unsigned char tecla, int x, int y );
 
+	//! Método (Callback) responsável por pela leitura das setas do teclado
+	static void getKeyArrow( int, int, int );
+
+	//! Método (Callback) responsável por pela leitura dos cliques do mouse
+	static void getMouseEvent(int button, int state, int x, int y);
+
+	//! Método (Callback) responsável por pela leitura da posição do mouse
+	static void getMouseMotion(int x, int y);
+
 	//! Método responsável for definir a cor 3D do material: ORANGE, BLUE, YELLOW, RED, GREEN, PURPLE, PINK, BROWN, WHITE, GRAY, BLACK, BLACK2, BLACK3.
 	static void material( int color = BLACK );
 

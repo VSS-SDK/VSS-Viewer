@@ -50,6 +50,13 @@ INSTALL_UBUNTU_16_04 () {
   INSTALLED=1
 }
 
+INSTALL_UBUNTU_16_10 () {
+  sudo apt-get update && apt-get upgrade
+  sudo apt-get install pkgconf
+  sudo apt-get install g++ cmake libxmu-dev libxi-dev libzmq5 libzmq3-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
+  INSTALLED=1
+}
+
 INSTALL_MINT_18_2 () {
   sudo apt-get update && apt-get upgrade
   sudo apt-get install pkg-config
@@ -68,6 +75,13 @@ INSTALL () {
   # Ubuntu
   if [[ "$DISTRO" == "Ubuntu" ]] && [[ "$RELEASE" == "16.04" ]]; then
     INSTALL_UBUNTU_16_04;
+    if [ $INSTALLED == 1 ]; then
+      CMAKE_UBUNTU;
+    fi
+  fi
+
+  if [[ "$DISTRO" == "Ubuntu" ]] && [[ "$RELEASE" == "16.10" ]]; then
+    INSTALL_UBUNTU_16_10;
     if [ $INSTALLED == 1 ]; then
       CMAKE_UBUNTU;
     fi

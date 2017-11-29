@@ -123,6 +123,9 @@ void Graphics::draw_thread(){
 	glutDisplayFunc( drawWorld );
 	glutReshapeFunc( changeWindowSize );
 	glutKeyboardFunc( getKeyDown );
+	glutSpecialFunc( getKeyArrow );
+	glutMouseFunc( getMouseEvent );
+	glutMotionFunc( getMouseMotion );
 	glutTimerFunc( 5, timerHandler, 0 );
 
 	initLight();
@@ -340,8 +343,34 @@ void Graphics::getKeyDown( unsigned char key, int x, int y ){
 		exit( 0 );
 		break;
 	}
-
 	glutPostRedisplay();
+}
+
+void Graphics::getKeyArrow( int key, int x, int y ){
+	switch (key) {
+	case GLUT_KEY_LEFT:
+		cout << "LEFT_TURN" << "\t" << x << "\t" << y << endl;
+		break;
+	
+	case GLUT_KEY_RIGHT:
+		cout << "RIGHT_TURN" << "\t" << x << "\t" << y << endl;
+		break;
+	}
+}
+
+void Graphics::getMouseEvent(int button, int state, int x, int y){
+	switch (button) {
+	case 3: // scrool mouse motion front
+		cout << "LEFT_TURN" << "\t" << x << "\t" << y << endl;
+		break;
+	case 4: // scrool mouse motion back
+		cout << "RIGHT_TURN" << "\t" << x << "\t" << y << endl;
+		break;
+	}
+}
+
+void Graphics::getMouseMotion(int x, int y){
+	cout << "DONT_TURN" << "\t" << x << "\t" << y << endl;
 }
 
 void Graphics::drawWorld( void ){
