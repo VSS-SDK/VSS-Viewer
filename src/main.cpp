@@ -1,62 +1,44 @@
 /*
- * This file is part of the VSS-Viewer project.
+ * The MIT License
  *
- * This Source Code Form is subject to the terms of the GNU GENERAL PUBLIC LICENSE,
- * v. 3.0. If a copy of the GPL was not distributed with this
- * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
+ * Copyright (c) 2010 Paul Solt, PaulSolt@gmail.com 
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 
-#include "iostream"
-#include "graphics.h"
-#include "boost.h"
+#include "GlutFramework.h"
 
-using namespace std;
+using namespace glutFramework;
 
-//! Efetua a leitura dos parâmetros de execução
-bool argParse( int argc, char** argv, bool *debug, string *camera, string *ip );
-
-int main( int argc, char** argv ){
-	bool debug;
-	string camera;
-	string ip;
-
-	if(argParse( argc, argv, &debug, &camera, &ip )) {
-		Graphics graphics;
-		graphics.init( argc, argv, debug, camera, ip );
-	}
+/**
+ * A sample program start that uses the base class GlutFramework to create a
+ * graphics window that displays a teapot moving side to side.
+ * Create a subclass of the GlutFramework and override the virtual methods.
+ * 
+ * @author Paul Solt 8-22-10
+ */
+int main(int argc, char *argv[]) {
+	
+	GlutFramework framework;	
+	framework.setLookAt(0.0, 2.0, 10.0, 0.0, 2.0, 0.0, 0.0, 1.0, 0.0);
+	framework.startFramework(argc, argv);
+	// **Note** No code below startFramework() will get executed 
+	
 	return 0;
-}
-
-bool argParse( int argc, char** argv, bool *debug, string *camera, string *ip ){
-	namespace bpo = boost::program_options;
-
-	//! Declara as opções de inicialização
-	bpo::options_description desc( "Allowed options" );
-	desc.add_options()
-	        ( "help,h", "(Optional) produce help message" )
-	        ( "camera,c", bpo::value<std::string>()->default_value( "tv" ), "(Optional) Specify the camera that you want, may be <tv> or <top>." )
-	        ( "ip_state,i", bpo::value<std::string>()->default_value( "localhost" ), "(Optional) Specify the IP from pc it's running VSS-Vision or VSS-Simulator." )
-	        ( "debug,d", "(Optional) open the debug rotine" );
-	bpo::variables_map vm;
-	bpo::store( bpo::parse_command_line( argc, argv, desc ), vm );
-	bpo::notify( vm );
-
-	//! Imprime os parâmetros de execução e fecha
-	if (vm.count( "help" )) {
-		std::cout << desc << std::endl;
-		return false;
-	}
-
-	//! Ativa o modo de debug
-	if (vm.count( "debug" )) {
-		*debug = true;
-	}
-
-	//! Define a camera que será utilizada
-	*camera = vm["camera"].as<string>();
-
-	//! Define o ip do VSS-Vision ou VSS-Simulator
-	*ip = vm["ip_state"].as<string>();
-
-	return true;
 }
