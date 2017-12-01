@@ -6,8 +6,10 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
+#include <typeinfo>
 #include "World.h"
 #include "Cameras/TopCamera.h"
+#include "Cameras/TvCamera.h"
 
 World::World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera ){
 	this->fieldDrawer = fieldDrawer;
@@ -48,6 +50,11 @@ void World::closeStrategy(){
 }
 
 void World::changeCameraStrategy(){
-	cout << "asd" << endl;
-	camera = new TopCamera();
+	auto object = (string)typeid(*camera).name();
+
+	if (object.find( "TvCamera" ) != std::string::npos) {
+		camera = new TopCamera();
+	}else{
+		camera = new TvCamera();
+	}
 }
