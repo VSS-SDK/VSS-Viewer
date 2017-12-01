@@ -6,11 +6,16 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#include "GlutWorld.h"
+#include "Domain/CompetitionEnum.h"
+#include "Factories/FieldDrawerFactory.h"
+#include "RobotDrawer.h"
+#include "World.h"
 
 int main( int argc, char *argv[] ) {
-	GlutWorld glutWorld;
-	glutWorld.startFramework( argc, argv );
+	auto fieldDrawerFactory = new FieldDrawerFactory();
+	auto world = new World( fieldDrawerFactory->factory( CompetitionName::VerySmallSize ), new RobotDrawer());
+
+	world->startFramework( argc, argv );
 
 	return 0;
 }

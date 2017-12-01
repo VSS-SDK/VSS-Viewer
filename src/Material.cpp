@@ -12,92 +12,92 @@ Material::Material(){
 
 }
 
-void Material::applyMaterial( int color ){
+void Material::applyMaterial( ColorName colorName ){
 	GLfloat diffuse[4];
 	GLfloat ambient[4];
 	GLfloat specular[4];
 	GLfloat shininess;
 
-	switch(color) {
-	case ORANGE: {
+	switch(colorName) {
+	case ColorName::Orange: {
 		diffuse[0] = 1.0;   diffuse[1] = 0.4;   diffuse[2] = 0.2;   diffuse[3] = 1.0;
 		ambient[0] = 1.0;   ambient[1] = 0.4;   ambient[2] = 0.2;   ambient[3] = 1.0;
 		specular[0] = 1.0;  specular[1] = 0.4;  specular[2] = 0.2;  specular[3] = 1.0;
 		shininess = 10.0;
 	} break;
-	case BLUE: {
+	case ColorName::Blue: {
 		diffuse[0] = 0.2;   diffuse[1] = 0.2;   diffuse[2] = 0.7;   diffuse[3] = 1.0;
 		ambient[0] = 0.2;   ambient[1] = 0.2;   ambient[2] = 0.7;   ambient[3] = 1.0;
 		specular[0] = 0.2;  specular[1] = 0.2;  specular[2] = 0.7;  specular[3] = 1.0;
 		shininess = 10.0;
 	} break;
-	case YELLOW: {
+	case ColorName::Yellow: {
 		diffuse[0] = 0.85;   diffuse[1] = 0.75;   diffuse[2] = 0.25;   diffuse[3] = 1.0;
 		ambient[0] = 0.85;   ambient[1] = 0.75;   ambient[2] = 0.25;   ambient[3] = 1.0;
 		specular[0] = 0.85;  specular[1] = 0.75;  specular[2] = 0.25;  specular[3] = 1.0;
 		shininess = 10.0;
 	} break;
-	case RED: {
+	case ColorName::Red: {
 		diffuse[0] = 0.7;   diffuse[1] = 0.2;   diffuse[2] = 0.2;   diffuse[3] = 1.0;
 		ambient[0] = 0.7;   ambient[1] = 0.2;   ambient[2] = 0.2;   ambient[3] = 1.0;
 		specular[0] = 0.7;  specular[1] = 0.2;  specular[2] = 0.2;  specular[3] = 1.0;
 		shininess = 10.0;
 	} break;
-	case GREEN: {
+	case ColorName::Green: {
 		diffuse[0] = 0.2;   diffuse[1] = 0.7;   diffuse[2] = 0.2;   diffuse[3] = 1.0;
 		ambient[0] = 0.2;   ambient[1] = 0.7;   ambient[2] = 0.2;   ambient[3] = 1.0;
 		specular[0] = 0.2;  specular[1] = 0.7;  specular[2] = 0.2;  specular[3] = 1.0;
 		shininess = 10.0;
 	} break;
-	case PURPLE: {
+	case ColorName::Purple: {
 		diffuse[0] = 0.45;   diffuse[1] = 0.1;   diffuse[2] = 0.7;   diffuse[3] = 1.0;
 		ambient[0] = 0.45;   ambient[1] = 0.1;   ambient[2] = 0.7;   ambient[3] = 1.0;
 		specular[0] = 0.45;  specular[1] = 0.1;  specular[2] = 0.7;  specular[3] = 1.0;
 		shininess = 10.0;
 	} break;
-	case PINK: {
+	case ColorName::Pink: {
 		diffuse[0] = 0.8;   diffuse[1] = 0.5;   diffuse[2] = 0.5;   diffuse[3] = 1.0;
 		ambient[0] = 0.8;   ambient[1] = 0.5;   ambient[2] = 0.5;   ambient[3] = 1.0;
 		specular[0] = 0.8;  specular[1] = 0.5;  specular[2] = 0.5;  specular[3] = 1.0;
 		shininess = 10.0;
 	} break;
-	case BROWN: {
+	case ColorName::Brown: {
 		diffuse[0] = 0.4;   diffuse[1] = 0.2;   diffuse[2] = 0.1;   diffuse[3] = 1.0;
 		ambient[0] = 0.4;   ambient[1] = 0.2;   ambient[2] = 0.1;   ambient[3] = 1.0;
 		specular[0] = 0.4;  specular[1] = 0.2;  specular[2] = 0.1;  specular[3] = 1.0;
 		shininess = 10.0;
 	} break;
-	case BLACK: {
+	case ColorName::Black: {
 		diffuse[0] = 0.4;   diffuse[1] = 0.4;   diffuse[2] = 0.4;   diffuse[3] = 1.0;
 		ambient[0] = 0.1;   ambient[1] = 0.1;   ambient[2] = 0.1;   ambient[3] = 1.0;
 		specular[0] = 0.1;  specular[1] = 0.1;  specular[2] = 0.1;  specular[3] = 1.0;
 		shininess = 10.0;
 	} break;
-	case BLACK2: {
+	case ColorName::Black2: {
 		diffuse[0] = 0.4;   diffuse[1] = 0.4;   diffuse[2] = 0.4;   diffuse[3] = 1.0;
 		ambient[0] = 0.1;   ambient[1] = 0.1;   ambient[2] = 0.1;   ambient[3] = 1.0;
 		specular[0] = 0.1;  specular[1] = 0.1;  specular[2] = 0.1;  specular[3] = 1.0;
 		shininess = 10.0;
 	} break;
-	case BLACK3: {
+	case ColorName::Black3: {
 		diffuse[0] = 0.4;   diffuse[1] = 0.4;   diffuse[2] = 0.4;   diffuse[3] = 1.0;
 		ambient[0] = 0.0;   ambient[1] = 0.0;   ambient[2] = 0.0;   ambient[3] = 1.0;
 		specular[0] = 0.1;  specular[1] = 0.1;  specular[2] = 0.1;  specular[3] = 1.0;
 		shininess = 10.0;
 	} break;
-	case WHITE: {
+	case ColorName::White: {
 		diffuse[0] = 1.0;   diffuse[1] = 1.0;   diffuse[2] = 1.0;   diffuse[3] = 1.0;
 		ambient[0] = 1.0;   ambient[1] = 1.0;   ambient[2] = 1.0;   ambient[3] = 1.0;
 		specular[0] = 1.0;  specular[1] = 1.0;  specular[2] = 1.0;  specular[3] = 1.0;
 		shininess = 10.0;
 	} break;
-	case GRAY: {
+	case ColorName::Gray: {
 		diffuse[0] = 0.4;   diffuse[1] = 0.4;   diffuse[2] = 0.4;   diffuse[3] = 1.0;
 		ambient[0] = 0.2;   ambient[1] = 0.2;   ambient[2] = 0.2;   ambient[3] = 1.0;
 		specular[0] = 0.1;  specular[1] = 0.1;  specular[2] = 0.1;  specular[3] = 1.0;
 		shininess = 10.0;
 	} break;
-	case GRAY2: {
+	case ColorName::Gray2: {
 		diffuse[0] = 0.4;   diffuse[1] = 0.4;   diffuse[2] = 0.4;   diffuse[3] = 1.0;
 		ambient[0] = 0.4;   ambient[1] = 0.4;   ambient[2] = 0.4;   ambient[3] = 1.0;
 		specular[0] = 0.1;  specular[1] = 0.1;  specular[2] = 0.1;  specular[3] = 1.0;

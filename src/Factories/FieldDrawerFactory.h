@@ -6,18 +6,18 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef FIELD_DRAWER_H
-#define FIELD_DRAWER_H
+#ifndef FIELD_DRAWER_FACTORY_H
+#define FIELD_DRAWER_FACTORY_H
 
-#include "Material.h"
+#include "../Domain/CompetitionEnum.h"
+#include "../Interfaces/IFieldDrawer.h"
 
-class FieldDrawer {
+class FieldDrawerFactory {
 public:
 
-	Material material;
+	FieldDrawerFactory();
 
-	FieldDrawer();
-	void draw();
+	IFieldDrawer* factory( CompetitionName competitionName );
 };
 
-#endif // FIELD_DRAWER_H
+#endif // FIELD_DRAWER_FACTORY_H

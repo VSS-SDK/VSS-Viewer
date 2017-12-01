@@ -16,7 +16,7 @@ public:
 
 	Pose();
 	Pose( float x, float y, float yaw );
-	Pose( Pose *p );
+	Pose( Pose *pose );
 };
 
 #endif // POSE_H

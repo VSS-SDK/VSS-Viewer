@@ -9,18 +9,32 @@
 #ifndef ROBOT_DRAWER_H
 #define ROBOT_DRAWER_H
 
-#include "Pose.h"
+#include "Interfaces/IRobotDrawer.h"
+#include "Domain/ColorEnum.h"
+#include "Domain/Pose.h"
 #include "Material.h"
 
-class RobotDrawer {
+class RobotDrawer : public IRobotDrawer {
 public:
 
-	Material material;
-	GLUquadric* qobj;
+	Material *material;
+	Pose *pose;
+	ColorName teamColor;
+	ColorName robotColor;
+	GLUquadric *qobj;
+
+	float robotWidth;
+	float robotDepth;
+	float robotHeight;
+	const float colorLabelSize = 3.5;
+	const float thickOfThings = 2.5;
 
 	RobotDrawer();
 
-	void draw( Pose pose, int colorTeam, int colorRobot );
+	void draw() override;
+	void setPose( Pose *pose );
+	void setTeamColor( ColorName teamColor );
+	void setRobotColor( ColorName robotColor );
 };
 
 #endif // ROBOT_DRAWER_H

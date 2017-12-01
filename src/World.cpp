@@ -6,13 +6,14 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#include "GlutWorld.h"
+#include "World.h"
 
-GlutWorld::GlutWorld(){
-
+World::World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer ){
+	this->fieldDrawer = fieldDrawer;
+	this->robotDrawer = robotDrawer;
 }
 
-void GlutWorld::display() {
+void World::display() {
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glLoadIdentity();
 
@@ -21,6 +22,6 @@ void GlutWorld::display() {
 	glRotatef( 90.0, 0, 1, 0 );
 	glTranslatef( -130.0, 0.0, -0.0 );
 
-	fieldDrawer.draw();
-	robotDrawer.draw( Pose( 0, 0, 0 ), 0, 0 );
+	fieldDrawer->draw();
+	robotDrawer->draw();
 }

@@ -6,20 +6,14 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#include "Pose.h"
+#ifndef IROBOT_DRAWER_H
+#define IROBOT_DRAWER_H
 
-Pose::Pose(){
-	x = y = yaw = 0.0;
-}
+class IRobotDrawer {
+public:
 
-Pose::Pose( float x, float y, float yaw ){
-	this->x = x;
-	this->y = y;
-	this->yaw = yaw;
-}
+	IRobotDrawer();
+	void virtual draw();
+};
 
-Pose::Pose( Pose *p ){
-	x = p->x;
-	y = p->y;
-	yaw = p->yaw;
-}
+#endif // IROBOT_DRAWER_H
