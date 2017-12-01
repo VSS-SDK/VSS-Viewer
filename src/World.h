@@ -9,13 +9,16 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#include "vector"
+#include <iostream>
+#include <vector>
 
+#include "../VSS-Interface/interface.h"
 #include "Framework/GlutFramework.h"
 #include "Interfaces/IFieldDrawer.h"
 #include "Interfaces/IRobotDrawer.h"
 #include "Interfaces/ICamera.h"
 #include "Domain/Pose.h"
+#include "Domain/AsciiEnum.h"
 
 class World : public GlutFramework {
 public:
@@ -27,6 +30,11 @@ public:
 	World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera );
 
 	void display() override;
+	void keyboardDown( unsigned char key, int x, int y ) override;
+
+	// Strategies
+	void closeStrategy();
+	void changeCameraStrategy();
 };
 
 #endif // WORLD_H

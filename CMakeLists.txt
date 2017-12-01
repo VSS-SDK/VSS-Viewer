@@ -1,6 +1,6 @@
 PROJECT(vss-viewer)
 CMAKE_MINIMUM_REQUIRED (VERSION 2.6)
-SET(CMAKE_CXX_FLAGS "-std=c++11 -g -Wall -Werror -lm -o2")
+SET(CMAKE_CXX_FLAGS "-std=c++11 -g -Wall -Werror -lm")
 
 ADD_SUBDIRECTORY(VSS-Interface)
 
@@ -23,9 +23,10 @@ find_library(ZeroMQ_LIBRARY
 include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} ${Boost_INCLUDE_DIR})
 
 file(GLOB_RECURSE SRC src/*.cpp)
-file(GLOB_RECURSE VSS VSS-Interface/*.cpp)
+file(GLOB_RECURSE VSS1 VSS-Interface/*.cc)
+file(GLOB_RECURSE VSS2 VSS-Interface/*.cpp)
 
-ADD_EXECUTABLE(vss-viewer ${SRC} ${VSS})
+ADD_EXECUTABLE(vss-viewer ${SRC} ${VSS1} ${VSS2})
 
 target_include_directories(vss-viewer PUBLIC ${ZeroMQ_INCLUDE_DIR})
 target_link_libraries(vss-viewer PUBLIC ${ZeroMQ_LIBRARY})

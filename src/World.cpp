@@ -7,6 +7,7 @@
  */
 
 #include "World.h"
+#include "Cameras/TopCamera.h"
 
 World::World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera ){
 	this->fieldDrawer = fieldDrawer;
@@ -21,4 +22,32 @@ void World::display() {
 	camera->applyPosition();
 	fieldDrawer->draw();
 	robotDrawer->draw();
+}
+
+void World::keyboardDown( unsigned char key, int x, int y ) {
+	Key keyPushed = (Key)key;
+
+	switch(keyPushed) {
+	  case Key::c: {
+		  changeCameraStrategy();
+	  } break;
+	  case Key::C: {
+		  changeCameraStrategy();
+	  } break;
+	  case Key::ESC: {
+		  closeStrategy();
+	  } break;
+	  default: {
+		  // None
+	  } break;
+	}
+}
+
+void World::closeStrategy(){
+	exit( 0 );
+}
+
+void World::changeCameraStrategy(){
+	cout << "asd" << endl;
+	camera = new TopCamera();
 }
