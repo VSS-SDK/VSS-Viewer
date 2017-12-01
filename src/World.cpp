@@ -8,20 +8,17 @@
 
 #include "World.h"
 
-World::World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer ){
+World::World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera ){
 	this->fieldDrawer = fieldDrawer;
 	this->robotDrawer = robotDrawer;
+	this->camera = camera;
 }
 
 void World::display() {
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glLoadIdentity();
 
-	glTranslatef( 0.0f, 0.0f, 0 );
-	glRotatef( 180.0, 1, 0, 0 );
-	glRotatef( 90.0, 0, 1, 0 );
-	glTranslatef( -130.0, 0.0, -0.0 );
-
+	camera->applyPosition();
 	fieldDrawer->draw();
 	robotDrawer->draw();
 }

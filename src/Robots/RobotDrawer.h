@@ -9,10 +9,10 @@
 #ifndef ROBOT_DRAWER_H
 #define ROBOT_DRAWER_H
 
-#include "Interfaces/IRobotDrawer.h"
-#include "Domain/ColorEnum.h"
-#include "Domain/Pose.h"
-#include "Material.h"
+#include "../Interfaces/IRobotDrawer.h"
+#include "../Domain/ColorEnum.h"
+#include "../Domain/Pose.h"
+#include "../Domain/Material.h"
 
 class RobotDrawer : public IRobotDrawer {
 public:

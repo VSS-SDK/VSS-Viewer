@@ -9,9 +9,9 @@
 #ifndef FIELD_DRAWER_150X130_H
 #define FIELD_DRAWER_150X130_H
 
-#include "Domain/ColorEnum.h"
-#include "Interfaces/IFieldDrawer.h"
-#include "Material.h"
+#include "../Domain/ColorEnum.h"
+#include "../Interfaces/IFieldDrawer.h"
+#include "../Domain/Material.h"
 
 class FieldDrawerVerySmallSize : public IFieldDrawer {
 private:

@@ -14,6 +14,7 @@
 #include "Framework/GlutFramework.h"
 #include "Interfaces/IFieldDrawer.h"
 #include "Interfaces/IRobotDrawer.h"
+#include "Interfaces/ICamera.h"
 #include "Domain/Pose.h"
 
 class World : public GlutFramework {
@@ -21,8 +22,9 @@ public:
 
 	IFieldDrawer *fieldDrawer;
 	IRobotDrawer *robotDrawer;
+	ICamera *camera;
 
-	World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer );
+	World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera );
 
 	void display() override;
 };

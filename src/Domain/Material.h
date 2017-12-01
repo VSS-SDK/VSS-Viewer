@@ -20,7 +20,7 @@
 #include <GL/glut.h>
 #endif
 
-#include "Domain/ColorEnum.h"
+#include "ColorEnum.h"
 
 class Material {
 private:

@@ -7,7 +7,7 @@
  */
 
 #include "FieldDrawerFactory.h"
-#include "../FieldDrawerVerySmallSize.h"
+#include "../Fields/FieldDrawerVerySmallSize.h"
 
 FieldDrawerFactory::FieldDrawerFactory(){
 

@@ -8,12 +8,16 @@
 
 #include "Domain/CompetitionEnum.h"
 #include "Factories/FieldDrawerFactory.h"
-#include "RobotDrawer.h"
+#include "Robots/RobotDrawer.h"
+#include "Cameras/TvCamera.h"
 #include "World.h"
 
 int main( int argc, char *argv[] ) {
 	auto fieldDrawerFactory = new FieldDrawerFactory();
-	auto world = new World( fieldDrawerFactory->factory( CompetitionName::VerySmallSize ), new RobotDrawer());
+	auto robotDrawer = new RobotDrawer();
+	auto camera = new TvCamera();
+
+	auto world = new World( fieldDrawerFactory->factory( CompetitionName::VerySmallSize ), robotDrawer, camera );
 
 	world->startFramework( argc, argv );
 
