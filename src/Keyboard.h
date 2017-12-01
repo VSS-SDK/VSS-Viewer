@@ -25,23 +25,20 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
-namespace glutFramework {
-
-	class Keyboard {
+class Keyboard {
 private:
 
-		enum Key { UP, DOWN, RELEASED };
-		static const int NUMBER_KEYS = 256;
-		Key keys[ NUMBER_KEYS ];
+	enum Key { UP, DOWN, RELEASED };
+	static const int NUMBER_KEYS = 256;
+	Key keys[ NUMBER_KEYS ];
 
 public:
 
-		Keyboard();
+	Keyboard();
 
-		void keyDown( int key );
-		void keyUp( int key );
-		bool isKeyDown( int key );
-	};
+	void keyDown( int key );
+	void keyUp( int key );
+	bool isKeyDown( int key );
+};
 
-}
 #endif

@@ -42,85 +42,52 @@
 #endif
 
 #include "Keyboard.h"
-#include "PerformanceTimer.h"
-#include "Vector.h"
+#include <unistd.h>
 
-namespace glutFramework {
-
-	class GlutFramework {
+class GlutFramework {
 
 private:
 
-		double frameTimeElapsed;
+	Keyboard keyStates;
 
 protected:
 
-		Keyboard keyStates;
-		PerformanceTimer frameRateTimer;
-		PerformanceTimer displayTimer;
-
-		std::string title;
-		double elapsedTimeInSeconds;
-		static GlutFramework *instance;
-
-		Vector<float> eyeVector;
-		Vector<float> centerVector;
-		Vector<float> upVector;
-
-		float position;
-		float direction;
+	static GlutFramework *instance;
 
 public:
 
-		// Constants
-		const static int FPS = 60;
-		const static int WINDOW_WIDTH = 640;
-		const static int WINDOW_HEIGHT = 480;
-		const static int WINDOW_X_POSITION = 100;
-		const static int WINDOW_Y_POSITION = 100;
-
-		const static double FRAME_TIME;
+	int FPS;
 
 public:
 
-		GlutFramework();
-		virtual ~GlutFramework();
+	GlutFramework();
 
-		void startFramework( int argc, char *argv[] );
-		virtual void load();
-		virtual void display( float dTime );
-		virtual void reshape( int width, int height );
-		virtual void mouseButtonPress( int button, int state, int x, int y );
-		virtual void mouseMove( int x, int y );
-		virtual void keyboardDown( unsigned char key, int x, int y );
-		virtual void keyboardUp( unsigned char key, int x, int y );
-		virtual void specialKeyboardDown( int key, int x, int y );
-		virtual void specialKeyboardUp( int key, int x, int y );
-		void setDisplayMatricies();
-		void setupLights();
-		void setLookAt( float eyeX, float eyeY, float eyeZ,
-		                float centerX, float centerY, float centerZ,
-		                float upX, float upY, float upZ );
+	void startFramework( int argc, char *argv[] );
+	virtual void display();
+	virtual void reshape( int width, int height );
+	virtual void mouseButtonPress( int button, int state, int x, int y );
+	virtual void mouseMove( int x, int y );
+	virtual void keyboardDown( unsigned char key, int x, int y );
+	virtual void keyboardUp( unsigned char key, int x, int y );
+	virtual void specialKeyboardDown( int key, int x, int y );
+	virtual void specialKeyboardUp( int key, int x, int y );
+	void setDisplayMatricies();
+	void setupLights();
 
-		Vector<float> getEyeVector() const;
-		Vector<float> getCenterVector() const;
-		Vector<float> getUpVector() const;
-		void setTitle( std::string theTitle );
-		void init();
-		void setInstance();
-		void run();
-		void displayFramework();
+	void init();
+	void setInstance();
+	void run();
+	void displayFramework();
 
-		static void displayWrapper();
-		static void reshapeWrapper( int width, int height );
-		static void runWrapper();
-		static void mouseButtonPressWrapper( int button, int state, int x, int y );
-		static void mouseMoveWrapper( int x, int y );
-		static void keyboardDownWrapper( unsigned char key, int x, int y );
-		static void keyboardUpWrapper( unsigned char key, int x, int y );
-		static void specialKeyboardDownWrapper( int key, int x, int y );
-		static void specialKeyboardUpWrapper( int key, int x, int y );
-	};
+	static void displayWrapper();
+	static void reshapeWrapper( int width, int height );
+	static void runWrapper();
+	static void mouseButtonPressWrapper( int button, int state, int x, int y );
+	static void mouseMoveWrapper( int x, int y );
+	static void keyboardDownWrapper( unsigned char key, int x, int y );
+	static void keyboardUpWrapper( unsigned char key, int x, int y );
+	static void specialKeyboardDownWrapper( int key, int x, int y );
+	static void specialKeyboardUpWrapper( int key, int x, int y );
+};
 
-} // namespace
-#endif
+#endif // GLUT_FRAMEWORK_H
