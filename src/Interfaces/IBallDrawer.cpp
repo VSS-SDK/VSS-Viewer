@@ -6,18 +6,13 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef FIELD_DRAWER_FACTORY_H
-#define FIELD_DRAWER_FACTORY_H
+#include "IBallDrawer.h"
 
-#include "CompetitionEnum.h"
-#include "IFieldDrawer.h"
+IBallDrawer::IBallDrawer(){
+}
 
-class FieldDrawerFactory {
-public:
+void IBallDrawer::draw(){
+}
 
-	FieldDrawerFactory();
-
-	IFieldDrawer* factory( CompetitionName competitionName );
-};
-
-#endif // FIELD_DRAWER_FACTORY_H
+void IBallDrawer::setBall( Pose *pose ){
+}

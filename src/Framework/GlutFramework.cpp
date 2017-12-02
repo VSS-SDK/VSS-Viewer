@@ -113,15 +113,15 @@ void GlutFramework::setDisplayMatricies() {
 }
 
 void GlutFramework::setupLights() {
-	GLfloat light1_position[] = { 0.0, 1.0, 1.0, 0.0 };
-	GLfloat white_light[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat lmodel_ambient[] = { 0.4, 0.4, 0.4, 1.0 };
+	GLfloat white_light[] = { 0.25, 0.25, 0.25, 1.0 };
+	GLfloat lmodel_ambient[] = { 0.3, 0.3, 0.3, 1.0 };
 	GLfloat ambient_light[] = { 0.8, 0.8, 0.8, 1.0 };
+	GLfloat light1_position[] = { 0.0, 1.0, 1.0, 0.0 };
 
-	glLightfv( GL_LIGHT0, GL_POSITION, light1_position );
 	glLightfv( GL_LIGHT0, GL_AMBIENT, ambient_light );
 	glLightfv( GL_LIGHT0, GL_DIFFUSE, white_light );
 	glLightfv( GL_LIGHT0, GL_SPECULAR, white_light );
+	glLightfv( GL_LIGHT0, GL_POSITION, light1_position );
 
 	glLightModelfv( GL_LIGHT_MODEL_AMBIENT, lmodel_ambient );
 

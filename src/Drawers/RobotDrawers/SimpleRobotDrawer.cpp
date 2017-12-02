@@ -6,10 +6,10 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#include "RobotDrawer.h"
+#include "SimpleRobotDrawer.h"
 #include "iostream"
 
-RobotDrawer::RobotDrawer(){
+SimpleRobotDrawer::SimpleRobotDrawer(){
 	qobj = gluNewQuadric();
 	gluQuadricNormals( qobj, GLU_SMOOTH );
 	robot = new Robot();
@@ -19,11 +19,11 @@ RobotDrawer::RobotDrawer(){
 	robotHeight = 8.0;
 }
 
-void RobotDrawer::setRobot( Robot *robot ){
+void SimpleRobotDrawer::setRobot( Robot *robot ){
 	this->robot = robot;
 }
 
-void RobotDrawer::draw(){
+void SimpleRobotDrawer::draw(){
 	glPushMatrix();
 	//! Desenha o corpo do robô
 	glTranslatef( thickOfThings * 1.4, robot->pose->x, robot->pose->y );

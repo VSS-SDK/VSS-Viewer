@@ -7,6 +7,7 @@ Core::Core( int argc, char **argv ){
 	this->receiveStateAddress = "tcp://localhost:5555";
 
 	ball = new Pose( 0, 0, 0 );
+
 	for(int i = 0; i < 6; i++) {
 		robots.push_back( new Robot());
 		if(i > 2)
@@ -42,10 +43,11 @@ void Core::init(){
 void Core::worldThreadWrapper(){
 	auto fieldDrawerFactory = new FieldDrawerFactory();
 	auto fieldDrawer = fieldDrawerFactory->factory( CompetitionName::VerySmallSize );
-	auto robotDrawer = new RobotDrawer();
+	auto robotDrawer = new SimpleRobotDrawer();
+	auto ballDrawer = new SimpleBallDrawer();
 	auto camera = new TvCamera();
 
-	auto world = new World( fieldDrawer, robotDrawer, camera, &ball, &robots, &paused );
+	auto world = new World( fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots, &paused );
 	world->start( argc, argv );
 }
 

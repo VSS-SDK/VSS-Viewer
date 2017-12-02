@@ -6,14 +6,14 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef ROBOT_DRAWER_H
-#define ROBOT_DRAWER_H
+#ifndef SIMPLE_ROBOT_DRAWER_H
+#define SIMPLE_ROBOT_DRAWER_H
 
 #include "IRobotDrawer.h"
 #include "Robot.h"
 #include "Material.h"
 
-class RobotDrawer : public IRobotDrawer {
+class SimpleRobotDrawer : public IRobotDrawer {
 public:
 
 	Material *material;
@@ -26,10 +26,10 @@ public:
 	const float colorLabelSize = 3.5;
 	const float thickOfThings = 2.5;
 
-	RobotDrawer();
+	SimpleRobotDrawer();
 
 	void draw() override;
 	void setRobot( Robot *robot ) override;
 };
 
-#endif // ROBOT_DRAWER_H
+#endif // SIMPLE_ROBOT_DRAWER_H

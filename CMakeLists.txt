@@ -20,7 +20,7 @@ find_library(ZeroMQ_LIBRARY
         PATHS ${PC_ZeroMQ_LIBRARY_DIRS}
         )
 
-include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} ${Boost_INCLUDE_DIR} src VSS-Interface src/Cameras src/Communications src/Domain src/Drawers src/Drawers/FieldDrawers src/Drawers/RobotDrawers src/Factories src/Framework src/Interfaces)
+include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} ${Boost_INCLUDE_DIR} src VSS-Interface src/Cameras src/Communications src/Domain src/Drawers src/Drawers/FieldDrawers src/Drawers/RobotDrawers src/Drawers/BallDrawers rc/Factories src/Framework src/Factories src/Interfaces)
 
 file(GLOB_RECURSE SRC src/*.cpp)
 

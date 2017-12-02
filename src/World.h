@@ -16,6 +16,7 @@
 #include "interface.h"
 #include "IFieldDrawer.h"
 #include "IRobotDrawer.h"
+#include "IBallDrawer.h"
 #include "ICamera.h"
 #include "Pose.h"
 #include "AsciiEnum.h"
@@ -28,12 +29,13 @@ public:
 	bool *paused;
 	IFieldDrawer *fieldDrawer;
 	IRobotDrawer *robotDrawer;
+	IBallDrawer *ballDrawer;
 	ICamera *camera;
 	Pose *ball;
 	std::vector<Robot> *robots;
 	Material *material;
 
-	World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, bool *paused );
+	World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, bool *paused );
 
 	void display() override;
 	void keyboardDown( unsigned char key, int x, int y ) override;

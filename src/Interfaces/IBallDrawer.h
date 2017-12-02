@@ -6,18 +6,17 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef FIELD_DRAWER_FACTORY_H
-#define FIELD_DRAWER_FACTORY_H
+#ifndef IBALL_DRAWER_H
+#define IBALL_DRAWER_H
 
-#include "CompetitionEnum.h"
-#include "IFieldDrawer.h"
+#include "Pose.h"
 
-class FieldDrawerFactory {
+class IBallDrawer {
 public:
 
-	FieldDrawerFactory();
-
-	IFieldDrawer* factory( CompetitionName competitionName );
+	IBallDrawer();
+	void virtual draw();
+	void virtual setBall( Pose *pose );
 };
 
-#endif // FIELD_DRAWER_FACTORY_H
+#endif // IROBOT_DRAWER_H

@@ -14,7 +14,8 @@
 
 #include "CompetitionEnum.h"
 #include "FieldDrawerFactory.h"
-#include "RobotDrawer.h"
+#include "SimpleRobotDrawer.h"
+#include "SimpleBallDrawer.h"
 #include "StateReceiver.h"
 #include "TvCamera.h"
 #include "World.h"
