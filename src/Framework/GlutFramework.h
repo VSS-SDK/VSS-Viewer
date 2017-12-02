@@ -62,7 +62,7 @@ public:
 
 	GlutFramework();
 
-	void startFramework( int argc, char *argv[] );
+	virtual void start( int argc, char *argv[] );
 	virtual void display();
 	virtual void reshape( int width, int height );
 	virtual void mouseButtonPress( int button, int state, int x, int y );

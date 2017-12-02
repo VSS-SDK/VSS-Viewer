@@ -30,7 +30,7 @@ GlutFramework::GlutFramework() {
 	FPS = 30;
 }
 
-void GlutFramework::startFramework( int argc, char *argv[] ) {
+void GlutFramework::start( int argc, char *argv[] ) {
 	setInstance();
 
 	glutInit( &argc, argv );
