@@ -45,12 +45,23 @@ void World::reshape( int width, int height ) {
 	if(windowHeight < 500)
 		windowHeight = 500;
 
+	// Força proporção 16:9, 1.777777778 = 16/9
 	windowWidth = windowHeight * 1.777777778;
 	glutReshapeWindow( windowWidth, windowHeight );
 	glViewport( 0, 0, (GLsizei)windowWidth, (GLsizei)windowHeight );
 
+	// 500 = altura minima da janela
+	// Obtém a razão entre a altura do campo e a altura da janela
+	// 0.072 = (altura da janela - altura do campo) / 500
+	// 0.000013155 = função que define a diferença entre altura da janela e altura do campo de acordo com a resolução
+	// Quando 500 a diferença é 0.072, quando 1080 a diferença é 0.079
 	auto reasonY = 0.072 - ((500 - windowHeight) * 0.000013155);
+
+	// Como o campo é menor do que a janela sempre, é 100% menos a reasonY
+	// Assim é obtido a altura do campo
 	fieldHeight = windowHeight * (1.0 - reasonY);
+
+	// Aplica a porporção 17:13 do campo, assim obtendo o tamanho do campo
 	fieldWidth = fieldHeight * 1.307692308;
 }
 
