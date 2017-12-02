@@ -13,3 +13,12 @@ IRobotDrawer::IRobotDrawer(){
 
 void IRobotDrawer::draw(){
 }
+
+void IRobotDrawer::setPose( Pose *pose ){
+}
+
+void IRobotDrawer::setTeamColor( ColorName teamColor ){
+}
+
+void IRobotDrawer::setRobotColor( ColorName robotColor ){
+}

@@ -26,8 +26,10 @@ public:
 	IFieldDrawer *fieldDrawer;
 	IRobotDrawer *robotDrawer;
 	ICamera *camera;
+	Pose *ball;
+	std::vector<Pose> *robots;
 
-	World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera );
+	World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera, Pose *ball, std::vector<Pose> *robots );
 
 	void display() override;
 	void keyboardDown( unsigned char key, int x, int y ) override;
@@ -35,6 +37,8 @@ public:
 	// Strategies
 	void closeStrategy();
 	void changeCameraStrategy();
+	//void pauseStrategy();
+	//void startStrategy();
 };
 
 #endif // WORLD_H

@@ -15,32 +15,27 @@
 #include "Domain/CompetitionEnum.h"
 #include "Factories/FieldDrawerFactory.h"
 #include "Robots/RobotDrawer.h"
+#include "Communications/StateReceiver.h"
 #include "Cameras/TvCamera.h"
 #include "World.h"
 
 class Core {
-public:
+private:
 
-	Interface *interface;
-	vss_state::Global_State global_state;
-
-	World *world;
-	thread *worldThread;
-	thread *receiveStateThread;
 	int argc;
 	char **argv;
-	string address;
-
 	Pose ball;
 	std::vector<Pose> robots;
+	string receiveStateAddress;
+	thread *worldThread;
+	thread *receiveStateThread;
 
-	Core();
+public:
 
-	void init( int argc, char **argv );
-
+	Core( int argc, char **argv );
+	void init();
 	void worldThreadWrapper();
 	void receiveStateThreadWrapper();
-
 };
 
 #endif // CORE_H

@@ -7,6 +7,7 @@
  */
 
 #include "RobotDrawer.h"
+#include "iostream"
 
 RobotDrawer::RobotDrawer(){
 	qobj = gluNewQuadric();
@@ -33,7 +34,6 @@ void RobotDrawer::setRobotColor( ColorName robotColor ){
 }
 
 void RobotDrawer::draw(){
-
 	glPushMatrix();
 	//! Desenha o corpo do robô
 	glTranslatef( thickOfThings * 1.4, pose->x, pose->y );

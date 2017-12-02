@@ -32,9 +32,9 @@ public:
 	RobotDrawer();
 
 	void draw() override;
-	void setPose( Pose *pose );
-	void setTeamColor( ColorName teamColor );
-	void setRobotColor( ColorName robotColor );
+	void setPose( Pose *pose ) override;
+	void setTeamColor( ColorName teamColor ) override;
+	void setRobotColor( ColorName robotColor ) override;
 };
 
 #endif // ROBOT_DRAWER_H

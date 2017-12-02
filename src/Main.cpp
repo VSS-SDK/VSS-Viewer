@@ -9,8 +9,7 @@
 #include "Core.h"
 
 int main( int argc, char *argv[] ) {
-	Core core;
-	core.init( argc, argv );
-
+	Core core( argc, argv );
+	core.init();
 	return 0;
 }
