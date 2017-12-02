@@ -12,33 +12,38 @@
 #include <iostream>
 #include <vector>
 
-#include "../VSS-Interface/interface.h"
 #include "Framework/GlutFramework.h"
+#include "../VSS-Interface/interface.h"
 #include "Interfaces/IFieldDrawer.h"
 #include "Interfaces/IRobotDrawer.h"
 #include "Interfaces/ICamera.h"
 #include "Domain/Pose.h"
 #include "Domain/AsciiEnum.h"
+#include "Domain/ColorEnum.h"
+#include "Domain/Material.h"
 
 class World : public GlutFramework {
 public:
 
+	bool *paused;
 	IFieldDrawer *fieldDrawer;
 	IRobotDrawer *robotDrawer;
 	ICamera *camera;
 	Pose *ball;
 	std::vector<Pose> *robots;
+	Material *material;
 
-	World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera, Pose *ball, std::vector<Pose> *robots );
+	World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera, Pose *ball, std::vector<Pose> *robots, bool *paused );
 
 	void display() override;
 	void keyboardDown( unsigned char key, int x, int y ) override;
+	void drawPausedWarning();
 
 	// Strategies
 	void closeStrategy();
 	void changeCameraStrategy();
-	//void pauseStrategy();
-	//void startStrategy();
+	void pauseStrategy();
+	void startStrategy();
 };
 
 #endif // WORLD_H

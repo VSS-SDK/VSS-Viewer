@@ -1,13 +1,18 @@
 #include "Core.h"
 
 Core::Core( int argc, char **argv ){
+	this->paused = true;
 	this->argc = argc;
 	this->argv = argv;
 	this->receiveStateAddress = "tcp://localhost:5555";
 
 	ball = new Pose( 0, 0, 0 );
-	for(int i = 0; i < 6; i++)
-		robots.push_back( new Pose( 0, 0, 0 ));
+	robots.push_back( new Pose( -20, -40, 0 ));
+	robots.push_back( new Pose( -20, -20, 0 ));
+	robots.push_back( new Pose( -20, -60, 0 ));
+	robots.push_back( new Pose( 20, 40, 0 ));
+	robots.push_back( new Pose( 20, 20, 0 ));
+	robots.push_back( new Pose( 20, 60, 0 ));
 }
 
 void Core::init(){
@@ -23,7 +28,7 @@ void Core::worldThreadWrapper(){
 	auto robotDrawer = new RobotDrawer();
 	auto camera = new TvCamera();
 
-	auto world = new World( fieldDrawer, robotDrawer, camera, &ball, &robots );
+	auto world = new World( fieldDrawer, robotDrawer, camera, &ball, &robots, &paused );
 	world->start( argc, argv );
 }
 

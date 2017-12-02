@@ -10,13 +10,17 @@
 #include "World.h"
 #include "Cameras/TopCamera.h"
 #include "Cameras/TvCamera.h"
+#include <GL/glew.h>
 
-World::World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera, Pose *ball, std::vector<Pose> *robots ){
+World::World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera, Pose *ball, std::vector<Pose> *robots, bool *paused ){
 	this->fieldDrawer = fieldDrawer;
 	this->robotDrawer = robotDrawer;
 	this->camera = camera;
 	this->ball = ball;
 	this->robots = robots;
+	this->paused = paused;
+
+	material = new Material();
 }
 
 void World::display() {
@@ -30,6 +34,19 @@ void World::display() {
 		robotDrawer->setPose( &robots->at( i ) );
 		robotDrawer->draw();
 	}
+
+	if(paused)
+		drawPausedWarning();
+}
+
+void World::drawPausedWarning(){
+	glPushMatrix();
+	stringstream ss;
+	ss << "Pausado";
+	material->applyMaterial( ColorName::Yellow );
+	glWindowPos2i( 100, 100 );
+	glutBitmapString( GLUT_BITMAP_HELVETICA_18, (const unsigned char *)ss.str().c_str());
+	glPopMatrix();
 }
 
 void World::keyboardDown( unsigned char key, int x, int y ) {
@@ -42,7 +59,13 @@ void World::keyboardDown( unsigned char key, int x, int y ) {
 	  case Key::C: {
 		  changeCameraStrategy();
 	  } break;
-	  case Key::ESC: {
+	  case Key::Space: {
+		  if(*paused)
+			  startStrategy();
+		  else
+			  pauseStrategy();
+	  } break;
+	  case Key::Esc: {
 		  closeStrategy();
 	  } break;
 	  default: {
@@ -56,11 +79,22 @@ void World::closeStrategy(){
 }
 
 void World::changeCameraStrategy(){
-	auto object = (string)typeid(*camera).name();
+	if(!*paused) {
+		auto object = (string)typeid(*camera).name();
 
-	if (object.find( "TvCamera" ) != std::string::npos) {
-		camera = new TopCamera();
-	}else{
-		camera = new TvCamera();
+		if (object.find( "TvCamera" ) != std::string::npos) {
+			camera = new TopCamera();
+		}else{
+			camera = new TvCamera();
+		}
 	}
+}
+
+void World::pauseStrategy(){
+	*paused = true;
+	camera = new TopCamera();
+}
+
+void World::startStrategy(){
+	*paused = false;
 }

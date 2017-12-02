@@ -22,6 +22,7 @@
 class Core {
 private:
 
+	bool paused;
 	int argc;
 	char **argv;
 	Pose ball;

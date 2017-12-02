@@ -10,7 +10,8 @@
 #define ASCI_ENUM_H
 
 enum Key {
-	ESC = 27,
+	Esc = 27,
+	Space = 32,
 	a = 97,
 	b = 98,
 	c = 99,
