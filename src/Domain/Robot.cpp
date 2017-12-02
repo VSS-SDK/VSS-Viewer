@@ -20,7 +20,7 @@ Robot::Robot( Pose *pose, ColorName teamColor, ColorName robotColor ){
 	this->robotColor = robotColor;
 }
 
-Robot::Robot( Robot * robot ){
+Robot::Robot( Robot *robot ){
 	pose = robot->pose;
 	teamColor = robot->teamColor;
 	robotColor = robot->robotColor;

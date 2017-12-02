@@ -15,13 +15,13 @@
 class Robot {
 public:
 
-	Pose pose;
+	Pose *pose;
 	ColorName teamColor;
 	ColorName robotColor;
 
 	Robot();
 	Robot( Pose *pose, ColorName teamColor, ColorName robotColor );
-	Robot( Robot * robot );
+	Robot( Robot *robot );
 };
 
 #endif // ROBOT_H

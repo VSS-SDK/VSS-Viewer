@@ -26,8 +26,8 @@ void RobotDrawer::setRobot( Robot *robot ){
 void RobotDrawer::draw(){
 	glPushMatrix();
 	//! Desenha o corpo do robô
-	glTranslatef( thickOfThings * 1.4, robot->pose.x, robot->pose.y );
-	glRotatef( -robot->pose.yaw, 1, 0, 0 );
+	glTranslatef( thickOfThings * 1.4, robot->pose->x, robot->pose->y );
+	glRotatef( -robot->pose->yaw, 1, 0, 0 );
 	glScalef( robotHeight, robotWidth, robotDepth );
 	material->applyMaterial( ColorName::Black3 );
 	glutSolidCube( 1 );

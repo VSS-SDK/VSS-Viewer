@@ -9,8 +9,27 @@ Core::Core( int argc, char **argv ){
 	ball = new Pose( 0, 0, 0 );
 	for(int i = 0; i < 6; i++) {
 		robots.push_back( new Robot());
-		robots.at( robots.size() - 1 ).pose = new Pose( -10 * i, 10 * i, 0 );
+		if(i > 2)
+			robots.at( i ).teamColor = ColorName::Blue;
 	}
+
+	robots.at( 0 ).pose = new Pose( 0, 70, 0 );
+	robots.at( 0 ).robotColor = ColorName::Red;
+
+	robots.at( 1 ).pose = new Pose( -10, 10, 0 );
+	robots.at( 1 ).robotColor = ColorName::Green;
+
+	robots.at( 2 ).pose = new Pose( 30, 10, 0 );
+	robots.at( 2 ).robotColor = ColorName::Purple;
+
+	robots.at( 3 ).pose = new Pose( 0, -70, 0 );
+	robots.at( 3 ).robotColor = ColorName::Red;
+
+	robots.at( 4 ).pose = new Pose( 10, -10, 0 );
+	robots.at( 4 ).robotColor = ColorName::Green;
+
+	robots.at( 5 ).pose = new Pose( -30, -10, 0 );
+	robots.at( 5 ).robotColor = ColorName::Purple;
 }
 
 void Core::init(){

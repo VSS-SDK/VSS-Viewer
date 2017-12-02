@@ -25,13 +25,13 @@ void StateReceiver::loop( string address ){
 		ball->y = global_state.balls( 0 ).pose().x() - (170 / 2.0);
 
 		for(int i = 0; i < 3; i++) {
-			robots->at( i ).pose.x = global_state.robots_yellow( i ).pose().y() - (130 / 2.0);
-			robots->at( i ).pose.y = global_state.robots_yellow( i ).pose().x() - (170 / 2.0);
-			robots->at( i ).pose.yaw = global_state.robots_yellow( i ).pose().yaw() * 180.0 / M_PI;
+			robots->at( i ).pose->x = global_state.robots_yellow( i ).pose().y() - (130 / 2.0);
+			robots->at( i ).pose->y = global_state.robots_yellow( i ).pose().x() - (170 / 2.0);
+			robots->at( i ).pose->yaw = global_state.robots_yellow( i ).pose().yaw() * 180.0 / M_PI;
 
-			robots->at( i + 3 ).pose.x = global_state.robots_blue( i ).pose().y() - (130 / 2.0);
-			robots->at( i + 3 ).pose.y = global_state.robots_blue( i ).pose().x() - (170 / 2.0);
-			robots->at( i + 3 ).pose.yaw = global_state.robots_blue( i ).pose().yaw() * 180.0 / M_PI;
+			robots->at( i + 3 ).pose->x = global_state.robots_blue( i ).pose().y() - (130 / 2.0);
+			robots->at( i + 3 ).pose->y = global_state.robots_blue( i ).pose().x() - (170 / 2.0);
+			robots->at( i + 3 ).pose->yaw = global_state.robots_blue( i ).pose().yaw() * 180.0 / M_PI;
 		}
 	}
 }
