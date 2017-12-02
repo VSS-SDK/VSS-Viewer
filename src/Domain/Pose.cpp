@@ -24,10 +24,10 @@ Pose::Pose( Pose *pose ){
 	yaw = pose->yaw;
 }
 
-void Pose::setPose( Pose *pose ){
-	x = pose->x;
-	y = pose->y;
-	yaw = pose->yaw;
+void Pose::setPose( Pose pose ){
+	x = pose.x;
+	y = pose.y;
+	yaw = pose.yaw;
 }
 
 void Pose::setPose( float x, float y, float yaw ){

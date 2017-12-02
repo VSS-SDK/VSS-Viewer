@@ -18,7 +18,7 @@ public:
 	Pose( float x, float y, float yaw );
 	Pose( Pose *pose );
 
-	void setPose( Pose *pose );
+	void setPose( Pose pose );
 	void setPose( float x, float y, float yaw );
 };
 

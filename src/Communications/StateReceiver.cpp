@@ -7,6 +7,7 @@
  */
 
 #include "StateReceiver.h"
+#include "Math.h"
 
 StateReceiver::StateReceiver( Pose *ball, std::vector<Robot> *robots ){
 	this->ball = ball;
@@ -25,13 +26,8 @@ void StateReceiver::loop( string address ){
 		ball->y = global_state.balls( 0 ).pose().x() - (170 / 2.0);
 
 		for(int i = 0; i < 3; i++) {
-			robots->at( i ).x = global_state.robots_yellow( i ).pose().y() - (130 / 2.0);
-			robots->at( i ).y = global_state.robots_yellow( i ).pose().x() - (170 / 2.0);
-			robots->at( i ).yaw = global_state.robots_yellow( i ).pose().yaw() * 180.0 / M_PI;
-
-			robots->at( i + 3 ).x = global_state.robots_blue( i ).pose().y() - (130 / 2.0);
-			robots->at( i + 3 ).y = global_state.robots_blue( i ).pose().x() - (170 / 2.0);
-			robots->at( i + 3 ).yaw = global_state.robots_blue( i ).pose().yaw() * 180.0 / M_PI;
+			robots->at( i ).setPose( Core::bulletToGlut( new Pose( global_state.robots_yellow( i ).pose().x(), global_state.robots_yellow( i ).pose().y(), global_state.robots_yellow( i ).pose().yaw())));
+			robots->at( i + 3 ).setPose( Core::bulletToGlut( new Pose( global_state.robots_blue( i ).pose().x(), global_state.robots_blue( i ).pose().y(), global_state.robots_blue( i ).pose().yaw())));
 		}
 	}
 }

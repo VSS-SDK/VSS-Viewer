@@ -27,6 +27,9 @@
 class World : public GlutFramework {
 public:
 
+	MouseAction mouseAction;
+	MouseState mouseState;
+
 	bool *paused;
 	IFieldDrawer *fieldDrawer;
 	IRobotDrawer *robotDrawer;
@@ -47,6 +50,7 @@ public:
 	void changeCameraStrategy();
 	void pauseStrategy();
 	void startStrategy();
+	void toggleSelectedRobot( Pose *pose );
 };
 
 #endif // WORLD_H

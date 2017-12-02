@@ -9,13 +9,18 @@
 #ifndef ASCI_ENUM_H
 #define ASCI_ENUM_H
 
-enum Mouse {
+enum MouseAction {
 	LeftClick = 0,
 	Unknown = 1,
 	RightClick = 2,
 	Unknown2 = 3,
 	ScrollTop = 4,
 	ScrollDown = 5
+};
+
+enum MouseState {
+	On = 0,
+	Off = 1
 };
 
 enum Key {

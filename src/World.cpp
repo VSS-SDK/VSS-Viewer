@@ -39,9 +39,11 @@ void World::display() {
 }
 
 void World::mouseButtonPress( int button, int state, int x, int y ){
-	if((Mouse)button == Mouse::LeftClick) {
-		std::cout << "left" << std::endl;
-		std::cout << state << std::endl;
+	mouseAction = (MouseAction)button;
+	mouseState = (MouseState)state;
+
+	if(mouseAction == MouseAction::LeftClick or mouseState == MouseState::On) {
+		toggleSelectedRobot( new Pose((float)x, (float)y, 0.0 ));
 	}
 }
 
@@ -68,6 +70,11 @@ void World::keyboardDown( unsigned char key, int x, int y ) {
 		  // None
 	  } break;
 	}
+}
+
+void World::toggleSelectedRobot( Pose *pose ){
+	auto robotMostClose = Core::robotMostCloseToClick( pose, robots );
+	cout << robotMostClose << endl;
 }
 
 void World::closeStrategy(){

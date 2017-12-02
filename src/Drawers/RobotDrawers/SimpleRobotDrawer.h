@@ -16,6 +16,7 @@
 class SimpleRobotDrawer : public IRobotDrawer {
 public:
 
+	bool selected;
 	Material *material;
 	Robot *robot;
 	GLUquadric *qobj;
@@ -30,6 +31,9 @@ public:
 
 	void draw() override;
 	void setRobot( Robot *robot ) override;
+
+	void setSelected( bool selected );
+	bool getSelected();
 };
 
 #endif // SIMPLE_ROBOT_DRAWER_H

@@ -23,6 +23,14 @@ void SimpleRobotDrawer::setRobot( Robot *robot ){
 	this->robot = robot;
 }
 
+void SimpleRobotDrawer::setSelected( bool selected ){
+	this->selected = selected;
+}
+
+bool SimpleRobotDrawer::getSelected(){
+	return selected;
+}
+
 void SimpleRobotDrawer::draw(){
 	glPushMatrix();
 	//! Desenha o corpo do robô
