@@ -30,6 +30,10 @@ GlutFramework::GlutFramework() {
 	FPS = 30;
 	windowWidth = 1280;
 	windowHeight = 720;
+
+	// TODO: Isso varia de campo para campo
+	fieldHeight = windowHeight - (13 * 2);
+	fieldWidth = fieldHeight * 1.307692308;
 }
 
 void GlutFramework::start( int argc, char *argv[] ) {
@@ -66,15 +70,6 @@ void GlutFramework::display() {
 }
 
 void GlutFramework::reshape( int width, int height ) {
-	this->windowWidth = width;
-	this->windowHeight = height;
-
-	if(windowHeight < 500)
-		windowHeight = 500;
-
-	windowWidth = windowHeight * 1.777777778;
-	glutReshapeWindow( windowWidth, windowHeight );
-	glViewport( 0, 0, (GLsizei)windowWidth, (GLsizei)windowHeight );
 }
 
 void GlutFramework::mouseButtonPress( int button, int state, int x, int y ) {

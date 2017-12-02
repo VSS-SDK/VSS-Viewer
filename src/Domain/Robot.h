@@ -15,12 +15,15 @@
 class Robot : public Pose {
 public:
 
+	bool selected;
 	ColorName teamColor;
 	ColorName robotColor;
 
 	Robot();
 	Robot( Pose *pose, ColorName teamColor, ColorName robotColor );
 	Robot( Robot *robot );
+
+	void setSelected( bool selected );
 };
 
 #endif // ROBOT_H

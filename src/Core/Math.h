@@ -35,6 +35,33 @@ Pose inline bulletToGlut( const Pose &bullet ){
 	return new Pose( bullet.y - (130 / 2.0), bullet.x - (170 / 2.0), bullet.yaw * 180.0 / M_PI );
 }
 
+Pose inline windowToBullet( const Pose &window, float windowWidth, float windowHeight, float fieldWidth, float fieldHeight ){
+	auto different_x = (windowWidth - fieldWidth) / 2.0;
+	auto fc_x = window.x - different_x;
+	auto new_x = fc_x * 170.0 / fieldWidth;
+
+	auto different_y = (windowHeight - fieldHeight) / 2.0;
+	auto fc_y = window.y - different_y;
+	auto new_y = fc_y * 130 / fieldHeight;
+
+	return new Pose( new_x, new_y, 0.0 );
+}
+
+int inline robotMostCloseToClick( Pose *click, std::vector<Robot> *robots ){
+	auto minDistance = distance( click, robots->at( 0 ));
+	auto idMinDistance = 0;
+
+	for(unsigned int i = 1; i < robots->size(); i++) {
+		auto actDistance = distance( click, robots->at( i ));
+		if(actDistance < minDistance) {
+			minDistance = actDistance;
+			idMinDistance = i;
+		}
+	}
+
+	return idMinDistance;
+}
+
 }
 
 #endif // CORE_MATH_H

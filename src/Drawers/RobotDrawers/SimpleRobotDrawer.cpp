@@ -23,24 +23,18 @@ void SimpleRobotDrawer::setRobot( Robot *robot ){
 	this->robot = robot;
 }
 
-void SimpleRobotDrawer::setSelected( bool selected ){
-	this->selected = selected;
-}
-
-bool SimpleRobotDrawer::getSelected(){
-	return selected;
-}
-
 void SimpleRobotDrawer::draw(){
 	glPushMatrix();
 	//! Desenha o corpo do robô
 	glTranslatef( thickOfThings * 1.4, robot->x, robot->y );
 	glRotatef( -robot->yaw, 1, 0, 0 );
 	glScalef( robotHeight, robotWidth, robotDepth );
-	if(selected)
-		material->applyMaterial( ColorName::Black3 );
-	else
+
+	if(robot->selected)
 		material->applyMaterial( ColorName::White );
+	else
+		material->applyMaterial( ColorName::Black3 );
+
 	glutSolidCube( 1 );
 
 	//! Desenha a etiqueta do time. Azul ou Amarelo

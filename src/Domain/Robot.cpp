@@ -12,6 +12,7 @@ Robot::Robot(){
 	x = y = yaw = 0;
 	teamColor = ColorName::Yellow;
 	robotColor = ColorName::Green;
+	selected = false;
 }
 
 Robot::Robot( Pose *pose, ColorName teamColor, ColorName robotColor ){
@@ -20,6 +21,7 @@ Robot::Robot( Pose *pose, ColorName teamColor, ColorName robotColor ){
 	this->yaw = pose->yaw;
 	this->teamColor = teamColor;
 	this->robotColor = robotColor;
+	selected = false;
 }
 
 Robot::Robot( Robot *robot ){
@@ -28,4 +30,9 @@ Robot::Robot( Robot *robot ){
 	yaw = robot->yaw;
 	teamColor = robot->teamColor;
 	robotColor = robot->robotColor;
+	selected = false;
+}
+
+void Robot::setSelected( bool selected ){
+	this->selected = selected;
 }

@@ -62,6 +62,8 @@ public:
 
 	int windowWidth;
 	int windowHeight;
+	int fieldHeight;
+	int fieldWidth;
 
 	GlutFramework();
 

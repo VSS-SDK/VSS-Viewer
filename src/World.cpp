@@ -38,6 +38,22 @@ void World::display() {
 	}
 }
 
+void World::reshape( int width, int height ) {
+	this->windowWidth = width;
+	this->windowHeight = height;
+
+	if(windowHeight < 500)
+		windowHeight = 500;
+
+	windowWidth = windowHeight * 1.777777778;
+	glutReshapeWindow( windowWidth, windowHeight );
+	glViewport( 0, 0, (GLsizei)windowWidth, (GLsizei)windowHeight );
+
+	auto reasonY = 0.072 - ((500 - windowHeight) * 0.000013155);
+	fieldHeight = windowHeight * (1.0 - reasonY);
+	fieldWidth = fieldHeight * 1.307692308;
+}
+
 void World::mouseButtonPress( int button, int state, int x, int y ){
 	mouseAction = (MouseAction)button;
 
@@ -49,7 +65,12 @@ void World::mouseButtonPress( int button, int state, int x, int y ){
 		  // rotateRobot right
 	  } break;
 	  default: {
-		  std::cout << "[Warning]: Action not assiged." << std::endl;
+		  auto t = Core::windowToBullet( new Pose( x, y, 0.0 ), windowWidth, windowHeight, fieldWidth, fieldHeight );
+		  t = Core::bulletToGlut( t );
+		  int bot = Core::robotMostCloseToClick( &t, robots );
+		  std::cout << robots->at( bot ).selected << std::endl;
+		  robots->at( bot ).setSelected( true );
+		  std::cout << robots->at( bot ).selected << std::endl;
 	  } break;
 	}
 }
