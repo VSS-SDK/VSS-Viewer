@@ -22,6 +22,7 @@
 #include "AsciiEnum.h"
 #include "ColorEnum.h"
 #include "Material.h"
+#include "Math.h"
 
 class World : public GlutFramework {
 public:
@@ -39,6 +40,7 @@ public:
 
 	void display() override;
 	void keyboardDown( unsigned char key, int x, int y ) override;
+	void mouseButtonPress( int button, int state, int x, int y ) override;
 
 	// Strategies
 	void closeStrategy();

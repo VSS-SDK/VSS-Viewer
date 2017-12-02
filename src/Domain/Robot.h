@@ -12,10 +12,9 @@
 #include "Pose.h"
 #include "ColorEnum.h"
 
-class Robot {
+class Robot : public Pose {
 public:
 
-	Pose *pose;
 	ColorName teamColor;
 	ColorName robotColor;
 

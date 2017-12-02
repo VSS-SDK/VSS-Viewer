@@ -9,19 +9,23 @@
 #include "Robot.h"
 
 Robot::Robot(){
-	pose = new Pose( 0, 0, 0 );
+	x = y = yaw = 0;
 	teamColor = ColorName::Yellow;
 	robotColor = ColorName::Green;
 }
 
 Robot::Robot( Pose *pose, ColorName teamColor, ColorName robotColor ){
-	this->pose = pose;
+	this->x = pose->x;
+	this->y = pose->y;
+	this->yaw = pose->yaw;
 	this->teamColor = teamColor;
 	this->robotColor = robotColor;
 }
 
 Robot::Robot( Robot *robot ){
-	pose = robot->pose;
+	x = robot->x;
+	y = robot->y;
+	yaw = robot->yaw;
 	teamColor = robot->teamColor;
 	robotColor = robot->robotColor;
 }

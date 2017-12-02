@@ -6,10 +6,10 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#include "Core.h"
+#include "Kernel.h"
 
 int main( int argc, char *argv[] ) {
-	Core core( argc, argv );
-	core.init();
+	Kernel kernel( argc, argv );
+	kernel.init();
 	return 0;
 }

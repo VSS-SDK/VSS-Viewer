@@ -6,8 +6,8 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef CORE_H
-#define CORE_H
+#ifndef KERNEL_H
+#define KERNEL_H
 
 #include "thread"
 #include "functional"
@@ -20,7 +20,7 @@
 #include "TopCamera.h"
 #include "World.h"
 
-class Core {
+class Kernel {
 private:
 
 	bool paused;
@@ -34,7 +34,7 @@ private:
 
 public:
 
-	Core( int argc, char **argv );
+	Kernel( int argc, char **argv );
 
 	void init();
 	void worldThreadWrapper();
@@ -43,4 +43,4 @@ public:
 	void initialMessage();
 };
 
-#endif // CORE_H
+#endif // KERNEL_H

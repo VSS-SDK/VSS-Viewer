@@ -23,3 +23,15 @@ Pose::Pose( Pose *pose ){
 	y = pose->y;
 	yaw = pose->yaw;
 }
+
+void Pose::setPose( Pose *pose ){
+	x = pose->x;
+	y = pose->y;
+	yaw = pose->yaw;
+}
+
+void Pose::setPose( float x, float y, float yaw ){
+	this->x = x;
+	this->y = y;
+	this->yaw = yaw;
+}

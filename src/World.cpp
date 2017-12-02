@@ -38,6 +38,13 @@ void World::display() {
 	}
 }
 
+void World::mouseButtonPress( int button, int state, int x, int y ){
+	if((Mouse)button == Mouse::LeftClick) {
+		std::cout << "left" << std::endl;
+		std::cout << state << std::endl;
+	}
+}
+
 void World::keyboardDown( unsigned char key, int x, int y ) {
 	Key keyPushed = (Key)key;
 

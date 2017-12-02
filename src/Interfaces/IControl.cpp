@@ -6,20 +6,25 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef POSE_H
-#define POSE_H
+#include "IControl.h"
 
-class Pose {
-public:
+IControl::IControl(){
+}
 
-	float x, y, yaw;
+IControl::pauseOrStart(){
+}
 
-	Pose();
-	Pose( float x, float y, float yaw );
-	Pose( Pose *pose );
+IControl::changeCamera(){
+}
 
-	void setPose( Pose *pose );
-	void setPose( float x, float y, float yaw );
-};
+IControl::selectDrawer(){
+}
 
-#endif // POSE_H
+IControl::deSelectDrawer(){
+}
+
+IControl::moveDrawer(){
+}
+
+IControl::rotateDrawer(){
+}

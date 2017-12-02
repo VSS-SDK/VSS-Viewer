@@ -6,20 +6,20 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef POSE_H
-#define POSE_H
+#ifndef ICONTROL_H_
+#define ICONTROL_H_
 
-class Pose {
+class IControl {
 public:
 
-	float x, y, yaw;
+	IControl();
 
-	Pose();
-	Pose( float x, float y, float yaw );
-	Pose( Pose *pose );
-
-	void setPose( Pose *pose );
-	void setPose( float x, float y, float yaw );
+	void virtual pauseOrStart();
+	void virtual changeCamera();
+	void virtual selectDrawer();
+	void virtual deSelectDrawer();
+	void virtual moveDrawer();
+	void virtual rotateDrawer();
 };
 
-#endif // POSE_H
+#endif // ICONTROL_H_

@@ -1,6 +1,6 @@
-#include "Core.h"
+#include "Kernel.h"
 
-Core::Core( int argc, char **argv ){
+Kernel::Kernel( int argc, char **argv ){
 	this->paused = true;
 	this->argc = argc;
 	this->argv = argv;
@@ -14,35 +14,35 @@ Core::Core( int argc, char **argv ){
 			robots.at( i ).teamColor = ColorName::Blue;
 	}
 
-	robots.at( 0 ).pose = new Pose( 0, 70, 0 );
+	robots.at( 0 ).setPose( new Pose( 0, 70, 0 ));
 	robots.at( 0 ).robotColor = ColorName::Red;
 
-	robots.at( 1 ).pose = new Pose( -10, 10, 0 );
+	robots.at( 1 ).setPose( new Pose( -10, 10, 0 ));
 	robots.at( 1 ).robotColor = ColorName::Green;
 
-	robots.at( 2 ).pose = new Pose( 30, 10, 0 );
+	robots.at( 2 ).setPose( new Pose( 30, 10, 0 ));
 	robots.at( 2 ).robotColor = ColorName::Purple;
 
-	robots.at( 3 ).pose = new Pose( 0, -70, 0 );
+	robots.at( 3 ).setPose( new Pose( 0, -70, 0 ));
 	robots.at( 3 ).robotColor = ColorName::Red;
 
-	robots.at( 4 ).pose = new Pose( 10, -10, 0 );
+	robots.at( 4 ).setPose( new Pose( 10, -10, 0 ));
 	robots.at( 4 ).robotColor = ColorName::Green;
 
-	robots.at( 5 ).pose = new Pose( -30, -10, 0 );
+	robots.at( 5 ).setPose( new Pose( -30, -10, 0 ));
 	robots.at( 5 ).robotColor = ColorName::Purple;
 
 	initialMessage();
 }
 
-void Core::init(){
-	worldThread = new thread( std::bind( &Core::worldThreadWrapper, this ));
-	receiveStateThread = new thread( std::bind( &Core::receiveStateThreadWrapper, this ));
+void Kernel::init(){
+	worldThread = new thread( std::bind( &Kernel::worldThreadWrapper, this ));
+	receiveStateThread = new thread( std::bind( &Kernel::receiveStateThreadWrapper, this ));
 	worldThread->join();
 	receiveStateThread->join();
 }
 
-void Core::worldThreadWrapper(){
+void Kernel::worldThreadWrapper(){
 	auto fieldDrawerFactory = new FieldDrawerFactory();
 	auto fieldDrawer = fieldDrawerFactory->factory( CompetitionName::VerySmallSize );
 	auto robotDrawer = new SimpleRobotDrawer();
@@ -53,12 +53,12 @@ void Core::worldThreadWrapper(){
 	world->start( argc, argv );
 }
 
-void Core::receiveStateThreadWrapper(){
+void Kernel::receiveStateThreadWrapper(){
 	auto stateReceiver = new StateReceiver( &ball, &robots );
 	stateReceiver->loop( receiveStateAddress );
 }
 
-void Core::initialMessage(){
+void Kernel::initialMessage(){
 	std::cout << "VSS-Viewer" << std::endl;
 	std::cout << "[Info]: Waiting VSS-Simulator..." << std::endl;
 	std::cout << "[Info]: Waiting debug messages..." << std::endl;
