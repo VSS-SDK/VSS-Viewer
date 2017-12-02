@@ -22,8 +22,7 @@ void StateReceiver::loop( string address ){
 		interface->receiveState();
 		global_state.id();
 
-		ball->x = global_state.balls( 0 ).pose().y() - (130 / 2.0);
-		ball->y = global_state.balls( 0 ).pose().x() - (170 / 2.0);
+		ball->setPose( Core::bulletToGlut( new Pose( global_state.balls( 0 ).pose().x(), global_state.balls( 0 ).pose().y(), 0.0 ) ) );
 
 		for(int i = 0; i < 3; i++) {
 			robots->at( i ).setPose( Core::bulletToGlut( new Pose( global_state.robots_yellow( i ).pose().x(), global_state.robots_yellow( i ).pose().y(), global_state.robots_yellow( i ).pose().yaw())));

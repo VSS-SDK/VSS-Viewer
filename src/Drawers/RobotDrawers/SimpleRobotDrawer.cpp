@@ -37,7 +37,10 @@ void SimpleRobotDrawer::draw(){
 	glTranslatef( thickOfThings * 1.4, robot->x, robot->y );
 	glRotatef( -robot->yaw, 1, 0, 0 );
 	glScalef( robotHeight, robotWidth, robotDepth );
-	material->applyMaterial( ColorName::Black3 );
+	if(selected)
+		material->applyMaterial( ColorName::Black3 );
+	else
+		material->applyMaterial( ColorName::White );
 	glutSolidCube( 1 );
 
 	//! Desenha a etiqueta do time. Azul ou Amarelo

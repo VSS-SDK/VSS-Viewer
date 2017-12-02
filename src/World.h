@@ -50,7 +50,7 @@ public:
 	void changeCameraStrategy();
 	void pauseStrategy();
 	void startStrategy();
-	void toggleSelectedRobot( Pose *pose );
+	void toggleSelectedRobot( Key key );
 };
 
 #endif // WORLD_H

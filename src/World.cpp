@@ -40,16 +40,23 @@ void World::display() {
 
 void World::mouseButtonPress( int button, int state, int x, int y ){
 	mouseAction = (MouseAction)button;
-	mouseState = (MouseState)state;
 
-	if(mouseAction == MouseAction::LeftClick or mouseState == MouseState::On) {
-		toggleSelectedRobot( new Pose((float)x, (float)y, 0.0 ));
+	switch(mouseAction) {
+	  case MouseAction::ScrollTop: {
+		  // rotateRobot left
+	  } break;
+	  case MouseAction::ScrollDown: {
+		  // rotateRobot right
+	  } break;
+	  default: {
+		  std::cout << "[Warning]: Action not assiged." << std::endl;
+	  } break;
 	}
 }
 
 void World::keyboardDown( unsigned char key, int x, int y ) {
 	Key keyPushed = (Key)key;
-
+	cout << keyPushed << endl;
 	switch(keyPushed) {
 	  case Key::c: {
 		  changeCameraStrategy();
@@ -72,9 +79,7 @@ void World::keyboardDown( unsigned char key, int x, int y ) {
 	}
 }
 
-void World::toggleSelectedRobot( Pose *pose ){
-	auto robotMostClose = Core::robotMostCloseToClick( pose, robots );
-	cout << robotMostClose << endl;
+void World::toggleSelectedRobot( Key key ){
 }
 
 void World::closeStrategy(){

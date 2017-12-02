@@ -60,6 +60,9 @@ public:
 
 public:
 
+	int windowWidth;
+	int windowHeight;
+
 	GlutFramework();
 
 	virtual void start( int argc, char *argv[] );

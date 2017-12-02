@@ -28,6 +28,8 @@ GlutFramework *GlutFramework::instance = NULL;
 
 GlutFramework::GlutFramework() {
 	FPS = 30;
+	windowWidth = 1280;
+	windowHeight = 720;
 }
 
 void GlutFramework::start( int argc, char *argv[] ) {
@@ -36,7 +38,7 @@ void GlutFramework::start( int argc, char *argv[] ) {
 	glutInit( &argc, argv );
 	glutInitDisplayMode( GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB | GLUT_MULTISAMPLE );
 	glutInitWindowPosition( 100, 100 );
-	glutInitWindowSize( 1280, 720 );
+	glutInitWindowSize( windowWidth, windowHeight );
 	glutCreateWindow( "vss-viewer" );
 
 	glutReshapeFunc( reshapeWrapper );
@@ -64,7 +66,15 @@ void GlutFramework::display() {
 }
 
 void GlutFramework::reshape( int width, int height ) {
-	glViewport( 0, 0, (GLsizei)width, (GLsizei)height );
+	this->windowWidth = width;
+	this->windowHeight = height;
+
+	if(windowHeight < 500)
+		windowHeight = 500;
+
+	windowWidth = windowHeight * 1.777777778;
+	glutReshapeWindow( windowWidth, windowHeight );
+	glViewport( 0, 0, (GLsizei)windowWidth, (GLsizei)windowHeight );
 }
 
 void GlutFramework::mouseButtonPress( int button, int state, int x, int y ) {
