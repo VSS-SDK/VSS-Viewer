@@ -68,9 +68,7 @@ void World::mouseButtonPress( int button, int state, int x, int y ){
 		  auto t = Core::windowToBullet( new Pose( x, y, 0.0 ), windowWidth, windowHeight, fieldWidth, fieldHeight );
 		  t = Core::bulletToGlut( t );
 		  int bot = Core::robotMostCloseToClick( &t, robots );
-		  std::cout << robots->at( bot ).selected << std::endl;
 		  robots->at( bot ).setSelected( true );
-		  std::cout << robots->at( bot ).selected << std::endl;
 	  } break;
 	}
 }

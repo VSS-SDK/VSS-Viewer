@@ -31,7 +31,7 @@ void SimpleRobotDrawer::draw(){
 	glScalef( robotHeight, robotWidth, robotDepth );
 
 	if(robot->selected)
-		material->applyMaterial( ColorName::White );
+		material->applyMaterial( ColorName::Gray );
 	else
 		material->applyMaterial( ColorName::Black3 );
 
