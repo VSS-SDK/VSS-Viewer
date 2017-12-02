@@ -68,33 +68,21 @@ void GlutFramework::reshape( int width, int height ) {
 }
 
 void GlutFramework::mouseButtonPress( int button, int state, int x, int y ) {
-	printf( "MouseButtonPress: x: %d y: %d\n", x, y );
 }
 
 void GlutFramework::mouseMove( int x, int y ) {
-	printf( "MouseMove: x: %d y: %d\n", x, y );
 }
 
 void GlutFramework::keyboardDown( unsigned char key, int x, int y ){
-	printf( "KeyboardDown: %c = %d\n", key, (int)key );
-	if (key == 27) { //27 =- ESC key
-		exit ( 0 );
-	}
-
-	keyStates.keyDown( (int)key );
 }
 
 void GlutFramework::keyboardUp( unsigned char key, int x, int y ){
-	printf( "KeyboardUp: %c \n", key );
-	keyStates.keyUp( (int)key );
 }
 
 void GlutFramework::specialKeyboardDown( int key, int x, int y ){
-	printf( "SpecialKeyboardDown: %d\n", key );
 }
 
 void GlutFramework::specialKeyboardUp( int key, int x, int y ){
-	printf( "SpecialKeyboardUp: %d \n", key );
 }
 
 void GlutFramework::setDisplayMatricies() {

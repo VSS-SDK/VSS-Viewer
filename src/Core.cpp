@@ -31,6 +31,8 @@ Core::Core( int argc, char **argv ){
 
 	robots.at( 5 ).pose = new Pose( -30, -10, 0 );
 	robots.at( 5 ).robotColor = ColorName::Purple;
+
+	initialMessage();
 }
 
 void Core::init(){
@@ -45,7 +47,7 @@ void Core::worldThreadWrapper(){
 	auto fieldDrawer = fieldDrawerFactory->factory( CompetitionName::VerySmallSize );
 	auto robotDrawer = new SimpleRobotDrawer();
 	auto ballDrawer = new SimpleBallDrawer();
-	auto camera = new TvCamera();
+	auto camera = new TopCamera();
 
 	auto world = new World( fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots, &paused );
 	world->start( argc, argv );
@@ -54,4 +56,12 @@ void Core::worldThreadWrapper(){
 void Core::receiveStateThreadWrapper(){
 	auto stateReceiver = new StateReceiver( &ball, &robots );
 	stateReceiver->loop( receiveStateAddress );
+}
+
+void Core::initialMessage(){
+	std::cout << "VSS-Viewer" << std::endl;
+	std::cout << "[Info]: Waiting VSS-Simulator..." << std::endl;
+	std::cout << "[Info]: Waiting debug messages..." << std::endl;
+	std::cout << "[Info]: Simulation is paused by default and camera exchange is disabled. Press <space> to start simulation and enable camera exchange." << std::endl;
+	std::cout << "[Info]: To exchange between cameras press <c>." << std::endl;
 }

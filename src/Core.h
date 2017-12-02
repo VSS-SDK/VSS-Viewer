@@ -17,7 +17,7 @@
 #include "SimpleRobotDrawer.h"
 #include "SimpleBallDrawer.h"
 #include "StateReceiver.h"
-#include "TvCamera.h"
+#include "TopCamera.h"
 #include "World.h"
 
 class Core {
@@ -35,9 +35,12 @@ private:
 public:
 
 	Core( int argc, char **argv );
+
 	void init();
 	void worldThreadWrapper();
 	void receiveStateThreadWrapper();
+
+	void initialMessage();
 };
 
 #endif // CORE_H

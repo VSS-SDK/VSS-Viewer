@@ -64,6 +64,7 @@ void World::keyboardDown( unsigned char key, int x, int y ) {
 }
 
 void World::closeStrategy(){
+	std::cout << "[Info]: Exiting VSS-Viewer..." << std::endl;
 	exit( 0 );
 }
 
@@ -71,19 +72,25 @@ void World::changeCameraStrategy(){
 	if(!*paused) {
 		auto object = (string)typeid(*camera).name();
 
-		if (object.find( "TvCamera" ) != std::string::npos) {
+		if (object.find( "TvCamera" ) not_eq std::string::npos) {
 			camera = new TopCamera();
+			std::cout << "[Info]: Changed camera to Top." << std::endl;
 		}else{
 			camera = new TvCamera();
+			std::cout << "[Info]: Changed camera to Tv." << std::endl;
 		}
+	}else{
+		std::cout << "[Warning]: Can't change camera while simulation is paused. Press <space> to start simulation and enable camera exchange." << std::endl;
 	}
 }
 
 void World::pauseStrategy(){
 	*paused = true;
 	camera = new TopCamera();
+	std::cout << "[Info]: Simulation paused, changed camera to Top and camera exchange disabled." << std::endl;
 }
 
 void World::startStrategy(){
 	*paused = false;
+	std::cout << "[Info]: Simulation started, camera exchange enabled." << std::endl;
 }
