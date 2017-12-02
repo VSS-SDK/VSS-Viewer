@@ -12,33 +12,23 @@
 RobotDrawer::RobotDrawer(){
 	qobj = gluNewQuadric();
 	gluQuadricNormals( qobj, GLU_SMOOTH );
-	pose = new Pose();
-	teamColor = ColorName::Yellow;
-	robotColor = ColorName::Red;
+	robot = new Robot();
 
 	robotWidth = 8.0;
 	robotDepth = 8.0;
 	robotHeight = 8.0;
 }
 
-void RobotDrawer::setPose( Pose *pose ){
-	this->pose = pose;
-}
-
-void RobotDrawer::setTeamColor( ColorName teamColor ){
-	this->teamColor = teamColor;
-}
-
-void RobotDrawer::setRobotColor( ColorName robotColor ){
-	this->robotColor = robotColor;
+void RobotDrawer::setRobot( Robot *robot ){
+	this->robot = robot;
 }
 
 void RobotDrawer::draw(){
 	glPushMatrix();
 	//! Desenha o corpo do robô
-	glTranslatef( thickOfThings * 1.4, pose->x, pose->y );
-	glRotatef( -pose->yaw, 1, 0, 0 );
-	glScalef( robotWidth, robotDepth, robotHeight );
+	glTranslatef( thickOfThings * 1.4, robot->pose.x, robot->pose.y );
+	glRotatef( -robot->pose.yaw, 1, 0, 0 );
+	glScalef( robotHeight, robotWidth, robotDepth );
 	material->applyMaterial( ColorName::Black3 );
 	glutSolidCube( 1 );
 
@@ -46,7 +36,7 @@ void RobotDrawer::draw(){
 	glPushMatrix();
 	glTranslatef( 0.5, -0.2, -0.2 );
 	glScalef( 0.1f, colorLabelSize / robotWidth, colorLabelSize / robotWidth );
-	material->applyMaterial( teamColor );
+	material->applyMaterial( robot->teamColor );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -54,7 +44,7 @@ void RobotDrawer::draw(){
 	glPushMatrix();
 	glTranslatef( 0.5, 0.2, 0.2 );
 	glScalef( 0.1f, colorLabelSize / robotWidth, colorLabelSize / robotWidth );
-	material->applyMaterial( robotColor );
+	material->applyMaterial( robot->robotColor );
 	glutSolidCube( 1 );
 	glPopMatrix();
 

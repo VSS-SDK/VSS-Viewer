@@ -14,7 +14,7 @@
 
 #include "Domain/CompetitionEnum.h"
 #include "Factories/FieldDrawerFactory.h"
-#include "Robots/RobotDrawer.h"
+#include "RobotDrawers/RobotDrawer.h"
 #include "Communications/StateReceiver.h"
 #include "Cameras/TvCamera.h"
 #include "World.h"
@@ -26,7 +26,7 @@ private:
 	int argc;
 	char **argv;
 	Pose ball;
-	std::vector<Pose> robots;
+	std::vector<Robot> robots;
 	string receiveStateAddress;
 	thread *worldThread;
 	thread *receiveStateThread;

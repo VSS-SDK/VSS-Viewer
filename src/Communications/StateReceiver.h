@@ -11,7 +11,7 @@
 
 #include "vector"
 #include "../../VSS-Interface/interface.h"
-#include "../Domain/Pose.h"
+#include "../Domain/Robot.h"
 
 class StateReceiver {
 public:
@@ -19,9 +19,9 @@ public:
 	Interface *interface;
 	vss_state::Global_State global_state;
 	Pose *ball;
-	std::vector<Pose> *robots;
+	std::vector<Robot> *robots;
 
-	StateReceiver( Pose *ball, std::vector<Pose> *robots );
+	StateReceiver( Pose *ball, std::vector<Robot> *robots );
 	void loop( string address );
 };
 

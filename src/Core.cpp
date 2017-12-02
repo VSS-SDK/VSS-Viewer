@@ -7,12 +7,10 @@ Core::Core( int argc, char **argv ){
 	this->receiveStateAddress = "tcp://localhost:5555";
 
 	ball = new Pose( 0, 0, 0 );
-	robots.push_back( new Pose( -20, -40, 0 ));
-	robots.push_back( new Pose( -20, -20, 0 ));
-	robots.push_back( new Pose( -20, -60, 0 ));
-	robots.push_back( new Pose( 20, 40, 0 ));
-	robots.push_back( new Pose( 20, 20, 0 ));
-	robots.push_back( new Pose( 20, 60, 0 ));
+	for(int i = 0; i < 6; i++) {
+		robots.push_back( new Robot());
+		robots.at( robots.size() - 1 ).pose = new Pose( -10 * i, 10 * i, 0 );
+	}
 }
 
 void Core::init(){

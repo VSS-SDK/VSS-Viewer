@@ -11,7 +11,7 @@
 #include "Cameras/TopCamera.h"
 #include "Cameras/TvCamera.h"
 
-World::World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera, Pose *ball, std::vector<Pose> *robots, bool *paused ){
+World::World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, bool *paused ){
 	this->fieldDrawer = fieldDrawer;
 	this->robotDrawer = robotDrawer;
 	this->camera = camera;
@@ -30,7 +30,7 @@ void World::display() {
 	fieldDrawer->draw();
 
 	for(unsigned int i = 0; i < robots->size(); i++) {
-		robotDrawer->setPose( &robots->at( i ) );
+		robotDrawer->setRobot( &robots->at( i ) );
 		robotDrawer->draw();
 	}
 }

@@ -9,16 +9,14 @@
 #ifndef IROBOT_DRAWER_H
 #define IROBOT_DRAWER_H
 
-#include "../Domain/Pose.h"
-#include "../Domain/ColorEnum.h"
+#include "../Domain/Robot.h"
+
 class IRobotDrawer {
 public:
 
 	IRobotDrawer();
 	void virtual draw();
-	void virtual setPose( Pose *pose );
-	void virtual setTeamColor( ColorName teamColor );
-	void virtual setRobotColor( ColorName robotColor );
+	void virtual setRobot( Robot *robot );
 };
 
 #endif // IROBOT_DRAWER_H

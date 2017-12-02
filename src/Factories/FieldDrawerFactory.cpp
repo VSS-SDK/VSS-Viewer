@@ -7,7 +7,7 @@
  */
 
 #include "FieldDrawerFactory.h"
-#include "../Fields/FieldDrawerVerySmallSize.h"
+#include "../FieldDrawers/FieldDrawerVerySmallSize.h"
 
 FieldDrawerFactory::FieldDrawerFactory(){
 
@@ -15,13 +15,13 @@ FieldDrawerFactory::FieldDrawerFactory(){
 
 IFieldDrawer* FieldDrawerFactory::factory( CompetitionName competitionName ){
 	switch (competitionName) {
-	case CompetitionName::VerySmallSize:
-		return new FieldDrawerVerySmallSize();
-	case CompetitionName::MirosotMedium:
-		return new FieldDrawerVerySmallSize();
-	case CompetitionName::MirosotLarge:
-		return new FieldDrawerVerySmallSize();
-	default:
-		return new FieldDrawerVerySmallSize();
+	  case CompetitionName::VerySmallSize:
+		  return new FieldDrawerVerySmallSize();
+	  case CompetitionName::MirosotMedium:
+		  return new FieldDrawerVerySmallSize();
+	  case CompetitionName::MirosotLarge:
+		  return new FieldDrawerVerySmallSize();
+	  default:
+		  return new FieldDrawerVerySmallSize();
 	}
 }

@@ -6,13 +6,22 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#include "IRobotDrawer.h"
+#ifndef ROBOT_H
+#define ROBOT_H
 
-IRobotDrawer::IRobotDrawer(){
-}
+#include "Pose.h"
+#include "ColorEnum.h"
 
-void IRobotDrawer::draw(){
-}
+class Robot {
+public:
 
-void IRobotDrawer::setRobot( Robot *robot ){
-}
+	Pose pose;
+	ColorName teamColor;
+	ColorName robotColor;
+
+	Robot();
+	Robot( Pose *pose, ColorName teamColor, ColorName robotColor );
+	Robot( Robot * robot );
+};
+
+#endif // ROBOT_H

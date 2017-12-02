@@ -30,10 +30,10 @@ public:
 	IRobotDrawer *robotDrawer;
 	ICamera *camera;
 	Pose *ball;
-	std::vector<Pose> *robots;
+	std::vector<Robot> *robots;
 	Material *material;
 
-	World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera, Pose *ball, std::vector<Pose> *robots, bool *paused );
+	World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, bool *paused );
 
 	void display() override;
 	void keyboardDown( unsigned char key, int x, int y ) override;
