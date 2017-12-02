@@ -37,7 +37,6 @@ public:
 
 	void display() override;
 	void keyboardDown( unsigned char key, int x, int y ) override;
-	void drawPausedWarning();
 
 	// Strategies
 	void closeStrategy();

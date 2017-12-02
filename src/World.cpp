@@ -10,7 +10,6 @@
 #include "World.h"
 #include "Cameras/TopCamera.h"
 #include "Cameras/TvCamera.h"
-#include <GL/glew.h>
 
 World::World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera, Pose *ball, std::vector<Pose> *robots, bool *paused ){
 	this->fieldDrawer = fieldDrawer;
@@ -34,19 +33,6 @@ void World::display() {
 		robotDrawer->setPose( &robots->at( i ) );
 		robotDrawer->draw();
 	}
-
-	if(paused)
-		drawPausedWarning();
-}
-
-void World::drawPausedWarning(){
-	glPushMatrix();
-	stringstream ss;
-	ss << "Pausado";
-	material->applyMaterial( ColorName::Yellow );
-	glWindowPos2i( 100, 100 );
-	glutBitmapString( GLUT_BITMAP_HELVETICA_18, (const unsigned char *)ss.str().c_str());
-	glPopMatrix();
 }
 
 void World::keyboardDown( unsigned char key, int x, int y ) {
