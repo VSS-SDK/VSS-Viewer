@@ -9,7 +9,7 @@
 #ifndef IROBOT_DRAWER_H
 #define IROBOT_DRAWER_H
 
-#include "../Domain/Robot.h"
+#include "Robot.h"
 
 class IRobotDrawer {
 public:

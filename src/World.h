@@ -12,15 +12,15 @@
 #include <iostream>
 #include <vector>
 
-#include "Framework/GlutFramework.h"
-#include "../VSS-Interface/interface.h"
-#include "Interfaces/IFieldDrawer.h"
-#include "Interfaces/IRobotDrawer.h"
-#include "Interfaces/ICamera.h"
-#include "Domain/Pose.h"
-#include "Domain/AsciiEnum.h"
-#include "Domain/ColorEnum.h"
-#include "Domain/Material.h"
+#include "GlutFramework.h"
+#include "interface.h"
+#include "IFieldDrawer.h"
+#include "IRobotDrawer.h"
+#include "ICamera.h"
+#include "Pose.h"
+#include "AsciiEnum.h"
+#include "ColorEnum.h"
+#include "Material.h"
 
 class World : public GlutFramework {
 public:

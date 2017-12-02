@@ -8,8 +8,8 @@
 
 #include <typeinfo>
 #include "World.h"
-#include "Cameras/TopCamera.h"
-#include "Cameras/TvCamera.h"
+#include "TopCamera.h"
+#include "TvCamera.h"
 
 World::World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, bool *paused ){
 	this->fieldDrawer = fieldDrawer;

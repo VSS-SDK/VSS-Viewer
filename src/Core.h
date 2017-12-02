@@ -12,11 +12,11 @@
 #include "thread"
 #include "functional"
 
-#include "Domain/CompetitionEnum.h"
-#include "Factories/FieldDrawerFactory.h"
-#include "RobotDrawers/RobotDrawer.h"
-#include "Communications/StateReceiver.h"
-#include "Cameras/TvCamera.h"
+#include "CompetitionEnum.h"
+#include "FieldDrawerFactory.h"
+#include "RobotDrawer.h"
+#include "StateReceiver.h"
+#include "TvCamera.h"
 #include "World.h"
 
 class Core {

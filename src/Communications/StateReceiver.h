@@ -10,8 +10,8 @@
 #define STATE_RECEIVER_H
 
 #include "vector"
-#include "../../VSS-Interface/interface.h"
-#include "../Domain/Robot.h"
+#include "interface.h"
+#include "Robot.h"
 
 class StateReceiver {
 public:

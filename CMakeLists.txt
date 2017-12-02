@@ -8,7 +8,7 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 find_package(PkgConfig)
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
-FIND_PACKAGE( Boost 1.40 COMPONENTS program_options REQUIRED )
+FIND_PACKAGE(Boost 1.40 COMPONENTS program_options REQUIRED)
 
 find_path(ZeroMQ_INCLUDE_DIR
         NAMES zmq.hpp
@@ -20,7 +20,7 @@ find_library(ZeroMQ_LIBRARY
         PATHS ${PC_ZeroMQ_LIBRARY_DIRS}
         )
 
-include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} ${Boost_INCLUDE_DIR})
+include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} ${Boost_INCLUDE_DIR} src VSS-Interface src/Cameras src/Communications src/Domain src/Drawers src/Drawers/FieldDrawers src/Drawers/RobotDrawers src/Factories src/Framework src/Interfaces)
 
 file(GLOB_RECURSE SRC src/*.cpp)
 
