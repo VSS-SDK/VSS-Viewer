@@ -9,9 +9,10 @@
 #include "StateReceiver.h"
 #include "Math.h"
 
-StateReceiver::StateReceiver( Pose *ball, std::vector<Robot> *robots ){
+StateReceiver::StateReceiver( Pose *ball, std::vector<Robot> *robots, bool *paused ){
 	this->ball = ball;
 	this->robots = robots;
+	this->paused = paused;
 }
 
 void StateReceiver::loop( string address ){
@@ -21,6 +22,7 @@ void StateReceiver::loop( string address ){
 	while(true) {
 		interface->receiveState();
 		global_state.id();
+		*paused = global_state.paused();
 
 		ball->setPose( Core::bulletToGlut( new Pose( global_state.balls( 0 ).pose().x(), global_state.balls( 0 ).pose().y(), 0.0 ) ) );
 

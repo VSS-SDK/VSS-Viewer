@@ -54,7 +54,7 @@ void Kernel::worldThreadWrapper(){
 }
 
 void Kernel::receiveStateThreadWrapper(){
-	auto stateReceiver = new StateReceiver( &ball, &robots );
+	auto stateReceiver = new StateReceiver( &ball, &robots, &paused );
 	stateReceiver->loop( receiveStateAddress );
 }
 

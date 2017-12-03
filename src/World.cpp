@@ -119,7 +119,7 @@ void World::keyboardDown( unsigned char key, int x, int y ) {
 		  changeCameraStrategy();
 	  } break;
 	  case Key::Space: {
-		  controlSender->send( paused );
+		  controlSender->send( !*paused );
 
 		  if(*paused)
 			  startStrategy();

@@ -35,6 +35,10 @@ Pose inline bulletToGlut( const Pose &bullet ){
 	return new Pose( bullet.y - (130 / 2.0), bullet.x - (170 / 2.0), bullet.yaw * 180.0 / M_PI );
 }
 
+Pose inline glutToBullet( const Pose &glut ){
+	return new Pose( glut.y + (170 / 2.0), glut.x + (130 / 2.0), glut.yaw * M_PI / 180.0 );
+}
+
 Pose inline windowToBullet( const Pose &window, float windowWidth, float windowHeight, float fieldWidth, float fieldHeight ){
 	auto different_x = (windowWidth - fieldWidth) / 2.0;
 	auto fc_x = window.x - different_x;

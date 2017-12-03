@@ -21,23 +21,27 @@ void ControlSender::send( bool paused ){
 
 	user_control.set_paused( paused );
 
-	user_control.mutable_new_ball_pose()->set_x( ball->x );
-	user_control.mutable_new_ball_pose()->set_y( ball->y );
+	auto ball_n = Core::glutToBullet( ball );
+	user_control.mutable_new_ball_pose()->set_x( ball_n.x );
+	user_control.mutable_new_ball_pose()->set_y( ball_n.y );
 
 	for(int i = 0; i < 3; i++) {
 		vss_control::Pose *new_robots_blue_pose = user_control.add_new_robots_blue_pose();
+		auto robot_n = Core::glutToBullet( robots->at( i + 3 ) );
+		std::cout << robot_n.x << ", " << robot_n.y << std::endl;
 
-		new_robots_blue_pose->set_x( robots->at( i ).x );
-		new_robots_blue_pose->set_y( robots->at( i ).y );
-		new_robots_blue_pose->set_yaw( robots->at( i ).yaw );
+		new_robots_blue_pose->set_x( robot_n.x );
+		new_robots_blue_pose->set_y( robot_n.y );
+		new_robots_blue_pose->set_yaw( robot_n.yaw );
 	}
 
 	for(int i = 0; i < 3; i++) {
 		vss_control::Pose *new_robots_yellow_pose = user_control.add_new_robots_yellow_pose();
+		auto robot_n = Core::glutToBullet( robots->at( i ) );
 
-		new_robots_yellow_pose->set_x( robots->at( i + 3 ).x );
-		new_robots_yellow_pose->set_y( robots->at( i + 3 ).y );
-		new_robots_yellow_pose->set_yaw( robots->at( i + 3 ).yaw );
+		new_robots_yellow_pose->set_x( robot_n.x );
+		new_robots_yellow_pose->set_y( robot_n.y );
+		new_robots_yellow_pose->set_yaw( robot_n.yaw );
 	}
 
 	interface.sendControl();
