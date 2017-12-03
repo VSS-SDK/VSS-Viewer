@@ -24,6 +24,7 @@ public:
 	Robot( Robot *robot );
 
 	void setSelected( bool selected );
+	bool getSelected();
 };
 
 #endif // ROBOT_H

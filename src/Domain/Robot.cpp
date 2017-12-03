@@ -36,3 +36,7 @@ Robot::Robot( Robot *robot ){
 void Robot::setSelected( bool selected ){
 	this->selected = selected;
 }
+
+bool Robot::getSelected(){
+	return selected;
+}

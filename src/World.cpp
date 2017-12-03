@@ -67,6 +67,7 @@ void World::reshape( int width, int height ) {
 
 void World::mouseButtonPress( int button, int state, int x, int y ){
 	mouseAction = (MouseAction)button;
+	mouseState = (MouseState)state;
 
 	switch(mouseAction) {
 	  case MouseAction::ScrollTop: {
@@ -75,18 +76,23 @@ void World::mouseButtonPress( int button, int state, int x, int y ){
 	  case MouseAction::ScrollDown: {
 		  // rotateRobot right
 	  } break;
+	  case MouseAction::LeftClick: {
+		  toggleSelectedRobotStrategy( new Pose((float)x, (float)y, 0.0 ));
+	  } break;
 	  default: {
-		  auto t = Core::windowToBullet( new Pose( x, y, 0.0 ), windowWidth, windowHeight, fieldWidth, fieldHeight );
-		  t = Core::bulletToGlut( t );
-		  int bot = Core::robotMostCloseToClick( &t, robots );
-		  robots->at( bot ).setSelected( true );
+		  std::cout << "[Warning]: Action not assigned." << std::endl;
 	  } break;
 	}
 }
 
+void World::mouseMove( int x, int y ){
+	if(mouseAction == MouseAction::LeftClick and mouseState == MouseState::On)
+		moveRobotStrategy( new Pose((float)x, (float)y, 0.0 ));
+}
+
 void World::keyboardDown( unsigned char key, int x, int y ) {
 	Key keyPushed = (Key)key;
-	cout << keyPushed << endl;
+
 	switch(keyPushed) {
 	  case Key::c: {
 		  changeCameraStrategy();
@@ -109,7 +115,26 @@ void World::keyboardDown( unsigned char key, int x, int y ) {
 	}
 }
 
-void World::toggleSelectedRobot( Key key ){
+void World::toggleSelectedRobotStrategy( Pose *pose ){
+	if(*paused) {
+		auto t = Core::bulletToGlut( Core::windowToBullet( pose, windowWidth, windowHeight, fieldWidth, fieldHeight ));
+		int bot = Core::robotMostCloseToClick( &t, robots );
+
+		if(mouseState == MouseState::On)
+			robots->at( bot ).setSelected( true );
+		else
+			for(unsigned int i = 0; i < robots->size(); i++)
+				robots->at( i ).setSelected( false );
+	}
+}
+
+void World::moveRobotStrategy( Pose *pose ){
+	auto t = Core::bulletToGlut( Core::windowToBullet( pose, windowWidth, windowHeight, fieldWidth, fieldHeight ));
+	for(unsigned int i = 0; i < robots->size(); i++)
+		if(robots->at( i ).getSelected() == true) {
+			robots->at( i ).x = t.x;
+			robots->at( i ).y = t.y;
+		}
 }
 
 void World::closeStrategy(){

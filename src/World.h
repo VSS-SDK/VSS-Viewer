@@ -45,13 +45,15 @@ public:
 	void keyboardDown( unsigned char key, int x, int y ) override;
 	void mouseButtonPress( int button, int state, int x, int y ) override;
 	void reshape( int width, int height ) override;
+	void mouseMove( int x, int y ) override;
 
 	// Strategies
 	void closeStrategy();
 	void changeCameraStrategy();
 	void pauseStrategy();
 	void startStrategy();
-	void toggleSelectedRobot( Key key );
+	void toggleSelectedRobotStrategy( Pose *pose );
+	void moveRobotStrategy( Pose *pose );
 };
 
 #endif // WORLD_H
