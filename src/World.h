@@ -46,6 +46,7 @@ public:
 	void mouseButtonPress( int button, int state, int x, int y ) override;
 	void reshape( int width, int height ) override;
 	void mouseMove( int x, int y ) override;
+	void specialKeyboardDown( int key, int x, int y ) override;
 
 	// Strategies
 	void closeStrategy();
@@ -54,6 +55,7 @@ public:
 	void startStrategy();
 	void toggleSelectedRobotStrategy( Pose *pose );
 	void moveRobotStrategy( Pose *pose );
+	void rotateRobotStrategy( bool direction );
 };
 
 #endif // WORLD_H

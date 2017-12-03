@@ -90,6 +90,22 @@ void World::mouseMove( int x, int y ){
 		moveRobotStrategy( new Pose((float)x, (float)y, 0.0 ));
 }
 
+void World::specialKeyboardDown( int key, int x, int y ){
+	SpecialKey keyPushed = (SpecialKey)key;
+
+	switch(keyPushed) {
+	  case SpecialKey::Left: {
+		  rotateRobotStrategy( true );
+	  } break;
+	  case SpecialKey::Right: {
+		  rotateRobotStrategy( false );
+	  } break;
+	  default: {
+
+	  } break;
+	}
+}
+
 void World::keyboardDown( unsigned char key, int x, int y ) {
 	Key keyPushed = (Key)key;
 
@@ -110,7 +126,7 @@ void World::keyboardDown( unsigned char key, int x, int y ) {
 		  closeStrategy();
 	  } break;
 	  default: {
-		  // None
+		  std::cout << keyPushed << std::endl;
 	  } break;
 	}
 }
@@ -134,6 +150,16 @@ void World::moveRobotStrategy( Pose *pose ){
 		if(robots->at( i ).getSelected() == true) {
 			robots->at( i ).x = t.x;
 			robots->at( i ).y = t.y;
+		}
+}
+
+void World::rotateRobotStrategy( bool direction ){
+	for(unsigned int i = 0; i < robots->size(); i++)
+		if(robots->at( i ).getSelected() == true) {
+			if(direction)
+				robots->at( i ).yaw += 3.0;
+			else
+				robots->at( i ).yaw -= 3.0;
 		}
 }
 

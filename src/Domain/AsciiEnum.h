@@ -23,6 +23,16 @@ enum MouseState {
 	Off = 1
 };
 
+enum SpecialKey {
+	Left = 100,
+	Up = 101,
+	Right = 102,
+	Down = 103,
+	Shift = 112,
+	Ctrl = 114,
+	Alt = 116
+};
+
 enum Key {
 	Tab = 9,
 	Enter = 13,
