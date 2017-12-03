@@ -22,6 +22,8 @@ World::World( FieldDrawerBase *fieldDrawer, RobotDrawerBase *robotDrawer, BallDr
 
 	material = new Material();
 	ballDrawer->setBall( ball );
+
+	controlSender = new ControlSender( ball, robots );
 }
 
 void World::display() {
@@ -117,6 +119,8 @@ void World::keyboardDown( unsigned char key, int x, int y ) {
 		  changeCameraStrategy();
 	  } break;
 	  case Key::Space: {
+		  controlSender->send( paused );
+
 		  if(*paused)
 			  startStrategy();
 		  else

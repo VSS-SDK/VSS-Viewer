@@ -23,6 +23,7 @@
 #include "ColorEnum.h"
 #include "Material.h"
 #include "Math.h"
+#include "ControlSender.h"
 
 class World : public GlutFramework {
 public:
@@ -30,11 +31,14 @@ public:
 	MouseAction mouseAction;
 	MouseState mouseState;
 
+	string sendControlAddress;
+
 	bool *paused;
 	FieldDrawerBase *fieldDrawer;
 	RobotDrawerBase *robotDrawer;
 	BallDrawerBase *ballDrawer;
 	CameraBase *camera;
+	ControlSender *controlSender;
 	Pose *ball;
 	std::vector<Robot> *robots;
 	Material *material;
