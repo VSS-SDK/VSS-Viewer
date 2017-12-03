@@ -17,9 +17,9 @@
 #elif __linux
 #include <GL/glut.h>
 #endif
-#include "ICamera.h"
+#include "CameraBase.h"
 
-class TopCamera : public ICamera {
+class TopCamera : public CameraBase {
 public:
 
 	TopCamera();

@@ -13,7 +13,7 @@ FieldDrawerFactory::FieldDrawerFactory(){
 
 }
 
-IFieldDrawer* FieldDrawerFactory::factory( CompetitionName competitionName ){
+FieldDrawerBase* FieldDrawerFactory::factory( CompetitionName competitionName ){
 	switch (competitionName) {
 	  case CompetitionName::VerySmallSize:
 		  return new FieldDrawerVerySmallSize();

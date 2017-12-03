@@ -9,12 +9,12 @@
 #ifndef SIMPLE_BALL_DRAWER_H
 #define SIMPLE_BALL_DRAWER_H
 
-#include "IBallDrawer.h"
+#include "BallDrawerBase.h"
 #include "Pose.h"
 #include "ColorEnum.h"
 #include "Material.h"
 
-class SimpleBallDrawer : public IBallDrawer {
+class SimpleBallDrawer : public BallDrawerBase {
 public:
 
 	Pose *pose;

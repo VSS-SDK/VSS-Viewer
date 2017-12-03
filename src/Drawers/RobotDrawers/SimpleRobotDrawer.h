@@ -9,11 +9,11 @@
 #ifndef SIMPLE_ROBOT_DRAWER_H
 #define SIMPLE_ROBOT_DRAWER_H
 
-#include "IRobotDrawer.h"
+#include "RobotDrawerBase.h"
 #include "Robot.h"
 #include "Material.h"
 
-class SimpleRobotDrawer : public IRobotDrawer {
+class SimpleRobotDrawer : public RobotDrawerBase {
 public:
 
 	Material *material;

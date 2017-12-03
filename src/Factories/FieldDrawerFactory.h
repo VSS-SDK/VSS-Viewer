@@ -10,14 +10,14 @@
 #define FIELD_DRAWER_FACTORY_H
 
 #include "CompetitionEnum.h"
-#include "IFieldDrawer.h"
+#include "FieldDrawerBase.h"
 
 class FieldDrawerFactory {
 public:
 
 	FieldDrawerFactory();
 
-	IFieldDrawer* factory( CompetitionName competitionName );
+	FieldDrawerBase* factory( CompetitionName competitionName );
 };
 
 #endif // FIELD_DRAWER_FACTORY_H

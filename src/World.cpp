@@ -11,7 +11,7 @@
 #include "TopCamera.h"
 #include "TvCamera.h"
 
-World::World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, bool *paused ){
+World::World( FieldDrawerBase *fieldDrawer, RobotDrawerBase *robotDrawer, BallDrawerBase *ballDrawer, CameraBase *camera, Pose *ball, std::vector<Robot> *robots, bool *paused ){
 	this->fieldDrawer = fieldDrawer;
 	this->robotDrawer = robotDrawer;
 	this->ballDrawer = ballDrawer;

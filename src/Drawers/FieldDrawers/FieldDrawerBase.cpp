@@ -6,14 +6,10 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef IFIELD_DRAWER_H
-#define IFIELD_DRAWER_H
+#include "FieldDrawerBase.h"
 
-class IFieldDrawer {
-public:
+FieldDrawerBase::FieldDrawerBase(){
+}
 
-	IFieldDrawer();
-	void virtual draw();
-};
-
-#endif // IFIELD_DRAWER_H
+void FieldDrawerBase::draw(){
+}

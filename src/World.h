@@ -14,10 +14,10 @@
 
 #include "GlutFramework.h"
 #include "interface.h"
-#include "IFieldDrawer.h"
-#include "IRobotDrawer.h"
-#include "IBallDrawer.h"
-#include "ICamera.h"
+#include "FieldDrawerBase.h"
+#include "RobotDrawerBase.h"
+#include "BallDrawerBase.h"
+#include "CameraBase.h"
 #include "Pose.h"
 #include "AsciiEnum.h"
 #include "ColorEnum.h"
@@ -31,15 +31,15 @@ public:
 	MouseState mouseState;
 
 	bool *paused;
-	IFieldDrawer *fieldDrawer;
-	IRobotDrawer *robotDrawer;
-	IBallDrawer *ballDrawer;
-	ICamera *camera;
+	FieldDrawerBase *fieldDrawer;
+	RobotDrawerBase *robotDrawer;
+	BallDrawerBase *ballDrawer;
+	CameraBase *camera;
 	Pose *ball;
 	std::vector<Robot> *robots;
 	Material *material;
 
-	World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, bool *paused );
+	World( FieldDrawerBase *fieldDrawer, RobotDrawerBase *robotDrawer, BallDrawerBase *ballDrawer, CameraBase *camera, Pose *ball, std::vector<Robot> *robots, bool *paused );
 
 	void display() override;
 	void keyboardDown( unsigned char key, int x, int y ) override;

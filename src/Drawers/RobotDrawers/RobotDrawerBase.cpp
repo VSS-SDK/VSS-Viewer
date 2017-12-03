@@ -6,17 +6,13 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef IBALL_DRAWER_H
-#define IBALL_DRAWER_H
+#include "RobotDrawerBase.h"
 
-#include "Pose.h"
+RobotDrawerBase::RobotDrawerBase(){
+}
 
-class IBallDrawer {
-public:
+void RobotDrawerBase::draw(){
+}
 
-	IBallDrawer();
-	void virtual draw();
-	void virtual setBall( Pose *pose );
-};
-
-#endif // IROBOT_DRAWER_H
+void RobotDrawerBase::setRobot( Robot *robot ){
+}

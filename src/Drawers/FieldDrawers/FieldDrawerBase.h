@@ -6,17 +6,14 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef IROBOT_DRAWER_H
-#define IROBOT_DRAWER_H
+#ifndef FIELD_DRAWER_BASE_H
+#define FIELD_DRAWER_BASE_H
 
-#include "Robot.h"
-
-class IRobotDrawer {
+class FieldDrawerBase {
 public:
 
-	IRobotDrawer();
+	FieldDrawerBase();
 	void virtual draw();
-	void virtual setRobot( Robot *robot );
 };
 
-#endif // IROBOT_DRAWER_H
+#endif // FIELD_DRAWER_BASE_H

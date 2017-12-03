@@ -6,10 +6,17 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#include "IFieldDrawer.h"
+#ifndef BALL_DRAWER_BASE_H
+#define BALL_DRAWER_BASE_H
 
-IFieldDrawer::IFieldDrawer(){
-}
+#include "Pose.h"
 
-void IFieldDrawer::draw(){
-}
+class BallDrawerBase {
+public:
+
+	BallDrawerBase();
+	void virtual draw();
+	void virtual setBall( Pose *pose );
+};
+
+#endif // BALL_DRAWER_BASe_H

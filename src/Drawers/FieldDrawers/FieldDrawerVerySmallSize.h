@@ -10,10 +10,10 @@
 #define FIELD_DRAWER_150X130_H
 
 #include "ColorEnum.h"
-#include "IFieldDrawer.h"
+#include "FieldDrawerBase.h"
 #include "Material.h"
 
-class FieldDrawerVerySmallSize : public IFieldDrawer {
+class FieldDrawerVerySmallSize : public FieldDrawerBase {
 private:
 
 	const float fieldWidth = 150.0;

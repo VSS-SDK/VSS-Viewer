@@ -6,13 +6,14 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#include "IRobotDrawer.h"
+#ifndef CAMERA_BASE_H_
+#define CAMERA_BASE_H_
 
-IRobotDrawer::IRobotDrawer(){
-}
+class CameraBase {
+public:
 
-void IRobotDrawer::draw(){
-}
+	CameraBase();
+	void virtual applyPosition();
+};
 
-void IRobotDrawer::setRobot( Robot *robot ){
-}
+#endif // CAMERA_BASE_H_

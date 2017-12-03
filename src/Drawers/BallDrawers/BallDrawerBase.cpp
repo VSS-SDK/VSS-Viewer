@@ -6,14 +6,13 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef ICAMERA_H_
-#define ICAMERA_H_
+#include "BallDrawerBase.h"
 
-class ICamera {
-public:
+BallDrawerBase::BallDrawerBase(){
+}
 
-	ICamera();
-	void virtual applyPosition();
-};
+void BallDrawerBase::draw(){
+}
 
-#endif // ICAMERA_H_
+void BallDrawerBase::setBall( Pose *pose ){
+}
