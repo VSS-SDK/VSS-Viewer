@@ -41,6 +41,9 @@ void World::display() {
 }
 
 void World::reshape( int width, int height ) {
+	if(this->windowWidth == width and this->windowHeight == height)
+		return;
+
 	this->windowWidth = width;
 	this->windowHeight = height;
 

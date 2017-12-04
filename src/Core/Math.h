@@ -12,6 +12,7 @@
 #include <limits>
 #include "Pose.h"
 #include "Robot.h"
+#include "math.h"
 
 namespace Core {
 
