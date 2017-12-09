@@ -40,3 +40,10 @@ void Robot::setSelected( bool selected ){
 bool Robot::getSelected(){
 	return selected;
 }
+
+void Robot::show(){
+	std::cout << "(" << x << ", " << y << ", " << yaw << ")" << std::endl;
+	std::cout << "selected: " << selected << std::endl;
+	std::cout << "teamColor:" << teamColor << std::endl;
+	std::cout << "robotColor: " << robotColor << std::endl;
+}

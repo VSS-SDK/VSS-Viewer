@@ -11,6 +11,7 @@
 
 #include "Pose.h"
 #include "ColorEnum.h"
+#include "iostream"
 
 class Robot : public Pose {
 public:
@@ -25,6 +26,8 @@ public:
 
 	void setSelected( bool selected );
 	bool getSelected();
+
+	void show();
 };
 
 #endif // ROBOT_H

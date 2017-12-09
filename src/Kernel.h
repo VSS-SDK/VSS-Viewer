@@ -16,9 +16,16 @@
 #include "FieldDrawerFactory.h"
 #include "SimpleRobotDrawer.h"
 #include "SimpleBallDrawer.h"
+
 #include "StateReceiver.h"
+#include "DebugReceiver.h"
+
 #include "TopCamera.h"
 #include "World.h"
+
+#include "Pose.h"
+#include "Robot.h"
+#include "Path.h"
 
 class Kernel {
 private:
@@ -26,11 +33,19 @@ private:
 	bool paused;
 	int argc;
 	char **argv;
+
 	Pose ball;
 	std::vector<Robot> robots;
-	string receiveStateAddress;
+	std::vector<Pose> finalPoses;
+	std::vector<Pose> stepPoses;
+	std::vector<Path> paths;
+
 	thread *worldThread;
 	thread *receiveStateThread;
+	thread *receiveDebugTeam1Thread;
+	thread *receiveDebugTeam2Thread;
+
+	string receiveStateAddress;
 
 public:
 
@@ -39,6 +54,8 @@ public:
 	void init();
 	void worldThreadWrapper();
 	void receiveStateThreadWrapper();
+	void receiveDebugTeam1ThreadWrapper();
+	void receiveDebugTeam2ThreadWrapper();
 
 	void initialMessage();
 };

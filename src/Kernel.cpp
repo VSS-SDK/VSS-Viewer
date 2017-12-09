@@ -38,8 +38,13 @@ Kernel::Kernel( int argc, char **argv ){
 void Kernel::init(){
 	worldThread = new thread( std::bind( &Kernel::worldThreadWrapper, this ));
 	receiveStateThread = new thread( std::bind( &Kernel::receiveStateThreadWrapper, this ));
+	receiveDebugTeam1Thread = new thread( std::bind( &Kernel::receiveDebugTeam1ThreadWrapper, this ));
+	//receiveDebugTeam2Thread = new thread( std::bind( &Kernel::receiveDebugTeam2ThreadWrapper, this ));
+
 	worldThread->join();
 	receiveStateThread->join();
+	receiveDebugTeam1Thread->join();
+	//receiveDebugTeam2Thread->join();
 }
 
 void Kernel::worldThreadWrapper(){
@@ -49,13 +54,23 @@ void Kernel::worldThreadWrapper(){
 	auto ballDrawer = new SimpleBallDrawer();
 	auto camera = new TopCamera();
 
-	auto world = new World( fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots, &paused );
+	auto world = new World( fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots, &paths, &stepPoses, &finalPoses, &paused );
 	world->start( argc, argv );
 }
 
 void Kernel::receiveStateThreadWrapper(){
 	auto stateReceiver = new StateReceiver( &ball, &robots, &paused );
 	stateReceiver->loop( receiveStateAddress );
+}
+
+void Kernel::receiveDebugTeam1ThreadWrapper(){
+	auto debugReceiver = new DebugReceiver( &paths, &stepPoses, &finalPoses, &paused );
+	debugReceiver->loop( TeamIndex::TeamOne );
+}
+
+void Kernel::receiveDebugTeam2ThreadWrapper(){
+	auto debugReceiver = new DebugReceiver( &paths, &stepPoses, &finalPoses, &paused );
+	debugReceiver->loop( TeamIndex::TeamTwo );
 }
 
 void Kernel::initialMessage(){

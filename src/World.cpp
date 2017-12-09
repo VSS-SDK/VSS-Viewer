@@ -11,13 +11,16 @@
 #include "TopCamera.h"
 #include "TvCamera.h"
 
-World::World( FieldDrawerBase *fieldDrawer, RobotDrawerBase *robotDrawer, BallDrawerBase *ballDrawer, CameraBase *camera, Pose *ball, std::vector<Robot> *robots, bool *paused ){
+World::World( FieldDrawerBase *fieldDrawer, RobotDrawerBase *robotDrawer, BallDrawerBase *ballDrawer, CameraBase *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused ){
 	this->fieldDrawer = fieldDrawer;
 	this->robotDrawer = robotDrawer;
 	this->ballDrawer = ballDrawer;
 	this->camera = camera;
 	this->ball = ball;
 	this->robots = robots;
+	this->paths = paths;
+	this->stepPoses = stepPoses;
+	this->finalPoses = finalPoses;
 	this->paused = paused;
 
 	material = new Material();
@@ -33,6 +36,8 @@ void World::display() {
 	camera->applyPosition();
 	fieldDrawer->draw();
 	ballDrawer->draw();
+
+	std::cout << stepPoses->size() << std::endl;
 
 	for(unsigned int i = 0; i < robots->size(); i++) {
 		robotDrawer->setRobot( &robots->at( i ) );

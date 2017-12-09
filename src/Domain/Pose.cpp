@@ -35,3 +35,7 @@ void Pose::setPose( float x, float y, float yaw ){
 	this->y = y;
 	this->yaw = yaw;
 }
+
+void Pose::show(){
+	std::cout << "(" << x << ", " << y << ", " << yaw << ")" << std::endl;
+}

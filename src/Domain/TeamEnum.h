@@ -6,24 +6,17 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef POSE_H
-#define POSE_H
+#ifndef TEAM_ENUM_H
+#define TEAM_ENUM_H
 
-#include "iostream"
-
-class Pose {
-public:
-
-	float x, y, yaw;
-
-	Pose();
-	Pose( float x, float y, float yaw );
-	Pose( Pose *pose );
-
-	void setPose( Pose pose );
-	void setPose( float x, float y, float yaw );
-
-	void show();
+enum TeamIndex {
+	TeamOne = 0,
+	TeamTwo = 1
 };
 
-#endif // POSE_H
+enum TeamColor {
+	TeamYellow = 0,
+	TeamBlue = 1
+};
+
+#endif // TEAM_ENUM_H

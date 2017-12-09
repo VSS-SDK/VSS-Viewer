@@ -6,24 +6,26 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef POSE_H
-#define POSE_H
+#ifndef PATH_H
+#define PATH_H
 
+#include "vector"
+#include "Pose.h"
 #include "iostream"
 
-class Pose {
+class Path {
 public:
 
-	float x, y, yaw;
+	std::vector<Pose> poses;
 
-	Pose();
-	Pose( float x, float y, float yaw );
-	Pose( Pose *pose );
+	Path();
+	Path( std::vector<Pose> poses );
+	Path( Path *path );
 
-	void setPose( Pose pose );
-	void setPose( float x, float y, float yaw );
+	void setPath( Path *path );
+	void setPath( std::vector<Pose> poses );
 
 	void show();
 };
 
-#endif // POSE_H
+#endif // PATH_H
