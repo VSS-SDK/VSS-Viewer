@@ -9,16 +9,6 @@ FIND_PACKAGE(Boost 1.40 COMPONENTS program_options REQUIRED)
 INCLUDE(FindProtobuf)
 FIND_PACKAGE(Protobuf REQUIRED)
 
-find_path(ZeroMQ_INCLUDE_DIR
-        NAMES zmq.hpp
-        PATHS ${PC_ZeroMQ_INCLUDE_DIRS}
-        )
-
-find_library(ZeroMQ_LIBRARY
-        NAMES zmq
-        PATHS ${PC_ZeroMQ_LIBRARY_DIRS}
-        )
-
 include_directories(${PROTOBUF_INCLUDE_DIR} ${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} ${Boost_INCLUDE_DIR} src src/Cameras src/Communications src/Domain src/Drawers src/Drawers/FieldDrawers src/Drawers/RobotDrawers src/Drawers/BallDrawers rc/Factories src/Framework src/Factories src/Core)
 
 file(GLOB_RECURSE SRC src/*.cpp)
@@ -29,13 +19,9 @@ include_directories(usr/local/include)
 
 ADD_EXECUTABLE(vss-viewer ${SRC})
 
-target_include_directories(vss-viewer PUBLIC ${ZeroMQ_INCLUDE_DIR})
-target_link_libraries(vss-viewer PUBLIC ${ZeroMQ_LIBRARY})
-
 TARGET_LINK_LIBRARIES(vss-viewer ${VSS_INTERFACE} ${PROTOBUF_LIBRARY} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
 TARGET_LINK_LIBRARIES(vss-viewer LINK_PUBLIC ${Boost_LIBRARIES})
 target_link_libraries(vss-viewer ${PROTOBUF_LIBRARIES})
-
 
 INSTALL(TARGETS vss-viewer DESTINATION bin)
 
