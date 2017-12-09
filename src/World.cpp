@@ -11,10 +11,11 @@
 #include "TopCamera.h"
 #include "TvCamera.h"
 
-World::World( FieldDrawerBase *fieldDrawer, RobotDrawerBase *robotDrawer, BallDrawerBase *ballDrawer, CameraBase *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused ){
+World::World( FieldDrawerBase *fieldDrawer, RobotDrawerBase *robotDrawer, BallDrawerBase *ballDrawer, DebugDrawerBase *debugDrawerBase, CameraBase *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused ){
 	this->fieldDrawer = fieldDrawer;
 	this->robotDrawer = robotDrawer;
 	this->ballDrawer = ballDrawer;
+	this->debugDrawerBase = debugDrawerBase;
 	this->camera = camera;
 	this->ball = ball;
 	this->robots = robots;
@@ -37,9 +38,8 @@ void World::display() {
 	fieldDrawer->draw();
 	ballDrawer->draw();
 
-	std::cout << stepPoses->size() << std::endl;
-
 	for(unsigned int i = 0; i < robots->size(); i++) {
+		//debugDrawer->setData();
 		robotDrawer->setRobot( &robots->at( i ) );
 		robotDrawer->draw();
 	}
@@ -157,8 +157,8 @@ void World::moveRobotStrategy( Pose *pose ){
 	auto t = Core::bulletToGlut( Core::windowToBullet( pose, windowWidth, windowHeight, fieldWidth, fieldHeight ));
 	for(unsigned int i = 0; i < robots->size(); i++)
 		if(robots->at( i ).getSelected() == true) {
-			robots->at( i ).x = t.x;
-			robots->at( i ).y = t.y;
+			robots->at( i ).pose.x = t.x;
+			robots->at( i ).pose.y = t.y;
 		}
 }
 
@@ -166,9 +166,9 @@ void World::rotateRobotStrategy( bool direction ){
 	for(unsigned int i = 0; i < robots->size(); i++)
 		if(robots->at( i ).getSelected() == true) {
 			if(direction)
-				robots->at( i ).yaw += 3.0;
+				robots->at( i ).pose.yaw += 3.0;
 			else
-				robots->at( i ).yaw -= 3.0;
+				robots->at( i ).pose.yaw -= 3.0;
 		}
 }
 

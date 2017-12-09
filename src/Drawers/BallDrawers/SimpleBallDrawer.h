@@ -9,6 +9,15 @@
 #ifndef SIMPLE_BALL_DRAWER_H
 #define SIMPLE_BALL_DRAWER_H
 
+#ifdef _WIN32
+#include <windows.h>
+#include <GL/glut.h>
+#elif __APPLE__
+#include <GLUT/glut.h>
+#elif __linux
+#include <GL/glut.h>
+#endif
+
 #include "BallDrawerBase.h"
 #include "Pose.h"
 #include "ColorEnum.h"

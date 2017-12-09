@@ -9,6 +9,15 @@
 #ifndef FIELD_DRAWER_BASE_H
 #define FIELD_DRAWER_BASE_H
 
+#ifdef _WIN32
+#include <windows.h>
+#include <GL/glut.h>
+#elif __APPLE__
+#include <GLUT/glut.h>
+#elif __linux
+#include <GL/glut.h>
+#endif
+
 class FieldDrawerBase {
 public:
 

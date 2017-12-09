@@ -13,9 +13,10 @@
 #include "ColorEnum.h"
 #include "iostream"
 
-class Robot : public Pose {
+class Robot {
 public:
 
+	Pose pose;
 	bool selected;
 	ColorName teamColor;
 	ColorName robotColor;
@@ -26,6 +27,9 @@ public:
 
 	void setSelected( bool selected );
 	bool getSelected();
+
+	void setPose( Pose pose );
+	Pose getPose();
 
 	void show();
 };

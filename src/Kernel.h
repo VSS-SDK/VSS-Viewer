@@ -16,6 +16,7 @@
 #include "FieldDrawerFactory.h"
 #include "SimpleRobotDrawer.h"
 #include "SimpleBallDrawer.h"
+#include "OriginalDebugDrawer.h"
 
 #include "StateReceiver.h"
 #include "DebugReceiver.h"

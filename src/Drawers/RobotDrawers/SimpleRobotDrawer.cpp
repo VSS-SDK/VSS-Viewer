@@ -26,8 +26,8 @@ void SimpleRobotDrawer::setRobot( Robot *robot ){
 void SimpleRobotDrawer::draw(){
 	glPushMatrix();
 	//! Desenha o corpo do robô
-	glTranslatef( thickOfThings * 1.4, robot->x, robot->y );
-	glRotatef( -robot->yaw, 1, 0, 0 );
+	glTranslatef( thickOfThings * 1.4, robot->pose.x, robot->pose.y );
+	glRotatef( -robot->pose.yaw, 1, 0, 0 );
 	glScalef( robotHeight, robotWidth, robotDepth );
 
 	if(robot->selected)

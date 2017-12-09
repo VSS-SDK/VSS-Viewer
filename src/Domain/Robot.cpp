@@ -9,25 +9,21 @@
 #include "Robot.h"
 
 Robot::Robot(){
-	x = y = yaw = 0;
+	pose = new Pose();
 	teamColor = ColorName::Yellow;
 	robotColor = ColorName::Green;
 	selected = false;
 }
 
 Robot::Robot( Pose *pose, ColorName teamColor, ColorName robotColor ){
-	this->x = pose->x;
-	this->y = pose->y;
-	this->yaw = pose->yaw;
+	this->pose = *pose;
 	this->teamColor = teamColor;
 	this->robotColor = robotColor;
 	selected = false;
 }
 
 Robot::Robot( Robot *robot ){
-	x = robot->x;
-	y = robot->y;
-	yaw = robot->yaw;
+	pose = robot->pose;
 	teamColor = robot->teamColor;
 	robotColor = robot->robotColor;
 	selected = false;
@@ -41,8 +37,16 @@ bool Robot::getSelected(){
 	return selected;
 }
 
+void Robot::setPose( Pose pose ){
+	this->pose = pose;
+}
+
+Pose Robot::getPose(){
+	return pose;
+}
+
 void Robot::show(){
-	std::cout << "(" << x << ", " << y << ", " << yaw << ")" << std::endl;
+	pose.show();
 	std::cout << "selected: " << selected << std::endl;
 	std::cout << "teamColor:" << teamColor << std::endl;
 	std::cout << "robotColor: " << robotColor << std::endl;

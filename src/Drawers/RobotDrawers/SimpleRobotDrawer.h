@@ -9,6 +9,15 @@
 #ifndef SIMPLE_ROBOT_DRAWER_H
 #define SIMPLE_ROBOT_DRAWER_H
 
+#ifdef _WIN32
+#include <windows.h>
+#include <GL/glut.h>
+#elif __APPLE__
+#include <GLUT/glut.h>
+#elif __linux
+#include <GL/glut.h>
+#endif
+
 #include "RobotDrawerBase.h"
 #include "Robot.h"
 #include "Material.h"

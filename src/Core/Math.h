@@ -21,15 +21,15 @@ float inline distance( const Pose &t1, const Pose &t2 ){
 }
 
 float inline distance( const Robot &t1, const Robot &t2 ){
-	return sqrt(((t1.x - t2.x) * (t1.x - t2.x)) + ((t1.y - t2.y) * (t1.y - t2.y)));
+	return sqrt(((t1.pose.x - t2.pose.x) * (t1.pose.x - t2.pose.x)) + ((t1.pose.y - t2.pose.y) * (t1.pose.y - t2.pose.y)));
 }
 
 float inline distance( const Robot &t1, const Pose &t2 ){
-	return sqrt(((t1.x - t2.x) * (t1.x - t2.x)) + ((t1.y - t2.y) * (t1.y - t2.y)));
+	return sqrt(((t1.pose.x - t2.x) * (t1.pose.x - t2.x)) + ((t1.pose.y - t2.y) * (t1.pose.y - t2.y)));
 }
 
 float inline distance( const Pose &t1, const Robot &t2 ){
-	return sqrt(((t1.x - t2.x) * (t1.x - t2.x)) + ((t1.y - t2.y) * (t1.y - t2.y)));
+	return sqrt(((t1.x - t2.pose.x) * (t1.x - t2.pose.x)) + ((t1.y - t2.pose.y) * (t1.y - t2.pose.y)));
 }
 
 Pose inline bulletToGlut( const Pose &bullet ){

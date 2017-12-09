@@ -6,8 +6,8 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef ROBOT_DRAWER_BASE_H
-#define ROBOT_DRAWER_BASE_H
+#ifndef DEBUG_DRAWER_BASE_H
+#define DEBUG_DRAWER_BASE_H
 
 #ifdef _WIN32
 #include <windows.h>
@@ -18,14 +18,16 @@
 #include <GL/glut.h>
 #endif
 
-#include "Robot.h"
+#include "Pose.h"
+#include "Path.h"
+#include "ColorEnum.h"
 
-class RobotDrawerBase {
+class DebugDrawerBase {
 public:
 
-	RobotDrawerBase();
+	DebugDrawerBase();
 	void virtual draw();
-	void virtual setRobot( Robot *robot );
+	void virtual setData( Pose *actPose, Pose *stepPose, Pose *finalPose, Path *path, ColorName teamColor, ColorName robotColor );
 };
 
-#endif // ROBOT_DRAWER_BASE_H
+#endif // DEBUG_DRAWER_BASE_H

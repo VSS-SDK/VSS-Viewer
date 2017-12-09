@@ -17,6 +17,7 @@
 #include "FieldDrawerBase.h"
 #include "RobotDrawerBase.h"
 #include "BallDrawerBase.h"
+#include "DebugDrawerBase.h"
 #include "CameraBase.h"
 #include "Pose.h"
 #include "Robot.h"
@@ -39,6 +40,7 @@ public:
 	FieldDrawerBase *fieldDrawer;
 	RobotDrawerBase *robotDrawer;
 	BallDrawerBase *ballDrawer;
+	DebugDrawerBase *debugDrawerBase;
 	CameraBase *camera;
 	ControlSender *controlSender;
 
@@ -50,7 +52,7 @@ public:
 
 	Material *material;
 
-	World( FieldDrawerBase *fieldDrawer, RobotDrawerBase *robotDrawer, BallDrawerBase *ballDrawer, CameraBase *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused );
+	World( FieldDrawerBase *fieldDrawer, RobotDrawerBase *robotDrawer, BallDrawerBase *ballDrawer, DebugDrawerBase *debugDrawerBase, CameraBase *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused );
 
 	void display() override;
 	void keyboardDown( unsigned char key, int x, int y ) override;
