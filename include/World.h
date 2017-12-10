@@ -17,6 +17,7 @@
 #include "IFieldDrawer.h"
 #include "IRobotDrawer.h"
 #include "IBallDrawer.h"
+#include "IDebugDrawer.h"
 #include "ICamera.h"
 #include "Pose.h"
 #include "Robot.h"
@@ -39,6 +40,7 @@ public:
 	IFieldDrawer *fieldDrawer;
 	IRobotDrawer *robotDrawer;
 	IBallDrawer *ballDrawer;
+	IDebugDrawer *debugDrawer;
 	ICamera *camera;
 	ControlSender *controlSender;
 
@@ -50,7 +52,7 @@ public:
 
 	Material *material;
 
-	World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused );
+	World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused );
 
 	void display() override;
 	void keyboardDown( unsigned char key, int x, int y ) override;

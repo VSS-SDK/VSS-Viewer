@@ -11,7 +11,8 @@
 #include "TopCamera.h"
 #include "TvCamera.h"
 
-World::World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused ){
+World::World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused ){
+	this->debugDrawer = debugDrawer;
 	this->fieldDrawer = fieldDrawer;
 	this->robotDrawer = robotDrawer;
 	this->ballDrawer = ballDrawer;
@@ -38,6 +39,9 @@ void World::display() {
 
 	for(unsigned int i = 0; i < robots->size(); i++)
 		robotDrawer->draw( &robots->at( i ));
+
+	for(unsigned int i = 0; i < stepPoses->size(); i++)
+		debugDrawer->drawStep( &robots->at( i ).pose, &stepPoses->at( i ), ColorName::Yellow );
 }
 
 void World::reshape( int width, int height ) {

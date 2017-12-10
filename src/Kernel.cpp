@@ -51,9 +51,10 @@ void Kernel::worldThreadWrapper(){
 	auto fieldDrawer = new FieldDrawerVerySmallSize();
 	auto robotDrawer = new SimpleRobotDrawer();
 	auto ballDrawer = new SimpleBallDrawer();
+	auto debugDrawer = new OriginalDebugDrawer();
 	auto camera = new TopCamera();
 
-	auto world = new World( fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots, &paths, &stepPoses, &finalPoses, &paused );
+	auto world = new World( debugDrawer, fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots, &paths, &stepPoses, &finalPoses, &paused );
 	world->start( argc, argv );
 }
 

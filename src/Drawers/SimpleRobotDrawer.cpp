@@ -10,6 +10,7 @@
 #include "iostream"
 
 SimpleRobotDrawer::SimpleRobotDrawer(){
+	material = new Material();
 	qobj = gluNewQuadric();
 	gluQuadricNormals( qobj, GLU_SMOOTH );
 	robot = new Robot();

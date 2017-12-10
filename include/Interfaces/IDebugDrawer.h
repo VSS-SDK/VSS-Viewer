@@ -6,8 +6,8 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef SIMPLE_BALL_DRAWER_H
-#define SIMPLE_BALL_DRAWER_H
+#ifndef IDEBUG_H
+#define IDEBUG_H
 
 #ifdef _WIN32
 #include <windows.h>
@@ -18,19 +18,16 @@
 #include <GL/glut.h>
 #endif
 
-#include "IBallDrawer.h"
 #include "Pose.h"
+#include "Path.h"
 #include "ColorEnum.h"
-#include "Material.h"
 
-class SimpleBallDrawer : public IBallDrawer {
+class IDebugDrawer {
 public:
 
-	Material *material;
-	const float thickOfThings = 2.5;
-
-	SimpleBallDrawer();
-
-	void draw( Pose *pose ) override;
+	void virtual drawPath( Pose *actPose, Path *path, ColorName color ) = 0;
+	void virtual drawStep( Pose *actPose, Pose *stepPose, ColorName color ) = 0;
+	void virtual drawFinal( Pose *actPose, Pose *finalPose, ColorName teamColor, ColorName robotColor ) = 0;
 };
-#endif // SIMPLE_BALL_DRAWER_H
+
+#endif // IDEBUG_H

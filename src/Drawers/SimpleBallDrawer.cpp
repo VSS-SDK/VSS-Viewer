@@ -9,14 +9,13 @@
 #include "SimpleBallDrawer.h"
 
 SimpleBallDrawer::SimpleBallDrawer(){
-
+	material = new Material();
 }
 
 void SimpleBallDrawer::draw( Pose *pose ){
-	Material material;
 	glPushMatrix();
 	glTranslatef( thickOfThings * 1.4, pose->x, pose->y );
-	material.applyMaterial( ColorName::Orange );
+	material->applyMaterial( ColorName::Orange );
 	glutSolidSphere( 2.0, 8.0, 8.0 );
 	glPopMatrix();
 }

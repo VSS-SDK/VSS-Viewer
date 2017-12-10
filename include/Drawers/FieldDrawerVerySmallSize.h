@@ -35,7 +35,7 @@ private:
 
 public:
 
-	Material material;
+	Material *material;
 
 	FieldDrawerVerySmallSize();
 	void draw() override;
