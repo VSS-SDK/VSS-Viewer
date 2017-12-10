@@ -23,7 +23,7 @@
 class IRobotDrawer {
 public:
 
-	void virtual draw( Robot *robot ) = 0;
+	void virtual draw( const Robot &robot ) = 0;
 };
 
 #endif // IROBOT_H

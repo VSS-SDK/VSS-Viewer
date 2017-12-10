@@ -12,9 +12,9 @@ SimpleBallDrawer::SimpleBallDrawer(){
 	material = new Material();
 }
 
-void SimpleBallDrawer::draw( Pose *pose ){
+void SimpleBallDrawer::draw( const Pose &pose ){
 	glPushMatrix();
-	glTranslatef( thickOfThings * 1.4, pose->x, pose->y );
+	glTranslatef( thickOfThings * 1.4, pose.x, pose.y );
 	material->applyMaterial( ColorName::Orange );
 	glutSolidSphere( 2.0, 8.0, 8.0 );
 	glPopMatrix();

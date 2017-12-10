@@ -37,7 +37,7 @@ public:
 
 	SimpleRobotDrawer();
 
-	void draw( Robot *robot ) override;
+	void draw( const Robot &robot ) override;
 };
 
 #endif // SIMPLE_ROBOT_DRAWER_H

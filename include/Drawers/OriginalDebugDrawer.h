@@ -20,6 +20,7 @@
 
 #include "Pose.h"
 #include "Path.h"
+#include "Robot.h"
 #include "ColorEnum.h"
 #include "Material.h"
 #include "IDebugDrawer.h"
@@ -30,9 +31,9 @@ public:
 	Material *material;
 
 	OriginalDebugDrawer();
-	void virtual drawPath( Pose *actPose, Path *path, ColorName color ) override;
-	void virtual drawStep( Pose *actPose, Pose *stepPose, ColorName color ) override;
-	void virtual drawFinal( Pose *actPose, Pose *finalPose, ColorName teamColor, ColorName robotColor ) override;
+	void drawPath( const Robot &robot, const Path &path ) override;
+	void drawStep( const Robot &robot, const Pose &stepPose ) override;
+	void drawFinal( const Robot &robot, const Pose &finalPose ) override;
 };
 
 #endif // ORIGINAL_DEBUG_DRAWER_H

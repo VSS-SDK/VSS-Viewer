@@ -20,14 +20,14 @@ SimpleRobotDrawer::SimpleRobotDrawer(){
 	robotHeight = 8.0;
 }
 
-void SimpleRobotDrawer::draw( Robot *robot ){
+void SimpleRobotDrawer::draw( const Robot &robot ){
 	glPushMatrix();
 	//! Desenha o corpo do robô
-	glTranslatef( thickOfThings * 1.4, robot->pose.x, robot->pose.y );
-	glRotatef( -robot->pose.yaw, 1, 0, 0 );
+	glTranslatef( thickOfThings * 1.4, robot.pose.x, robot.pose.y );
+	glRotatef( -robot.pose.yaw, 1, 0, 0 );
 	glScalef( robotHeight, robotWidth, robotDepth );
 
-	if(robot->selected)
+	if(robot.selected)
 		material->applyMaterial( ColorName::Gray );
 	else
 		material->applyMaterial( ColorName::Black3 );
@@ -38,7 +38,7 @@ void SimpleRobotDrawer::draw( Robot *robot ){
 	glPushMatrix();
 	glTranslatef( 0.5, -0.2, -0.2 );
 	glScalef( 0.1f, colorLabelSize / robotWidth, colorLabelSize / robotWidth );
-	material->applyMaterial( robot->teamColor );
+	material->applyMaterial( robot.teamColor );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -46,7 +46,7 @@ void SimpleRobotDrawer::draw( Robot *robot ){
 	glPushMatrix();
 	glTranslatef( 0.5, 0.2, 0.2 );
 	glScalef( 0.1f, colorLabelSize / robotWidth, colorLabelSize / robotWidth );
-	material->applyMaterial( robot->robotColor );
+	material->applyMaterial( robot.robotColor );
 	glutSolidCube( 1 );
 	glPopMatrix();
 

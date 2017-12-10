@@ -20,14 +20,15 @@
 
 #include "Pose.h"
 #include "Path.h"
+#include "Robot.h"
 #include "ColorEnum.h"
 
 class IDebugDrawer {
 public:
 
-	void virtual drawPath( Pose *actPose, Path *path, ColorName color ) = 0;
-	void virtual drawStep( Pose *actPose, Pose *stepPose, ColorName color ) = 0;
-	void virtual drawFinal( Pose *actPose, Pose *finalPose, ColorName teamColor, ColorName robotColor ) = 0;
+	void virtual drawPath( const Robot &robot, const Path &path ) = 0;
+	void virtual drawStep( const Robot &robot, const Pose &stepPose ) = 0;
+	void virtual drawFinal( const Robot &robot, const Pose &finalPose ) = 0;
 };
 
 #endif // IDEBUG_H

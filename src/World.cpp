@@ -41,7 +41,7 @@ void World::display() {
 		robotDrawer->draw( &robots->at( i ));
 
 	for(unsigned int i = 0; i < stepPoses->size(); i++)
-		debugDrawer->drawStep( &robots->at( i ).pose, &stepPoses->at( i ), ColorName::Yellow );
+		debugDrawer->drawStep( robots->at( i ), stepPoses->at( i ) );
 }
 
 void World::reshape( int width, int height ) {

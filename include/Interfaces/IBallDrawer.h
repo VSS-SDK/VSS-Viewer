@@ -23,7 +23,7 @@
 class IBallDrawer {
 public:
 
-	void virtual draw( Pose *pose ) = 0;
+	void virtual draw( const Pose &pose ) = 0;
 };
 
 #endif // IBALL_H

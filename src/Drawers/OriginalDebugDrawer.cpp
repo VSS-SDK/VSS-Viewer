@@ -12,22 +12,22 @@ OriginalDebugDrawer::OriginalDebugDrawer(){
 	material = new Material();
 }
 
-void OriginalDebugDrawer::drawPath( Pose *actPose, Path *path, ColorName color ){
+void OriginalDebugDrawer::drawPath( const Robot &robot, const Path &path ){
 
 }
 
-void OriginalDebugDrawer::drawStep( Pose *actPose, Pose *stepPose, ColorName color ){
+void OriginalDebugDrawer::drawStep( const Robot &robot, const Pose &stepPose ){
 	glPushMatrix();
-	material->applyMaterial( color );
+	material->applyMaterial( robot.robotColor );
 
 	glBegin( GL_LINES );
-	glVertex3f( 2, actPose->x, actPose->y );
-	glVertex3f( 2, stepPose->x, stepPose->y );
+	glVertex3f( 2, robot.pose.x, robot.pose.y );
+	glVertex3f( 2, stepPose.x, stepPose.y );
 	glEnd();
 	glPopMatrix();
 }
 
-void OriginalDebugDrawer::drawFinal( Pose *actPose, Pose *finalPose, ColorName teamColor, ColorName robotColor ){
+void OriginalDebugDrawer::drawFinal( const Robot &robot, const Pose &finalPose ){
 
 }
 

@@ -31,6 +31,6 @@ public:
 
 	SimpleBallDrawer();
 
-	void draw( Pose *pose ) override;
+	void draw( const Pose &pose ) override;
 };
 #endif // SIMPLE_BALL_DRAWER_H
