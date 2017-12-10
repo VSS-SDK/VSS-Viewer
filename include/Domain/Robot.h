@@ -31,7 +31,7 @@ public:
 	void setPose( Pose pose );
 	Pose getPose();
 
-	void show();
+	friend std::ostream& operator<<( std::ostream& os, const Robot& robot );
 };
 
 #endif // ROBOT_H

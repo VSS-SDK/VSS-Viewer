@@ -28,9 +28,10 @@ void Path::setPath( std::vector<Pose> poses ){
 	this->poses = poses;
 }
 
-void Path::show(){
-	std::cout << "Path" << std::endl;
-	for(unsigned int i = 0; i < poses.size(); i++) {
-		poses.at( i ).show();
-	}
+std::ostream& operator<<( std::ostream& os, const Path& path )
+{
+	for(unsigned int i = 0; i < path.poses.size(); i++)
+		os << path.poses.at( i ) << " - ";
+
+	return os;
 }

@@ -25,7 +25,7 @@ public:
 	void setPath( Path *path );
 	void setPath( std::vector<Pose> poses );
 
-	void show();
+	friend std::ostream& operator<<( std::ostream& os, const Path& path );
 };
 
 #endif // PATH_H

@@ -45,9 +45,11 @@ Pose Robot::getPose(){
 	return pose;
 }
 
-void Robot::show(){
-	pose.show();
-	std::cout << "selected: " << selected << std::endl;
-	std::cout << "teamColor:" << teamColor << std::endl;
-	std::cout << "robotColor: " << robotColor << std::endl;
+std::ostream& operator<<( std::ostream& os, const Robot& robot )
+{
+	os << robot.pose << " - ";
+	os << "selected: " << robot.selected << " - ";
+	os << "teamColor:" << robot.teamColor << " - ";
+	os << "robotColor: " << robot.robotColor << " - ";
+	return os;
 }

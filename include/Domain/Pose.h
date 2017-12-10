@@ -23,7 +23,7 @@ public:
 	void setPose( Pose pose );
 	void setPose( float x, float y, float yaw );
 
-	void show();
+	friend std::ostream& operator<<( std::ostream& os, const Pose& pose );
 };
 
 #endif // POSE_H

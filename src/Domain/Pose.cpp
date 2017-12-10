@@ -36,6 +36,12 @@ void Pose::setPose( float x, float y, float yaw ){
 	this->yaw = yaw;
 }
 
-void Pose::show(){
-	std::cout << "(" << x << ", " << y << ", " << yaw << ")" << std::endl;
+/*void Pose::show(){
+   std::cout << "(" << x << ", " << y << ", " << yaw << ")" << std::endl;
+   }*/
+
+std::ostream& operator<<( std::ostream& os, const Pose& pose )
+{
+	os << "(" << pose.x << ", " << pose.y << ", " << pose.yaw << ")";
+	return os;
 }
