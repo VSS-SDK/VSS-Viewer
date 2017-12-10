@@ -41,8 +41,7 @@ void World::display() {
 		robotDrawer->draw( &robots->at( i ));
 
 	for(unsigned int i = 0; i < stepPoses->size(); i++) {
-		//std::cout << stepPoses->at( i ) << std::endl;
-		debugDrawer->drawStep( robots->at( i ), stepPoses->at( i ) );
+		debugDrawer->drawStep( robots->at( i ), finalPoses->at( i ) );
 	}
 }
 

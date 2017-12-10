@@ -37,9 +37,6 @@ void DebugReceiver::loop( TeamIndex teamIndex ){
 			pose.y = global_debug.step_poses( i ).x() - (170 / 2.0);
 			pose.yaw = global_debug.step_poses( i ).yaw() * 180.0 / M_PI;
 			stepPoses->push_back( pose );
-			std::cout << global_debug.step_poses( i ).y() << std::endl;
-			std::cout << pose << std::endl;
-
 		}
 
 		finalPoses->erase( finalPoses->begin(), finalPoses->end() );
