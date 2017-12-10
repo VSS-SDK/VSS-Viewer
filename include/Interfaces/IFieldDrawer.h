@@ -6,13 +6,22 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#include "DebugDrawerBase.h"
+#ifndef IFIELD_DRAWER_H
+#define IFIELD_DRAWER_H
 
-DebugDrawerBase::DebugDrawerBase(){
-}
+#ifdef _WIN32
+#include <windows.h>
+#include <GL/glut.h>
+#elif __APPLE__
+#include <GLUT/glut.h>
+#elif __linux
+#include <GL/glut.h>
+#endif
 
-void DebugDrawerBase::draw(){
-}
+class IFieldDrawer {
+public:
 
-void DebugDrawerBase::setData( Pose *actPose, Pose *stepPose, Pose *finalPose, Path *path, ColorName teamColor, ColorName robotColor ){
-}
+	void virtual draw() = 0;
+};
+
+#endif // IFIELD_DRAWER_H

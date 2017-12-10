@@ -14,11 +14,10 @@
 
 #include "GlutFramework.h"
 #include "interface.h"
-#include "FieldDrawerBase.h"
-#include "RobotDrawerBase.h"
-#include "BallDrawerBase.h"
-#include "DebugDrawerBase.h"
-#include "CameraBase.h"
+#include "IFieldDrawer.h"
+#include "IRobotDrawer.h"
+#include "IBallDrawer.h"
+#include "ICamera.h"
 #include "Pose.h"
 #include "Robot.h"
 #include "Path.h"
@@ -37,11 +36,10 @@ public:
 	string sendControlAddress;
 
 	bool *paused;
-	FieldDrawerBase *fieldDrawer;
-	RobotDrawerBase *robotDrawer;
-	BallDrawerBase *ballDrawer;
-	DebugDrawerBase *debugDrawerBase;
-	CameraBase *camera;
+	IFieldDrawer *fieldDrawer;
+	IRobotDrawer *robotDrawer;
+	IBallDrawer *ballDrawer;
+	ICamera *camera;
 	ControlSender *controlSender;
 
 	Pose *ball;
@@ -52,7 +50,7 @@ public:
 
 	Material *material;
 
-	World( FieldDrawerBase *fieldDrawer, RobotDrawerBase *robotDrawer, BallDrawerBase *ballDrawer, DebugDrawerBase *debugDrawerBase, CameraBase *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused );
+	World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused );
 
 	void display() override;
 	void keyboardDown( unsigned char key, int x, int y ) override;

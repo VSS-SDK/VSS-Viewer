@@ -11,11 +11,10 @@
 #include "TopCamera.h"
 #include "TvCamera.h"
 
-World::World( FieldDrawerBase *fieldDrawer, RobotDrawerBase *robotDrawer, BallDrawerBase *ballDrawer, DebugDrawerBase *debugDrawerBase, CameraBase *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused ){
+World::World( IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused ){
 	this->fieldDrawer = fieldDrawer;
 	this->robotDrawer = robotDrawer;
 	this->ballDrawer = ballDrawer;
-	this->debugDrawerBase = debugDrawerBase;
 	this->camera = camera;
 	this->ball = ball;
 	this->robots = robots;
@@ -25,7 +24,6 @@ World::World( FieldDrawerBase *fieldDrawer, RobotDrawerBase *robotDrawer, BallDr
 	this->paused = paused;
 
 	material = new Material();
-	ballDrawer->setBall( ball );
 
 	controlSender = new ControlSender( ball, robots );
 }
@@ -36,13 +34,10 @@ void World::display() {
 
 	camera->applyPosition();
 	fieldDrawer->draw();
-	ballDrawer->draw();
+	ballDrawer->draw( ball );
 
-	for(unsigned int i = 0; i < robots->size(); i++) {
-		//debugDrawer->setData();
-		robotDrawer->setRobot( &robots->at( i ) );
-		robotDrawer->draw();
-	}
+	for(unsigned int i = 0; i < robots->size(); i++)
+		robotDrawer->draw( &robots->at( i ));
 }
 
 void World::reshape( int width, int height ) {

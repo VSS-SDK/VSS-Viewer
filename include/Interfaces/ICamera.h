@@ -6,18 +6,13 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef FIELD_DRAWER_FACTORY_H
-#define FIELD_DRAWER_FACTORY_H
+#ifndef ICAMERA_H
+#define ICAMERA_H
 
-#include "CompetitionEnum.h"
-#include "FieldDrawerBase.h"
-
-class FieldDrawerFactory {
+class ICamera {
 public:
 
-	FieldDrawerFactory();
-
-	FieldDrawerBase* factory( CompetitionName competitionName );
+	void virtual applyPosition() = 0;
 };
 
-#endif // FIELD_DRAWER_FACTORY_H
+#endif // ICAMERA_H

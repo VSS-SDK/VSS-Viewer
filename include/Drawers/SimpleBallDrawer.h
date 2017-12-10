@@ -6,8 +6,8 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef BALL_DRAWER_BASE_H
-#define BALL_DRAWER_BASE_H
+#ifndef SIMPLE_BALL_DRAWER_H
+#define SIMPLE_BALL_DRAWER_H
 
 #ifdef _WIN32
 #include <windows.h>
@@ -18,14 +18,18 @@
 #include <GL/glut.h>
 #endif
 
+#include "IBallDrawer.h"
 #include "Pose.h"
+#include "ColorEnum.h"
+#include "Material.h"
 
-class BallDrawerBase {
+class SimpleBallDrawer : public IBallDrawer {
 public:
 
-	BallDrawerBase();
-	void virtual draw();
-	void virtual setBall( Pose *pose );
-};
+	const float thickOfThings = 2.5;
 
-#endif // BALL_DRAWER_BASe_H
+	SimpleBallDrawer();
+
+	void draw( Pose *pose ) override;
+};
+#endif // SIMPLE_BALL_DRAWER_H

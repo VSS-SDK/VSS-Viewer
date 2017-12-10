@@ -6,8 +6,8 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef ROBOT_DRAWER_BASE_H
-#define ROBOT_DRAWER_BASE_H
+#ifndef TOPCAMERA_H_
+#define TOPCAMERA_H_
 
 #ifdef _WIN32
 #include <windows.h>
@@ -17,15 +17,13 @@
 #elif __linux
 #include <GL/glut.h>
 #endif
+#include "ICamera.h"
 
-#include "Robot.h"
-
-class RobotDrawerBase {
+class TopCamera : public ICamera {
 public:
 
-	RobotDrawerBase();
-	void virtual draw();
-	void virtual setRobot( Robot *robot );
+	TopCamera();
+	void applyPosition() override;
 };
 
-#endif // ROBOT_DRAWER_BASE_H
+#endif // TOPCAMERA_H_

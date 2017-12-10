@@ -6,8 +6,8 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef SIMPLE_BALL_DRAWER_H
-#define SIMPLE_BALL_DRAWER_H
+#ifndef SIMPLE_ROBOT_DRAWER_H
+#define SIMPLE_ROBOT_DRAWER_H
 
 #ifdef _WIN32
 #include <windows.h>
@@ -18,22 +18,26 @@
 #include <GL/glut.h>
 #endif
 
-#include "BallDrawerBase.h"
-#include "Pose.h"
-#include "ColorEnum.h"
+#include "IRobotDrawer.h"
+#include "Robot.h"
 #include "Material.h"
 
-class SimpleBallDrawer : public BallDrawerBase {
+class SimpleRobotDrawer : public IRobotDrawer {
 public:
 
-	Pose *pose;
 	Material *material;
+	Robot *robot;
+	GLUquadric *qobj;
 
+	float robotWidth;
+	float robotDepth;
+	float robotHeight;
+	const float colorLabelSize = 3.5;
 	const float thickOfThings = 2.5;
 
-	SimpleBallDrawer();
+	SimpleRobotDrawer();
 
-	void draw();
-	void setBall( Pose *pose );
+	void draw( Robot *robot ) override;
 };
-#endif // SIMPLE_BALL_DRAWER_H
+
+#endif // SIMPLE_ROBOT_DRAWER_H

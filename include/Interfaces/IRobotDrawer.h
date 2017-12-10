@@ -6,8 +6,8 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef FIELD_DRAWER_BASE_H
-#define FIELD_DRAWER_BASE_H
+#ifndef IROBOT_H
+#define IROBOT_H
 
 #ifdef _WIN32
 #include <windows.h>
@@ -18,11 +18,12 @@
 #include <GL/glut.h>
 #endif
 
-class FieldDrawerBase {
+#include "Robot.h"
+
+class IRobotDrawer {
 public:
 
-	FieldDrawerBase();
-	void virtual draw();
+	void virtual draw( Robot *robot ) = 0;
 };
 
-#endif // FIELD_DRAWER_BASE_H
+#endif // IROBOT_H

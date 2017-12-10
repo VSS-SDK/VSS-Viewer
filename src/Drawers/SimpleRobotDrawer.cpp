@@ -19,11 +19,7 @@ SimpleRobotDrawer::SimpleRobotDrawer(){
 	robotHeight = 8.0;
 }
 
-void SimpleRobotDrawer::setRobot( Robot *robot ){
-	this->robot = robot;
-}
-
-void SimpleRobotDrawer::draw(){
+void SimpleRobotDrawer::draw( Robot *robot ){
 	glPushMatrix();
 	//! Desenha o corpo do robô
 	glTranslatef( thickOfThings * 1.4, robot->pose.x, robot->pose.y );

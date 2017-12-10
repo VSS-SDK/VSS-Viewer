@@ -48,14 +48,12 @@ void Kernel::init(){
 }
 
 void Kernel::worldThreadWrapper(){
-	auto fieldDrawerFactory = new FieldDrawerFactory();
-	auto fieldDrawer = fieldDrawerFactory->factory( CompetitionName::VerySmallSize );
+	auto fieldDrawer = new FieldDrawerVerySmallSize();
 	auto robotDrawer = new SimpleRobotDrawer();
-	auto debugDrawer = new OriginalDebugDrawer();
 	auto ballDrawer = new SimpleBallDrawer();
 	auto camera = new TopCamera();
 
-	auto world = new World( fieldDrawer, robotDrawer, ballDrawer, debugDrawer, camera, &ball, &robots, &paths, &stepPoses, &finalPoses, &paused );
+	auto world = new World( fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots, &paths, &stepPoses, &finalPoses, &paused );
 	world->start( argc, argv );
 }
 
@@ -70,8 +68,8 @@ void Kernel::receiveDebugTeam1ThreadWrapper(){
 }
 
 void Kernel::receiveDebugTeam2ThreadWrapper(){
-	auto debugReceiver = new DebugReceiver( &paths, &stepPoses, &finalPoses, &paused );
-	debugReceiver->loop( TeamIndex::TeamTwo );
+	//auto debugReceiver = new DebugReceiver( &paths, &stepPoses, &finalPoses, &paused );
+	//debugReceiver->loop( TeamIndex::TeamTwo );
 }
 
 void Kernel::initialMessage(){

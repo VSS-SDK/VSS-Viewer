@@ -6,8 +6,8 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef ORIGINAL_DEBUG_DRAWER_H
-#define ORIGINAL_DEBUG_DRAWER_H
+#ifndef FIELD_DRAWER_150X130_H
+#define FIELD_DRAWER_150X130_H
 
 #ifdef _WIN32
 #include <windows.h>
@@ -18,27 +18,27 @@
 #include <GL/glut.h>
 #endif
 
-#include "Pose.h"
-#include "Path.h"
 #include "ColorEnum.h"
-#include "DebugDrawerBase.h"
+#include "IFieldDrawer.h"
 #include "Material.h"
 
-class OriginalDebugDrawer : public DebugDrawerBase {
+class FieldDrawerVerySmallSize : public IFieldDrawer {
+private:
+
+	const float fieldWidth = 150.0;
+	const float fieldDepth = 130.0;
+	const float goalWidth = 40.0;
+	const float goalDepth = 10.0;
+	const float wallHeight = 5.0;
+	const float wallTop = 45.0;
+	const float thickOfThings = 2.5;
+
 public:
 
-	Pose *actPose;
-	Pose *stepPose;
-	Pose *finalPose;
-	Path *path;
 	Material material;
-	ColorName teamColor;
-	ColorName robotColor;
 
-	OriginalDebugDrawer();
+	FieldDrawerVerySmallSize();
 	void draw() override;
-	void setData( Pose *actPose, Pose *stepPose, Pose *finalPose, Path *path, ColorName teamColor, ColorName robotColor ) override;
-	void drawDebugStepRobot();
 };
 
-#endif // ORIGINAL_DEBUG_DRAWER_H
+#endif // FIELD_DRAWER_150X130_H

@@ -6,8 +6,8 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef TOPCAMERA_H_
-#define TOPCAMERA_H_
+#ifndef TVCAMERA_H_
+#define TVCAMERA_H_
 
 #ifdef _WIN32
 #include <windows.h>
@@ -17,13 +17,13 @@
 #elif __linux
 #include <GL/glut.h>
 #endif
-#include "CameraBase.h"
+#include "ICamera.h"
 
-class TopCamera : public CameraBase {
+class TvCamera : public ICamera {
 public:
 
-	TopCamera();
+	TvCamera();
 	void applyPosition() override;
 };
 
-#endif // TOPCAMERA_H_
+#endif // ICAMERA_H_

@@ -9,7 +9,9 @@ FIND_PACKAGE(Boost 1.40 COMPONENTS program_options REQUIRED)
 INCLUDE(FindProtobuf)
 FIND_PACKAGE(Protobuf REQUIRED)
 
-include_directories(${PROTOBUF_INCLUDE_DIR} ${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} ${Boost_INCLUDE_DIR} src src/Cameras src/Communications src/Domain src/Drawers src/Drawers/FieldDrawers src/Drawers/DebugDrawers src/Drawers/RobotDrawers src/Drawers/BallDrawers rc/Factories src/Framework src/Factories src/Core)
+include_directories(${PROTOBUF_INCLUDE_DIR} ${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} ${Boost_INCLUDE_DIR})
+include_directories(src src/Interfaces src/Cameras src/Communications src/Domain src/Drawers src/Framework src/Core)
+include_directories(include include/Interfaces include/Cameras include/Communications include/Domain include/Drawers include/Framework include/Core)
 
 file(GLOB_RECURSE SRC src/*.cpp)
 

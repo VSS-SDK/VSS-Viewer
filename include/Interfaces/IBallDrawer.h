@@ -6,8 +6,8 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef TVCAMERA_H_
-#define TVCAMERA_H_
+#ifndef IBALL_H
+#define IBALL_H
 
 #ifdef _WIN32
 #include <windows.h>
@@ -17,13 +17,13 @@
 #elif __linux
 #include <GL/glut.h>
 #endif
-#include "CameraBase.h"
 
-class TvCamera : public CameraBase {
+#include "Pose.h"
+
+class IBallDrawer {
 public:
 
-	TvCamera();
-	void applyPosition() override;
+	void virtual draw( Pose *pose ) = 0;
 };
 
-#endif // ICAMERA_H_
+#endif // IBALL_H
