@@ -40,6 +40,10 @@ Pose inline glutToBullet( const Pose &glut ){
 	return new Pose( glut.y + (170 / 2.0), glut.x + (130 / 2.0), glut.yaw * M_PI / 180.0 );
 }
 
+bool inline isOriginInGlut( const Pose &glut ){
+	return (glut.x == -65 && glut.y == -85) ? true : false;
+}
+
 Pose inline windowToBullet( const Pose &window, float windowWidth, float windowHeight, float fieldWidth, float fieldHeight ){
 	auto different_x = (windowWidth - fieldWidth) / 2.0;
 	auto fc_x = window.x - different_x;

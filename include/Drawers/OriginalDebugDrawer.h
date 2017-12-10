@@ -24,6 +24,7 @@
 #include "ColorEnum.h"
 #include "Material.h"
 #include "IDebugDrawer.h"
+#include "Math.h"
 
 class OriginalDebugDrawer : public IDebugDrawer {
 public:

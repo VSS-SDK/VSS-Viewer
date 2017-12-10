@@ -40,9 +40,14 @@ void World::display() {
 	for(unsigned int i = 0; i < robots->size(); i++)
 		robotDrawer->draw( &robots->at( i ));
 
-	for(unsigned int i = 0; i < stepPoses->size(); i++) {
-		debugDrawer->drawStep( robots->at( i ), finalPoses->at( i ) );
-	}
+	for(unsigned int i = 0; i < stepPoses->size(); i++)
+		debugDrawer->drawStep( robots->at( i ), stepPoses->at( i ) );
+
+	for(unsigned int i = 0; i < finalPoses->size(); i++)
+		debugDrawer->drawFinal( robots->at( i ), finalPoses->at( i ) );
+
+	for(unsigned int i = 0; i < paths->size(); i++)
+		debugDrawer->drawPath( robots->at( i ), paths->at( i ) );
 }
 
 void World::reshape( int width, int height ) {

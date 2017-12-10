@@ -37,9 +37,12 @@ private:
 
 	Pose ball;
 	std::vector<Robot> robots;
-	std::vector<Pose> finalPoses;
-	std::vector<Pose> stepPoses;
-	std::vector<Path> paths;
+	std::vector<Pose> teamOneFinalPoses;
+	std::vector<Pose> teamOneStepPoses;
+	std::vector<Path> teamOnePaths;
+	std::vector<Pose> teamTwoFinalPoses;
+	std::vector<Pose> teamTwoStepPoses;
+	std::vector<Path> teamTwoPaths;
 
 	thread *worldThread;
 	thread *receiveStateThread;

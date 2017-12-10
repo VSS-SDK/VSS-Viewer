@@ -39,12 +39,12 @@ void Kernel::init(){
 	worldThread = new thread( std::bind( &Kernel::worldThreadWrapper, this ));
 	receiveStateThread = new thread( std::bind( &Kernel::receiveStateThreadWrapper, this ));
 	receiveDebugTeam1Thread = new thread( std::bind( &Kernel::receiveDebugTeam1ThreadWrapper, this ));
-	//receiveDebugTeam2Thread = new thread( std::bind( &Kernel::receiveDebugTeam2ThreadWrapper, this ));
+	receiveDebugTeam2Thread = new thread( std::bind( &Kernel::receiveDebugTeam2ThreadWrapper, this ));
 
 	worldThread->join();
 	receiveStateThread->join();
 	receiveDebugTeam1Thread->join();
-	//receiveDebugTeam2Thread->join();
+	receiveDebugTeam2Thread->join();
 }
 
 void Kernel::worldThreadWrapper(){
@@ -54,7 +54,7 @@ void Kernel::worldThreadWrapper(){
 	auto debugDrawer = new OriginalDebugDrawer();
 	auto camera = new TopCamera();
 
-	auto world = new World( debugDrawer, fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots, &paths, &stepPoses, &finalPoses, &paused );
+	auto world = new World( debugDrawer, fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots, &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &paused );
 	world->start( argc, argv );
 }
 
@@ -64,13 +64,13 @@ void Kernel::receiveStateThreadWrapper(){
 }
 
 void Kernel::receiveDebugTeam1ThreadWrapper(){
-	auto debugReceiver = new DebugReceiver( &paths, &stepPoses, &finalPoses, &paused );
+	auto debugReceiver = new DebugReceiver( &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &paused );
 	debugReceiver->loop( TeamIndex::TeamOne );
 }
 
 void Kernel::receiveDebugTeam2ThreadWrapper(){
-	//auto debugReceiver = new DebugReceiver( &paths, &stepPoses, &finalPoses, &paused );
-	//debugReceiver->loop( TeamIndex::TeamTwo );
+	auto debugReceiver = new DebugReceiver( &teamTwoPaths, &teamTwoStepPoses, &teamTwoFinalPoses, &paused );
+	debugReceiver->loop( TeamIndex::TeamTwo );
 }
 
 void Kernel::initialMessage(){
