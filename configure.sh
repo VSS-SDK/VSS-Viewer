@@ -46,28 +46,28 @@ CMAKE_DEBIAN () {
 INSTALL_UBUNTU_16_04 () {
   sudo apt-get update && apt-get upgrade
   sudo apt-get install pkg-config
-  sudo apt-get install g++ cmake libxmu-dev libxi-dev libzmqpp3 libzmqpp-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
+  sudo apt-get install g++ cmake libxmu-dev libxi-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
   INSTALLED=1
 }
 
 INSTALL_UBUNTU_16_10 () {
   sudo apt-get update && apt-get upgrade
   sudo apt-get install pkgconf
-  sudo apt-get install g++ cmake libxmu-dev libxi-dev libzmq5 libzmq3-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
+  sudo apt-get install g++ cmake libxmu-dev libxi-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
   INSTALLED=1
 }
 
 INSTALL_MINT_18_2 () {
   sudo apt-get update && apt-get upgrade
   sudo apt-get install pkg-config
-  sudo apt-get install g++ cmake libxmu-dev libxi-dev libzmqpp3 libzmqpp-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
+  sudo apt-get install g++ cmake libxmu-dev libxi-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
   INSTALLED=1
 }
 
 INSTALL_DEBIAN_9_2 () {
   sudo apt-get update && apt-get upgrade
   sudo apt-get install pkgconf
-  sudo apt-get install g++ cmake libxmu-dev libxi-dev libzmq5 libzmq3-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
+  sudo apt-get install g++ cmake libxmu-dev libxi-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
   INSTALLED=1
 }
 
