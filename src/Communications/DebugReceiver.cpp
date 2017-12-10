@@ -30,25 +30,18 @@ void DebugReceiver::loop( TeamIndex teamIndex ){
 		else
 			interface->receiveDebugTeam2();
 
-		stepPoses->erase( stepPoses->begin(), stepPoses->end() );
 		for(int i = 0; i < global_debug.step_poses_size(); i++) {
-			Pose pose;
-			pose.x = global_debug.step_poses( i ).y() - (130 / 2.0);
-			pose.y = global_debug.step_poses( i ).x() - (170 / 2.0);
-			pose.yaw = global_debug.step_poses( i ).yaw() * 180.0 / M_PI;
-			stepPoses->push_back( pose );
+			stepPoses->at( i ).x = global_debug.step_poses( i ).y() - (130 / 2.0);
+			stepPoses->at( i ).y = global_debug.step_poses( i ).x() - (170 / 2.0);
+			stepPoses->at( i ).yaw = global_debug.step_poses( i ).yaw() * 180.0 / M_PI;
 		}
 
-		finalPoses->erase( finalPoses->begin(), finalPoses->end() );
 		for(int i = 0; i < global_debug.final_poses_size(); i++) {
-			Pose pose;
-			pose.x = global_debug.final_poses( i ).y() - (130 / 2.0);
-			pose.y = global_debug.final_poses( i ).x() - (170 / 2.0);
-			pose.yaw = global_debug.final_poses( i ).yaw() * 180.0 / M_PI;
-			finalPoses->push_back( pose );
+			finalPoses->at( i ).x = global_debug.final_poses( i ).y() - (130 / 2.0);
+			finalPoses->at( i ).y = global_debug.final_poses( i ).x() - (170 / 2.0);
+			finalPoses->at( i ).yaw = global_debug.final_poses( i ).yaw() * 180.0 / M_PI;
 		}
 
-		paths->erase( paths->begin(), paths->end() );
 		for(int i = 0; i < global_debug.paths_size(); i++) {
 			Path path;
 			for(int j = 0; j < global_debug.paths( i ).poses_size(); j++) {
@@ -59,7 +52,7 @@ void DebugReceiver::loop( TeamIndex teamIndex ){
 
 				path.poses.push_back( pose );
 			}
-			paths->push_back( path.poses );
+			paths->at( i ) = path;
 		}
 	}
 }

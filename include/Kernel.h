@@ -56,12 +56,14 @@ public:
 	Kernel( int argc, char **argv );
 
 	void init();
+	void initialMessage();
+	void instanceRobots();
+	void instanceDebug();
 	void worldThreadWrapper();
 	void receiveStateThreadWrapper();
 	void receiveDebugTeam1ThreadWrapper();
 	void receiveDebugTeam2ThreadWrapper();
 
-	void initialMessage();
 };
 
 #endif // KERNEL_H

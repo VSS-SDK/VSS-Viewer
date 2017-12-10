@@ -8,6 +8,27 @@ Kernel::Kernel( int argc, char **argv ){
 
 	ball = new Pose( 0, 0, 0 );
 
+	instanceRobots();
+	instanceDebug();
+	initialMessage();
+}
+
+void Kernel::instanceDebug(){
+	for(int i = 0; i < 3; i++) {
+		auto path = new Path();
+		path->poses.push_back( Core::originInGlut());
+
+		teamOneStepPoses.push_back( Core::originInGlut());
+		teamOneFinalPoses.push_back( Core::originInGlut());
+		teamOnePaths.push_back( path );
+
+		teamTwoStepPoses.push_back( Core::originInGlut());
+		teamTwoFinalPoses.push_back( Core::originInGlut());
+		teamTwoPaths.push_back( path );
+	}
+}
+
+void Kernel::instanceRobots(){
 	for(int i = 0; i < 6; i++) {
 		robots.push_back( new Robot());
 		if(i > 2)
@@ -31,8 +52,6 @@ Kernel::Kernel( int argc, char **argv ){
 
 	robots.at( 5 ).setPose( new Pose( -30, -10, 0 ));
 	robots.at( 5 ).robotColor = ColorName::Purple;
-
-	initialMessage();
 }
 
 void Kernel::init(){
