@@ -40,8 +40,10 @@ void World::display() {
 	for(unsigned int i = 0; i < robots->size(); i++)
 		robotDrawer->draw( &robots->at( i ));
 
-	for(unsigned int i = 0; i < stepPoses->size(); i++)
+	for(unsigned int i = 0; i < stepPoses->size(); i++) {
+		//std::cout << stepPoses->at( i ) << std::endl;
 		debugDrawer->drawStep( robots->at( i ), stepPoses->at( i ) );
+	}
 }
 
 void World::reshape( int width, int height ) {

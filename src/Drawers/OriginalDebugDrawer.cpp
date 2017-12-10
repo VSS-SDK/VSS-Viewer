@@ -20,9 +20,6 @@ void OriginalDebugDrawer::drawStep( const Robot &robot, const Pose &stepPose ){
 	glPushMatrix();
 	material->applyMaterial( robot.robotColor );
 
-	std::cout << robot << std::endl;
-	std::cout << stepPose << std::endl;
-
 	glBegin( GL_LINES );
 	glVertex3f( 2, robot.pose.x, robot.pose.y );
 	glVertex3f( 2, stepPose.x, stepPose.y );
