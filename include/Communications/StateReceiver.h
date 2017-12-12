@@ -23,7 +23,7 @@ public:
 	bool *paused;
 
 	StateReceiver( Pose *ball, std::vector<Robot> *robots, bool *paused );
-	void loop( string address );
+	void loop( std::string address );
 };
 
 #endif

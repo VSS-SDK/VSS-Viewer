@@ -44,12 +44,12 @@ private:
 	std::vector<Pose> teamTwoStepPoses;
 	std::vector<Path> teamTwoPaths;
 
-	thread *worldThread;
-	thread *receiveStateThread;
-	thread *receiveDebugTeam1Thread;
-	thread *receiveDebugTeam2Thread;
+	std::thread *worldThread;
+	std::thread *receiveStateThread;
+	std::thread *receiveDebugTeam1Thread;
+	std::thread *receiveDebugTeam2Thread;
 
-	string receiveStateAddress;
+	std::string receiveStateAddress;
 
 public:
 

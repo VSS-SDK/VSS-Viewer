@@ -6,7 +6,6 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#include <typeinfo>
 #include "World.h"
 #include "TopCamera.h"
 #include "TvCamera.h"
@@ -184,7 +183,7 @@ void World::closeStrategy(){
 
 void World::changeCameraStrategy(){
 	if(!*paused) {
-		auto object = (string)typeid(*camera).name();
+		auto object = (std::string)typeid(*camera).name();
 
 		if (object.find( "TvCamera" ) not_eq std::string::npos) {
 			camera = new TopCamera();

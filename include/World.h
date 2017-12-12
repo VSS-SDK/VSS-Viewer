@@ -10,6 +10,7 @@
 #define WORLD_H
 
 #include <iostream>
+#include "typeinfo"
 #include <vector>
 
 #include "GlutFramework.h"
@@ -34,7 +35,7 @@ public:
 	MouseAction mouseAction;
 	MouseState mouseState;
 
-	string sendControlAddress;
+	std::string sendControlAddress;
 
 	bool *paused;
 	IFieldDrawer *fieldDrawer;
