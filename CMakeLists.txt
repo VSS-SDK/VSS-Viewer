@@ -9,6 +9,16 @@ FIND_PACKAGE(Boost 1.40 COMPONENTS program_options REQUIRED)
 INCLUDE(FindProtobuf)
 FIND_PACKAGE(Protobuf REQUIRED)
 
+find_path(ZeroMQ_INCLUDE_DIR
+        NAMES zmq.hpp
+        PATHS ${PC_ZeroMQ_INCLUDE_DIRS}
+        )
+
+find_library(ZeroMQ_LIBRARY
+        NAMES zmq
+        PATHS ${PC_ZeroMQ_LIBRARY_DIRS}
+        )
+
 include_directories(${PROTOBUF_INCLUDE_DIR} ${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} ${Boost_INCLUDE_DIR})
 include_directories(src src/Interfaces src/Cameras src/Communications src/Domain src/Drawers src/Framework src/Core)
 include_directories(include include/Interfaces include/Cameras include/Communications include/Domain include/Drawers include/Framework include/Core)
@@ -22,6 +32,8 @@ include_directories(usr/local/include)
 ADD_EXECUTABLE(vss-viewer ${SRC})
 
 TARGET_LINK_LIBRARIES(vss-viewer ${VSS_INTERFACE} ${PROTOBUF_LIBRARY} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
+target_include_directories(vss-viewer PUBLIC ${ZeroMQ_INCLUDE_DIR})
+target_link_libraries(vss-viewer PUBLIC ${ZeroMQ_LIBRARY})
 TARGET_LINK_LIBRARIES(vss-viewer LINK_PUBLIC ${Boost_LIBRARIES})
 target_link_libraries(vss-viewer ${PROTOBUF_LIBRARIES})
 
