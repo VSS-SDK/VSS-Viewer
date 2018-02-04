@@ -14,6 +14,7 @@
 #include "Pose.h"
 #include "Path.h"
 #include "TeamEnum.h"
+#include "math.h"
 
 class DebugReceiver {
 public:
