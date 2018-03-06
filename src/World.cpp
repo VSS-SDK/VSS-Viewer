@@ -57,7 +57,7 @@ void World::reshape( int width, int height ) {
 		windowHeight = 500;
 
 	// Força proporção 16:9, 1.777777778 = 16/9
-	windowWidth = windowHeight * 1.777777778;
+	windowWidth = static_cast<int>(windowHeight * 1.777777778);
 	glutReshapeWindow( windowWidth, windowHeight );
 	glViewport( 0, 0, (GLsizei)windowWidth, (GLsizei)windowHeight );
 
@@ -70,10 +70,10 @@ void World::reshape( int width, int height ) {
 
 	// Como o campo é menor do que a janela sempre, é 100% menos a reasonY
 	// Assim é obtido a altura do campo
-	fieldHeight = windowHeight * (1.0 - reasonY);
+	fieldHeight = static_cast<int>(windowHeight * (1.0 - reasonY));
 
 	// Aplica a porporção 17:13 do campo, assim obtendo o tamanho do campo
-	fieldWidth = fieldHeight * 1.307692308;
+	fieldWidth = static_cast<int>(fieldHeight * 1.307692308);
 }
 
 void World::mouseButtonPress( int button, int state, int x, int y ){
@@ -81,18 +81,18 @@ void World::mouseButtonPress( int button, int state, int x, int y ){
 	mouseState = (MouseState)state;
 
 	switch(mouseAction) {
-	  case MouseAction::ScrollTop: {
-		  // rotateRobot left
-	  } break;
-	  case MouseAction::ScrollDown: {
-		  // rotateRobot right
-	  } break;
-	  case MouseAction::LeftClick: {
-		  toggleSelectedRobotStrategy( new Pose((float)x, (float)y, 0.0 ));
-	  } break;
-	  default: {
-		  std::cout << "[Warning]: Action not assigned." << std::endl;
-	  } break;
+		case MouseAction::ScrollTop: {
+			// rotateRobot left
+		} break;
+		case MouseAction::ScrollDown: {
+			// rotateRobot right
+		} break;
+		case MouseAction::LeftClick: {
+			toggleSelectedRobotStrategy( new Pose((float)x, (float)y, 0.0 ));
+		} break;
+		default: {
+			std::cout << "[Warning]: Action not assigned." << std::endl;
+		} break;
 	}
 }
 
@@ -102,45 +102,45 @@ void World::mouseMove( int x, int y ){
 }
 
 void World::specialKeyboardDown( int key, int x, int y ){
-	SpecialKey keyPushed = (SpecialKey)key;
+	auto keyPushed = (SpecialKey)key;
 
 	switch(keyPushed) {
-	  case SpecialKey::Left: {
-		  rotateRobotStrategy( true );
-	  } break;
-	  case SpecialKey::Right: {
-		  rotateRobotStrategy( false );
-	  } break;
-	  default: {
+		case SpecialKey::Left: {
+			rotateRobotStrategy( true );
+		} break;
+		case SpecialKey::Right: {
+			rotateRobotStrategy( false );
+		} break;
+		default: {
 
-	  } break;
+		} break;
 	}
 }
 
 void World::keyboardDown( unsigned char key, int x, int y ) {
-	Key keyPushed = (Key)key;
+	auto keyPushed = (Key)key;
 
 	switch(keyPushed) {
-	  case Key::c: {
-		  changeCameraStrategy();
-	  } break;
-	  case Key::C: {
-		  changeCameraStrategy();
-	  } break;
-	  case Key::Space: {
-		  controlSender->send( !*paused );
+		case Key::c: {
+			changeCameraStrategy();
+		} break;
+		case Key::C: {
+			changeCameraStrategy();
+		} break;
+		case Key::Space: {
+			controlSender->send( !*paused );
 
-		  if(*paused)
-			  startStrategy();
-		  else
-			  pauseStrategy();
-	  } break;
-	  case Key::Esc: {
-		  closeStrategy();
-	  } break;
-	  default: {
-		  std::cout << keyPushed << std::endl;
-	  } break;
+			if(*paused)
+				startStrategy();
+			else
+				pauseStrategy();
+		} break;
+		case Key::Esc: {
+			closeStrategy();
+		} break;
+		default: {
+			std::cout << keyPushed << std::endl;
+		} break;
 	}
 }
 
