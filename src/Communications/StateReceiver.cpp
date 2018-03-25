@@ -28,6 +28,7 @@ void StateReceiver::loop( string address ){
 
 		for(int i = 0; i < 3; i++) {
 			robots->at( i ).setPose( Core::bulletToGlut( new Pose( global_state.robots_yellow( i ).pose().x(), global_state.robots_yellow( i ).pose().y(), global_state.robots_yellow( i ).pose().yaw())));
+			//std::cout << robots->at(i).getPose().yaw << std::endl;
 			robots->at( i + 3 ).setPose( Core::bulletToGlut( new Pose( global_state.robots_blue( i ).pose().x(), global_state.robots_blue( i ).pose().y(), global_state.robots_blue( i ).pose().yaw())));
 		}
 	}

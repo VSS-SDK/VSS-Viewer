@@ -32,11 +32,11 @@ namespace Core {
 	}
 
 	Pose inline bulletToGlut( const Pose &bullet ){
-		return new Pose( bullet.y - (130 / 2.0), bullet.x - (170 / 2.0), bullet.yaw * 180.0 / M_PI );
+		return new Pose( bullet.y - (130 / 2.0), bullet.x - (170 / 2.0), bullet.yaw );
 	}
 
 	Pose inline glutToBullet( const Pose &glut ){
-		return new Pose( glut.y + (170 / 2.0), glut.x + (130 / 2.0), glut.yaw * M_PI / 180.0 );
+		return new Pose( glut.y + (170 / 2.0), glut.x + (130 / 2.0), glut.yaw );
 	}
 
 	bool inline isOriginInGlut( const Pose &glut ){

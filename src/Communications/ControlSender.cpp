@@ -28,7 +28,7 @@ void ControlSender::send( bool paused ){
 	for(int i = 0; i < 3; i++) {
 		vss_control::Pose *new_robots_blue_pose = user_control.add_new_robots_blue_pose();
 		auto robot_n = Core::glutToBullet( robots->at( i + 3 ).pose );
-		std::cout << robot_n.x << ", " << robot_n.y << std::endl;
+		//std::cout << robot_n.x << ", " << robot_n.y << ", " << robot_n.yaw << std::endl;
 
 		new_robots_blue_pose->set_x( robot_n.x );
 		new_robots_blue_pose->set_y( robot_n.y );
@@ -38,6 +38,7 @@ void ControlSender::send( bool paused ){
 	for(int i = 0; i < 3; i++) {
 		vss_control::Pose *new_robots_yellow_pose = user_control.add_new_robots_yellow_pose();
 		auto robot_n = Core::glutToBullet( robots->at( i ).pose );
+		//std::cout << robot_n.x << ", " << robot_n.y << ", " << robot_n.yaw << std::endl;
 
 		new_robots_yellow_pose->set_x( robot_n.x );
 		new_robots_yellow_pose->set_y( robot_n.y );
