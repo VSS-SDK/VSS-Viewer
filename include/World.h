@@ -47,13 +47,21 @@ public:
 
 	Pose *ball;
 	std::vector<Robot> *robots;
-	std::vector<Path> *paths;
-	std::vector<Pose> *stepPoses;
-	std::vector<Pose> *finalPoses;
+	std::vector<Path> *pathsTeam1;
+	std::vector<Pose> *stepPosesTeam1;
+	std::vector<Pose> *finalPosesTeam1;
+
+	std::vector<Path> *pathsTeam2;
+	std::vector<Pose> *stepPosesTeam2;
+	std::vector<Pose> *finalPosesTeam2;
 
 	Material *material;
 
-	World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused );
+	World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer,
+           IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots,
+           std::vector<Path> *pathsTeam1, std::vector<Pose> *stepPosesTeam1, std::vector<Pose> *finalPosesTeam1,
+           std::vector<Path> *pathsTeam2, std::vector<Pose> *stepPosesTeam2, std::vector<Pose> *finalPosesTeam2,
+           bool *paused );
 
 	void display() override;
 	void keyboardDown( unsigned char key, int x, int y ) override;
