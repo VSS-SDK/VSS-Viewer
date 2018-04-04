@@ -73,7 +73,7 @@ void Kernel::worldThreadWrapper(){
 	auto debugDrawer = new OriginalDebugDrawer();
 	auto camera = new TopCamera();
 
-	auto world = new World( debugDrawer, fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots, &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &paused );
+	auto world = new World( debugDrawer, fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots, &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &teamTwoPaths, &teamTwoStepPoses, &teamTwoFinalPoses, &paused );
 	world->start( argc, argv );
 }
 

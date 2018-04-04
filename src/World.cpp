@@ -10,7 +10,7 @@
 #include "TopCamera.h"
 #include "TvCamera.h"
 
-World::World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused ){
+World::World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *pathsTeam1, std::vector<Pose> *stepPosesTeam1, std::vector<Pose> *finalPosesTeam1, std::vector<Path> *pathsTeam2, std::vector<Pose> *stepPosesTeam2, std::vector<Pose> *finalPosesTeam2, bool *paused ){
 	this->debugDrawer = debugDrawer;
 	this->fieldDrawer = fieldDrawer;
 	this->robotDrawer = robotDrawer;
@@ -18,9 +18,12 @@ World::World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer
 	this->camera = camera;
 	this->ball = ball;
 	this->robots = robots;
-	this->paths = paths;
-	this->stepPoses = stepPoses;
-	this->finalPoses = finalPoses;
+	this->pathsTeam1 = pathsTeam1;
+	this->stepPosesTeam1 = stepPosesTeam1;
+	this->finalPosesTeam1 = finalPosesTeam1;
+    this->pathsTeam2 = pathsTeam2;
+    this->stepPosesTeam2 = stepPosesTeam2;
+    this->finalPosesTeam2 = finalPosesTeam2;
 	this->paused = paused;
 
 	material = new Material();
@@ -39,14 +42,23 @@ void World::display() {
 	for(unsigned int i = 0; i < robots->size(); i++)
 		robotDrawer->draw( &robots->at( i ));
 
-	for(unsigned int i = 0; i < stepPoses->size(); i++)
-		debugDrawer->drawStep( robots->at( i ), stepPoses->at( i ) );
+	for(unsigned int i = 0; i < stepPosesTeam1->size(); i++)
+		debugDrawer->drawStep( robots->at( i ), stepPosesTeam1->at( i ) );
 
-	for(unsigned int i = 0; i < finalPoses->size(); i++)
-		debugDrawer->drawFinal( robots->at( i ), finalPoses->at( i ) );
+	for(unsigned int i = 0; i < finalPosesTeam1->size(); i++)
+		debugDrawer->drawFinal( robots->at( i ), finalPosesTeam1->at( i ) );
 
-	for(unsigned int i = 0; i < paths->size(); i++)
-		debugDrawer->drawPath( robots->at( i ), paths->at( i ) );
+	for(unsigned int i = 0; i < pathsTeam1->size(); i++)
+		debugDrawer->drawPath( robots->at( i ), pathsTeam1->at( i ) );
+
+    for(unsigned int i = 0; i < stepPosesTeam2->size(); i++)
+        debugDrawer->drawStep( robots->at( i+3 ), stepPosesTeam2->at( i ) );
+
+    for(unsigned int i = 0; i < finalPosesTeam2->size(); i++)
+        debugDrawer->drawFinal( robots->at( i+3 ), finalPosesTeam2->at( i ) );
+
+    for(unsigned int i = 0; i < pathsTeam2->size(); i++)
+        debugDrawer->drawPath( robots->at( i+3 ), pathsTeam2->at( i ) );
 }
 
 void World::reshape( int width, int height ) {
