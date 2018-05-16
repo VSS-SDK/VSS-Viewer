@@ -26,6 +26,8 @@ World::World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer
     this->finalPosesTeam2 = finalPosesTeam2;
 	this->paused = paused;
 
+	isBallSelected = false;
+
 	material = new Material();
 
 	controlSender = new ControlSender( ball, robots );
@@ -109,8 +111,14 @@ void World::mouseButtonPress( int button, int state, int x, int y ){
 }
 
 void World::mouseMove( int x, int y ){
-	if(mouseAction == MouseAction::LeftClick and mouseState == MouseState::On)
-		moveRobotStrategy( new Pose((float)x, (float)y, 0.0 ));
+	if(mouseAction == MouseAction::LeftClick and mouseState == MouseState::On) {
+		if (isBallSelected) {
+			moveBall(new Pose((float) x, (float) y, 0.0));
+		}
+		else {
+			moveRobotStrategy(new Pose((float) x, (float) y, 0.0));
+		}
+	}
 }
 
 void World::specialKeyboardDown( int key, int x, int y ){
@@ -159,15 +167,34 @@ void World::keyboardDown( unsigned char key, int x, int y ) {
 void World::toggleSelectedRobotStrategy( Pose *pose ){
 	if(*paused) {
 		auto t = Core::bulletToGlut( Core::windowToBullet( pose, windowWidth, windowHeight, fieldWidth, fieldHeight ));
-		int bot = Core::robotMostCloseToClick( &t, robots );
+		auto tupleClosestRobot = Core::robotMostCloseToClick( &t, robots );
+		auto ballDistance = Core::distanceClickToBall(&t, ball);
 
-		if(mouseState == MouseState::On)
-			robots->at( bot ).setSelected( true );
-		else
-			for(unsigned int i = 0; i < robots->size(); i++)
-				robots->at( i ).setSelected( false );
+		if (ballDistance > tupleClosestRobot.first) {
+			if(mouseState == MouseState::On) {
+				robots->at(tupleClosestRobot.second).setSelected(true);
+			}
+			else {
+				for (unsigned int i = 0; i < robots->size(); i++) {
+					robots->at(i).setSelected(false);
+				}
+			}
+		}
+		else {
+			isBallSelected = mouseState == MouseState::On;
+			for(unsigned int i = 0; i < robots->size(); i++) {
+				robots->at(i).setSelected(false);
+			}
+		}
+
 	}
 }
+
+void World::moveBall( Pose *pose ){
+	auto t = Core::bulletToGlut( Core::windowToBullet( pose, windowWidth, windowHeight, fieldWidth, fieldHeight ));
+	ball->setPose(t.x, t.y, 0);
+}
+
 
 void World::moveRobotStrategy( Pose *pose ){
 	auto t = Core::bulletToGlut( Core::windowToBullet( pose, windowWidth, windowHeight, fieldWidth, fieldHeight ));

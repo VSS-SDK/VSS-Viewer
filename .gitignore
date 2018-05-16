@@ -40,3 +40,4 @@ doc/html/*
 doc/latex/*
 cmake-build-debug/*
 .idea/*
+.idea/

@@ -59,7 +59,7 @@ namespace Core {
 		return new Pose( new_x, new_y, 0.0 );
 	}
 
-	int inline robotMostCloseToClick( Pose *click, std::vector<Robot> *robots ){
+	std::pair<float, int> inline robotMostCloseToClick( Pose *click, std::vector<Robot> *robots ){
 		auto minDistance = distance( click, robots->at( 0 ));
 		auto idMinDistance = 0;
 
@@ -71,7 +71,11 @@ namespace Core {
 			}
 		}
 
-		return idMinDistance;
+		return std::make_pair(minDistance, idMinDistance);
+	}
+
+	float inline distanceClickToBall(Pose * click, Pose * ball) {
+		return distance(click, ball);
 	}
 }
 
