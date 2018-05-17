@@ -46,6 +46,7 @@ public:
 	ControlSender *controlSender;
 
 	Pose *ball;
+	bool isBallSelected;
 	std::vector<Robot> *robots;
 	std::vector<Path> *pathsTeam1;
 	std::vector<Pose> *stepPosesTeam1;
@@ -78,6 +79,8 @@ public:
 	void toggleSelectedRobotStrategy( Pose *pose );
 	void moveRobotStrategy( Pose *pose );
 	void rotateRobotStrategy( bool direction );
+
+	void moveBall( Pose *pose );
 };
 
 #endif // WORLD_H
