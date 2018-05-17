@@ -22,7 +22,6 @@ void ControlSender::send( bool paused ){
 	user_control.set_paused( paused );
 
 	auto ball_n = Core::glutToBullet( ball );
-	cout << ball_n.y << endl;
 	user_control.mutable_new_ball_pose()->set_x( ball_n.x );
 	user_control.mutable_new_ball_pose()->set_y( ball_n.y );
 
