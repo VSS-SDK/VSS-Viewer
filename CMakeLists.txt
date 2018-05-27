@@ -25,13 +25,13 @@ include_directories(include include/Interfaces include/Cameras include/Communica
 
 file(GLOB_RECURSE SRC src/*.cpp)
 
-set (VSS_INTERFACE libvss-interface.so)
+set (VSS_CORE libvss-core.so)
 link_directories(usr/lib)
 include_directories(usr/local/include)
 
 ADD_EXECUTABLE(vss-viewer ${SRC})
 
-TARGET_LINK_LIBRARIES(vss-viewer ${VSS_INTERFACE} ${PROTOBUF_LIBRARY} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
+TARGET_LINK_LIBRARIES(vss-viewer ${VSS_CORE} ${PROTOBUF_LIBRARY} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
 target_include_directories(vss-viewer PUBLIC ${ZeroMQ_INCLUDE_DIR})
 target_link_libraries(vss-viewer PUBLIC ${ZeroMQ_LIBRARY})
 TARGET_LINK_LIBRARIES(vss-viewer LINK_PUBLIC ${Boost_LIBRARIES})
