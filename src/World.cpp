@@ -10,7 +10,7 @@
 #include "TopCamera.h"
 #include "TvCamera.h"
 
-World::World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *pathsTeam1, std::vector<Pose> *stepPosesTeam1, std::vector<Pose> *finalPosesTeam1, std::vector<Path> *pathsTeam2, std::vector<Pose> *stepPosesTeam2, std::vector<Pose> *finalPosesTeam2, bool *paused ){
+World::World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *pathsTeam1, std::vector<Pose> *stepPosesTeam1, std::vector<Pose> *finalPosesTeam1, std::vector<Path> *pathsTeam2, std::vector<Pose> *stepPosesTeam2, std::vector<Pose> *finalPosesTeam2 ){
 	this->debugDrawer = debugDrawer;
 	this->fieldDrawer = fieldDrawer;
 	this->robotDrawer = robotDrawer;
@@ -24,7 +24,7 @@ World::World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer
     this->pathsTeam2 = pathsTeam2;
     this->stepPosesTeam2 = stepPosesTeam2;
     this->finalPosesTeam2 = finalPosesTeam2;
-	this->paused = paused;
+	paused = true;
 
 	isBallSelected = false;
 
@@ -148,9 +148,9 @@ void World::keyboardDown( unsigned char key, int x, int y ) {
 			changeCameraStrategy();
 		} break;
 		case Key::Space: {
-			controlSender->send( !*paused );
+			controlSender->send( !paused );
 
-			if(*paused)
+			if(paused)
 				startStrategy();
 			else
 				pauseStrategy();
@@ -165,7 +165,7 @@ void World::keyboardDown( unsigned char key, int x, int y ) {
 }
 
 void World::toggleSelectedRobotStrategy( Pose *pose ){
-	if(*paused) {
+	if(paused) {
 		auto t = Core::bulletToGlut( Core::windowToBullet( pose, windowWidth, windowHeight, fieldWidth, fieldHeight ));
 		auto tupleClosestRobot = Core::robotMostCloseToClick( &t, robots );
 		auto ballDistance = Core::distanceClickToBall(&t, ball);
@@ -221,7 +221,7 @@ void World::closeStrategy(){
 }
 
 void World::changeCameraStrategy(){
-	if(!*paused) {
+	if(!paused) {
 		auto object = (std::string)typeid(*camera).name();
 
 		if (object.find( "TvCamera" ) not_eq std::string::npos) {
@@ -237,12 +237,12 @@ void World::changeCameraStrategy(){
 }
 
 void World::pauseStrategy(){
-	*paused = true;
+	paused = true;
 	camera = new TopCamera();
 	std::cout << "[Info]: Simulation paused, changed camera to Top and camera exchange disabled." << std::endl;
 }
 
 void World::startStrategy(){
-	*paused = false;
+	paused = false;
 	std::cout << "[Info]: Simulation started, camera exchange enabled." << std::endl;
 }

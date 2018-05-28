@@ -31,7 +31,6 @@
 class Kernel {
 private:
 
-	bool paused;
 	int argc;
 	char **argv;
 

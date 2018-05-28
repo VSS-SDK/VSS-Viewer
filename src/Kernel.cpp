@@ -1,7 +1,6 @@
 #include "Kernel.h"
 
 Kernel::Kernel( int argc, char **argv ){
-	this->paused = true;
 	this->argc = argc;
 	this->argv = argv;
 	this->receiveStateAddress = "tcp://localhost:5555";
@@ -73,22 +72,22 @@ void Kernel::worldThreadWrapper(){
 	auto debugDrawer = new OriginalDebugDrawer();
 	auto camera = new TopCamera();
 
-	auto world = new World( debugDrawer, fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots, &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &teamTwoPaths, &teamTwoStepPoses, &teamTwoFinalPoses, &paused );
+	auto world = new World( debugDrawer, fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots, &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &teamTwoPaths, &teamTwoStepPoses, &teamTwoFinalPoses );
 	world->start( argc, argv );
 }
 
 void Kernel::receiveStateThreadWrapper(){
-	auto stateReceiver = new StateReceiver( &ball, &robots, &paused );
+	auto stateReceiver = new StateReceiver( &ball, &robots );
 	stateReceiver->loop( receiveStateAddress );
 }
 
 void Kernel::receiveDebugTeam1ThreadWrapper(){
-	auto debugReceiver = new DebugReceiver( &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &paused );
+	auto debugReceiver = new DebugReceiver( &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses );
 	debugReceiver->loop( TeamIndex::TeamOne );
 }
 
 void Kernel::receiveDebugTeam2ThreadWrapper(){
-	auto debugReceiver = new DebugReceiver( &teamTwoPaths, &teamTwoStepPoses, &teamTwoFinalPoses, &paused );
+	auto debugReceiver = new DebugReceiver( &teamTwoPaths, &teamTwoStepPoses, &teamTwoFinalPoses );
 	debugReceiver->loop( TeamIndex::TeamTwo );
 }
 

@@ -8,11 +8,10 @@
 
 #include "DebugReceiver.h"
 
-DebugReceiver::DebugReceiver( std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused ){
+DebugReceiver::DebugReceiver( std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses ){
 	this->paths = paths;
 	this->stepPoses = stepPoses;
 	this->finalPoses = finalPoses;
-	this->paused = paused;
 }
 
 void DebugReceiver::loop( TeamIndex teamIndex ){

@@ -37,7 +37,7 @@ public:
 
 	std::string sendControlAddress;
 
-	bool *paused;
+	bool paused;
 	IFieldDrawer *fieldDrawer;
 	IRobotDrawer *robotDrawer;
 	IBallDrawer *ballDrawer;
@@ -61,8 +61,7 @@ public:
 	World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer,
            IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots,
            std::vector<Path> *pathsTeam1, std::vector<Pose> *stepPosesTeam1, std::vector<Pose> *finalPosesTeam1,
-           std::vector<Path> *pathsTeam2, std::vector<Pose> *stepPosesTeam2, std::vector<Pose> *finalPosesTeam2,
-           bool *paused );
+           std::vector<Path> *pathsTeam2, std::vector<Pose> *stepPosesTeam2, std::vector<Pose> *finalPosesTeam2 );
 
 	void display() override;
 	void keyboardDown( unsigned char key, int x, int y ) override;

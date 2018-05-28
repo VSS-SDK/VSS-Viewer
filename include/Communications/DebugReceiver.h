@@ -25,9 +25,8 @@ public:
 	std::vector<Pose> *stepPoses;
 	std::vector<Path> *paths;
 	TeamIndex teamIndex;
-	bool *paused;
 
-	DebugReceiver( std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, bool *paused );
+	DebugReceiver( std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses );
 	void loop( TeamIndex teamIndex );
 };
 

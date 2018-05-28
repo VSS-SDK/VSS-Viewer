@@ -34,8 +34,6 @@ build/*
 *.exe
 *.out
 *.app
-VSS-Viewer
-VSS-Viewer-Debug
 doc/html/*
 doc/latex/*
 cmake-build-debug/*

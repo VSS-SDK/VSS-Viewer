@@ -20,9 +20,8 @@ public:
 	vss_state::Global_State global_state;
 	Pose *ball;
 	std::vector<Robot> *robots;
-	bool *paused;
 
-	StateReceiver( Pose *ball, std::vector<Robot> *robots, bool *paused );
+	StateReceiver( Pose *ball, std::vector<Robot> *robots );
 	void loop( std::string address );
 };
 
