@@ -72,7 +72,9 @@ void Kernel::worldThreadWrapper(){
 	auto debugDrawer = new OriginalDebugDrawer();
 	auto camera = new TopCamera();
 
-	auto world = new World( debugDrawer, fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots, &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &teamTwoPaths, &teamTwoStepPoses, &teamTwoFinalPoses );
+	auto world = new World(debugDrawer, fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots,
+			&teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &teamTwoPaths, &teamTwoStepPoses,
+						   &teamTwoFinalPoses, &mutexDebugTeamYellow, &mutexDebugTeamBlue );
 	world->start( argc, argv );
 }
 
@@ -82,13 +84,13 @@ void Kernel::receiveStateThreadWrapper(){
 }
 
 void Kernel::receiveDebugTeam1ThreadWrapper(){
-	auto debugReceiver = new DebugReceiver( &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses );
-	debugReceiver->loop( TeamIndex::TeamOne );
+	auto debugReceiver = new DebugReceiver( &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &mutexDebugTeamYellow );
+	debugReceiver->loop( vss::TeamType::Yellow );
 }
 
 void Kernel::receiveDebugTeam2ThreadWrapper(){
-	auto debugReceiver = new DebugReceiver( &teamTwoPaths, &teamTwoStepPoses, &teamTwoFinalPoses );
-	debugReceiver->loop( TeamIndex::TeamTwo );
+	auto debugReceiver = new DebugReceiver( &teamTwoPaths, &teamTwoStepPoses, &teamTwoFinalPoses, &mutexDebugTeamBlue );
+	debugReceiver->loop( vss::TeamType::Blue );
 }
 
 void Kernel::initialMessage(){

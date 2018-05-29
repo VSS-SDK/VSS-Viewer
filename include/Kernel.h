@@ -9,6 +9,7 @@
 #ifndef KERNEL_H
 #define KERNEL_H
 
+#include "mutex"
 #include "thread"
 #include "functional"
 
@@ -49,6 +50,9 @@ private:
 	std::thread *receiveDebugTeam2Thread;
 
 	std::string receiveStateAddress;
+
+    std::mutex mutexDebugTeamYellow;
+    std::mutex mutexDebugTeamBlue;
 
 public:
 

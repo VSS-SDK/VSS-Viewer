@@ -24,12 +24,13 @@ include_directories(src src/Interfaces src/Cameras src/Communications src/Domain
 include_directories(include include/Interfaces include/Cameras include/Communications include/Domain include/Drawers include/Framework include/Core)
 
 file(GLOB_RECURSE SRC src/*.cpp)
+file(GLOB_RECURSE H src/*.cpp)
 
 set (VSS_CORE libvss-core.so)
 link_directories(usr/lib)
 include_directories(usr/local/include)
 
-ADD_EXECUTABLE(vss-viewer ${SRC})
+ADD_EXECUTABLE(vss-viewer ${SRC} ${H})
 
 TARGET_LINK_LIBRARIES(vss-viewer ${VSS_CORE} ${PROTOBUF_LIBRARY} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
 target_include_directories(vss-viewer PUBLIC ${ZeroMQ_INCLUDE_DIR})

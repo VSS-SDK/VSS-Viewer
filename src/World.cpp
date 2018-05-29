@@ -10,7 +10,10 @@
 #include "TopCamera.h"
 #include "TvCamera.h"
 
-World::World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *pathsTeam1, std::vector<Pose> *stepPosesTeam1, std::vector<Pose> *finalPosesTeam1, std::vector<Path> *pathsTeam2, std::vector<Pose> *stepPosesTeam2, std::vector<Pose> *finalPosesTeam2 ){
+World::World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer,
+              ICamera *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *pathsTeam1, std::vector<Pose> *stepPosesTeam1,
+              std::vector<Pose> *finalPosesTeam1, std::vector<Path> *pathsTeam2, std::vector<Pose> *stepPosesTeam2, std::vector<Pose> *finalPosesTeam2,
+              std::mutex *mutexDebugTeamYellow, std::mutex *mutexDebugTeamBlue){
 	this->debugDrawer = debugDrawer;
 	this->fieldDrawer = fieldDrawer;
 	this->robotDrawer = robotDrawer;
@@ -24,6 +27,8 @@ World::World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer
     this->pathsTeam2 = pathsTeam2;
     this->stepPosesTeam2 = stepPosesTeam2;
     this->finalPosesTeam2 = finalPosesTeam2;
+    this->mutexDebugTeamBlue = mutexDebugTeamBlue;
+    this->mutexDebugTeamYellow = mutexDebugTeamYellow;
 	paused = true;
 
 	isBallSelected = false;
@@ -44,6 +49,8 @@ void World::display() {
 	for(unsigned int i = 0; i < robots->size(); i++)
 		robotDrawer->draw( &robots->at( i ));
 
+    mutexDebugTeamYellow->lock();
+
 	for(unsigned int i = 0; i < stepPosesTeam1->size(); i++)
 		debugDrawer->drawStep( robots->at( i ), stepPosesTeam1->at( i ) );
 
@@ -53,6 +60,10 @@ void World::display() {
 	for(unsigned int i = 0; i < pathsTeam1->size(); i++)
 		debugDrawer->drawPath( robots->at( i ), pathsTeam1->at( i ) );
 
+	mutexDebugTeamYellow->unlock();
+
+    mutexDebugTeamBlue->lock();
+
     for(unsigned int i = 0; i < stepPosesTeam2->size(); i++)
         debugDrawer->drawStep( robots->at( i+3 ), stepPosesTeam2->at( i ) );
 
@@ -61,6 +72,8 @@ void World::display() {
 
     for(unsigned int i = 0; i < pathsTeam2->size(); i++)
         debugDrawer->drawPath( robots->at( i+3 ), pathsTeam2->at( i ) );
+
+    mutexDebugTeamBlue->unlock();
 }
 
 void World::reshape( int width, int height ) {

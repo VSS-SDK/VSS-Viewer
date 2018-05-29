@@ -9,12 +9,13 @@
 #ifndef DEBUG_RECEIVER_H
 #define DEBUG_RECEIVER_H
 
+#include "mutex"
 #include "vector"
 #include "interface.h"
 #include "Pose.h"
 #include "Path.h"
-#include "TeamEnum.h"
 #include "math.h"
+#include "Domain/TeamType.h"
 
 class DebugReceiver {
 public:
@@ -24,10 +25,11 @@ public:
 	std::vector<Pose> *finalPoses;
 	std::vector<Pose> *stepPoses;
 	std::vector<Path> *paths;
-	TeamIndex teamIndex;
+	vss::TeamType teamType;
+    std::mutex *mutexDebug;
 
-	DebugReceiver( std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses );
-	void loop( TeamIndex teamIndex );
+	DebugReceiver( std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, std::mutex *mutexDebug );
+	void loop( vss::TeamType teamType );
 };
 
 #endif // DEBUG_RECEIVER_H

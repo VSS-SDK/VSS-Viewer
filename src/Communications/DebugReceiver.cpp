@@ -6,28 +6,32 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
+#include <Domain/TeamType.h>
 #include "DebugReceiver.h"
 
-DebugReceiver::DebugReceiver( std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses ){
+DebugReceiver::DebugReceiver( std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, std::mutex *mutexDebug ){
 	this->paths = paths;
 	this->stepPoses = stepPoses;
 	this->finalPoses = finalPoses;
+	this->mutexDebug = mutexDebug;
 }
 
-void DebugReceiver::loop( TeamIndex teamIndex ){
-	this->teamIndex = teamIndex;
+void DebugReceiver::loop( vss::TeamType teamType ){
+	this->teamType = teamType;
 	this->interface = new Interface();
 
-	if(teamIndex == TeamIndex::TeamOne)
+	if(teamType == vss::TeamType::Yellow)
 		interface->createReceiveDebugTeam1( &global_debug );
 	else
 		interface->createReceiveDebugTeam2( &global_debug );
 
 	while(true) {
-		if(teamIndex == TeamIndex::TeamOne)
+		if(teamType == vss::TeamType::Blue)
 			interface->receiveDebugTeam1();
 		else
 			interface->receiveDebugTeam2();
+
+		mutexDebug->lock();
 
 		for(int i = 0; i < global_debug.step_poses_size(); i++) {
 			stepPoses->at( i ).x = global_debug.step_poses( i ).y() - (130 / 2.0);
@@ -53,5 +57,7 @@ void DebugReceiver::loop( TeamIndex teamIndex ){
 			}
 			paths->at( i ) = path;
 		}
+
+		mutexDebug->unlock();
 	}
 }
