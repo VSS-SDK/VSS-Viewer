@@ -24,7 +24,7 @@ include_directories(src src/Interfaces src/Cameras src/Communications src/Domain
 include_directories(include include/Interfaces include/Cameras include/Communications include/Domain include/Drawers include/Framework include/Core)
 
 file(GLOB_RECURSE SRC src/*.cpp)
-file(GLOB_RECURSE H src/*.cpp)
+file(GLOB_RECURSE H include/*.h)
 
 set (VSS_CORE libvss-core.so)
 link_directories(usr/lib)
