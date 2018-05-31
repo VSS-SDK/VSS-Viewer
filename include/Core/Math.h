@@ -12,25 +12,9 @@
 #include <limits>
 #include "Domain/Pose.h"
 #include "Robot3d.h"
-#include "math.h"
+#include "Helpers/Math.h"
 
 namespace Core {
-	float inline distance( const vss::Pose &t1, const vss::Pose &t2 ){
-		return sqrt(((t1.x - t2.x) * (t1.x - t2.x)) + ((t1.y - t2.y) * (t1.y - t2.y)));
-	}
-
-	float inline distance( const Robot3d &t1, const Robot3d &t2 ){
-		return sqrt(((t1.pose.x - t2.pose.x) * (t1.pose.x - t2.pose.x)) + ((t1.pose.y - t2.pose.y) * (t1.pose.y - t2.pose.y)));
-	}
-
-	float inline distance( const Robot3d &t1, const vss::Pose &t2 ){
-		return sqrt(((t1.pose.x - t2.x) * (t1.pose.x - t2.x)) + ((t1.pose.y - t2.y) * (t1.pose.y - t2.y)));
-	}
-
-	float inline distance( const vss::Pose &t1, const Robot3d &t2 ){
-		return sqrt(((t1.x - t2.pose.x) * (t1.x - t2.pose.x)) + ((t1.y - t2.pose.y) * (t1.y - t2.pose.y)));
-	}
-
 	vss::Pose inline bulletToGlut( const vss::Pose &bullet ){
 		return vss::Pose( bullet.y - (130 / 2.0), bullet.x - (170 / 2.0), bullet.angle );
 	}
@@ -60,11 +44,11 @@ namespace Core {
 	}
 
 	std::pair<float, int> inline robotMostCloseToClick( vss::Pose &click, std::vector<Robot3d> &robots ){
-		auto minDistance = distance( click, robots.at( 0 ));
+		auto minDistance = vss::Math::distance( click, robots.at( 0 ).pose );
 		auto idMinDistance = 0;
 
 		for(unsigned int i = 1; i < robots.size(); i++) {
-			auto actDistance = distance( click, robots.at( i ));
+			auto actDistance = vss::Math::distance( click, robots.at( i ).pose);
 			if(actDistance < minDistance) {
 				minDistance = actDistance;
 				idMinDistance = i;
@@ -75,7 +59,7 @@ namespace Core {
 	}
 
 	float inline distanceClickToBall(vss::Pose &click, vss::Pose &ball) {
-		return distance(click, ball);
+		return vss::Math::distance(click, ball);
 	}
 }
 
