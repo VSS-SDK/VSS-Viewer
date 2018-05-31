@@ -19,7 +19,7 @@
 #endif
 
 #include "IBallDrawer.h"
-#include "Pose.h"
+#include "Domain/Pose.h"
 #include "ColorEnum.h"
 #include "Material.h"
 
@@ -31,6 +31,6 @@ public:
 
 	SimpleBallDrawer();
 
-	void draw( const Pose &pose ) override;
+	void draw( const vss::Pose &pose ) override;
 };
 #endif // SIMPLE_BALL_DRAWER_H

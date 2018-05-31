@@ -6,32 +6,33 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#ifndef ROBOT_H
-#define ROBOT_H
+#ifndef VIEWER_ROBOT_H
+#define VIEWER_ROBOT_H
 
-#include "Pose.h"
+#include <Domain/Pose.h>
+#include "Domain/Pose.h"
 #include "ColorEnum.h"
 #include "iostream"
 
-class Robot {
+class Robot3d {
 public:
 
-	Pose pose;
+	vss::Pose pose;
 	bool selected;
 	ColorName teamColor;
 	ColorName robotColor;
 
-	Robot();
-	Robot( Pose *pose, ColorName teamColor, ColorName robotColor );
-	Robot( Robot *robot );
+	Robot3d();
+	Robot3d( vss::Pose *pose, ColorName teamColor, ColorName robotColor );
+	Robot3d( Robot3d *robot );
 
 	void setSelected( bool selected );
 	bool getSelected();
 
-	void setPose( Pose pose );
-	Pose getPose();
+	void setPose( vss::Pose pose );
+	vss::Pose getPose();
 
-	friend std::ostream& operator<<( std::ostream& os, const Robot& robot );
+	friend std::ostream& operator<<( std::ostream& os, const Robot3d& robot );
 };
 
-#endif // ROBOT_H
+#endif // VIEWER_ROBOT_H

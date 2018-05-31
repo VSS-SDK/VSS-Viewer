@@ -11,17 +11,17 @@
 
 #include "vector"
 #include "interface.h"
-#include "Robot.h"
+#include "Robot3d.h"
 
-class ControlSender {
+class ControlSenderAdapter {
 public:
 
 	Interface interface;
 	vss_control::User_Control user_control;
-	Pose *ball;
-	std::vector<Robot> *robots;
+	vss::Pose *ball;
+	std::vector<Robot3d> *robots;
 
-	ControlSender( Pose * ball, std::vector<Robot> *robots );
+	ControlSenderAdapter( vss::Pose *ball, std::vector<Robot3d> *robots );
 	void send( bool paused );
 };
 

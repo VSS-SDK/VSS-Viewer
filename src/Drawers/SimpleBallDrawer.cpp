@@ -12,7 +12,7 @@ SimpleBallDrawer::SimpleBallDrawer(){
 	material = new Material();
 }
 
-void SimpleBallDrawer::draw( const Pose &pose ){
+void SimpleBallDrawer::draw( const vss::Pose &pose ){
 	glPushMatrix();
 	glTranslatef( thickOfThings * 1.4, pose.x, pose.y );
 	material->applyMaterial( ColorName::Orange );

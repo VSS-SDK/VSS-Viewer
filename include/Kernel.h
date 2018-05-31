@@ -19,15 +19,15 @@
 #include "FieldDrawerVerySmallSize.h"
 #include "OriginalDebugDrawer.h"
 
-#include "StateReceiver.h"
-#include "DebugReceiver.h"
+#include "StateReceiverAdapter.h"
+#include "DebugReceiverAdapter.h"
 
 #include "TopCamera.h"
 #include "World.h"
 
-#include "Pose.h"
-#include "Robot.h"
-#include "Path.h"
+#include "Domain/Pose.h"
+#include "Robot3d.h"
+#include "Domain/Path.h"
 
 class Kernel {
 private:
@@ -35,14 +35,14 @@ private:
 	int argc;
 	char **argv;
 
-	Pose ball;
-	std::vector<Robot> robots;
-	std::vector<Pose> teamOneFinalPoses;
-	std::vector<Pose> teamOneStepPoses;
-	std::vector<Path> teamOnePaths;
-	std::vector<Pose> teamTwoFinalPoses;
-	std::vector<Pose> teamTwoStepPoses;
-	std::vector<Path> teamTwoPaths;
+    vss::Pose ball;
+	std::vector<Robot3d> robots;
+	std::vector<vss::Pose> teamOneFinalPoses;
+	std::vector<vss::Pose> teamOneStepPoses;
+	std::vector<vss::Path> teamOnePaths;
+	std::vector<vss::Pose> teamTwoFinalPoses;
+	std::vector<vss::Pose> teamTwoStepPoses;
+	std::vector<vss::Path> teamTwoPaths;
 
 	std::thread *worldThread;
 	std::thread *receiveStateThread;

@@ -18,12 +18,12 @@
 #include <GL/glut.h>
 #endif
 
-#include "Robot.h"
+#include "Robot3d.h"
 
 class IRobotDrawer {
 public:
 
-	void virtual draw( const Robot &robot ) = 0;
+    virtual void draw( const Robot3d &robot ) = 0;
 };
 
 #endif // IROBOT_H

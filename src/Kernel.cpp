@@ -5,7 +5,7 @@ Kernel::Kernel( int argc, char **argv ){
 	this->argv = argv;
 	this->receiveStateAddress = "tcp://localhost:5555";
 
-	ball = new Pose( 0, 0, 0 );
+	ball = vss::Pose( 0, 0, 0 );
 
 	instanceRobots();
 	instanceDebug();
@@ -14,8 +14,8 @@ Kernel::Kernel( int argc, char **argv ){
 
 void Kernel::instanceDebug(){
 	for(int i = 0; i < 3; i++) {
-		auto path = new Path();
-		path->poses.push_back( Core::originInGlut());
+		auto path = vss::Path();
+		path.points.push_back( Core::originInGlut());
 
 		teamOneStepPoses.push_back( Core::originInGlut());
 		teamOneFinalPoses.push_back( Core::originInGlut());
@@ -29,27 +29,27 @@ void Kernel::instanceDebug(){
 
 void Kernel::instanceRobots(){
 	for(int i = 0; i < 6; i++) {
-		robots.push_back( new Robot());
+		robots.push_back( new Robot3d());
 		if(i > 2)
 			robots.at( i ).teamColor = ColorName::Blue;
 	}
 
-	robots.at( 0 ).setPose( new Pose( 0, 70, 0 ));
+	robots.at( 0 ).setPose( vss::Pose( 0, 70, 0 ));
 	robots.at( 0 ).robotColor = ColorName::Red;
 
-	robots.at( 1 ).setPose( new Pose( -10, 10, 0 ));
+	robots.at( 1 ).setPose( vss::Pose( -10, 10, 0 ));
 	robots.at( 1 ).robotColor = ColorName::Green;
 
-	robots.at( 2 ).setPose( new Pose( 30, 10, 0 ));
+	robots.at( 2 ).setPose( vss::Pose( 30, 10, 0 ));
 	robots.at( 2 ).robotColor = ColorName::Purple;
 
-	robots.at( 3 ).setPose( new Pose( 0, -70, 0 ));
+	robots.at( 3 ).setPose( vss::Pose( 0, -70, 0 ));
 	robots.at( 3 ).robotColor = ColorName::Red;
 
-	robots.at( 4 ).setPose( new Pose( 10, -10, 0 ));
+	robots.at( 4 ).setPose( vss::Pose( 10, -10, 0 ));
 	robots.at( 4 ).robotColor = ColorName::Green;
 
-	robots.at( 5 ).setPose( new Pose( -30, -10, 0 ));
+	robots.at( 5 ).setPose( vss::Pose( -30, -10, 0 ));
 	robots.at( 5 ).robotColor = ColorName::Purple;
 }
 
@@ -79,17 +79,17 @@ void Kernel::worldThreadWrapper(){
 }
 
 void Kernel::receiveStateThreadWrapper(){
-	auto stateReceiver = new StateReceiver( &ball, &robots );
-	stateReceiver->loop( receiveStateAddress );
+	auto stateReceiver = new StateReceiverAdapter( &ball, &robots );
+	stateReceiver->loop();
 }
 
 void Kernel::receiveDebugTeam1ThreadWrapper(){
-	auto debugReceiver = new DebugReceiver( &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &mutexDebugTeamYellow );
+	auto debugReceiver = new DebugReceiverAdapter( &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &mutexDebugTeamYellow );
 	debugReceiver->loop( vss::TeamType::Yellow );
 }
 
 void Kernel::receiveDebugTeam2ThreadWrapper(){
-	auto debugReceiver = new DebugReceiver( &teamTwoPaths, &teamTwoStepPoses, &teamTwoFinalPoses, &mutexDebugTeamBlue );
+	auto debugReceiver = new DebugReceiverAdapter( &teamTwoPaths, &teamTwoStepPoses, &teamTwoFinalPoses, &mutexDebugTeamBlue );
 	debugReceiver->loop( vss::TeamType::Blue );
 }
 

@@ -11,9 +11,9 @@
 #include "TvCamera.h"
 
 World::World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer,
-              ICamera *camera, Pose *ball, std::vector<Robot> *robots, std::vector<Path> *pathsTeam1, std::vector<Pose> *stepPosesTeam1,
-              std::vector<Pose> *finalPosesTeam1, std::vector<Path> *pathsTeam2, std::vector<Pose> *stepPosesTeam2, std::vector<Pose> *finalPosesTeam2,
-              std::mutex *mutexDebugTeamYellow, std::mutex *mutexDebugTeamBlue){
+			  ICamera *camera, vss::Pose *ball, std::vector<Robot3d> *robots, std::vector<vss::Path> *pathsTeam1, std::vector<vss::Pose> *stepPosesTeam1,
+			  std::vector<vss::Pose> *finalPosesTeam1, std::vector<vss::Path> *pathsTeam2, std::vector<vss::Pose> *stepPosesTeam2, std::vector<vss::Pose> *finalPosesTeam2,
+			  std::mutex *mutexDebugTeamYellow, std::mutex *mutexDebugTeamBlue ){
 	this->debugDrawer = debugDrawer;
 	this->fieldDrawer = fieldDrawer;
 	this->robotDrawer = robotDrawer;
@@ -24,18 +24,18 @@ World::World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer
 	this->pathsTeam1 = pathsTeam1;
 	this->stepPosesTeam1 = stepPosesTeam1;
 	this->finalPosesTeam1 = finalPosesTeam1;
-    this->pathsTeam2 = pathsTeam2;
-    this->stepPosesTeam2 = stepPosesTeam2;
-    this->finalPosesTeam2 = finalPosesTeam2;
-    this->mutexDebugTeamBlue = mutexDebugTeamBlue;
-    this->mutexDebugTeamYellow = mutexDebugTeamYellow;
+	this->pathsTeam2 = pathsTeam2;
+	this->stepPosesTeam2 = stepPosesTeam2;
+	this->finalPosesTeam2 = finalPosesTeam2;
+	this->mutexDebugTeamBlue = mutexDebugTeamBlue;
+	this->mutexDebugTeamYellow = mutexDebugTeamYellow;
 	paused = true;
 
 	isBallSelected = false;
 
 	material = new Material();
 
-	controlSender = new ControlSender( ball, robots );
+	controlSender = new ControlSenderAdapter( ball, robots );
 }
 
 void World::display() {
@@ -44,12 +44,13 @@ void World::display() {
 
 	camera->applyPosition();
 	fieldDrawer->draw();
-	ballDrawer->draw( ball );
+	ballDrawer->draw( *ball );
 
-	for(unsigned int i = 0; i < robots->size(); i++)
-		robotDrawer->draw( &robots->at( i ));
+	for(unsigned int i = 0; i < robots->size() ; i++){
+		robotDrawer->draw( robots->at( i ));
+	}
 
-    mutexDebugTeamYellow->lock();
+	mutexDebugTeamYellow->lock();
 
 	for(unsigned int i = 0; i < stepPosesTeam1->size(); i++)
 		debugDrawer->drawStep( robots->at( i ), stepPosesTeam1->at( i ) );
@@ -62,18 +63,18 @@ void World::display() {
 
 	mutexDebugTeamYellow->unlock();
 
-    mutexDebugTeamBlue->lock();
+	mutexDebugTeamBlue->lock();
 
-    for(unsigned int i = 0; i < stepPosesTeam2->size(); i++)
-        debugDrawer->drawStep( robots->at( i+3 ), stepPosesTeam2->at( i ) );
+	for(unsigned int i = 0; i < stepPosesTeam2->size(); i++)
+		debugDrawer->drawStep( robots->at( i+3 ), stepPosesTeam2->at( i ) );
 
-    for(unsigned int i = 0; i < finalPosesTeam2->size(); i++)
-        debugDrawer->drawFinal( robots->at( i+3 ), finalPosesTeam2->at( i ) );
+	for(unsigned int i = 0; i < finalPosesTeam2->size(); i++)
+		debugDrawer->drawFinal( robots->at( i+3 ), finalPosesTeam2->at( i ) );
 
-    for(unsigned int i = 0; i < pathsTeam2->size(); i++)
-        debugDrawer->drawPath( robots->at( i+3 ), pathsTeam2->at( i ) );
+	for(unsigned int i = 0; i < pathsTeam2->size(); i++)
+		debugDrawer->drawPath( robots->at( i+3 ), pathsTeam2->at( i ) );
 
-    mutexDebugTeamBlue->unlock();
+	mutexDebugTeamBlue->unlock();
 }
 
 void World::reshape( int width, int height ) {
@@ -115,7 +116,7 @@ void World::mouseButtonPress( int button, int state, int x, int y ){
 			// rotateRobot right
 		} break;
 		case MouseAction::LeftClick: {
-			toggleSelectedRobotStrategy( new Pose((float)x, (float)y, 0.0 ));
+			toggleSelectedRobotStrategy( vss::Pose((float)x, (float)y, 0.0 ));
 		} break;
 		default: {
 			std::cout << "[Warning]: Action not assigned." << std::endl;
@@ -126,10 +127,10 @@ void World::mouseButtonPress( int button, int state, int x, int y ){
 void World::mouseMove( int x, int y ){
 	if(mouseAction == MouseAction::LeftClick and mouseState == MouseState::On) {
 		if (isBallSelected) {
-			moveBall(new Pose((float) x, (float) y, 0.0));
+			moveBall( vss::Pose((float) x, (float) y, 0.0));
 		}
 		else {
-			moveRobotStrategy(new Pose((float) x, (float) y, 0.0));
+			moveRobotStrategy( vss::Pose((float) x, (float) y, 0.0));
 		}
 	}
 }
@@ -177,11 +178,11 @@ void World::keyboardDown( unsigned char key, int x, int y ) {
 	}
 }
 
-void World::toggleSelectedRobotStrategy( Pose *pose ){
+void World::toggleSelectedRobotStrategy( vss::Pose pose ){
 	if(paused) {
 		auto t = Core::bulletToGlut( Core::windowToBullet( pose, windowWidth, windowHeight, fieldWidth, fieldHeight ));
-		auto tupleClosestRobot = Core::robotMostCloseToClick( &t, robots );
-		auto ballDistance = Core::distanceClickToBall(&t, ball);
+		auto tupleClosestRobot = Core::robotMostCloseToClick(t, *robots);
+		auto ballDistance = Core::distanceClickToBall(t, *ball);
 
 		if (ballDistance > tupleClosestRobot.first) {
 			if(mouseState == MouseState::On) {
@@ -203,13 +204,14 @@ void World::toggleSelectedRobotStrategy( Pose *pose ){
 	}
 }
 
-void World::moveBall( Pose *pose ){
+void World::moveBall( vss::Pose pose ){
 	auto t = Core::bulletToGlut( Core::windowToBullet( pose, windowWidth, windowHeight, fieldWidth, fieldHeight ));
-	ball->setPose(t.x, t.y, 0);
+	ball->x = t.x;
+	ball->y = t.y;
 }
 
 
-void World::moveRobotStrategy( Pose *pose ){
+void World::moveRobotStrategy( vss::Pose pose ){
 	auto t = Core::bulletToGlut( Core::windowToBullet( pose, windowWidth, windowHeight, fieldWidth, fieldHeight ));
 	for(unsigned int i = 0; i < robots->size(); i++)
 		if(robots->at( i ).getSelected() == true) {
@@ -222,9 +224,9 @@ void World::rotateRobotStrategy( bool direction ){
 	for(unsigned int i = 0; i < robots->size(); i++)
 		if(robots->at( i ).getSelected() == true) {
 			if(direction)
-				robots->at( i ).pose.yaw += 3.0;
+				robots->at( i ).pose.angle += 3.0;
 			else
-				robots->at( i ).pose.yaw -= 3.0;
+				robots->at( i ).pose.angle -= 3.0;
 		}
 }
 

@@ -21,14 +21,14 @@
 #include "IBallDrawer.h"
 #include "IDebugDrawer.h"
 #include "ICamera.h"
-#include "Pose.h"
-#include "Robot.h"
-#include "Path.h"
+#include "Domain/Pose.h"
+#include "Robot3d.h"
+#include "Domain/Path.h"
 #include "AsciiEnum.h"
 #include "ColorEnum.h"
 #include "Material.h"
 #include "Math.h"
-#include "ControlSender.h"
+#include "ControlSenderAdapter.h"
 
 class World : public GlutFramework {
 public:
@@ -44,28 +44,27 @@ public:
 	IBallDrawer *ballDrawer;
 	IDebugDrawer *debugDrawer;
 	ICamera *camera;
-	ControlSender *controlSender;
+	ControlSenderAdapter *controlSender;
 
-	Pose *ball;
+	vss::Pose *ball;
 	bool isBallSelected;
-	std::vector<Robot> *robots;
-	std::vector<Path> *pathsTeam1;
-	std::vector<Pose> *stepPosesTeam1;
-	std::vector<Pose> *finalPosesTeam1;
+	std::vector<Robot3d> *robots;
+	std::vector<vss::Path> *pathsTeam1;
+	std::vector<vss::Pose> *stepPosesTeam1;
+	std::vector<vss::Pose> *finalPosesTeam1;
 
-	std::vector<Path> *pathsTeam2;
-	std::vector<Pose> *stepPosesTeam2;
-	std::vector<Pose> *finalPosesTeam2;
+	std::vector<vss::Path> *pathsTeam2;
+	std::vector<vss::Pose> *stepPosesTeam2;
+	std::vector<vss::Pose> *finalPosesTeam2;
     std::mutex *mutexDebugTeamYellow;
     std::mutex *mutexDebugTeamBlue;
 
 	Material *material;
 
-	World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer,
-           IBallDrawer *ballDrawer, ICamera *camera, Pose *ball, std::vector<Robot> *robots,
-           std::vector<Path> *pathsTeam1, std::vector<Pose> *stepPosesTeam1, std::vector<Pose> *finalPosesTeam1,
-           std::vector<Path> *pathsTeam2, std::vector<Pose> *stepPosesTeam2, std::vector<Pose> *finalPosesTeam2,
-           std::mutex *mutexDebugTeamYellow, std::mutex *mutexDebugTeamBlue);
+	World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer,
+		   ICamera *camera, vss::Pose *ball, std::vector<Robot3d> *robots, std::vector<vss::Path> *pathsTeam1, std::vector<vss::Pose> *stepPosesTeam1,
+		   std::vector<vss::Pose> *finalPosesTeam1, std::vector<vss::Path> *pathsTeam2, std::vector<vss::Pose> *stepPosesTeam2, std::vector<vss::Pose> *finalPosesTeam2,
+		   std::mutex *mutexDebugTeamYellow, std::mutex *mutexDebugTeamBlue);
 
 	void display() override;
 	void keyboardDown( unsigned char key, int x, int y ) override;
@@ -79,11 +78,11 @@ public:
 	void changeCameraStrategy();
 	void pauseStrategy();
 	void startStrategy();
-	void toggleSelectedRobotStrategy( Pose *pose );
-	void moveRobotStrategy( Pose *pose );
+	void toggleSelectedRobotStrategy( vss::Pose pose );
+	void moveRobotStrategy( vss::Pose pose );
 	void rotateRobotStrategy( bool direction );
 
-	void moveBall( Pose *pose );
+	void moveBall( vss::Pose pose );
 };
 
 #endif // WORLD_H

@@ -6,22 +6,22 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
-#include "ControlSender.h"
+#include "ControlSenderAdapter.h"
 #include "Math.h"
 
-ControlSender::ControlSender( Pose *ball, std::vector<Robot> *robots ){
+ControlSenderAdapter::ControlSenderAdapter( vss::Pose *ball, std::vector<Robot3d> *robots ){
 	this->ball = ball;
 	this->robots = robots;
 	user_control = vss_control::User_Control();
 	interface.createSendControl( &user_control );
 }
 
-void ControlSender::send( bool paused ){
+void ControlSenderAdapter::send( bool paused ){
 	user_control = vss_control::User_Control();
 
 	user_control.set_paused( paused );
 
-	auto ball_n = Core::glutToBullet( ball );
+	auto ball_n = Core::glutToBullet( *ball );
 	user_control.mutable_new_ball_pose()->set_x( ball_n.x );
 	user_control.mutable_new_ball_pose()->set_y( ball_n.y );
 
@@ -31,7 +31,7 @@ void ControlSender::send( bool paused ){
 
 		new_robots_blue_pose->set_x( robot_n.x );
 		new_robots_blue_pose->set_y( robot_n.y );
-		new_robots_blue_pose->set_yaw( robot_n.yaw );
+		new_robots_blue_pose->set_yaw( robot_n.angle );
 	}
 
 	for(int i = 0; i < 3; i++) {
@@ -40,7 +40,7 @@ void ControlSender::send( bool paused ){
 
 		new_robots_yellow_pose->set_x( robot_n.x );
 		new_robots_yellow_pose->set_y( robot_n.y );
-		new_robots_yellow_pose->set_yaw( robot_n.yaw );
+		new_robots_yellow_pose->set_yaw( robot_n.angle );
 	}
 
 	interface.sendControl();

@@ -12,22 +12,22 @@ OriginalDebugDrawer::OriginalDebugDrawer(){
 	material = new Material();
 }
 
-void OriginalDebugDrawer::drawPath( const Robot &robot, const Path &path ){
-	if(path.poses.size() < 2)
+void OriginalDebugDrawer::drawPath( const Robot3d &robot, const vss::Path &path ){
+	if(path.points.size() < 2)
 		return;
 
 	glPushMatrix();
 	material->applyMaterial( robot.robotColor );
-	for(unsigned int j = 0; j < path.poses.size() - 1; j++) {
+	for(unsigned int j = 0; j < path.points.size() - 1; j++) {
 		glBegin( GL_LINES );
-		glVertex3f( 1, path.poses.at( j ).x, path.poses.at( j ).y );
-		glVertex3f( 1, path.poses.at( j + 1 ).x, path.poses.at( j + 1 ).y );
+		glVertex3f( 1, path.points.at( j ).x, path.points.at( j ).y );
+		glVertex3f( 1, path.points.at( j + 1 ).x, path.points.at( j + 1 ).y );
 		glEnd();
 	}
 	glPopMatrix();
 }
 
-void OriginalDebugDrawer::drawStep( const Robot &robot, const Pose &stepPose ){
+void OriginalDebugDrawer::drawStep( const Robot3d &robot, const vss::Pose &stepPose ){
 	if(Core::isOriginInGlut( stepPose ))
 		return;
 
@@ -41,14 +41,14 @@ void OriginalDebugDrawer::drawStep( const Robot &robot, const Pose &stepPose ){
 	glPopMatrix();
 }
 
-void OriginalDebugDrawer::drawFinal( const Robot &robot, const Pose &finalPose ){
+void OriginalDebugDrawer::drawFinal( const Robot3d &robot, const vss::Pose &finalPose ){
 	if(Core::isOriginInGlut( finalPose ))
 		return;
 
 	glPushMatrix();
 	//! Desenha o corpo do robô transladado
 	glTranslatef( 1.5, finalPose.x, finalPose.y );
-	glRotatef( -finalPose.yaw, 1, 0, 0 );
+	glRotatef( -finalPose.angle, 1, 0, 0 );
 	glScalef( 0.3f, 8.0, 8.0 );
 	material->applyMaterial( ColorName::Gray );
 	glLineWidth( 4.0f );

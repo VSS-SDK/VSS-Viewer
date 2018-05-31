@@ -18,9 +18,9 @@
 #include <GL/glut.h>
 #endif
 
-#include "Pose.h"
-#include "Path.h"
-#include "Robot.h"
+#include "Domain/Pose.h"
+#include "Domain/Path.h"
+#include "Robot3d.h"
 #include "ColorEnum.h"
 #include "Material.h"
 #include "IDebugDrawer.h"
@@ -32,9 +32,9 @@ public:
 	Material *material;
 
 	OriginalDebugDrawer();
-	void drawPath( const Robot &robot, const Path &path ) override;
-	void drawStep( const Robot &robot, const Pose &stepPose ) override;
-	void drawFinal( const Robot &robot, const Pose &finalPose ) override;
+	void drawPath( const Robot3d &robot, const vss::Path &path ) override;
+	void drawStep( const Robot3d &robot, const vss::Pose &stepPose ) override;
+	void drawFinal( const Robot3d &robot, const vss::Pose &finalPose ) override;
 };
 
 #endif // ORIGINAL_DEBUG_DRAWER_H

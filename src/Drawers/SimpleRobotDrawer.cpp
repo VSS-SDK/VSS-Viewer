@@ -13,18 +13,18 @@ SimpleRobotDrawer::SimpleRobotDrawer(){
 	material = new Material();
 	qobj = gluNewQuadric();
 	gluQuadricNormals( qobj, GLU_SMOOTH );
-	robot = new Robot();
+	robot = new Robot3d();
 
 	robotWidth = 8.0;
 	robotDepth = 8.0;
 	robotHeight = 8.0;
 }
 
-void SimpleRobotDrawer::draw( const Robot &robot ){
+void SimpleRobotDrawer::draw( const Robot3d &robot ){
 	glPushMatrix();
 	//! Desenha o corpo do robô
 	glTranslatef( thickOfThings * 1.4, robot.pose.x, robot.pose.y );
-	glRotatef( -robot.pose.yaw, 1, 0, 0 );
+	glRotatef( -robot.pose.angle, 1, 0, 0 );
 	glScalef( robotHeight, robotWidth, robotDepth );
 
 	if(robot.selected)

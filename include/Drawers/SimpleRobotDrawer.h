@@ -19,14 +19,14 @@
 #endif
 
 #include "IRobotDrawer.h"
-#include "Robot.h"
+#include "Robot3d.h"
 #include "Material.h"
 
 class SimpleRobotDrawer : public IRobotDrawer {
 public:
 
 	Material *material;
-	Robot *robot;
+	Robot3d *robot;
 	GLUquadric *qobj;
 
 	float robotWidth;
@@ -37,7 +37,7 @@ public:
 
 	SimpleRobotDrawer();
 
-	void draw( const Robot &robot ) override;
+	void draw( const Robot3d &robot ) override;
 };
 
 #endif // SIMPLE_ROBOT_DRAWER_H

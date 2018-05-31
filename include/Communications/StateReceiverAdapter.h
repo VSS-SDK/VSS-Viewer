@@ -9,20 +9,20 @@
 #ifndef STATE_RECEIVER_H
 #define STATE_RECEIVER_H
 
+#include <Interfaces/IStateReceiver.h>
 #include "vector"
 #include "interface.h"
-#include "Robot.h"
+#include "Robot3d.h"
 
-class StateReceiver {
+class StateReceiverAdapter {
 public:
 
-	Interface *interface;
-	vss_state::Global_State global_state;
-	Pose *ball;
-	std::vector<Robot> *robots;
+    vss::IStateReceiver *stateReceiver;
+    vss::Pose *ball;
+    std::vector<Robot3d> *robots;
 
-	StateReceiver( Pose *ball, std::vector<Robot> *robots );
-	void loop( std::string address );
+    StateReceiverAdapter( vss::Pose *ball, std::vector<Robot3d> *robots );
+    void loop();
 };
 
 #endif

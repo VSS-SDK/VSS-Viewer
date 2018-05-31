@@ -18,17 +18,17 @@
 #include <GL/glut.h>
 #endif
 
-#include "Pose.h"
-#include "Path.h"
-#include "Robot.h"
+#include "Domain/Pose.h"
+#include "Domain/Path.h"
+#include "Robot3d.h"
 #include "ColorEnum.h"
 
 class IDebugDrawer {
 public:
 
-	void virtual drawPath( const Robot &robot, const Path &path ) = 0;
-	void virtual drawStep( const Robot &robot, const Pose &stepPose ) = 0;
-	void virtual drawFinal( const Robot &robot, const Pose &finalPose ) = 0;
+	virtual void drawPath( const Robot3d &robot, const vss::Path &path ) = 0;
+	virtual void drawStep( const Robot3d &robot, const vss::Pose &stepPose ) = 0;
+	virtual void drawFinal( const Robot3d &robot, const vss::Pose &finalPose ) = 0;
 };
 
 #endif // IDEBUG_H

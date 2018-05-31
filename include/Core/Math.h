@@ -10,44 +10,44 @@
 #define CORE_MATH_H
 
 #include <limits>
-#include "Pose.h"
-#include "Robot.h"
+#include "Domain/Pose.h"
+#include "Robot3d.h"
 #include "math.h"
 
 namespace Core {
-	float inline distance( const Pose &t1, const Pose &t2 ){
+	float inline distance( const vss::Pose &t1, const vss::Pose &t2 ){
 		return sqrt(((t1.x - t2.x) * (t1.x - t2.x)) + ((t1.y - t2.y) * (t1.y - t2.y)));
 	}
 
-	float inline distance( const Robot &t1, const Robot &t2 ){
+	float inline distance( const Robot3d &t1, const Robot3d &t2 ){
 		return sqrt(((t1.pose.x - t2.pose.x) * (t1.pose.x - t2.pose.x)) + ((t1.pose.y - t2.pose.y) * (t1.pose.y - t2.pose.y)));
 	}
 
-	float inline distance( const Robot &t1, const Pose &t2 ){
+	float inline distance( const Robot3d &t1, const vss::Pose &t2 ){
 		return sqrt(((t1.pose.x - t2.x) * (t1.pose.x - t2.x)) + ((t1.pose.y - t2.y) * (t1.pose.y - t2.y)));
 	}
 
-	float inline distance( const Pose &t1, const Robot &t2 ){
+	float inline distance( const vss::Pose &t1, const Robot3d &t2 ){
 		return sqrt(((t1.x - t2.pose.x) * (t1.x - t2.pose.x)) + ((t1.y - t2.pose.y) * (t1.y - t2.pose.y)));
 	}
 
-	Pose inline bulletToGlut( const Pose &bullet ){
-		return new Pose( bullet.y - (130 / 2.0), bullet.x - (170 / 2.0), bullet.yaw );
+	vss::Pose inline bulletToGlut( const vss::Pose &bullet ){
+		return vss::Pose( bullet.y - (130 / 2.0), bullet.x - (170 / 2.0), bullet.angle );
 	}
 
-	Pose inline glutToBullet( const Pose &glut ){
-		return new Pose( glut.y + (170 / 2.0), glut.x + (130 / 2.0), glut.yaw );
+	vss::Pose inline glutToBullet( const vss::Pose &glut ){
+		return vss::Pose( glut.y + (170 / 2.0), glut.x + (130 / 2.0), glut.angle );
 	}
 
-	bool inline isOriginInGlut( const Pose &glut ){
+	bool inline isOriginInGlut( const vss::Pose &glut ){
 		return (glut.x == -65 && glut.y == -85) ? true : false;
 	}
 
-	Pose inline originInGlut(){
-		return new Pose( -65, -85, 0 );
+	vss::Pose inline originInGlut(){
+		return vss::Pose( -65, -85, 0 );
 	}
 
-	Pose inline windowToBullet( const Pose &window, float windowWidth, float windowHeight, float fieldWidth, float fieldHeight ){
+	vss::Pose inline windowToBullet( const vss::Pose &window, float windowWidth, float windowHeight, float fieldWidth, float fieldHeight ){
 		auto different_x = (windowWidth - fieldWidth) / 2.0;
 		auto fc_x = window.x - different_x;
 		auto new_x = fc_x * 170.0 / fieldWidth;
@@ -56,15 +56,15 @@ namespace Core {
 		auto fc_y = window.y - different_y;
 		auto new_y = fc_y * 130 / fieldHeight;
 
-		return new Pose( new_x, new_y, 0.0 );
+		return vss::Pose( new_x, new_y, 0.0 );
 	}
 
-	std::pair<float, int> inline robotMostCloseToClick( Pose *click, std::vector<Robot> *robots ){
-		auto minDistance = distance( click, robots->at( 0 ));
+	std::pair<float, int> inline robotMostCloseToClick( vss::Pose &click, std::vector<Robot3d> &robots ){
+		auto minDistance = distance( click, robots.at( 0 ));
 		auto idMinDistance = 0;
 
-		for(unsigned int i = 1; i < robots->size(); i++) {
-			auto actDistance = distance( click, robots->at( i ));
+		for(unsigned int i = 1; i < robots.size(); i++) {
+			auto actDistance = distance( click, robots.at( i ));
 			if(actDistance < minDistance) {
 				minDistance = actDistance;
 				idMinDistance = i;
@@ -74,7 +74,7 @@ namespace Core {
 		return std::make_pair(minDistance, idMinDistance);
 	}
 
-	float inline distanceClickToBall(Pose * click, Pose * ball) {
+	float inline distanceClickToBall(vss::Pose &click, vss::Pose &ball) {
 		return distance(click, ball);
 	}
 }

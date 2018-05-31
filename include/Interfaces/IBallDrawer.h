@@ -18,12 +18,12 @@
 #include <GL/glut.h>
 #endif
 
-#include "Pose.h"
+#include "Domain/Pose.h"
 
 class IBallDrawer {
 public:
 
-	void virtual draw( const Pose &pose ) = 0;
+    virtual void draw( const vss::Pose &pose ) = 0;
 };
 
 #endif // IBALL_H

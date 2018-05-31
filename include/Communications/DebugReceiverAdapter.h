@@ -12,24 +12,23 @@
 #include "mutex"
 #include "vector"
 #include "interface.h"
-#include "Pose.h"
-#include "Path.h"
+#include "Domain/Pose.h"
+#include "Domain/Path.h"
 #include "math.h"
 #include "Domain/TeamType.h"
+#include "Interfaces/IDebugReceiver.h"
 
-class DebugReceiver {
+class DebugReceiverAdapter {
 public:
 
-	Interface *interface;
-	vss_debug::Global_Debug global_debug;
-	std::vector<Pose> *finalPoses;
-	std::vector<Pose> *stepPoses;
-	std::vector<Path> *paths;
-	vss::TeamType teamType;
+    vss::IDebugReceiver *debugReceiver;
+    std::vector<vss::Pose> *finalPoses;
+    std::vector<vss::Pose> *stepPoses;
+    std::vector<vss::Path> *paths;
     std::mutex *mutexDebug;
 
-	DebugReceiver( std::vector<Path> *paths, std::vector<Pose> *stepPoses, std::vector<Pose> *finalPoses, std::mutex *mutexDebug );
-	void loop( vss::TeamType teamType );
+    DebugReceiverAdapter( std::vector<vss::Path> *paths, std::vector<vss::Pose> *stepPoses, std::vector<vss::Pose> *finalPoses, std::mutex *mutexDebug );
+    void loop( vss::TeamType teamType );
 };
 
 #endif // DEBUG_RECEIVER_H
