@@ -7,41 +7,35 @@
  */
 
 #include "ControlSenderAdapter.h"
+#include "Communications/ControlSender.h"
 #include "Math.h"
 
 ControlSenderAdapter::ControlSenderAdapter( vss::Pose *ball, std::vector<Robot3d> *robots ){
 	this->ball = ball;
 	this->robots = robots;
-	user_control = vss_control::User_Control();
-	interface.createSendControl( &user_control );
+
+	controlSender = new vss::ControlSender();
+	controlSender->createSocket();
 }
 
 void ControlSenderAdapter::send( bool paused ){
-	user_control = vss_control::User_Control();
+	vss::Control control;
 
-	user_control.set_paused( paused );
+	control.paused = paused;
 
 	auto ball_n = Core::glutToBullet( *ball );
-	user_control.mutable_new_ball_pose()->set_x( ball_n.x );
-	user_control.mutable_new_ball_pose()->set_y( ball_n.y );
+	control.ball.x = ball_n.x;
+	control.ball.y = ball_n.y;
 
 	for(int i = 0; i < 3; i++) {
-		vss_control::Pose *new_robots_blue_pose = user_control.add_new_robots_blue_pose();
-		auto robot_n = Core::glutToBullet( robots->at( i + 3 ).pose );
-
-		new_robots_blue_pose->set_x( robot_n.x );
-		new_robots_blue_pose->set_y( robot_n.y );
-		new_robots_blue_pose->set_yaw( robot_n.angle );
-	}
-
-	for(int i = 0; i < 3; i++) {
-		vss_control::Pose *new_robots_yellow_pose = user_control.add_new_robots_yellow_pose();
 		auto robot_n = Core::glutToBullet( robots->at( i ).pose );
-
-		new_robots_yellow_pose->set_x( robot_n.x );
-		new_robots_yellow_pose->set_y( robot_n.y );
-		new_robots_yellow_pose->set_yaw( robot_n.angle );
+		control.teamYellow.push_back(vss::Robot(robot_n.x, robot_n.y, robot_n.angle, 0, 0, 0));
 	}
 
-	interface.sendControl();
+	for(int i = 0; i < 3; i++) {
+		auto robot_n = Core::glutToBullet( robots->at( i + 3 ).pose );
+		control.teamBlue.push_back(vss::Robot(robot_n.x, robot_n.y, robot_n.angle, 0, 0, 0));
+	}
+
+	controlSender->sendControl(control);
 }

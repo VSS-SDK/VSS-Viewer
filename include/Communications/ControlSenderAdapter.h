@@ -12,12 +12,12 @@
 #include "vector"
 #include "interface.h"
 #include "Robot3d.h"
+#include "Interfaces/IControlSender.h"
 
 class ControlSenderAdapter {
 public:
 
-	Interface interface;
-	vss_control::User_Control user_control;
+	vss::IControlSender *controlSender;
 	vss::Pose *ball;
 	std::vector<Robot3d> *robots;
 
