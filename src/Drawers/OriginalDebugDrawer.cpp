@@ -49,7 +49,7 @@ void OriginalDebugDrawer::drawFinal( const Robot3d &robot, const vss::Pose &fina
 	//! Desenha o corpo do robô transladado
 	glTranslatef( 1.5, finalPose.x, finalPose.y );
 	glRotatef( -finalPose.angle, 1, 0, 0 );
-	glScalef( 0.3f, 8.0, 8.0 );
+	glScalef( 1.0f, 8.0, 8.0 );
 	material->applyMaterial( ColorName::Gray );
 	glLineWidth( 4.0f );
 	glutWireCube( 1 );
@@ -57,7 +57,7 @@ void OriginalDebugDrawer::drawFinal( const Robot3d &robot, const vss::Pose &fina
 	//! Desenha a etiqueta do time
 	glPushMatrix();
 	glTranslatef( 0.1, -0.2, -0.2 );
-	glScalef( 0.4f, 3.5 / 8.0, 3.5 / 8.0 );
+	glScalef( 1.0f, 3.5 / 8.0, 3.5 / 8.0 );
 	material->applyMaterial( robot.teamColor );
 	glutSolidCube( 1 );
 	glPopMatrix();
@@ -65,7 +65,7 @@ void OriginalDebugDrawer::drawFinal( const Robot3d &robot, const vss::Pose &fina
 	//! Desenha a etiqueta secundária do robô
 	glPushMatrix();
 	glTranslatef( 0.1, 0.2, 0.2 );
-	glScalef( 0.4f, 3.5 / 8.0, 3.5 / 8.0 );
+	glScalef( 1.0f, 3.5 / 8.0, 3.5 / 8.0 );
 	material->applyMaterial( robot.robotColor );
 	glutSolidCube( 1 );
 	glPopMatrix();
