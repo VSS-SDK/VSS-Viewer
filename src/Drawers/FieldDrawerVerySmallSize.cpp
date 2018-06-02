@@ -333,8 +333,8 @@ void FieldDrawerVerySmallSize::draw(){
 	glLineWidth( 5.0f );
 	material->applyMaterial( ColorName::White );
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, -fieldDepth / 2.0, 0 );
-	glVertex3f( 0.7, fieldDepth / 2.0, 0 );
+	glVertex3f( 0.9, -fieldDepth / 2.0, 0 );
+	glVertex3f( 0.9, fieldDepth / 2.0, 0 );
 	glEnd();
 
 	// CIRCLE CENTER
@@ -366,110 +366,110 @@ void FieldDrawerVerySmallSize::draw(){
 
 	// GOAL LINE
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, -20, 75.5 );
-	glVertex3f( 0.7, 20, 75.5 );
+	glVertex3f( 0.9, -20, 75.5 );
+	glVertex3f( 0.9, 20, 75.5 );
 	glEnd();
 
 	// AREA LINE
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, -35, 60.5 );
-	glVertex3f( 0.7, 35, 60.5 );
+	glVertex3f( 0.9, -35, 60.5 );
+	glVertex3f( 0.9, 35, 60.5 );
 	glEnd();
 
 	// AREA BOTTOM LINE
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, 35, 60.5 );
-	glVertex3f( 0.7, 35, 75 );
+	glVertex3f( 0.9, 35, 60.5 );
+	glVertex3f( 0.9, 35, 75 );
 	glEnd();
 
 	// AREA TOP LINE
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, -35, 60.5 );
-	glVertex3f( 0.7, -35, 75 );
+	glVertex3f( 0.9, -35, 60.5 );
+	glVertex3f( 0.9, -35, 75 );
 	glEnd();
 
 	// GOAL LINE
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, -20, -75.5 );
-	glVertex3f( 0.7, 20, -75.5 );
+	glVertex3f( 0.9, -20, -75.5 );
+	glVertex3f( 0.9, 20, -75.5 );
 	glEnd();
 
 	// AREA BOTTOM LINE
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, 35, -60.5 );
-	glVertex3f( 0.7, 35, -75 );
+	glVertex3f( 0.9, 35, -60.5 );
+	glVertex3f( 0.9, 35, -75 );
 	glEnd();
 
 	// AREA TOP LINE
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, -35, -60.5 );
-	glVertex3f( 0.7, -35, -75 );
+	glVertex3f( 0.9, -35, -60.5 );
+	glVertex3f( 0.9, -35, -75 );
 	glEnd();
 
 	// AREA LINE
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, -35, -60.5 );
-	glVertex3f( 0.7, 35, -60.5 );
+	glVertex3f( 0.9, -35, -60.5 );
+	glVertex3f( 0.9, 35, -60.5 );
 	glEnd();
 
 	// CROSS MIDDLE RIGHT
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, 0, 37.5 - 2.5 );
-	glVertex3f( 0.7, 0, 37.5 + 2.5 );
+	glVertex3f( 0.9, 0, 37.5 - 2.5 );
+	glVertex3f( 0.9, 0, 37.5 + 2.5 );
 	glEnd();
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, -2.5, 37.5 );
-	glVertex3f( 0.7, 2.5, 37.5 );
+	glVertex3f( 0.9, -2.5, 37.5 );
+	glVertex3f( 0.9, 2.5, 37.5 );
 	glEnd();
 
 	// CROSS DOWN RIGHT
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, (fieldDepth / 2.0) - 25, 37.5 - 2.5 );
-	glVertex3f( 0.7, (fieldDepth / 2.0) - 25, 37.5 + 2.5 );
+	glVertex3f( 0.9, (fieldDepth / 2.0) - 25, 37.5 - 2.5 );
+	glVertex3f( 0.9, (fieldDepth / 2.0) - 25, 37.5 + 2.5 );
 	glEnd();
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, (fieldDepth / 2.0) - 25 - 2.5, 37.5 );
-	glVertex3f( 0.7, (fieldDepth / 2.0) - 25 + 2.5, 37.5 );
+	glVertex3f( 0.9, (fieldDepth / 2.0) - 25 - 2.5, 37.5 );
+	glVertex3f( 0.9, (fieldDepth / 2.0) - 25 + 2.5, 37.5 );
 	glEnd();
 
 	// CROSS UP RIGHT
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, -(fieldDepth / 2.0) + 25, 37.5 - 2.5 );
-	glVertex3f( 0.7, -(fieldDepth / 2.0) + 25, 37.5 + 2.5 );
+	glVertex3f( 0.9, -(fieldDepth / 2.0) + 25, 37.5 - 2.5 );
+	glVertex3f( 0.9, -(fieldDepth / 2.0) + 25, 37.5 + 2.5 );
 	glEnd();
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, -(fieldDepth / 2.0) + 25 - 2.5, 37.5 );
-	glVertex3f( 0.7, -(fieldDepth / 2.0) + 25 + 2.5, 37.5 );
+	glVertex3f( 0.9, -(fieldDepth / 2.0) + 25 - 2.5, 37.5 );
+	glVertex3f( 0.9, -(fieldDepth / 2.0) + 25 + 2.5, 37.5 );
 	glEnd();
 
 	// CROSS MIDDLE LEFT
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, 0, -37.5 - 2.5 );
-	glVertex3f( 0.7, 0, -37.5 + 2.5 );
+	glVertex3f( 0.9, 0, -37.5 - 2.5 );
+	glVertex3f( 0.9, 0, -37.5 + 2.5 );
 	glEnd();
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, -2.5, -37.5 );
-	glVertex3f( 0.7, 2.5, -37.5 );
+	glVertex3f( 0.9, -2.5, -37.5 );
+	glVertex3f( 0.9, 2.5, -37.5 );
 	glEnd();
 
 	// CROSS DOWN LEFT
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, (fieldDepth / 2.0) - 25, -37.5 - 2.5 );
-	glVertex3f( 0.7, (fieldDepth / 2.0) - 25, -37.5 + 2.5 );
+	glVertex3f( 0.9, (fieldDepth / 2.0) - 25, -37.5 - 2.5 );
+	glVertex3f( 0.9, (fieldDepth / 2.0) - 25, -37.5 + 2.5 );
 	glEnd();
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, (fieldDepth / 2.0) - 25 - 2.5, -37.5 );
-	glVertex3f( 0.7, (fieldDepth / 2.0) - 25 + 2.5, -37.5 );
+	glVertex3f( 0.9, (fieldDepth / 2.0) - 25 - 2.5, -37.5 );
+	glVertex3f( 0.9, (fieldDepth / 2.0) - 25 + 2.5, -37.5 );
 	glEnd();
 
 	// CROSS UP LEFT
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, -(fieldDepth / 2.0) + 25, -37.5 - 2.5 );
-	glVertex3f( 0.7, -(fieldDepth / 2.0) + 25, -37.5 + 2.5 );
+	glVertex3f( 0.9, -(fieldDepth / 2.0) + 25, -37.5 - 2.5 );
+	glVertex3f( 0.9, -(fieldDepth / 2.0) + 25, -37.5 + 2.5 );
 	glEnd();
 	glBegin( GL_LINES );
-	glVertex3f( 0.7, -(fieldDepth / 2.0) + 25 - 2.5, -37.5 );
-	glVertex3f( 0.7, -(fieldDepth / 2.0) + 25 + 2.5, -37.5 );
+	glVertex3f( 0.9, -(fieldDepth / 2.0) + 25 - 2.5, -37.5 );
+	glVertex3f( 0.9, -(fieldDepth / 2.0) + 25 + 2.5, -37.5 );
 	glEnd();
 	glPopMatrix();
 }

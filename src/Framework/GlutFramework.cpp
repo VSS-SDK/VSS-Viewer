@@ -101,7 +101,7 @@ void GlutFramework::setDisplayMatricies() {
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
 
-	gluPerspective( 60, aspect, 0.1f, depthObs );
+	gluPerspective( 15, aspect, 0.1f, depthObs );
 	glMatrixMode( GL_MODELVIEW );
 }
 

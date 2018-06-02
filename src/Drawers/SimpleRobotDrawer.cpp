@@ -23,7 +23,7 @@ SimpleRobotDrawer::SimpleRobotDrawer(){
 void SimpleRobotDrawer::draw( const Robot3d &robot ){
 	glPushMatrix();
 	//! Desenha o corpo do robô
-	glTranslatef( thickOfThings * 1.4, robot.pose.x, robot.pose.y );
+	glTranslatef( thickOfThings * 1.8, robot.pose.x, robot.pose.y );
 	glRotatef( -robot.pose.angle, 1, 0, 0 );
 	glScalef( robotHeight, robotWidth, robotDepth );
 
@@ -53,7 +53,7 @@ void SimpleRobotDrawer::draw( const Robot3d &robot ){
 	//! Desenha as rodas de um robô
 	glPushMatrix();
 	glRotatef( 90.0, 1, 0, 0 );
-	glTranslatef( -0.10, 0.0, -0.61 );
+	glTranslatef( -0.22, 0.0, -0.61 );
 	material->applyMaterial( ColorName::White );
 	gluCylinder( qobj, 0.2f, 0.2f, 1.2f, 16.0, 16.0 ); // Radius 1, Radius 2, Lenght, Precision1, Precision2
 	glPopMatrix();

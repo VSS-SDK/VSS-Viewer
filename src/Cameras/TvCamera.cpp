@@ -14,8 +14,8 @@ TvCamera::TvCamera(){
 
 void TvCamera::applyPosition(){
 	glTranslatef( 0.0f, 0.0f, -0 );
-	glRotatef( 150.0, 1, 0, 0 );
+	glRotatef( 135.0, 1, 0, 0 );
 
 	glRotatef( 90.0, 0, 1, 0 );
-	glTranslatef( -100.0, -75.0, -0.0 );
+	glTranslatef( -310.0, -310.0, -0.0 );
 }

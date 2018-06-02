@@ -16,5 +16,5 @@ void TopCamera::applyPosition(){
 	glTranslatef( 0.0f, 0.0f, 0 );
 	glRotatef( 180.0, 1, 0, 0 );
 	glRotatef( 90.0, 0, 1, 0 );
-	glTranslatef( -130.0, 0.0, -0.0 );
+	glTranslatef( -550.0, 0.0, -0.0 );
 }
