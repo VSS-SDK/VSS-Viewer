@@ -1,34 +1,39 @@
 # VSS-Viewer [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)][gpl3] [![Build Status](https://travis-ci.org/SIRLab/VSS-Viewer.svg?branch=master)][travis]
 
-[![Trello Features](https://img.shields.io/badge/Trello-Features-blue.svg)][vss-sdk-features]
-[![Trello PBIs](https://img.shields.io/badge/Trello-PBIs-blue.svg)][vss-sdk-pbis]
+[![Trello](https://img.shields.io/badge/Trello-SDK-blue.svg)][vss-sdk-trello]
 [![Slack](https://img.shields.io/badge/Slack-Channel-551a8b.svg)][slack]
 
-O VSS-Viewer é um visualizador de estados de jogo.
-Mais informações sobre o framework podem ser encontradas em [VSS-SDK][vss-sdk].
+O VSS-Viewer é um visualizador de estados de jogo. Esse projeto obtém dados do VSS-Simulator, VSS-Vision
+e estratégias. Esse projeto utiliza o [VSS-Core][vss-core] como interface de comunicação.
 
+Mais informações podem ser encontradas em [VSS-SDK][vss-sdk].
 
-## Installation
+## Instalação
 ```
 $ sudo ./configure.sh
 ```
 
-## Samples
-C++ using the VSS-Interface: [SampleCpp][samplecpp]
+## Desenvolvimento
+```
+$ sudo ./configure.sh development
+```
 
-## License
+## Exemplos
+Exemplo em C++: [VSS-SampleCpp][samplecpp]
 
-This code is licensed under the [GNU GENERAL PUBLIC LICENSE Version 3][gpl3], of which a textual copy is available at [LICENSE.txt](LICENSE.txt).
+# Licença
 
-You are allowed and encouraged to use this software on robotics competitions.  If you do, please let us know.
+Esse código está sob licença [GNU GENERAL PUBLIC LICENSE Version 3][gpl3], cujo uma cópia em texto pode ser encontrada em [LICENSE.txt](LICENSE.txt).
 
+Você pode utilizar esse código. Caso o faça, nos informe.
 
 [vss-sdk]: http://sirlab.github.io/VSS-SDK
 [gpl3]: http://www.gnu.org/licenses/gpl-3.0/
 [travis]: https://travis-ci.org/SIRLab/VSS-Viewer
-[vss-sdk-features]: https://trello.com/b/b4dVV6ug/vss-sdk-features
-[vss-sdk-pbis]: https://trello.com/b/m0u389nR/vss-sdk-pbis
+[vss-sdk-trello]: https://trello.com/b/b4dVV6ug/vss-sdk
 [slack]: https://vss-sdk.slack.com
+[vss-core]: https://github.com/SIRLab/VSS-Core
+[samplecpp]: https://github.com/SIRLab/VSS-SampleCpp
 
 
 
