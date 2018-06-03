@@ -13,12 +13,14 @@ FieldDrawerVerySmallSize::FieldDrawerVerySmallSize(){
 }
 
 void FieldDrawerVerySmallSize::draw(){
+	// Center Block Floor Field 150x130
 	glPushMatrix();
 	glScalef( 1, fieldDepth, fieldWidth );
 	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
+	// Left Block Goal Floor Field
 	glPushMatrix();
 	glTranslatef( 0, 0, -fieldWidth / 1.88 );
 	glScalef( 1, goalWidth + 2.0, goalDepth + 2.0 );
@@ -26,6 +28,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glutSolidCube( 1 );
 	glPopMatrix();
 
+	// Left Goal White Paint Center
 	glPushMatrix();
 	glTranslatef( thickOfThings, 0.0, (-fieldWidth / 1.88) - (thickOfThings) * 1.9 );
 	glScalef( wallHeight, goalWidth + 2.0, 0.1 );
@@ -33,6 +36,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glutSolidCube( 1 );
 	glPopMatrix();
 
+	// Left Wall White Paint Bottom
 	glPushMatrix();
 	glTranslatef( thickOfThings, 38, (-fieldWidth / 2.0) + 0.1 );
 	glScalef( wallHeight, 34, 0.1 );
@@ -40,6 +44,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glutSolidCube( 1 );
 	glPopMatrix();
 
+	// Left Wall White Paint Top
 	glPushMatrix();
 	glTranslatef( thickOfThings, -37.7, (-fieldWidth / 2.0) + 0.1 );
 	glScalef( wallHeight, 34.2, 0.1 );
@@ -47,6 +52,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glutSolidCube( 1 );
 	glPopMatrix();
 
+	// Right Block Goal Floor Field
 	glPushMatrix();
 	glTranslatef( 0, 0, fieldWidth / 1.88 );
 	glScalef( 1, goalWidth + 2.0, goalDepth + 2.0 );
@@ -54,6 +60,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glutSolidCube( 1 );
 	glPopMatrix();
 
+	// Right Goal White Paint Center
 	glPushMatrix();
 	glTranslatef( thickOfThings, 0.0, (fieldWidth / 1.88) + (thickOfThings) * 1.9 );
 	glScalef( wallHeight, goalWidth + 2.0, 0.1 );
@@ -61,6 +68,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glutSolidCube( 1 );
 	glPopMatrix();
 
+	// Right Wall White Paint Bottom
 	glPushMatrix();
 	glTranslatef( thickOfThings, 38, (fieldWidth / 2.0) - 0.1 );
 	glScalef( wallHeight, 34, 0.1 );
@@ -68,6 +76,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glutSolidCube( 1 );
 	glPopMatrix();
 
+	// Right Wall White Paint Top
 	glPushMatrix();
 	glTranslatef( thickOfThings, -38, (fieldWidth / 2.0) - 0.1 );
 	glScalef( wallHeight, 34, 0.1 );
@@ -75,16 +84,18 @@ void FieldDrawerVerySmallSize::draw(){
 	glutSolidCube( 1 );
 	glPopMatrix();
 
+	// Top Wall
 	glPushMatrix();
 	glTranslatef( thickOfThings, -fieldDepth / 2.0, 0 );
 	glScalef( wallHeight, thickOfThings, fieldWidth );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
+	// Top Wall White Paint
 	glPushMatrix();
 	glTranslatef( thickOfThings, -fieldDepth / 2.0 + (thickOfThings / 2.0), 0 );
-	glScalef( wallHeight, 0.1, fieldWidth - (9.0 * 2.0));
+	glScalef( wallHeight, 0.2, fieldWidth - (9.0 * 2.0));
 	material->applyMaterial( ColorName::White );
 	glutSolidCube( 1 );
 	glPopMatrix();
@@ -92,7 +103,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glPushMatrix();
 	glTranslatef( thickOfThings, fieldDepth / 2.0, 0 );
 	glScalef( wallHeight, thickOfThings, fieldWidth );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -106,28 +117,28 @@ void FieldDrawerVerySmallSize::draw(){
 	glPushMatrix();
 	glTranslatef( thickOfThings, 43.2, -fieldWidth / 1.97 );
 	glScalef( wallHeight, wallTop, thickOfThings );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef( thickOfThings, -43.2, -fieldWidth / 1.97 );
 	glScalef( wallHeight, wallTop, thickOfThings );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef( thickOfThings, 0, (-fieldWidth / 1.98) - goalDepth );
 	glScalef( wallHeight, goalWidth + 1.25, thickOfThings );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef( thickOfThings, -22, -fieldWidth / 1.85 );
 	glScalef( wallHeight, thickOfThings, goalDepth + 1.35 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -141,7 +152,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glPushMatrix();
 	glTranslatef( thickOfThings, 22, -fieldWidth / 1.85 );
 	glScalef( wallHeight, thickOfThings, goalDepth + 1.35 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -169,35 +180,35 @@ void FieldDrawerVerySmallSize::draw(){
 	glPushMatrix();
 	glTranslatef( thickOfThings, 44.0, fieldWidth / 1.97 );
 	glScalef( wallHeight, wallTop, thickOfThings );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef( thickOfThings, -44.0, fieldWidth / 1.97 );
 	glScalef( wallHeight, wallTop, thickOfThings );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef( thickOfThings, 0, fieldWidth / 1.98 + goalDepth );
 	glScalef( wallHeight, goalWidth + 1.25, thickOfThings );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef( thickOfThings, -22, fieldWidth / 1.85 );
 	glScalef( wallHeight, thickOfThings, goalDepth + 1.35 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef( thickOfThings, 22, fieldWidth / 1.85 );
 	glScalef( wallHeight, thickOfThings, goalDepth + 1.35 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -205,7 +216,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glTranslatef( thickOfThings, (fieldDepth / 2.0) - 4.5, (fieldWidth / 2.0) - 4.5 );
 	glRotatef( 45.0, 1, 0, 0 );
 	glScalef( wallHeight, thickOfThings, 14.1 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -221,7 +232,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glTranslatef( thickOfThings, (fieldDepth / 2.0) - 3.0, (fieldWidth / 2.0) - 3.0 );
 	glRotatef( 45.0, 1, 0, 0 );
 	glScalef( wallHeight, thickOfThings, 9.5 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -229,7 +240,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glTranslatef( thickOfThings, (fieldDepth / 2.0) - 1.5, (fieldWidth / 2.0) - 1.5 );
 	glRotatef( 45.0, 1, 0, 0 );
 	glScalef( wallHeight, thickOfThings, 5.5 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -245,7 +256,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glTranslatef( thickOfThings, -(fieldDepth / 2.0) + 4.5, -(fieldWidth / 2.0) + 4.5 );
 	glRotatef( 45.0, 1, 0, 0 );
 	glScalef( wallHeight, thickOfThings, 14.1 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -253,7 +264,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glTranslatef( thickOfThings, -(fieldDepth / 2.0) + 3.0, -(fieldWidth / 2.0) + 3.0 );
 	glRotatef( 45.0, 1, 0, 0 );
 	glScalef( wallHeight, thickOfThings, 9.5 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -261,7 +272,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glTranslatef( thickOfThings, -(fieldDepth / 2.0) + 1.5, -(fieldWidth / 2.0) + 1.5 );
 	glRotatef( 45.0, 1, 0, 0 );
 	glScalef( wallHeight, thickOfThings, 5.5 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -277,7 +288,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glTranslatef( thickOfThings, -(fieldDepth / 2.0) + 4.5, (fieldWidth / 2.0) - 4.5 );
 	glRotatef( -45.0, 1, 0, 0 );
 	glScalef( wallHeight, thickOfThings, 14.1 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -285,7 +296,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glTranslatef( thickOfThings, -(fieldDepth / 2.0) + 3.0, (fieldWidth / 2.0) - 3.0 );
 	glRotatef( -45.0, 1, 0, 0 );
 	glScalef( wallHeight, thickOfThings, 9.5 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -293,7 +304,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glTranslatef( thickOfThings, -(fieldDepth / 2.0) + 1.5, (fieldWidth / 2.0) - 1.5 );
 	glRotatef( -45.0, 1, 0, 0 );
 	glScalef( wallHeight, thickOfThings, 5.5 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -309,7 +320,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glTranslatef( thickOfThings, (fieldDepth / 2.0) - 4.5, -(fieldWidth / 2.0) + 4.5 );
 	glRotatef( -45.0, 1, 0, 0 );
 	glScalef( wallHeight, thickOfThings, 14.1 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -317,7 +328,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glTranslatef( thickOfThings, (fieldDepth / 2.0) - 3.0, -(fieldWidth / 2.0) + 3.0 );
 	glRotatef( -45.0, 1, 0, 0 );
 	glScalef( wallHeight, thickOfThings, 9.5 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 
@@ -325,7 +336,7 @@ void FieldDrawerVerySmallSize::draw(){
 	glTranslatef( thickOfThings, (fieldDepth / 2.0) - 1.5, -(fieldWidth / 2.0) + 1.5 );
 	glRotatef( -45.0, 1, 0, 0 );
 	glScalef( wallHeight, thickOfThings, 5.5 );
-	material->applyMaterial( ColorName::Black2 );
+	material->applyMaterial( ColorName::Black );
 	glutSolidCube( 1 );
 	glPopMatrix();
 

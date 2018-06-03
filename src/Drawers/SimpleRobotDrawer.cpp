@@ -17,7 +17,7 @@ SimpleRobotDrawer::SimpleRobotDrawer(){
 
 	robotWidth = 8.0;
 	robotDepth = 8.0;
-	robotHeight = 8.0;
+	robotHeight = 7.0;
 }
 
 void SimpleRobotDrawer::draw( const Robot3d &robot ){
@@ -30,7 +30,7 @@ void SimpleRobotDrawer::draw( const Robot3d &robot ){
 	if(robot.selected)
 		material->applyMaterial( ColorName::Gray );
 	else
-		material->applyMaterial( ColorName::Black3 );
+		material->applyMaterial( ColorName::Black2 );
 
 	glutSolidCube( 1 );
 
@@ -53,9 +53,9 @@ void SimpleRobotDrawer::draw( const Robot3d &robot ){
 	//! Desenha as rodas de um robô
 	glPushMatrix();
 	glRotatef( 90.0, 1, 0, 0 );
-	glTranslatef( -0.22, 0.0, -0.61 );
-	material->applyMaterial( ColorName::White );
-	gluCylinder( qobj, 0.2f, 0.2f, 1.2f, 16.0, 16.0 ); // Radius 1, Radius 2, Lenght, Precision1, Precision2
+	glTranslatef( -0.22, 0.0, -0.58 );
+	material->applyMaterial( ColorName::Gray2 );
+	gluCylinder( qobj, 0.2f, 0.2f, 1.15f, 16.0, 16.0 ); // Radius 1, Radius 2, Lenght, Precision1, Precision2
 	glPopMatrix();
 
 	glPopMatrix();

@@ -9,6 +9,6 @@
 #ifndef COLOR_ENUM_H
 #define COLOR_ENUM_H
 
-enum ColorName { Orange = 0, Blue = 1, Yellow = 2, Red = 3, Green = 4, Purple = 5, Pink = 6, Brown = 7, White = 8, Gray = 9, Black = 10, Black2 = 11, Black3 = 12, Gray2 = 13 };
+enum ColorName { Orange = 0, Blue = 1, Yellow = 2, Red = 3, Green = 4, Purple = 5, Pink = 6, Brown = 7, White = 8, Gray = 9, Black = 10, Black2 = 11, Gray2 = 12 };
 
 #endif // COLOR_ENUM_H
