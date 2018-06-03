@@ -34,9 +34,3 @@ Você pode utilizar esse código. Caso o faça, nos informe.
 [slack]: https://vss-sdk.slack.com
 [vss-core]: https://github.com/SIRLab/VSS-Core
 [samplecpp]: https://github.com/SIRLab/VSS-SampleCpp
-
-
-
-
-
-
