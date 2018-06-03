@@ -1,47 +1,42 @@
-VSS-Viewer
-==========
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)][gpl3]
-[![Build Status](https://travis-ci.org/SIRLab/VSS-Viewer.svg?branch=master)][travis]
+# VSS-Viewer [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)][gpl3] [![Build Status](https://travis-ci.org/SIRLab/VSS-Viewer.svg?branch=master)][travis]
+
+[![Trello](https://img.shields.io/badge/Trello-SDK-blue.svg)][vss-sdk-trello]
+[![Slack](https://img.shields.io/badge/Slack-Channel-551a8b.svg)][slack]
+
+O VSS-Viewer é um visualizador de estados de jogo. Esse projeto obtém dados do VSS-Simulator, VSS-Vision
+e estratégias. Esse projeto utiliza o [VSS-Core][vss-core] como interface de comunicação.
 
 Mais informações podem ser encontradas em [VSS-SDK][vss-sdk].
 
-Installation
-------------
-[INSTALL][install]
-
-Cloning
--------
+## Instalação
 ```
-$ git clone --recursive https://github.com/SIRLab/VSS-Viewer.git
+$ sudo ./configure.sh
 ```
 
-Development and Use
--------------------
+## Desenvolvimento
 ```
-$ mkdir build && cd build
-$ cmake ..
-$ make
-$ ./VSS-Viewer
+$ sudo ./configure.sh development
 ```
 
-Gallery
--------
-![screenshot 1](https://raw.githubusercontent.com/SIRLab/VSS-Viewer/master/images/top.png)
+## Exemplos
+Exemplo em C++: [VSS-SampleCpp][samplecpp]
 
-![screenshot 2](https://raw.githubusercontent.com/SIRLab/VSS-Viewer/master/images/top2.png)
+# Licença
 
+Esse código está sob licença [GNU GENERAL PUBLIC LICENSE Version 3][gpl3], cujo uma cópia em texto pode ser encontrada em [LICENSE.txt](LICENSE.txt).
 
-License
--------
+Você pode utilizar esse código. Caso o faça, nos informe.
 
-This code is licensed under the [GNU GENERAL PUBLIC LICENSE Version 3][gpl3], of which a textual copy is available at [LICENSE.txt](LICENSE.txt).
-
-You are allowed and encouraged to use this software on the IEEE Very Small Size Soccer competitions.  If you do, please let us know.
-
-[gpl3]: http://www.gnu.org/licenses/gpl-3.0/
-[install]: https://github.com/SIRLab/VSS-Viewer/blob/master/INSTALL.md
 [vss-sdk]: http://sirlab.github.io/VSS-SDK
+[gpl3]: http://www.gnu.org/licenses/gpl-3.0/
 [travis]: https://travis-ci.org/SIRLab/VSS-Viewer
+[vss-sdk-trello]: https://trello.com/b/b4dVV6ug/vss-sdk
+[slack]: https://vss-sdk.slack.com
+[vss-core]: https://github.com/SIRLab/VSS-Core
+[samplecpp]: https://github.com/SIRLab/VSS-SampleCpp
+
+
+
 
 
 
