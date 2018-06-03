@@ -59,7 +59,6 @@ public:
 	int FPS;
 
 public:
-
 	int windowWidth;
 	int windowHeight;
 	int fieldHeight;
