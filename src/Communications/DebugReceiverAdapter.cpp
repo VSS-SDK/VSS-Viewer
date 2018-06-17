@@ -7,9 +7,9 @@
  */
 
 #include <Domain/TeamType.h>
+#include "Domain/Constants.h"
 #include "DebugReceiverAdapter.h"
 #include "Communications/DebugReceiver.h"
-#include "Constants.h"
 
 DebugReceiverAdapter::DebugReceiverAdapter( std::vector<vss::Path> *paths, std::vector<vss::Pose> *stepPoses, std::vector<vss::Pose> *finalPoses, std::mutex *mutexDebug ){
 	this->paths = paths;

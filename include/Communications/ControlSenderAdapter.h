@@ -10,7 +10,6 @@
 #define CONTROL_SENDER_H
 
 #include "vector"
-#include "interface.h"
 #include "Robot3d.h"
 #include "Interfaces/IControlSender.h"
 

@@ -94,7 +94,6 @@ void World::mouseButtonPress( int button, int state, int x, int y ){
     mouseAction = (MouseAction)button;
     mouseState = (MouseState)state;
 
-    cout << x << ", " << y << endl;
     switch(mouseAction) {
         case MouseAction::ScrollTop: {
             // rotateRobot left
