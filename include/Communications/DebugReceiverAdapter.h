@@ -11,7 +11,6 @@
 
 #include "mutex"
 #include "vector"
-#include "interface.h"
 #include "Domain/Pose.h"
 #include "Domain/Path.h"
 #include "math.h"

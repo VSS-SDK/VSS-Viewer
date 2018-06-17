@@ -54,10 +54,10 @@ void Kernel::instanceRobots(){
 }
 
 void Kernel::init(){
-	worldThread = new thread( std::bind( &Kernel::worldThreadWrapper, this ));
-	receiveStateThread = new thread( std::bind( &Kernel::receiveStateThreadWrapper, this ));
-	receiveDebugTeam1Thread = new thread( std::bind( &Kernel::receiveDebugTeam1ThreadWrapper, this ));
-	receiveDebugTeam2Thread = new thread( std::bind( &Kernel::receiveDebugTeam2ThreadWrapper, this ));
+	worldThread = new std::thread( std::bind( &Kernel::worldThreadWrapper, this ));
+	receiveStateThread = new std::thread( std::bind( &Kernel::receiveStateThreadWrapper, this ));
+	receiveDebugTeam1Thread = new std::thread( std::bind( &Kernel::receiveDebugTeam1ThreadWrapper, this ));
+	receiveDebugTeam2Thread = new std::thread( std::bind( &Kernel::receiveDebugTeam2ThreadWrapper, this ));
 
 	worldThread->join();
 	receiveStateThread->join();

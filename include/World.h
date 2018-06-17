@@ -15,7 +15,6 @@
 #include "mutex"
 
 #include "GlutFramework.h"
-#include "interface.h"
 #include "IFieldDrawer.h"
 #include "IRobotDrawer.h"
 #include "IBallDrawer.h"

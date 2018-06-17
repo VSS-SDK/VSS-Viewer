@@ -11,7 +11,6 @@
 
 #include <Interfaces/IStateReceiver.h>
 #include "vector"
-#include "interface.h"
 #include "Robot3d.h"
 
 class StateReceiverAdapter {
