@@ -33,6 +33,13 @@ CMAKE_INSTALL () {
     cd ..
 }
 
+INSTALL_UBUNTU_18_04 () {
+  apt-get update && apt-get upgrade
+  apt-get -y install pkg-config
+  apt-get -y install g++ cmake libxmu-dev libxi-dev protobuf-compiler libprotobuf-dev libboost-all-dev freeglut3 freeglut3-dev
+  INSTALLED=1
+}
+
 INSTALL_UBUNTU_16_04 () {
   apt-get update && apt-get upgrade
   apt-get -y install pkg-config
@@ -87,6 +94,10 @@ INSTALL () {
     INSTALL_BASE;
 
     # Ubuntu
+    if [[ "$DISTRO" == "Ubuntu" ]] && [[ "$RELEASE" == "18.04" ]]; then
+        INSTALL_UBUNTU_18_04;
+    fi
+
     if [[ "$DISTRO" == "Ubuntu" ]] && [[ "$RELEASE" == "16.04" ]]; then
         INSTALL_UBUNTU_16_04;
     fi
