@@ -12,16 +12,22 @@
 #include "vector"
 #include "Robot3d.h"
 #include "Interfaces/IControlSender.h"
+#include "Domain/ExecutionConfig.h"
 
 class ControlSenderAdapter {
 public:
 
 	vss::IControlSender *controlSender;
+	vss::ExecutionConfig *executionConfig;
 	vss::Pose *ball;
 	std::vector<Robot3d> *robots;
 
-	ControlSenderAdapter( vss::Pose *ball, std::vector<Robot3d> *robots );
+	ControlSenderAdapter( vss::Pose *ball, std::vector<Robot3d> *robots, vss::ExecutionConfig *executionConfig );
+
 	void send( bool paused );
+
+protected:
+	bool hasACustomAddress();
 };
 
 #endif // CONTROL_SENDER_H

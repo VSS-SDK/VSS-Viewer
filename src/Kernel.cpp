@@ -1,9 +1,9 @@
 #include "Kernel.h"
 
-Kernel::Kernel( int argc, char **argv ){
+Kernel::Kernel( int argc, char **argv, vss::ExecutionConfig executionConfig ){
 	this->argc = argc;
 	this->argv = argv;
-	this->receiveStateAddress = "tcp://localhost:5555";
+	this->executionConfig = executionConfig;
 
 	ball = vss::Pose( 0, 0, 0 );
 
@@ -74,22 +74,22 @@ void Kernel::worldThreadWrapper(){
 
 	auto world = new World(debugDrawer, fieldDrawer, robotDrawer, ballDrawer, camera, &ball, &robots,
 			&teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &teamTwoPaths, &teamTwoStepPoses,
-						   &teamTwoFinalPoses, &mutexDebugTeamYellow, &mutexDebugTeamBlue );
+						   &teamTwoFinalPoses, &mutexDebugTeamYellow, &mutexDebugTeamBlue, &executionConfig );
 	world->start( argc, argv );
 }
 
 void Kernel::receiveStateThreadWrapper(){
-	auto stateReceiver = new StateReceiverAdapter( &ball, &robots );
+	auto stateReceiver = new StateReceiverAdapter( &ball, &robots, &executionConfig );
 	stateReceiver->loop();
 }
 
 void Kernel::receiveDebugTeam1ThreadWrapper(){
-	auto debugReceiver = new DebugReceiverAdapter( &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &mutexDebugTeamYellow );
+	auto debugReceiver = new DebugReceiverAdapter( &teamOnePaths, &teamOneStepPoses, &teamOneFinalPoses, &mutexDebugTeamYellow, &executionConfig );
 	debugReceiver->loop( vss::TeamType::Yellow );
 }
 
 void Kernel::receiveDebugTeam2ThreadWrapper(){
-	auto debugReceiver = new DebugReceiverAdapter( &teamTwoPaths, &teamTwoStepPoses, &teamTwoFinalPoses, &mutexDebugTeamBlue );
+	auto debugReceiver = new DebugReceiverAdapter( &teamTwoPaths, &teamTwoStepPoses, &teamTwoFinalPoses, &mutexDebugTeamBlue, &executionConfig );
 	debugReceiver->loop( vss::TeamType::Blue );
 }
 

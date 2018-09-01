@@ -7,9 +7,34 @@
  */
 
 #include "Kernel.h"
+#include "Builders/StdinInterpreterBuilder.h"
+
+vss::ExecutionConfig loadExecutionConfig(int argc, char** argv){
+	auto stdinInterpreterBuilder = new vss::StdinInterpreterBuilder();
+
+	stdinInterpreterBuilder
+			->onStateRecvAddr()
+			->onStatePort()
+			->onCtrlSendAddr()
+			->onCtrlPort()
+			->onYellowDebugRecvAddr()
+			->onYellowDebugPort()
+			->onBlueDebugRecvAddr()
+			->onBlueDebugPort();
+
+	auto stdinInterpreter = stdinInterpreterBuilder->buildInterpreter();
+
+	return stdinInterpreter->extractExecutionConfig(argc, argv);
+}
+
 
 int main( int argc, char *argv[] ) {
-	Kernel kernel( argc, argv );
+	auto executionConfig = loadExecutionConfig(argc, argv);
+
+	if(!executionConfig.isValidConfiguration)
+		return 0;
+
+	Kernel kernel(argc, argv, executionConfig);
 	kernel.init();
 	return 0;
 }

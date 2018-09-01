@@ -44,6 +44,7 @@ public:
 	IDebugDrawer *debugDrawer;
 	ICamera *camera;
 	ControlSenderAdapter *controlSender;
+	vss::ExecutionConfig *executionConfig;
 
 	vss::Pose *ball;
 	bool isBallSelected;
@@ -63,7 +64,7 @@ public:
 	World( IDebugDrawer *debugDrawer, IFieldDrawer *fieldDrawer, IRobotDrawer *robotDrawer, IBallDrawer *ballDrawer,
 		   ICamera *camera, vss::Pose *ball, std::vector<Robot3d> *robots, std::vector<vss::Path> *pathsTeam1, std::vector<vss::Pose> *stepPosesTeam1,
 		   std::vector<vss::Pose> *finalPosesTeam1, std::vector<vss::Path> *pathsTeam2, std::vector<vss::Pose> *stepPosesTeam2, std::vector<vss::Pose> *finalPosesTeam2,
-		   std::mutex *mutexDebugTeamYellow, std::mutex *mutexDebugTeamBlue);
+		   std::mutex *mutexDebugTeamYellow, std::mutex *mutexDebugTeamBlue, vss::ExecutionConfig *executionConfig );
 
 	void display() override;
 	void keyboardDown( unsigned char key, int x, int y ) override;

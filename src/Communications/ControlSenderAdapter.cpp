@@ -6,16 +6,23 @@
  * file, You can obtain one at http://www.gnu.org/licenses/gpl-3.0/.
  */
 
+#include <Domain/ExecutionConfig.h>
+#include <Domain/Constants.h>
 #include "ControlSenderAdapter.h"
 #include "Communications/ControlSender.h"
 #include "Math.h"
 
-ControlSenderAdapter::ControlSenderAdapter( vss::Pose *ball, std::vector<Robot3d> *robots ){
+ControlSenderAdapter::ControlSenderAdapter( vss::Pose *ball, std::vector<Robot3d> *robots, vss::ExecutionConfig *executionConfig ){
 	this->ball = ball;
 	this->robots = robots;
+	this->executionConfig = executionConfig;
 
 	controlSender = new vss::ControlSender();
-	controlSender->createSocket();
+
+	if(hasACustomAddress())
+		controlSender->createSocket(executionConfig->ctrlSendAddr);
+	else
+		controlSender->createSocket();
 }
 
 void ControlSenderAdapter::send( bool paused ){
@@ -38,4 +45,14 @@ void ControlSenderAdapter::send( bool paused ){
 	}
 
 	controlSender->sendControl(control);
+}
+
+bool ControlSenderAdapter::hasACustomAddress() {
+	if(executionConfig->ctrlSendAddr.getIp() != vss::DEFAULT_CTRL_SEND_ADDR)
+		return true;
+
+	if(executionConfig->ctrlSendAddr.getPort() != vss::DEFAULT_CTRL_PORT)
+		return true;
+
+	return false;
 }

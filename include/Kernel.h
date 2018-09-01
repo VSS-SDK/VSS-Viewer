@@ -9,6 +9,7 @@
 #ifndef KERNEL_H
 #define KERNEL_H
 
+#include <Domain/ExecutionConfig.h>
 #include "mutex"
 #include "thread"
 #include "functional"
@@ -34,6 +35,7 @@ private:
 
 	int argc;
 	char **argv;
+	vss::ExecutionConfig executionConfig;
 
     vss::Pose ball;
 	std::vector<Robot3d> robots;
@@ -49,14 +51,12 @@ private:
 	std::thread *receiveDebugTeam1Thread;
 	std::thread *receiveDebugTeam2Thread;
 
-	std::string receiveStateAddress;
-
     std::mutex mutexDebugTeamYellow;
     std::mutex mutexDebugTeamBlue;
 
 public:
 
-	Kernel( int argc, char **argv );
+	Kernel( int argc, char **argv, vss::ExecutionConfig );
 
 	void init();
 	void initialMessage();
