@@ -7,20 +7,31 @@
  */
 
 #include <Domain/TeamType.h>
+#include <Domain/ExecutionConfig.h>
+#include <Communications/DebugReceiverAdapter.h>
+
 #include "Domain/Constants.h"
 #include "DebugReceiverAdapter.h"
 #include "Communications/DebugReceiver.h"
 
-DebugReceiverAdapter::DebugReceiverAdapter( std::vector<vss::Path> *paths, std::vector<vss::Pose> *stepPoses, std::vector<vss::Pose> *finalPoses, std::mutex *mutexDebug ){
+DebugReceiverAdapter::DebugReceiverAdapter( std::vector<vss::Path> *paths, std::vector<vss::Pose> *stepPoses, std::vector<vss::Pose> *finalPoses, std::mutex *mutexDebug, vss::ExecutionConfig *executionConfig ){
 	this->paths = paths;
 	this->stepPoses = stepPoses;
 	this->finalPoses = finalPoses;
 	this->mutexDebug = mutexDebug;
+	this->executionConfig = executionConfig;
 }
 
 void DebugReceiverAdapter::loop( vss::TeamType teamType ){
 	debugReceiver = new vss::DebugReceiver();
-	debugReceiver->createSocket(teamType);
+
+	if(hasACustomAddress())
+		if(teamType == vss::TeamType::Yellow)
+			debugReceiver->createSocket(executionConfig->debugYellowRecvAddr);
+		else
+			debugReceiver->createSocket(executionConfig->debugBlueRecvAddr);
+	else
+		debugReceiver->createSocket(teamType);
 
 	while(true) {
 		auto debug = debugReceiver->receiveDebug();
@@ -52,4 +63,20 @@ void DebugReceiverAdapter::loop( vss::TeamType teamType ){
 
 		mutexDebug->unlock();
 	}
+}
+
+bool DebugReceiverAdapter::hasACustomAddress() {
+	if(executionConfig->debugYellowRecvAddr.getIp() != vss::DEFAULT_DEBUG_RECV_ADDR)
+		return true;
+
+	if(executionConfig->debugBlueRecvAddr.getIp() != vss::DEFAULT_DEBUG_RECV_ADDR)
+		return true;
+
+	if(executionConfig->debugYellowRecvAddr.getPort() != vss::DEFAULT_DEBUG_YELLOW_PORT)
+		return true;
+
+	if(executionConfig->debugBlueRecvAddr.getPort() != vss::DEFAULT_DEBUG_BLUE_PORT)
+		return true;
+
+	return false;
 }

@@ -21,13 +21,18 @@ class DebugReceiverAdapter {
 public:
 
     vss::IDebugReceiver *debugReceiver;
+    vss::ExecutionConfig *executionConfig;
     std::vector<vss::Pose> *finalPoses;
     std::vector<vss::Pose> *stepPoses;
     std::vector<vss::Path> *paths;
     std::mutex *mutexDebug;
 
-    DebugReceiverAdapter( std::vector<vss::Path> *paths, std::vector<vss::Pose> *stepPoses, std::vector<vss::Pose> *finalPoses, std::mutex *mutexDebug );
+    DebugReceiverAdapter( std::vector<vss::Path> *paths, std::vector<vss::Pose> *stepPoses, std::vector<vss::Pose> *finalPoses, std::mutex *mutexDebug, vss::ExecutionConfig* );
+
     void loop( vss::TeamType teamType );
+
+protected:
+    bool hasACustomAddress();
 };
 
 #endif // DEBUG_RECEIVER_H

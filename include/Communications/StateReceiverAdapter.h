@@ -17,11 +17,16 @@ class StateReceiverAdapter {
 public:
 
     vss::IStateReceiver *stateReceiver;
+    vss::ExecutionConfig *executionConfig;
     vss::Pose *ball;
     std::vector<Robot3d> *robots;
 
-    StateReceiverAdapter( vss::Pose *ball, std::vector<Robot3d> *robots );
+    StateReceiverAdapter( vss::Pose *ball, std::vector<Robot3d> *robots, vss::ExecutionConfig *executionConfig );
+
     void loop();
+
+protected:
+    bool hasCustomAddress();
 };
 
 #endif
