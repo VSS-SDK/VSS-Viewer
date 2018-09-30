@@ -24,7 +24,7 @@ void StateReceiverAdapter::loop(){
     stateReceiver = new vss::StateReceiver();
 
     if(hasCustomAddress())
-        stateReceiver->createSocket();
+        stateReceiver->createSocket(executionConfig->stateRecvAddr);
     else
         stateReceiver->createSocket();
 
