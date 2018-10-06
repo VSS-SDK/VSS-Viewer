@@ -15,11 +15,8 @@ vss::ExecutionConfig loadExecutionConfig(int argc, char** argv){
 	stdinInterpreterBuilder
 			->onStateRecvAddr()
 			->onStatePort()
-			->onCtrlSendAddr()
 			->onCtrlPort()
-			->onYellowDebugRecvAddr()
 			->onYellowDebugPort()
-			->onBlueDebugRecvAddr()
 			->onBlueDebugPort();
 
 	auto stdinInterpreter = stdinInterpreterBuilder->buildInterpreter();
