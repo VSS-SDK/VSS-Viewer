@@ -34,49 +34,48 @@ CMAKE_INSTALL () {
 }
 
 INSTALL_UBUNTU_18_04 () {
-  apt-get update && apt-get upgrade
   apt-get -y install pkg-config
   apt-get -y install libxmu-dev libxi-dev freeglut3 freeglut3-dev
   INSTALLED=1
 }
 
 INSTALL_UBUNTU_16_04 () {
-  apt-get update && apt-get upgrade
   apt-get -y install pkg-config
   apt-get -y install libxmu-dev libxi-dev freeglut3 freeglut3-dev
   INSTALLED=1
 }
 
 INSTALL_UBUNTU_16_10 () {
-  apt-get update && apt-get upgrade
   apt-get -y install pkgconf
   apt-get -y install libxmu-dev libxi-dev freeglut3 freeglut3-dev
   INSTALLED=1
 }
 
 INSTALL_UBUNTU_14_04 () {
-  apt-get update && apt-get upgrade
   apt-get -y install pkg-config
   apt-get -y install libxmu-dev libxi-dev freeglut3 freeglut3-dev
   INSTALLED=1
 }
 
 INSTALL_MINT_18_2 () {
-  apt-get update && apt-get upgrade
   apt-get -y install pkg-config
   apt-get -y install libxmu-dev libxi-dev freeglut3 freeglut3-dev
   INSTALLED=1
 }
 
 INSTALL_DEBIAN_9 () {
-  apt-get update && apt-get upgrade
+  apt-get -y install pkgconf
+  apt-get -y install libxmu-dev libxi-dev freeglut3 freeglut3-dev
+  INSTALLED=1
+}
+
+INSTALL_DEBIAN_10 () {
   apt-get -y install pkgconf
   apt-get -y install libxmu-dev libxi-dev freeglut3 freeglut3-dev
   INSTALLED=1
 }
 
 INSTALL_BASE() {
-    apt-get update && apt-get upgrade
     apt-get -y install lsb-release;
 
     DISTRO=`lsb_release -si`
@@ -115,6 +114,10 @@ INSTALL () {
         INSTALL_DEBIAN_9;
     fi
 
+    if [[ "$DISTRO" == "Debian" ]] && [[ "$RELEASE_DEBIAN" == "10" ]]; then
+        INSTALL_DEBIAN_10;
+    fi
+
     # LinuxMint
     if [[ "$DISTRO" == "LinuxMint" ]] && [[ "$RELEASE" == "18.2" ]]; then
         INSTALL_MINT_18_2;
@@ -122,6 +125,7 @@ INSTALL () {
 
     if [[ $INSTALLED == 0 ]]; then
         echo "Sistema Operacional Incompatível";
+        echo "Considere editar o arquivo \"configure.sh\" adicionando seu sistema operacional";
     fi
 
     if [[ $INSTALLED == 1 ]]; then
