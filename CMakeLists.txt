@@ -23,6 +23,8 @@ include_directories(${PROTOBUF_INCLUDE_DIR} ${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUD
 include_directories(src src/Interfaces src/Cameras src/Communications src/Domain src/Drawers src/Framework src/Core)
 include_directories(include include/Interfaces include/Cameras include/Communications include/Domain include/Drawers include/Framework include/Core)
 
+include_directories(/usr/local/include/Interfaces /usr/local/include/Cameras /usr/local/include/Communications /usr/local/include/Domain /usr/local/include/Drawers /usr/local/include/Framework /usr/local/include/Core)
+
 file(GLOB_RECURSE SRC src/*.cpp)
 file(GLOB_RECURSE H include/*.h)
 
