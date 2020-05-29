@@ -10,7 +10,7 @@ deploy:
   provider: releases
   token:
     secure: jxhnaLdnKUTXN/Z2yHrbBiNYmz/DKqz6FK198a82VnqRZR7psZneb8kaTW/Rmy8XMqFwHYOWKpENsiuS0MctecV/teaxhg56FTwSglb73vef9ayfiq+ZdkOINRoOrvYHNPdGpfZnwLJTbZ0N1CrusJ9WtE8zoVasSi/owTzfgdM8AuubRgZWjZm4VmA3n3pMHvqh/NRNOMn3jCK6TH9jgSPNkQcht8j7czFHTSNQILCf0hyRcHp75RPVprNHUsREBucW9yq+v89sw/h+NgVMWpQ9E0b6gTwbC7FAB1e3Ppxjcqu9VBMCHTNza7yaRSfrXqLNOpUQ4AvPQYVZBz45KMCmDRYdeIJGr60+YE1TWsvEg0oQx+qvkKY29z52ftaoDYEks90o8kN8mtlSw40v2wEHpjaIX2Ory4M+R5zptWx3+Kqb3RnfQxxD2yDKeuIvdPFvBGs/bq2D6Fuu8yIzVZbNEsai3Ag4hAEcHfiE+yO9zPlfXvhftAf5ry+RAql+8nr5f5DVAf5Eq+Y+asrnP5cf4R/7d7Oqs8oDzqdgaUPMY1NIZLnzxPgg6qMVP60fH1gqdsrMMRfZK4RZNmoWmG1kyQ+D7AiRKMEPhkqC8bRxuRA6abRgqj2GEtpHBZTGKeZ9y0YYRW4bZEMxoZ2aJVN9/HqPar1rOql4ZsXIyJw=
-  file: build/vss-viewer
+  file: ./build/vss-viewer
   on:
     repo: erufes/VSS-Viewer
   cleanup: 'false'
