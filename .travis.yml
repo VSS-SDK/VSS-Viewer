@@ -15,3 +15,4 @@ deploy:
     repo: erufes/VSS-Viewer
   cleanup: 'false'
   draft: 'true'
+  skip_cleanup: 'true'
