@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:16.04
 
 # Desabilita o frontend para instalação de pacotes
 ARG DEBIAN_FRONTEND=noninteractive
