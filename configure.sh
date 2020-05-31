@@ -76,7 +76,7 @@ INSTALL_DEBIAN_10 () {
 }
 
 INSTALL_BASE() {
-    apt-get -y install lsb-release;
+    apt-get -y install lsb-release make cmake;
 
     DISTRO=`lsb_release -si`
     RELEASE=`lsb_release -sr`
