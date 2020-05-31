@@ -1,5 +1,8 @@
 FROM ubuntu:20.04
 
+# Desabilita o frontend para instalação de pacotes
+ARG DEBIAN_FRONTEND=noninteractive
+
 # Instala o CMAKE
 RUN apt-get update
 
